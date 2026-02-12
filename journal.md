@@ -33,7 +33,8 @@ npx @angular/cli@13.3.11 new vvroom --style=scss --routing=true --skip-git=false
 - **RxJS**: 7.5.7
 - **Styling**: SCSS
 - **Routing**: Enabled
-- **Port**: 4207
+- **Dev Server Port**: 4207 (`npm run dev:server`)
+- **Playwright Port**: 4228 (screenshot capture only)
 
 ### Dependencies Added
 

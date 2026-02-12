@@ -27,7 +27,8 @@ This ensures the textbook accurately reflects production-quality code.
 - vvroom directory structure already exists (40 directories)
 - Reference codebase: `~/projects/generic-prime` (checkout `angular/13` branch)
 - Textbook source: `~/projects/vroom/plan/`
-- Application port: **4228**
+- Development server port: **4207** (`npm run dev:server`)
+- Playwright testing port: **4228** (screenshot capture only)
 
 ## Process
 
