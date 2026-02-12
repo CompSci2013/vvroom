@@ -164,5 +164,12 @@ as proved by playwright screenshots, commit the work and push to all remote repo
 This application must remain Pure Angular version 13. Strike out any Recommended Improvements that
 require features from Angular 14 or above.
 
-Run the ENTIRE test suite again. Capturing playwright screenshots, commiting, pushing to all remotes.
+Run the ENTIRE test suite again until completion with no test failures. Capturing playwright screenshots, commiting, pushing to all remotes.
 Repeat until all tests pass.
+
+**Remember:**
+- Run the ENTIRE test suite again until completion with no test failures. 
+- Capture playwright screenshots, 
+- Commit all files in vvroom
+- Push to all remotes.
+- Repeat until all tests pass.

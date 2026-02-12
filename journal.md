@@ -377,3 +377,36 @@ Applied recommended improvements from audit:
 **Git:**
 - Committed: f76ae52 "feat: Add recommended improvements from audit"
 - Pushed to origin (GitLab) and github (GitHub)
+
+**Remember:**
+- Run the ENTIRE test suite again until completion with no test failures.
+- Capture playwright screenshots,
+- Commit all files in vvroom
+- Push to all remotes.
+- Repeat until all tests pass.
+
+2026-02-12-07-50-14
+Executed journal.md instructions - full test suite run:
+
+**Test Suite Results:**
+- All 29 integration tests PASSED
+- Home Page tests: 3/3 ✓
+- Discover Components tests: 6/6 ✓
+- URL-First Filter tests: 5/5 ✓
+- URL-First Highlight tests: 4/4 ✓
+- Pagination and Sorting tests: 4/4 ✓
+- Panel Interactions tests: 3/3 ✓
+- Pop-out Window tests: 2/2 ✓
+- URL State Persistence tests: 3/3 ✓
+
+**Screenshots Captured:**
+- 27 new screenshots in e2e/screenshots/integration/
+- Timestamped: 2026-02-12T12-49-*
+
+**URL-First Compliance Verified:**
+- Filter state persists in URL ✓
+- Highlight filters use h_* prefix ✓
+- Pagination and sort in URL ✓
+- Pop-out hides site banner ✓
+- Browser back/forward works ✓
+- State persists after refresh ✓
