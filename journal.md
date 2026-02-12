@@ -208,3 +208,9 @@ Applied dark theme styling and updated branding from Generic-Prime to Vvroom:
 - Changed domainLabel from "Generic-Prime Discovery -p 4205" to "Vvroom Discovery"
 - Build successful: 5.62 MB total bundle (includes PrimeNG dark theme CSS)
 - Captured screenshots: e2e/screenshots/home-2026-02-12T02-21-04.png, discover-2026-02-12T02-21-04.png
+
+2026-02-11-21-28-06
+Clarified port configuration in documentation:
+- Updated instructions.md: Dev server port 4207, Playwright port 4228
+- Updated journal.md configuration section: Added both port purposes
+- Committed and pushed to GitLab (commit 16a8299)
