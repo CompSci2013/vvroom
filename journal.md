@@ -340,3 +340,40 @@ Created comprehensive audit comparing vvroom to golden-extension:
 - Low: Extract PopOutManagerService from DiscoverComponent
 
 **Final Assessment:** ✅ URL-First COMPLIANT
+
+2026-02-12-07-39-18
+Applied recommended improvements from audit:
+
+**Services Added (from golden-extension):**
+- FilterOptionsService (filter-options.service.ts)
+  - Caches filter dropdown options for URL-First compliance
+  - Main window: fetches and caches options from API
+  - Pop-out window: receives cached options via STATE_UPDATE broadcast
+  - Prevents pop-outs from making duplicate API calls
+- PopOutManagerService (popout-manager.service.ts)
+  - Encapsulates pop-out window lifecycle management
+  - Provides Observable streams: messages$, closed$, blocked$
+  - Handles BroadcastChannel setup, window open/close, state broadcasting
+  - Extracts complexity from DiscoverComponent
+
+**App Component Updates:**
+- Added `<p-toast key="app-toast" position="top-right">` for global error notifications
+- MessageService already provided in app.module.ts
+
+**Routing Updates:**
+- Added 404 wildcard route: `{ path: '**', redirectTo: 'home' }`
+- app-routing.module.ts updated to VERSION 3
+
+**Struck Improvement (Angular 14+ required):**
+- ~~Implement lazy loading~~ - requires `loadComponent`/`loadChildren` with standalone components
+- vvroom must remain Pure Angular 13 per instructions.md IMPORTANT note
+
+**Testing:**
+- Build successful: 5.64 MB
+- All 29 integration tests pass
+- URL-First testing rubric verified via Playwright screenshots
+- Captured 29 new screenshots in e2e/screenshots/integration/
+
+**Git:**
+- Committed: f76ae52 "feat: Add recommended improvements from audit"
+- Pushed to origin (GitLab) and github (GitHub)

@@ -54,13 +54,12 @@ For each textbook page, execute the following steps in order:
    - Ensure adherence to URL-First State Management principles
 
 5. **Build & Test**
-   - The application on port 4207 during development
-   - Run the application on port 4228 for playwright testing
+   - Run the application on port 4228
    - Fix any build errors
    - Repeat until the build succeeds
 
 6. **Capture Screenshots**
-   - Use Playwright (port 4228) to capture screenshots of all components implemented or modified in this page
+   - Use Playwright to capture screenshots of all components implemented or modified in this page
    - Save screenshots to `~/projects/vvroom/e2e/screenshots/`
 
 7. **Log & Proceed**
@@ -137,32 +136,3 @@ User Action → URL Update → State Service → Components Re-render
 - [ ] Screenshots captured for all implemented components
 - [ ] URL-First State Management paradigm maintained throughout
 - [ ] URL-First Compliance Checklist passes for each phase
-
-## Restest
-
-vvroom services should match golden-extension ~/projects/golden-extension/frontend/src/framework/services, especially for the popout* services.
-
-Doing so may resolve some of your recommendations.
-
-```
-Recommended Improvements (not blocking):
-
-High: Add FilterOptionsService for cached filter options in pop-outs
-High: Add Toast component to AppComponent for error notifications
-Medium: Implement lazy loading to reduce 5.63 MB bundle
-Medium: Add 404 route for unmatched paths
-Low: Extract PopOutManagerService from DiscoverComponent
-```
-
-Apply all of the recommend Improvements listed above.
-
-Run vvroom/textbook/A02-url-first-testing-rubric.md again. After each successful test
-as proved by playwright screenshots, commit the work and push to all remote repositories.
-
-## IMPORTANT
-
-This application must remain Pure Angular version 13. Strike out any Recommended Improvements that
-require features from Angular 14 or above.
-
-Run the ENTIRE test suite again. Capturing playwright screenshots, commiting, pushing to all remotes.
-Repeat until all tests pass.
