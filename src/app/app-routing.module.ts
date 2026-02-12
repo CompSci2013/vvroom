@@ -1,5 +1,5 @@
 // src/app/app-routing.module.ts
-// VERSION 2 (Pop-out fix) - Added panel route for pop-out windows
+// VERSION 3 - Added 404 wildcard route
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -15,7 +15,9 @@ const routes: Routes = [
   // Pop-out panel route: /panel/:gridId/:panelId/:type
   // Used by DiscoverComponent.popOutPanel() to open panels in separate windows
   // PanelPopoutComponent handles BroadcastChannel communication with main window
-  { path: 'panel/:gridId/:panelId/:type', component: PanelPopoutComponent }
+  { path: 'panel/:gridId/:panelId/:type', component: PanelPopoutComponent },
+  // 404 fallback route - redirect unmatched paths to home
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({

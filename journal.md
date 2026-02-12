@@ -4,9 +4,10 @@ You will always append entries to the bottom of this file: ~/projects/vvroom/jou
 Give the timestamp of the entry, and then write the action taken on the next line.
 There should be a blank line between entries.
 You will add these entries automatically after each action.
-After you have recorded the last action taken, you will read the first 9 lines of this file.
+After you have recorded the last action taken, you will read the first 10 lines of this file.
 You will then read instructions.md
-Then tail the last 40 lines of this file, journal.md, to remember where you left off.
+Then tail the last 120 lines of this file, journal.md, to remember where you left off.
+After each successful test as verified by playwrite screenshot, commit the work, then push to all remote repositories.
 
 # vvroom Development Journal
 

@@ -13,7 +13,7 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 
-const BASE_URL = 'http://localhost:4207';
+const BASE_URL = 'http://localhost:4228';
 const SCREENSHOT_DIR = 'e2e/screenshots/integration';
 
 // Test data based on API exploration
