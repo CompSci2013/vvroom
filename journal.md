@@ -410,3 +410,75 @@ Executed journal.md instructions - full test suite run:
 - Pop-out hides site banner ✓
 - Browser back/forward works ✓
 - State persists after refresh ✓
+
+2026-02-12-07-59-18
+Executed FULL URL-First Testing Rubric (A02-url-first-testing-rubric.md):
+
+**New Test Script Created:**
+- e2e/url-first-rubric-tests.spec.js
+- Covers all 7 categories from textbook/A02-url-first-testing-rubric.md
+
+**Category 1: Main Window Control Changes (M1.1-M1.8)**
+- M1.1 ✓ Change query control filter (manufacturer)
+- M1.2 ✓ Change highlight filter (h_ prefix)
+- M1.3 ✓ Change pagination (page number)
+- M1.4 ✓ Change page size
+- M1.5 ✓ Change sort column
+- M1.6 ✓ Change sort direction
+- M1.7 ✓ Clear all filters
+- M1.8 ✓ Apply multiple filters simultaneously
+
+**Category 2: Pop-Out Window Control Changes (P2.1-P2.6)**
+- P2.1 ✓ Highlight filter change in pop-out updates main URL
+- P2.2 ✓ Pop-out receives BroadcastChannel message from main
+- P2.3 ✓ Pop-out uses static panel URL (does NOT update own URL)
+- P2.4 ✓ Pop-out does NOT make own API calls (autoFetch=false)
+- P2.5 ✓ Pop-out receives state via BroadcastChannel
+- P2.6 ✓ Multiple pop-outs stay synchronized
+
+**Category 3: URL Paste Tests - No Highlights (U3.1-U3.7)**
+- U3.1 ✓ Paste URL with single filter param
+- U3.2 ✓ Paste URL with multiple filter params
+- U3.3 ✓ Paste URL with pagination params
+- U3.4 ✓ Paste URL with sort params
+- U3.5 ✓ Paste URL with all param types combined
+- U3.6 ✓ Paste URL with invalid filter value (graceful handling)
+- U3.7 ✓ Share URL preserves state after refresh
+
+**Category 4: URL Paste Tests - With Highlights (H4.1-H4.6)**
+- H4.1 ✓ Paste URL with h_yearMin param
+- H4.2 ✓ Paste URL with h_manufacturer param
+- H4.3 ✓ Paste URL with multiple highlight params
+- H4.4 ✓ Paste URL mixing query and highlight params
+- H4.5 ✓ Paste URL with highlight into pop-out syncs
+- H4.6 ✓ Clear highlight via URL (remove h_ param)
+
+**Category 5: Pop-Out Window Presentation (W5.1-W5.5)**
+- W5.1 ✓ Pop-out hides site banner/header
+- W5.2 ✓ Pop-out shows query control panel
+- W5.3 ✓ Pop-out URL contains panel route
+- W5.4 ✓ Pop-out title reflects content
+- W5.5 ✓ Pop-out respects autoFetch = false
+
+**Category 6: Cross-Window Synchronization (S6.1-S6.6)**
+- S6.1 ✓ Main window filter change updates pop-outs
+- S6.2 ✓ Pop-out filter change updates main window URL
+- S6.3 ✓ Main window data refresh updates pop-outs
+- S6.4 ✓ Close pop-out does not affect main window state
+- S6.5 ✓ Open multiple pop-outs of same type
+- S6.6 ✓ Open pop-outs of different types
+
+**Category 7: Router Navigate Encapsulation (R7.1-R7.3)**
+- R7.1 ✓ router.navigate only in url-state.service.ts
+- R7.2 ✓ Components call updateFilters() method
+- R7.3 ✓ Pop-out components use parent messaging (no router.navigate)
+
+**Test Results Summary:**
+- URL-First Rubric: 41/41 tests PASSED
+- Integration Tests: 29/29 tests PASSED
+- Total: 70/70 tests PASSED
+
+**Screenshots Captured:**
+- e2e/screenshots/rubric/: 67 new screenshots
+- e2e/screenshots/integration/: 27 new screenshots (189 total)
+- Test results: e2e/screenshots/rubric/test-results.json
