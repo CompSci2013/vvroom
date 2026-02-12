@@ -168,8 +168,37 @@ Run the ENTIRE test suite again until completion with no test failures. Capturin
 Repeat until all tests pass.
 
 **Remember:**
-- Run the ENTIRE test suite again until completion with no test failures. 
-- Capture playwright screenshots, 
+- Run the ENTIRE test suite again until completion with no test failures.
+- Capture playwright screenshots,
 - Commit all files in vvroom
 - Push to all remotes.
 - Repeat until all tests pass.
+
+## Test Success Criteria (UPDATED 2026-02-12)
+
+Tests must verify BOTH functional correctness AND visual presentation:
+
+### Functional Requirements
+1. **Data Accuracy** - Results table displays correct data matching URL filters
+2. **URL-First Compliance** - All state changes flow through URL updates
+3. **Pop-out Communication** - BroadcastChannel messages work bidirectionally
+
+### Visual Requirements (must pass manual inspection)
+1. **Icons Render Correctly** - No empty boxes or missing glyphs
+   - Hamburger/drag handle icon (pi-bars)
+   - Collapse/expand chevron icons (pi-chevron-down/up)
+   - Pop-out icon (pi-external-link)
+   - Clear button X icon (pi-times)
+2. **Pop-out Windows Load** - Must display content, not connection errors
+3. **Active Filters Display** - Chips show selected filter values
+4. **Results Table Populated** - Shows actual vehicle data, not empty/loading state
+
+### Known Issues to Fix
+- [ ] Broken icons (PrimeIcons not loading)
+- [ ] Pop-out windows show "connection refused" on port 4207
+- [ ] Test suite only checks URL params, not visual rendering
+
+### Test Validation Process
+1. Run automated tests
+2. **MANUALLY inspect screenshots** for visual defects
+3. Only commit if BOTH automated AND visual checks pass

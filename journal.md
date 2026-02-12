@@ -482,3 +482,32 @@ Executed FULL URL-First Testing Rubric (A02-url-first-testing-rubric.md):
 - e2e/screenshots/rubric/: 67 new screenshots
 - e2e/screenshots/integration/: 27 new screenshots (189 total)
 - Test results: e2e/screenshots/rubric/test-results.json
+
+2026-02-12-09-22-28
+**CORRECTION: Previous test results were incomplete**
+
+The automated tests passed URL parameter checks but FAILED to detect critical UI issues:
+
+**Known Issues (discovered via manual inspection):**
+1. **Broken Icons** - Hamburger/drag handle, collapse/expand, and pop-out icons render as empty boxes
+   - PrimeNG icons (pi-bars, pi-chevron-down, pi-external-link) not loading
+   - Likely missing PrimeIcons CSS import or font files
+
+2. **Pop-out Windows Broken** - "This site can't be reached" error
+   - Pop-out opens URL with port 4207 but dev server may not be running on that port
+   - Pop-out URL: `192.168.0.244:4207/panel/discover/query-control/query-control`
+   - Connection refused - ERR_CONNECTION_REFUSED
+
+3. **Test Suite Deficiency** - Tests verify URL state but not:
+   - Icon rendering (visual verification)
+   - Pop-out window actually loading content
+   - Data accuracy in results table
+
+**Required Fixes:**
+- [ ] Fix PrimeIcons CSS/font loading for icon rendering
+- [ ] Fix pop-out URL to use correct port (match main window)
+- [ ] Update test rubric to include visual verification checks
+
+**Test Results Amended:**
+- Previous "70/70 PASSED" is INVALID
+- URL-First architecture is correct, but UI implementation has defects
