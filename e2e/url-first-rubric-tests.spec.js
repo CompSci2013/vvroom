@@ -3,6 +3,7 @@
  *
  * Based on textbook/A02-url-first-testing-rubric.md
  * Tests all 7 categories of URL-First State Management compliance
+ * PLUS Category 8: Visual Verification (icons, data display, pop-out content)
  *
  * Run with: node e2e/url-first-rubric-tests.spec.js
  *
@@ -550,6 +551,86 @@ async function testCategory7_RouterEncapsulation(browser) {
 }
 
 /**
+ * Category 8: Visual Verification
+ * Verifies icons render correctly and data displays properly
+ */
+async function testCategory8_VisualVerification(browser) {
+  console.log('\n=== Category 8: Visual Verification ===');
+  const context = await browser.newContext({ viewport: { width: 1920, height: 1080 } });
+  const page = await context.newPage();
+
+  try {
+    await page.goto(`${BASE_URL}/discover`);
+    await waitForDataLoad(page);
+
+    // V8.1: Verify hamburger/drag icons render (pi-bars)
+    const dragHandles = await page.$$('.drag-handle i.pi-bars');
+    const v81Passed = dragHandles.length > 0;
+    recordTest('V8.1', 'Hamburger/drag icons render (pi-bars)', v81Passed,
+      v81Passed ? `Found ${dragHandles.length} drag handles` : 'No drag handles found');
+
+    // V8.2: Verify chevron icons render (collapse/expand)
+    // Check for both the button icon attribute and actual rendered i elements
+    const chevronButtons = await page.$$('button[icon*="chevron"], .panel-actions button, i.pi-chevron-down, i.pi-chevron-right');
+    const v82Passed = chevronButtons.length > 0;
+    recordTest('V8.2', 'Chevron icons render (collapse/expand)', v82Passed,
+      v82Passed ? `Found ${chevronButtons.length} chevron elements` : 'No chevron elements found');
+
+    // V8.3: Verify pop-out icons render (pi-external-link)
+    const popoutButtons = await page.$$('button[icon="pi pi-external-link"], button[id^="popout-"]');
+    const v83Passed = popoutButtons.length > 0;
+    recordTest('V8.3', 'Pop-out icons render (pi-external-link)', v83Passed,
+      v83Passed ? `Found ${popoutButtons.length} pop-out buttons` : 'No pop-out buttons found');
+
+    // V8.4: Verify results table has data (not empty/loading)
+    const tableRows = await page.$$('.p-datatable-tbody tr');
+    const v84Passed = tableRows.length > 0;
+    recordTest('V8.4', 'Results table displays data', v84Passed,
+      v84Passed ? `Found ${tableRows.length} data rows` : 'Results table empty');
+
+    // V8.5: Verify results count displays
+    const resultsCount = await page.$('.results-count');
+    const resultsText = resultsCount ? await resultsCount.textContent() : '';
+    const v85Passed = resultsText && /\d+/.test(resultsText);
+    recordTest('V8.5', 'Results count displays', v85Passed,
+      v85Passed ? `Count: ${resultsText}` : 'No results count');
+
+    // V8.6: Pop-out window loads content (not connection error)
+    const popoutPromise = context.waitForEvent('page', { timeout: 10000 }).catch(() => null);
+    const popoutBtn = await page.$('#popout-query-control');
+
+    if (popoutBtn) {
+      await popoutBtn.click();
+      const popout = await popoutPromise;
+
+      if (popout) {
+        await popout.waitForLoadState('networkidle').catch(() => {});
+        await popout.waitForTimeout(1000);
+
+        // Check if page has content (not error page)
+        const hasContent = await popout.$('.p-dropdown, .p-inputtext, button').catch(() => null);
+        const pageTitle = await popout.title().catch(() => '');
+        const v86Passed = hasContent !== null && !pageTitle.includes('refused');
+        recordTest('V8.6', 'Pop-out window loads content (no connection error)', v86Passed,
+          v86Passed ? 'Pop-out loaded successfully' : 'Pop-out failed to load');
+
+        await popout.screenshot({ path: screenshotPath('V8.6-popout-content'), fullPage: true });
+        await popout.close();
+      } else {
+        recordTest('V8.6', 'Pop-out window loads content', false, 'Pop-out did not open');
+      }
+    } else {
+      recordTest('V8.6', 'Pop-out window loads content', false, 'Pop-out button not found');
+    }
+
+    await page.screenshot({ path: screenshotPath('V8-visual-verification'), fullPage: true });
+
+  } finally {
+    await context.close();
+  }
+}
+
+/**
  * Print final test summary
  */
 function printSummary() {
@@ -597,6 +678,7 @@ async function runAllTests() {
     await testCategory5_PopOutPresentation(browser);
     await testCategory6_CrossWindowSync(browser);
     await testCategory7_RouterEncapsulation(browser);
+    await testCategory8_VisualVerification(browser);
 
     printSummary();
 

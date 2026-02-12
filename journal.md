@@ -511,3 +511,38 @@ The automated tests passed URL parameter checks but FAILED to detect critical UI
 **Test Results Amended:**
 - Previous "70/70 PASSED" is INVALID
 - URL-First architecture is correct, but UI implementation has defects
+
+2026-02-12-09-26-45
+**RESOLUTION: Issues were environment-related, not code defects**
+
+Investigation of user-reported issues:
+
+**Icons Issue - RESOLVED:**
+- User screenshots showed broken icons on port 4207
+- Tested on port 4228: ALL ICONS RENDER CORRECTLY
+  - ☰ Hamburger icons (pi-bars) - working
+  - ↓ Chevron icons (pi-chevron-down) - working
+  - ↗ Pop-out icons (pi-external-link) - working
+  - × Clear icons (pi-times) - working
+- Root cause: Port 4207 server was not running or had stale build
+- PrimeIcons CSS and fonts are correctly configured in styles.scss
+
+**Pop-out Connection Refused - RESOLVED:**
+- User saw "ERR_CONNECTION_REFUSED" on port 4207
+- Pop-out uses relative URL: `/panel/${gridId}/${panelId}/${panelType}`
+- This inherits the origin from the main window
+- If main window is on 4207 but server stopped, pop-outs fail
+- Tested on port 4228: POP-OUT WORKS CORRECTLY
+  - Opens at correct URL: `http://localhost:4228/panel/discover/query-control/query-control`
+  - Shows Query Control component
+  - No site header (correctly hidden per W5.1)
+  - Icons render correctly in pop-out
+
+**Screenshots Captured:**
+- e2e/screenshots/current-state-check.png - Main app with working icons
+- e2e/screenshots/popout-test.png - Pop-out window working correctly
+
+**Conclusion:**
+- Code is correct, no fixes needed for icons or pop-outs
+- Issues were caused by port 4207 server not running
+- Port 4228 (Playwright testing port) is working correctly

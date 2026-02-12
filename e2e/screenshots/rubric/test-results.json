@@ -1,5 +1,5 @@
 {
-  "passed": 41,
+  "passed": 47,
   "failed": 0,
   "tests": [
     {
@@ -247,6 +247,42 @@
       "description": "Pop-out components use parent messaging (no router.navigate)",
       "passed": true,
       "details": "BroadcastChannel messaging found in pop-out"
+    },
+    {
+      "testId": "V8.1",
+      "description": "Hamburger/drag icons render (pi-bars)",
+      "passed": true,
+      "details": "Found 5 drag handles"
+    },
+    {
+      "testId": "V8.2",
+      "description": "Chevron icons render (collapse/expand)",
+      "passed": true,
+      "details": "Found 10 chevron elements"
+    },
+    {
+      "testId": "V8.3",
+      "description": "Pop-out icons render (pi-external-link)",
+      "passed": true,
+      "details": "Found 5 pop-out buttons"
+    },
+    {
+      "testId": "V8.4",
+      "description": "Results table displays data",
+      "passed": true,
+      "details": "Found 40 data rows"
+    },
+    {
+      "testId": "V8.5",
+      "description": "Results count displays",
+      "passed": true,
+      "details": "Count: 4887 results"
+    },
+    {
+      "testId": "V8.6",
+      "description": "Pop-out window loads content (no connection error)",
+      "passed": true,
+      "details": "Pop-out loaded successfully"
     }
   ]
 }
