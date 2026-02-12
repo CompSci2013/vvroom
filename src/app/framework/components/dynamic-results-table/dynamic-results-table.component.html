@@ -2,15 +2,15 @@
   <!-- Data Table with reorderable and resizable columns -->
   <div class="table-container">
     <p-table
-      [value]="results"
+      [value]="(results$ | async) || []"
       [columns]="columns"
       [dataKey]="$any(domainConfig.tableConfig.dataKey)"
-      [loading]="loading"
+      [loading]="(loading$ | async) || false"
       [lazy]="true"
       [paginator]="true"
       [rows]="currentFilters['size'] || 20"
       [first]="paginatorFirst"
-      [totalRecords]="totalResults"
+      [totalRecords]="(totalResults$ | async) || 0"
       [rowsPerPageOptions]="domainConfig.tableConfig.rowsPerPageOptions || [10, 20, 50]"
       [styleClass]="domainConfig.tableConfig.styleClass || ''"
       [responsiveLayout]="domainConfig.tableConfig.responsiveLayout || 'scroll'"
@@ -29,24 +29,18 @@
       <!-- Header with reorderable/resizable columns -->
       <ng-template pTemplate="header" let-columns>
         <tr>
-          <ng-container *ngIf="domainConfig.tableConfig.expandable">
-            <th style="width: 3rem"></th>
-          </ng-container>
-          <ng-container *ngFor="let col of columns">
-            <th
-              pReorderableColumn
-              pResizableColumn
-              [pSortableColumn]="col.sortable ? col.field : undefined"
-              [ngStyle]="{'width': col.width, 'min-width': col.minWidth || '100px'}">
-              <div class="column-header">
-                <i class="pi pi-bars reorder-handle" pReorderableColumnDisabled="false"></i>
-                <span class="column-title">{{ col.header }}</span>
-                <ng-container *ngIf="col.sortable">
-                  <p-sortIcon [field]="col.field"></p-sortIcon>
-                </ng-container>
-              </div>
-            </th>
-          </ng-container>
+          <th *ngIf="domainConfig.tableConfig.expandable" style="width: 3rem"></th>
+          <th *ngFor="let col of columns; trackBy: trackByField"
+            pReorderableColumn
+            pResizableColumn
+            [pSortableColumn]="col.sortable ? col.field : undefined"
+            [ngStyle]="{'width': col.width, 'min-width': col.minWidth || '100px'}">
+            <div class="column-header">
+              <i class="pi pi-bars reorder-handle" pReorderableColumnDisabled="false"></i>
+              <span class="column-title">{{ col.header }}</span>
+              <p-sortIcon *ngIf="col.sortable" [field]="col.field"></p-sortIcon>
+            </div>
+          </th>
         </tr>
       </ng-template>
 
@@ -54,39 +48,33 @@
       <ng-template pTemplate="body" let-row let-columns="columns" let-expanded="expanded">
         <tr>
           <!-- Expand toggle -->
-          <ng-container *ngIf="domainConfig.tableConfig.expandable">
-            <td>
-              <button type="button"
-                pButton
-                pRipple
-                [pRowToggler]="row"
-                class="p-button-text p-button-rounded p-button-plain"
-                [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
-              </button>
-            </td>
-          </ng-container>
+          <td *ngIf="domainConfig.tableConfig.expandable">
+            <button type="button"
+              pButton
+              pRipple
+              [pRowToggler]="row"
+              class="p-button-text p-button-rounded p-button-plain"
+              [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
+            </button>
+          </td>
 
           <!-- Data columns -->
-          <ng-container *ngFor="let col of columns">
-            <td>
-              {{ row[col.field] }}
-            </td>
-          </ng-container>
+          <td *ngFor="let col of columns; trackBy: trackByField">
+            {{ row[col.field] }}
+          </td>
         </tr>
       </ng-template>
 
       <!-- Row Expansion -->
-      <ng-template #expandedrow let-row>
+      <ng-template pTemplate="rowexpansion" let-row>
         <tr>
           <td [attr.colspan]="columns.length + 1">
             <div class="row-expansion">
               <h3>Details</h3>
               <div class="expansion-grid">
-                <ng-container *ngFor="let key of Object.keys(row)">
-                  <div class="expansion-field">
-                    <strong>{{ key }}:</strong> {{ row[key] }}
-                  </div>
-                </ng-container>
+                <div *ngFor="let key of getObjectKeys(row)" class="expansion-field">
+                  <strong>{{ key }}:</strong> {{ row[key] }}
+                </div>
               </div>
             </div>
           </td>

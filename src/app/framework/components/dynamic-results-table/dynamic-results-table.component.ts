@@ -10,7 +10,7 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import { DomainConfig } from '../../models/domain-config.interface';
@@ -30,6 +30,11 @@ import { PopOutMessageType } from '../../models/popout.interface';
  * - Pagination with lazy loading
  * - Sortable columns
  * - Row expansion support
+ *
+ * **Fix from golden-extension**:
+ * Uses Observable streams (results$, loading$, totalResults$) with async pipe
+ * instead of synchronous getters. This is required for OnPush change detection
+ * to properly react to state changes from ResourceManagementService.
  *
  * @template TFilters - Domain-specific filter model type
  * @template TData - Domain-specific data model type
@@ -56,23 +61,24 @@ export class DynamicResultsTableComponent<TFilters = any, TData = any, TStatisti
   @Output() urlParamsChange = new EventEmitter<{ [key: string]: any }>();
 
   // ============================================================================
-  // State Getters (from ResourceManagementService)
+  // Observable Streams (from ResourceManagementService)
+  // These are used with async pipe in the template for OnPush change detection
   // ============================================================================
 
-  get filters(): TFilters {
-    return this.resourceService.filters;
+  get filters$(): Observable<TFilters> {
+    return this.resourceService.filters$;
   }
 
-  get results(): TData[] {
-    return this.resourceService.results;
+  get results$(): Observable<TData[]> {
+    return this.resourceService.results$;
   }
 
-  get totalResults(): number {
-    return this.resourceService.totalResults;
+  get totalResults$(): Observable<number> {
+    return this.resourceService.totalResults$;
   }
 
-  get loading(): boolean {
-    return this.resourceService.loading;
+  get loading$(): Observable<boolean> {
+    return this.resourceService.loading$;
   }
 
   // ============================================================================
@@ -92,14 +98,26 @@ export class DynamicResultsTableComponent<TFilters = any, TData = any, TStatisti
   // ============================================================================
 
   get paginatorFirst(): number {
-    const filters = this.filters as Record<string, any>;
+    const filters = this.resourceService.getCurrentFilters() as Record<string, any>;
     const page = filters['page'] || 1;
     const size = filters['size'] || 20;
     return (page - 1) * size;
   }
 
   get currentFilters(): Record<string, any> {
-    return this.filters as Record<string, any>;
+    return this.resourceService.getCurrentFilters() as Record<string, any>;
+  }
+
+  // ============================================================================
+  // Template Helpers
+  // ============================================================================
+
+  getObjectKeys(obj: any): string[] {
+    return Object.keys(obj);
+  }
+
+  trackByField(index: number, col: any): string {
+    return col.field;
   }
 
   constructor(
@@ -162,7 +180,7 @@ export class DynamicResultsTableComponent<TFilters = any, TData = any, TStatisti
     if (this.popOutContext.isInPopOut()) {
       this.urlParamsChange.emit({ page, size });
     } else {
-      const currentFilters = this.filters as Record<string, any>;
+      const currentFilters = this.resourceService.getCurrentFilters() as Record<string, any>;
       const newFilters = {
         ...currentFilters,
         page,
@@ -183,7 +201,7 @@ export class DynamicResultsTableComponent<TFilters = any, TData = any, TStatisti
     if (isPopOut) {
       this.urlParamsChange.emit({ sort, sortDirection });
     } else {
-      const currentFilters = this.filters as Record<string, any>;
+      const currentFilters = this.resourceService.getCurrentFilters() as Record<string, any>;
       const newFilters = {
         ...currentFilters,
         sort,

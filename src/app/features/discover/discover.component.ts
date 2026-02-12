@@ -394,10 +394,10 @@ export class DiscoverComponent<TFilters = any, TData = any, TStatistics = any>
       return;
     }
 
-    // Build pop-out URL with query parameter to indicate this is a pop-out
-    // Same app URL, but with ?popout=panelId flag that AppComponent detects to hide header
-    // This approach is used by GoldenLayout and other layout libraries - same app, different UI mode
-    const url = `/panel/${this.gridId}/${panelId}/${panelType}?popout=${panelId}`;
+    // Build pop-out URL using route path (no query params needed)
+    // AppComponent detects pop-out by checking if URL starts with '/panel/'
+    // This approach matches golden-extension's implementation
+    const url = `/panel/${this.gridId}/${panelId}/${panelType}`;
 
     // Window features
     const features = buildWindowFeatures({
