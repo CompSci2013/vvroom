@@ -1,0 +1,12 @@
+<!-- Navigation Banner - Hidden in pop-out windows -->
+<ng-container *ngIf="!isPopOut">
+  <header class="app-header">
+    <a routerLink="/" class="home-link">🏠 Home</a>
+    <a routerLink="/discover" routerLinkActive="active" class="discover-link">🔍 Discover</a>
+  </header>
+</ng-container>
+
+<!-- Application Content -->
+<main class="app-content">
+  <router-outlet></router-outlet>
+</main>

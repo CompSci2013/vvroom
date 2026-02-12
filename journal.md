@@ -196,3 +196,14 @@ Committed and pushed vvroom to self-hosted GitLab:
 - Repository URL: http://gitlab.minilab/halo/vvroom
 - Remote configured: origin → http://gitlab.minilab/halo/vvroom.git
 - Push successful: main branch tracking origin/main
+
+2026-02-11-21-21-09
+Applied dark theme styling and updated branding from Generic-Prime to Vvroom:
+- Created textbook/A01-styling-and-branding.md (appendix documenting theme system)
+- Updated styles.scss with PrimeNG lara-dark-blue theme imports
+- Created app.component.html with dark header and navigation
+- Created app.component.scss with dark theme styles (#2a2a2a header, #3c3c3c body)
+- Updated app.component.ts to VERSION 3 with external template/styles
+- Changed domainLabel from "Generic-Prime Discovery -p 4205" to "Vvroom Discovery"
+- Build successful: 5.62 MB total bundle (includes PrimeNG dark theme CSS)
+- Captured screenshots: e2e/screenshots/home-2026-02-12T02-21-04.png, discover-2026-02-12T02-21-04.png

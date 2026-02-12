@@ -1,86 +1,45 @@
 // src/app/app.component.ts
-// VERSION 2 (Section 102) - Shell with navigation
-// Replaces VERSION 1 from Section 101
+// VERSION 3 (Appendix A01) - Dark theme with vvroom branding
 
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
+/**
+ * Root Application Component (AppComponent)
+ *
+ * Main container component for the vvroom application. Provides the global
+ * application shell including navigation and router outlet for feature components.
+ *
+ * Features:
+ * - Dark theme header with vvroom branding
+ * - Navigation links for Home and Discover
+ * - Pop-out window detection (hides header in pop-outs)
+ * - Router outlet for feature components
+ *
+ * @class AppComponent
+ * @selector app-root
+ */
 @Component({
   selector: 'app-root',
-  template: `
-    <header class="app-header">
-      <div class="app-header-brand">
-        <span class="app-header-logo">🚗</span>
-        <span class="app-header-title">vvroom</span>
-      </div>
-      <nav class="app-header-nav">
-        <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
-        <a class="nav-link" routerLink="/discover" routerLinkActive="active">Discover</a>
-      </nav>
-    </header>
-    <main class="app-content">
-      <router-outlet></router-outlet>
-    </main>
-  `,
-  styles: [`
-    :host {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    .app-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 1.5rem;
-      height: 56px;
-      background-color: #1976d2;
-      color: white;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .app-header-brand {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .app-header-logo {
-      font-size: 1.5rem;
-    }
-
-    .app-header-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      letter-spacing: -0.5px;
-    }
-
-    .app-header-nav {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .nav-link {
-      padding: 0.5rem 1rem;
-      color: rgba(255, 255, 255, 0.9);
-      text-decoration: none;
-      border-radius: 4px;
-      transition: background-color 0.2s;
-    }
-
-    .nav-link:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      text-decoration: none;
-    }
-
-    .nav-link.active {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    .app-content {
-      flex: 1;
-      padding: 1.5rem;
-    }
-  `]
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent {}
+export class AppComponent {
+  /**
+   * Application title identifier
+   */
+  title = 'vvroom';
+
+  /**
+   * Whether this window is a pop-out (detected from ?popout=panelId query param)
+   * When true, the header is hidden and only the router-outlet is shown
+   */
+  isPopOut = false;
+
+  constructor(private route: ActivatedRoute) {
+    // Detect if this is a pop-out window by checking for ?popout query parameter
+    this.route.queryParams.subscribe(params => {
+      this.isPopOut = !!params['popout'];
+    });
+  }
+}

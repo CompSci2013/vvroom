@@ -66,7 +66,7 @@ export function createAutomobileDomainConfig(injector: Injector): DomainConfig<
   return {
     // ==================== Identity ====================
     domainName: 'automobile',
-    domainLabel: 'Generic-Prime Discovery -p 4205',
+    domainLabel: 'Vvroom Discovery',
     apiBaseUrl: apiBaseUrl,
 
     // ==================== Type Models ====================
