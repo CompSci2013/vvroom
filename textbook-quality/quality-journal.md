@@ -99,3 +99,22 @@ Reset test cycle. Cleared e2e/ directory. Simplified over-engineered Playwright 
 2026-02-13_09:00:39
 Sanity check of all four quality documents. Removed duplicate sections from quality-instructions.md (Anti-Pattern Checklist, Test Execution Commands, Required Data Attributes were duplicated). Updated kickoff-prompt.md to include: test philosophy (headless only, click/type/navigate/verify URL/screenshot), what tests should NOT do, and three test artifacts (URL assertion, screenshot, journal entry). All documents now mutually consistent.
 
+2026-02-13_09:30:25
+CRITICAL PROCEDURAL UPDATE: Added mandatory screenshot verification requirement to all four quality documents.
+
+Key changes:
+- kickoff-prompt.md: Added "IMPORTANT: Screenshot Verification is Mandatory" section. Test workflow now requires using Read tool to inspect screenshot images before declaring pass/fail.
+- quality-instructions.md: Added "Screenshot Verification Requirement" section explaining that Playwright "passing" only means code ran without errors, NOT that visual output is correct.
+- test-rubric.md: Added "Screenshot Verification (MANDATORY)" section with verification checklist. Updated 1.3 Highlighted State tests to specify Query Control must be expanded (shows active highlights chip), not just Statistics.
+- Highlight tests (V1.3.x) now correctly specify: Keep Query Control + Statistics expanded, collapse Query Panel + Manufacturer-Model Picker + Results Table.
+
+This addresses the issue where tests were reported as passing without verifying the screenshot content matched the test criteria.
+
+2026-02-13_09:48:47
+Test V1.1.1 - Results table default render: PASS
+Screenshot: results-table-default.png
+Verified: URL bar shows /discover, Results Table expanded with 20 data rows visible (Manufacturer, Model, Year, Body columns),
+pagination shows "Showing 1 to 20 of 4887 results" with page numbers 1-5 and page size selector showing "20".
+Query Control, Query Panel, Manufacturer-Model Picker, and Statistics panels all collapsed (showing ">" chevron).
+Fixed test to collapse panels per panel-visibility-reference.md specification.
+
