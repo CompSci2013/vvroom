@@ -241,3 +241,38 @@ All 20 Visual Appearance Tests PASS:
 - V1.4.x (3 tests): Sorted State Rendering
 - V1.5.x (3 tests): Paginated State Rendering
 
+2026-02-13_09:59:37
+Committed and pushed Category 1 completion to github. Commit: f96280b
+
+2026-02-13_10:05:39
+Starting Category 2: URL-First Conformity Tests (U2.1.x - U2.3.x)
+Creating new test file: e2e/tests/category-2-url-conformity.spec.ts
+
+2026-02-13_10:13:33
+=== CATEGORY 2 COMPLETE ===
+All 18 URL-First Conformity Tests PASS:
+
+U2.1.x URL to State (8 tests):
+- U2.1.1: manufacturer=Ford - chip shows, dropdown populated, 665 results
+- U2.1.2: yearMin=2010&yearMax=2020 - year range chip, inputs show 2010/2020, 632 results
+- U2.1.3: bodyClass=Pickup - body class chip, results filtered
+- U2.1.4: page=3&size=10 - shows rows 21-30
+- U2.1.5: sortBy=year&sortOrder=desc - sorted by year descending
+- U2.1.6: h_manufacturer=Tesla - highlight chip, statistics show blue/gray bars
+- U2.1.7: manufacturer=Chevrolet&h_yearMin=2015&h_yearMax=2020 - filter + highlight combined
+- U2.1.8: modelCombos=Ford:Mustang,Chevrolet:Camaro - model combos filter (note: URL param is modelCombos not models)
+
+U2.2.x State to URL (7 tests):
+- U2.2.1: Select Dodge manufacturer → URL has manufacturer=Dodge
+- U2.2.2: Set year min 2000 → URL has yearMin=2000
+- U2.2.3: Select SUV body class → URL has bodyClass=SUV
+- U2.2.4: Click page 4 → URL has page=4
+- U2.2.5: Change page size to 50 → URL has size=50
+- U2.2.6: Click year column to sort → URL has sortBy=year
+- U2.2.9: Clear all filters → URL has no filter parameters
+
+U2.3.x Combined Filters (3 tests):
+- U2.3.1: manufacturer=Ford&yearMin=2015&yearMax=2020&bodyClass=Coupe - 6 results, 3 filter chips
+- U2.3.2: manufacturer=Chevrolet&sortBy=year&sortOrder=desc&page=2&size=10 - filter+sort+pagination
+- U2.3.3: bodyClass=SUV&h_manufacturer=Jeep - SUVs filtered, Jeep SUVs highlighted in charts
+
