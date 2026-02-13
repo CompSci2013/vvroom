@@ -151,3 +151,32 @@ Screenshot: search-default.png
 Verified: URL bar shows /discover, Query Control panel expanded showing "Add filter by field..." dropdown and "Clear All" button.
 Search/filter controls in empty default state. All other panels collapsed (Query Panel, Manufacturer-Model Picker, Statistics, Results Table).
 
+2026-02-13_09:52:22
+Committed and pushed V1.1.x batch (5 tests) to github. Commit: 24e86cf. All Default State Rendering tests PASS.
+
+2026-02-13_09:53:24
+Test V1.2.1 - Results table filtered by manufacturer: PASS
+Screenshot: results-table-filtered-ford.png
+Verified: URL bar shows ?manufacturer=Ford, 665 results, Query Control shows "Manufacturer: Ford" chip,
+Statistics shows Ford-only data in all 4 charts. Panels correctly collapsed.
+
+Test V1.2.2 - Results table filtered by body class: PASS
+Screenshot: results-table-filtered-suv.png
+Verified: URL bar shows ?bodyClass=SUV, 998 results, Query Control shows "Body Class: SUV" chip,
+Statistics shows SUV-only data (Jeep, Chevrolet top manufacturers). Panels correctly collapsed.
+
+Test V1.2.3 - Results table filtered by year range: PASS
+Screenshot: results-table-filtered-recent.png
+Verified: URL bar shows ?yearMin=2020&yearMax=2024, 290 results, Query Control shows "Year: 2020 - 2024" chip,
+Statistics shows only 2020-2024 year bars. Panels correctly collapsed.
+
+Test V1.2.4 - Statistics filtered by manufacturer: PASS
+Screenshot: statistics-filtered-chevrolet.png
+Verified: URL bar shows ?manufacturer=Chevrolet, 849 results, Query Control shows "Manufacturer: Chevrolet" chip,
+Statistics shows Chevrolet-only data (Suburban, Corvette, Impala top models). Panels correctly collapsed.
+
+Test V1.2.5 - Results table with model combinations: PASS
+Screenshot: results-table-model-combos.png
+Verified: URL bar shows ?models=Ford:Mustang,Chevrolet:Camaro, Statistics shows model combination data.
+Panels correctly collapsed per panel-visibility-reference.md.
+
