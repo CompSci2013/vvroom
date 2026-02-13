@@ -4,7 +4,9 @@
 
 This document provides comprehensive quality verification procedures for the vvroom application. The goal is to verify that all components function correctly and adhere to the URL-First State Management paradigm.
 
-**Related Document:** See [test-rubric.md](test-rubric.md) for the comprehensive Playwright test rubric with real data values and screenshot specifications.
+**Related Documents:**
+- [test-rubric.md](test-rubric.md) - Comprehensive Playwright test rubric with real data values and screenshot specifications
+- [panel-visibility-reference.md](panel-visibility-reference.md) - Which panels to expand/collapse for each test
 
 ---
 
@@ -30,6 +32,27 @@ This document provides comprehensive quality verification procedures for the vvr
 
 ---
 
+## Screenshot Verification Requirement
+
+**CRITICAL: You must visually inspect every screenshot to verify test success.**
+
+A Playwright test "passing" only means the test code executed without errors. It does NOT verify:
+- The correct content is displayed
+- Panels are in the correct collapsed/expanded state (see panel-visibility-reference.md)
+- Highlights are visually distinguishable
+- Charts show the expected data
+- The URL bar shows the expected parameters
+
+**Test verification workflow:**
+1. Run the Playwright test
+2. Use the Read tool to inspect the generated screenshot image
+3. Verify all visual criteria for that test are met (see test-rubric.md)
+4. **Verify correct panels are expanded/collapsed per panel-visibility-reference.md**
+5. Only then record PASS/FAIL in the quality journal
+6. Document what you observed in the screenshot, not just that the test ran
+
+---
+
 ## Test Environment
 
 | Environment | Port | Purpose |
@@ -39,15 +62,49 @@ This document provides comprehensive quality verification procedures for the vvr
 
 **API Base URL:** `http://generic-prime.minilab/api/specs/v1`
 
-### Prerequisites
+### Running Playwright Tests
+
+**The simplest way to run tests:**
 
 ```bash
-# Start development server (port 4207)
-ng serve --port 4207
-
-# Start test server (port 4228) - separate terminal
-ng serve --configuration=production --port 4228
+# From project root - Playwright handles everything automatically
+npx playwright test
 ```
+
+Playwright will:
+1. Start the Angular dev server on port 4228 automatically (via `webServer` config)
+2. Wait for the server to be ready
+3. Run all tests headless
+4. Generate screenshots to `e2e/screenshots/`
+
+**To run specific test categories:**
+
+```bash
+npx playwright test --grep "Category 1"    # Visual Appearance
+npx playwright test --grep "Category 2"    # URL-First Conformity
+npx playwright test --grep "V1.1.1"        # Single test by ID
+```
+
+**If you need to start the server manually (optional):**
+
+```bash
+# Development mode (includes data-testid attributes)
+ng serve --port 4228
+
+# Then run tests with reuseExistingServer
+npx playwright test
+```
+
+**Important:** Do NOT use `--configuration=production` for the test server. Production mode sets `environment.includeTestIds = false`, which removes all `data-testid` attributes from the DOM.
+
+### Playwright Configuration
+
+The `playwright.config.ts` is pre-configured:
+- `baseURL`: `http://localhost:4228`
+- `viewport`: 1080x1920 (vertical/portrait orientation)
+- `headless`: true (no headed mode for automated tests)
+- `webServer.command`: `ng serve --port 4228` (auto-starts dev server)
+- `webServer.reuseExistingServer`: true (uses existing if running)
 
 ---
 

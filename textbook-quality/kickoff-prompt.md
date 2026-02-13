@@ -33,12 +33,19 @@ Each test produces three artifacts:
 
 ## Critical Requirements
 
-**After EVERY individual test:**
-1. Append a timestamped entry to `~/projects/vvroom/textbook-quality/quality-journal.md`
-2. Format: `YYYY-MM-DD_HH:MM:SS` followed by test result on next line
-3. Include test ID, pass/fail status, and brief notes
+**IMPORTANT: Screenshot Verification is Mandatory**
 
-**After each SUCCESSFUL test verified by Playwright screenshot:**
+A test is NOT complete until you have visually inspected the screenshot. The Playwright test passing only means the code executed without errors - it does NOT verify the visual output is correct.
+
+**After EVERY individual test:**
+1. Run the Playwright test
+2. **USE THE READ TOOL TO INSPECT THE SCREENSHOT IMAGE**
+3. Verify the screenshot meets all criteria for that test (see test-rubric.md)
+4. Only after visual verification, append a timestamped entry to `~/projects/vvroom/textbook-quality/quality-journal.md`
+5. Format: `YYYY-MM-DD_HH:MM:SS` followed by test result on next line
+6. Include test ID, pass/fail status, and what you observed in the screenshot
+
+**After each SUCCESSFUL test verified by screenshot inspection:**
 1. Commit the work with descriptive message
 2. Push to all remote repositories
 3. Add timestamped entry documenting the commit
@@ -49,6 +56,7 @@ Each test produces three artifacts:
 2. Tail the last 150 lines to remember where you left off
 3. Read `~/projects/vvroom/textbook-quality/quality-instructions.md`
 4. Read `~/projects/vvroom/textbook-quality/test-rubric.md`
+5. Read `~/projects/vvroom/textbook-quality/panel-visibility-reference.md`
 
 ## Test Execution Order
 
@@ -67,36 +75,52 @@ Execute tests in category order:
 
 ## Journal Entry Format
 
+Each entry must document what you **observed in the screenshot**, not just that the test ran:
+
 ```markdown
 YYYY-MM-DD_HH:MM:SS
 Test V1.1.1 - Results table default render: PASS
-Screenshot captured: results-table-default.png
+Screenshot: results-table-default.png
+Verified: URL bar shows /discover, table visible with data rows, pagination shows "Showing 1 to 20"
 
 YYYY-MM-DD_HH:MM:SS
-Test U2.1.1 - URL ?manufacturer=Ford loads correctly: PASS
-Verified: dropdown shows Ford, table filtered, URL matches
+Test V1.3.1 - Statistics highlight Tesla: PASS
+Screenshot: statistics-highlight-tesla.png
+Verified: Query Control expanded showing "Highlight Manufacturer: Tesla" chip,
+Statistics panel shows 4 charts with Tesla bars highlighted in blue,
+Query Panel/Picker/Results Table collapsed
 
 YYYY-MM-DD_HH:MM:SS
 Test P4.1.1 - Pop-out results table: FAIL
-Issue: Site header still visible in pop-out window
+Screenshot: results-table-popout.png
+Issue: Site header still visible in pop-out window (should be hidden)
 Action needed: Fix pop-out CSS to hide header
 ```
 
 ## Test Environment Setup
 
-Before starting tests, verify:
+**Running tests is simple - Playwright handles the server automatically:**
 
 ```bash
-# Terminal 1: Start development server
 cd ~/projects/vvroom
-ng serve --port 4207
 
-# Terminal 2: Start test server (for Playwright)
-ng serve --configuration=production --port 4228
+# Run all tests (Playwright auto-starts dev server on 4228)
+npx playwright test
 
-# Verify API is accessible
+# Run specific category
+npx playwright test --grep "Category 1"
+
+# Run single test by ID
+npx playwright test --grep "V1.1.1"
+```
+
+**Optional: Verify API is accessible before testing:**
+
+```bash
 curl http://generic-prime.minilab/api/specs/v1/vehicles/details?size=1
 ```
+
+**Important:** Do NOT manually start the server with `--configuration=production`. Production mode disables `data-testid` attributes. Playwright's `webServer` config automatically starts the dev server correctly.
 
 ## Screenshot Requirements
 
@@ -104,6 +128,18 @@ All screenshots must:
 - Include full browser URL bar at top of image
 - Use naming convention from test-rubric.md
 - Be saved to designated screenshots directory
+- **Show correct panel visibility per panel-visibility-reference.md**
+
+## Panel Visibility (Critical)
+
+Each test specifies which panels should be **expanded** vs **collapsed** to properly demonstrate URL-First behavior. See `panel-visibility-reference.md` for the complete reference.
+
+**Key Principles:**
+1. **Show what the URL controls** - Expanded panels demonstrate the URL parameter is being applied
+2. **Collapse the noise** - Panels not relevant to the test should be collapsed
+3. **Query Control for state indication** - Shows active filters/highlights as chips
+4. **Statistics for data visualization** - Shows filtered/highlighted data in charts
+5. **Results Table for sort/pagination** - Shows data order and page state
 
 ## Real Test Data Values
 
@@ -123,6 +159,7 @@ Read ~/projects/vvroom/textbook-quality/quality-journal.md (first 11 lines)
 Tail ~/projects/vvroom/textbook-quality/quality-journal.md (last 150 lines)
 Read ~/projects/vvroom/textbook-quality/quality-instructions.md
 Read ~/projects/vvroom/textbook-quality/test-rubric.md
+Read ~/projects/vvroom/textbook-quality/panel-visibility-reference.md
 ```
 
 Then begin with Category 1: Visual Appearance Tests, starting with test V1.1.1.

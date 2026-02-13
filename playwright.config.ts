@@ -1,4 +1,4 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testDir: './e2e/tests',
@@ -8,19 +8,24 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: 'http://localhost:4207',
+    baseURL: 'http://localhost:4228',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
+    // Vertical orientation viewport (portrait mode)
+    viewport: { width: 1080, height: 1920 },
   },
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        browserName: 'chromium',
+        headless: true,
+      },
     },
   ],
   webServer: {
-    command: 'ng serve --port 4207',
-    url: 'http://localhost:4207',
+    command: 'ng serve --port 4228',
+    url: 'http://localhost:4228',
     reuseExistingServer: true,
   },
 });

@@ -7,6 +7,8 @@ This rubric provides a systematic Playwright testing strategy for verifying URL-
 **API Base URL:** `http://generic-prime.minilab/api/specs/v1`
 **Application URL:** `http://localhost:4207`
 
+**Related Document:** See [panel-visibility-reference.md](panel-visibility-reference.md) for which panels should be expanded/collapsed for each test.
+
 ---
 
 ## Test Data Reference
@@ -74,6 +76,23 @@ This rubric provides a systematic Playwright testing strategy for verifying URL-
 3. For popout screenshots, capture both windows showing synchronization state
 4. **Viewport must be vertical orientation (portrait mode): 1080x1920**
 5. Use `fullPage: true` for components that need scrolling to capture all content
+6. **Correct panels must be expanded/collapsed per [panel-visibility-reference.md](panel-visibility-reference.md)**
+
+### Screenshot Verification (MANDATORY)
+
+**You MUST visually inspect every screenshot using the Read tool before declaring a test passed.**
+
+A Playwright test "passing" only confirms the test code ran without errors. It does NOT verify:
+- Correct content is displayed
+- Panels are in correct collapsed/expanded state
+- Highlights are visually distinguishable (blue vs gray bars)
+- URL bar shows expected parameters
+
+**Verification checklist for each screenshot:**
+- [ ] URL bar visible at top with correct parameters
+- [ ] Expected panels expanded/collapsed per test requirements
+- [ ] Data content matches filter/highlight/sort criteria
+- [ ] Visual indicators (highlights, sort arrows, active chips) are present
 
 ### Playwright Screenshot Configuration
 ```typescript
@@ -114,12 +133,23 @@ Test that components render correctly in default and various states.
 
 ### 1.3 Highlighted State Rendering
 
+**Important:** Highlight tests should show the **Statistics charts** with highlighted data visible. Before capturing:
+1. **Keep expanded:** Query Control (shows "Active Highlights" chip), Statistics (shows 4 charts)
+2. **Collapse:** Query Panel, Manufacturer-Model Picker, Results Table
+3. Screenshot captures the 4 charts showing highlighted bars (blue) vs non-highlighted (gray)
+
+**Verification criteria for highlight screenshots:**
+- URL bar shows `h_` parameter (e.g., `h_manufacturer=Tesla`)
+- Query Control panel shows "Active Highlights:" with highlight chip
+- All 4 Statistics charts visible with "Other" and "Highlighted" legend
+- Highlighted data appears in blue, non-highlighted in gray
+
 | Test ID | Component | Highlight Applied | Screenshot |
 |---------|-----------|-------------------|------------|
-| V1.3.1 | Results Table | `h_manufacturer=Tesla` | `results-table-highlight-tesla.png` |
-| V1.3.2 | Results Table | `h_yearMin=2015&h_yearMax=2020` | `results-table-highlight-years.png` |
-| V1.3.3 | Statistics | `h_bodyClass=Pickup` | `statistics-highlight-pickup.png` |
-| V1.3.4 | Results Table | Filter + Highlight: `manufacturer=Ford&h_yearMin=2018` | `results-table-filter-with-highlight.png` |
+| V1.3.1 | Statistics Charts | `h_manufacturer=Tesla` | `statistics-highlight-tesla.png` |
+| V1.3.2 | Statistics Charts | `h_yearMin=2015&h_yearMax=2020` | `statistics-highlight-years.png` |
+| V1.3.3 | Statistics Charts | `h_bodyClass=Pickup` | `statistics-highlight-pickup.png` |
+| V1.3.4 | Statistics Charts | Filter + Highlight: `manufacturer=Ford&h_yearMin=2018` | `statistics-filter-with-highlight.png` |
 
 ### 1.4 Sorted State Rendering
 
