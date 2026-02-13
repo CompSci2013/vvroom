@@ -276,3 +276,102 @@ U2.3.x Combined Filters (3 tests):
 - U2.3.2: manufacturer=Chevrolet&sortBy=year&sortOrder=desc&page=2&size=10 - filter+sort+pagination
 - U2.3.3: bodyClass=SUV&h_manufacturer=Jeep - SUVs filtered, Jeep SUVs highlighted in charts
 
+2026-02-13_10:14:25
+Committed and pushed Category 2 completion to github. Commit: f8a2242
+
+2026-02-13_10:30:37
+=== CATEGORY 4 COMPLETE ===
+All 21 Pop-Out Behavior Tests PASS:
+
+P4.1.x Pop-Out Window Rendering (6 tests):
+- P4.1.1: Pop out results table - displays in new window at /panel/discover route
+- P4.1.2: Pop out statistics panel - displays in new window
+- P4.1.3: Pop out filter panel (Query Panel) - displays in new window
+- P4.1.4: Pop-out URL contains /panel/ route path
+- P4.1.5: Pop-out hides site banner/header - only component visible
+- P4.1.6: Main window shows placeholder for popped-out component
+
+P4.2.x Pop-Out Synchronization (6 tests):
+- P4.2.1: Change filter in main window updates pop-out via BroadcastChannel
+- P4.2.2: Change filter in pop-out updates main window URL
+- P4.2.3: Change sort in main window updates pop-out statistics
+- P4.2.4: Apply highlight via Query Control updates pop-out
+- P4.2.5: Navigate page in main window updates pop-out
+- P4.2.6: Clear filters in main window updates pop-out
+
+P4.3.x Pop-Out API Behavior (3 tests):
+- P4.3.1: Pop-out does NOT update its own URL after load (URL remains static)
+- P4.3.2: Pop-out receives data via BroadcastChannel (verified with Tesla filter)
+- P4.3.3: Main window API refresh updates pop-outs
+
+P4.4.x Multiple Pop-Out Tests (2 tests):
+- P4.4.1: Multiple pop-outs of different types receive same BroadcastChannel messages
+- P4.4.2: Close pop-out, main window continues normally
+
+P4.5.x Pop-Out with URL Parameters (4 tests):
+- P4.5.1: Pop-out with manufacturer filter shows Ford data
+- P4.5.2: Pop-out with highlight shows Tesla highlighted
+- P4.5.3: Pop-out with sort shows sorted data
+- P4.5.4: Pop-out with pagination shows correct page
+
+=== CATEGORY 5 COMPLETE ===
+All 12 Cross-Window Synchronization Tests PASS:
+
+S5.1.x Main Window to Pop-Out (6 tests):
+- S5.1.1: Change manufacturer filter in main updates pop-out
+- S5.1.2: Apply year range filter in main updates pop-out
+- S5.1.3: Change sort column in main updates pop-out
+- S5.1.4: Change page in main updates pop-out
+- S5.1.5: Apply highlight in main updates pop-out
+- S5.1.6: Clear all filters in main updates pop-out
+
+S5.2.x Pop-Out to Main Window (3 tests):
+- S5.2.1: Change filter in pop-out updates main window URL
+- S5.2.2: Apply year range in pop-out updates main window URL
+- S5.2.3: Clear filters in pop-out updates main window URL
+
+S5.3.x BroadcastChannel Verification (3 tests):
+- S5.3.1: Filter change propagates via BroadcastChannel (pop-out URL unchanged, content updated)
+- S5.3.2: Multiple pop-outs receive same BroadcastChannel message (both update to Jeep)
+- S5.3.3: Highlight state transfers to statistics pop-out
+
+=== CATEGORY 8 COMPLETE ===
+All 15 Visual Verification Tests PASS:
+
+VS8.1.x Default State (5 tests):
+- VS8.1.1: Full page default state
+- VS8.1.2: Results table default state
+- VS8.1.3: Filter panel default state
+- VS8.1.4: Statistics panel default state
+- VS8.1.5: Pagination default state
+
+VS8.2.x Filtered State (4 tests):
+- VS8.2.1: Full page filtered by Ford
+- VS8.2.2: Full page filtered by SUV
+- VS8.2.3: Full page filtered by recent years (2020-2024)
+- VS8.2.4: Full page with combined filters (Chevrolet + Pickup)
+
+VS8.3.x Highlighted State (3 tests):
+- VS8.3.1: Full page with Tesla highlight
+- VS8.3.2: Full page with year range highlight (2015-2020)
+- VS8.3.3: Full page with filter and highlight combined (Ford + 2018-2022 highlighted)
+
+VS8.4.x Pop-Out Screenshots (3 tests):
+- VS8.4.1: Results table pop-out standalone and with main
+- VS8.4.2: Statistics pop-out standalone and with main
+- VS8.4.3: Filter panel pop-out standalone and with main
+
+=== ALL CATEGORIES COMPLETE ===
+Total Tests: 113
+All 113 tests PASS
+
+Category Summary:
+- Category 1: Visual Appearance Tests - 20 tests PASS
+- Category 2: URL-First Conformity Tests - 18 tests PASS
+- Category 3: URL Change Consistency Tests - 14 tests PASS
+- Category 4: Pop-Out Behavior Tests - 21 tests PASS
+- Category 5: Cross-Window Synchronization Tests - 12 tests PASS
+- Category 6: Router Encapsulation Tests - 4 tests PASS
+- Category 7: Error Handling Tests - 9 tests PASS
+- Category 8: Visual Verification Tests - 15 tests PASS
+
