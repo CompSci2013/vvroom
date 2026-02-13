@@ -4,6 +4,33 @@
 
 You are conducting quality verification testing for the vvroom application. Your task is to systematically execute tests from the test rubric and document each result.
 
+## Playwright Test Philosophy
+
+**All tests run headless.** No headed browser mode for automated testing.
+
+**Tests should ONLY:**
+- Navigate to URLs
+- Click buttons, icons, or links
+- Enter text into input controls
+- Verify the URL changed as expected
+- Capture screenshots for visual verification
+
+**Tests should NOT:**
+- Iterate through table rows to verify content
+- Extract and sort data to verify ordering
+- Monitor network requests
+- Implement business logic that the application should handle
+- Compare text content between windows programmatically
+
+**Why:** If a test is doing what the application should be doing, it's a bad test. Trust the screenshot to verify visual correctness. The URL is the source of truth.
+
+## Test Artifacts
+
+Each test produces three artifacts:
+1. **URL assertion** - Test passes/fails based on URL containing expected parameters
+2. **Screenshot** - PNG in `e2e/screenshots/` with URL bar visible
+3. **Journal entry** - Timestamped entry in quality-journal.md
+
 ## Critical Requirements
 
 **After EVERY individual test:**

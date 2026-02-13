@@ -8,6 +8,28 @@ This document provides comprehensive quality verification procedures for the vvr
 
 ---
 
+## Playwright Test Philosophy
+
+**Playwright tests should only perform user actions:**
+- Navigate to URLs
+- Click buttons, icons, or links
+- Enter text into input controls
+- Verify the URL changed as expected
+- Capture screenshots for visual verification
+
+**Playwright tests should NOT:**
+- Iterate through table rows to verify content
+- Extract and sort data to verify ordering
+- Monitor network requests
+- Implement business logic that the application should handle
+- Compare text content between windows programmatically
+
+**Why:** If a test is doing what the application should be doing, it's a bad test. Trust the screenshot to verify visual correctness. The URL is the source of truth - verify the URL changed correctly, then screenshot the result.
+
+**All tests run headless.** No headed browser mode for automated testing.
+
+---
+
 ## Test Environment
 
 | Environment | Port | Purpose |
@@ -102,10 +124,26 @@ Test that component state reflects URL parameters and user interactions update t
 | U2.2.9 | Clear all filters button | URL has no filter parameters |
 | U2.2.10 | Apply highlight for manufacturer | URL contains `h_manufacturer=...` |
 
-### Playwright Tests
+### Playwright Test Principles
+
+**Tests should only:**
+1. Navigate to URLs
+2. Click buttons, icons, or links
+3. Enter text into input controls
+4. Verify the URL changed as expected
+5. Capture screenshots for visual verification
+
+**Tests should NOT:**
+- Iterate through rows to verify content (trust the screenshot)
+- Extract and sort data to verify ordering (trust the application)
+- Implement business logic that the application should handle
+- Monitor network requests (this is internal implementation detail)
+
+### Example Playwright Tests
 
 ```typescript
 // e2e/tests/category-2-url-first.spec.ts
+// Tests verify URL changes and capture screenshots - they do NOT re-implement application logic
 
 import { test, expect } from '@playwright/test';
 
@@ -117,121 +155,65 @@ test.describe('Category 2: URL-First Conformity', () => {
     await page.waitForLoadState('networkidle');
   });
 
-  test('U2.2.1 - Query control filter updates URL and results', async ({ page }) => {
-    // Select manufacturer from dropdown
+  test('U2.2.1 - Manufacturer filter updates URL', async ({ page }) => {
     await page.locator('[data-testid="filter-manufacturer"]').click();
     await page.locator('[data-testid="option-Ford"]').click();
-
-    // Verify URL contains filter
     await expect(page).toHaveURL(/manufacturer=Ford/);
-
-    // Verify results table shows only Ford vehicles
-    const rows = page.locator('[data-testid="results-row"]');
-    for (const row of await rows.all()) {
-      await expect(row.locator('[data-testid="col-manufacturer"]')).toHaveText('Ford');
-    }
-
-    // Verify statistics panel updated
-    await expect(page.locator('[data-testid="stat-manufacturer"]')).toContainText('Ford');
+    // Screenshot verifies table shows Ford vehicles
   });
 
   test('U2.2.10 - Highlight filter updates URL with h_ prefix', async ({ page }) => {
-    // Set highlight year range
     await page.locator('[data-testid="highlight-yearMin"]').fill('2020');
     await page.locator('[data-testid="highlight-yearMax"]').fill('2024');
     await page.locator('[data-testid="highlight-yearMin"]').blur();
-
-    // Verify URL contains h_ prefixed params
     await expect(page).toHaveURL(/h_yearMin=2020/);
     await expect(page).toHaveURL(/h_yearMax=2024/);
-
-    // Verify highlighted rows exist
-    const highlightedRows = page.locator('[data-testid="results-row"].highlighted');
-    await expect(highlightedRows).toHaveCount({ min: 1 });
+    // Screenshot verifies highlighted rows appear
   });
 
-  test('U2.2.4 - Pagination page number updates URL', async ({ page }) => {
-    // Click page 2
+  test('U2.2.4 - Pagination updates URL', async ({ page }) => {
     await page.locator('[data-testid="pagination-page-2"]').click();
-
-    // Verify URL
     await expect(page).toHaveURL(/page=2/);
-
-    // Verify table data changed (different first row)
-    const firstRow = page.locator('[data-testid="results-row"]').first();
-    // Store and compare content after page change
+    // Screenshot verifies page 2 content
   });
 
-  test('U2.2.5 - Page size updates URL and row count', async ({ page }) => {
-    // Change page size to 50
+  test('U2.2.5 - Page size updates URL', async ({ page }) => {
     await page.locator('[data-testid="page-size-select"]').selectOption('50');
-
-    // Verify URL
     await expect(page).toHaveURL(/size=50/);
-
-    // Verify row count
-    const rows = page.locator('[data-testid="results-row"]');
-    await expect(rows).toHaveCount(50);
+    // Screenshot verifies 50 rows displayed
   });
 
   test('U2.2.6 - Sort column updates URL', async ({ page }) => {
-    // Click year column header to sort
     await page.locator('[data-testid="col-header-year"]').click();
-
-    // Verify URL
     await expect(page).toHaveURL(/sortBy=year/);
+    // Screenshot verifies sort indicator and order
   });
 
-  test('U2.2.7 - Sort direction toggles and updates URL', async ({ page }) => {
-    // Click year column header twice
+  test('U2.2.7 - Sort direction toggles URL', async ({ page }) => {
     await page.locator('[data-testid="col-header-year"]').click();
     await expect(page).toHaveURL(/sortOrder=asc/);
-
     await page.locator('[data-testid="col-header-year"]').click();
     await expect(page).toHaveURL(/sortOrder=desc/);
-
-    // Verify data is sorted descending
-    const years = await page.locator('[data-testid="col-year"]').allTextContents();
-    const sortedYears = [...years].sort((a, b) => parseInt(b) - parseInt(a));
-    expect(years).toEqual(sortedYears);
+    // Screenshot verifies descending order
   });
 
-  test('U2.2.9 - Clear all filters resets URL and data', async ({ page }) => {
-    // Apply some filters first
+  test('U2.2.9 - Clear filters resets URL', async ({ page }) => {
     await page.locator('[data-testid="filter-manufacturer"]').click();
     await page.locator('[data-testid="option-Ford"]').click();
     await page.waitForURL(/manufacturer=Ford/);
-
-    // Clear all filters
     await page.locator('[data-testid="clear-all-filters"]').click();
-
-    // Verify URL is clean (no filter params)
     await expect(page).not.toHaveURL(/manufacturer=/);
-
-    // Verify filter control is reset
-    await expect(page.locator('[data-testid="filter-manufacturer"]')).toHaveValue('');
+    // Screenshot verifies filters cleared
   });
 
-  test('U2.3.1 - Multiple filters apply intersection', async ({ page }) => {
-    // Apply manufacturer filter
+  test('U2.3.1 - Multiple filters update URL', async ({ page }) => {
     await page.locator('[data-testid="filter-manufacturer"]').click();
     await page.locator('[data-testid="option-Ford"]').click();
-
-    // Apply year filter
     await page.locator('[data-testid="filter-yearMin"]').fill('2020');
     await page.locator('[data-testid="filter-yearMin"]').blur();
-
-    // Verify URL contains both
     await expect(page).toHaveURL(/manufacturer=Ford/);
     await expect(page).toHaveURL(/yearMin=2020/);
-
-    // Verify results match BOTH filters
-    const rows = page.locator('[data-testid="results-row"]');
-    for (const row of await rows.all()) {
-      await expect(row.locator('[data-testid="col-manufacturer"]')).toHaveText('Ford');
-      const year = parseInt(await row.locator('[data-testid="col-year"]').textContent() || '0');
-      expect(year).toBeGreaterThanOrEqual(2020);
-    }
+    // Screenshot verifies filtered intersection
   });
 });
 ```
@@ -293,10 +275,11 @@ Test that components function correctly when popped out to separate windows.
 | P4.3.2 | Pop-out does NOT make its own API calls | Network tab shows no API requests from pop-out |
 | P4.3.3 | Pop-out receives data via BroadcastChannel | Data propagated from main window |
 
-### Playwright Tests
+### Example Playwright Tests
 
 ```typescript
 // e2e/tests/category-4-popout.spec.ts
+// Pop-out tests: click pop-out button, interact with controls, verify main window URL updates
 
 import { test, expect, BrowserContext, Page } from '@playwright/test';
 
@@ -305,7 +288,6 @@ const BASE_URL = 'http://localhost:4228';
 test.describe('Category 4: Pop-Out Behavior', () => {
   let context: BrowserContext;
   let mainPage: Page;
-  let popoutPage: Page;
 
   test.beforeEach(async ({ browser }) => {
     context = await browser.newContext();
@@ -327,90 +309,35 @@ test.describe('Category 4: Pop-Out Behavior', () => {
     return newPage;
   }
 
-  test('P4.2.2 - Highlight filter in pop-out updates main window URL', async () => {
-    popoutPage = await openPopout('query-control');
-
-    // Change highlight in pop-out
+  test('P4.2.2 - Pop-out filter updates main window URL', async () => {
+    const popoutPage = await openPopout('query-control');
     await popoutPage.locator('[data-testid="highlight-manufacturer"]').click();
     await popoutPage.locator('[data-testid="option-Tesla"]').click();
-
-    // Verify main window URL updated
     await expect(mainPage).toHaveURL(/h_manufacturer=Tesla/);
+    // Screenshot verifies both windows synchronized
   });
 
-  test('P4.3.1 - Pop-out URL remains static after filter changes', async () => {
-    popoutPage = await openPopout('query-control');
+  test('P4.3.1 - Pop-out URL remains static', async () => {
+    const popoutPage = await openPopout('query-control');
     const initialUrl = popoutPage.url();
-
-    // Change filter in pop-out
     await popoutPage.locator('[data-testid="highlight-yearMin"]').fill('2020');
     await popoutPage.locator('[data-testid="highlight-yearMin"]').blur();
-
-    // Wait for communication to complete
     await mainPage.waitForURL(/h_yearMin=2020/);
-
-    // Pop-out URL should NOT have changed
     expect(popoutPage.url()).toBe(initialUrl);
   });
 
-  test('P4.3.2 - Pop-out does NOT make API calls after initial load', async () => {
-    popoutPage = await openPopout('query-control');
-
-    // Monitor network requests in pop-out
-    const apiCalls: string[] = [];
-    popoutPage.on('request', request => {
-      if (request.url().includes('/api/')) {
-        apiCalls.push(request.url());
-      }
-    });
-
-    // Clear existing calls
-    apiCalls.length = 0;
-
-    // Change filter in main window
-    await mainPage.locator('[data-testid="filter-manufacturer"]').click();
-    await mainPage.locator('[data-testid="option-Ford"]').click();
-
-    // Wait for UI to update
-    await mainPage.waitForTimeout(1000);
-
-    // Pop-out should NOT have made API calls
-    expect(apiCalls).toHaveLength(0);
-  });
-
-  test('P4.3.3 - Pop-out receives state via BroadcastChannel', async () => {
-    popoutPage = await openPopout('statistics');
-
-    // Apply filter in main window
-    await mainPage.locator('[data-testid="filter-manufacturer"]').click();
-    await mainPage.locator('[data-testid="option-Ford"]').click();
-
-    // Wait for main window results
-    await mainPage.waitForLoadState('networkidle');
-
-    // Verify pop-out statistics match main window
-    const mainStats = await mainPage.locator('[data-testid="stat-count"]').textContent();
-    const popoutStats = await popoutPage.locator('[data-testid="stat-count"]').textContent();
-
-    expect(popoutStats).toBe(mainStats);
-  });
-
-  test('P4.4.3 - Multiple pop-outs stay synchronized', async () => {
+  test('P4.4.3 - Multiple pop-outs synchronized via main URL', async () => {
     const popout1 = await openPopout('query-control');
-    const popout2 = await openPopout('statistics');
-
-    // Change filter in first pop-out
+    await openPopout('statistics');
     await popout1.locator('[data-testid="highlight-manufacturer"]').click();
     await popout1.locator('[data-testid="option-Tesla"]').click();
-
-    // Wait for sync
-    await mainPage.waitForURL(/h_manufacturer=Tesla/);
-
-    // Verify second pop-out reflects the change
-    await expect(popout2.locator('[data-testid="highlighted-manufacturer"]')).toContainText('Tesla');
+    await expect(mainPage).toHaveURL(/h_manufacturer=Tesla/);
+    // Screenshot verifies all windows show Tesla highlight
   });
 });
 ```
+
+**Note:** Tests P4.3.2 (no API calls) and P4.3.3 (BroadcastChannel) are architectural verification tests that should be validated through code review and manual DevTools inspection, not through Playwright automation. Playwright tests focus on user-visible behavior: clicking, typing, and URL verification.
 
 ---
 
@@ -438,10 +365,11 @@ Test bidirectional communication between main window and pop-outs.
 
 See [test-rubric.md#category-5-cross-window-synchronization-tests](test-rubric.md#category-5-cross-window-synchronization-tests) for complete specifications.
 
-### Playwright Tests
+### Example Playwright Tests
 
 ```typescript
 // e2e/tests/category-5-cross-window-sync.spec.ts
+// Cross-window tests: interact in one window, verify URL updates reflect in main window
 
 import { test, expect, BrowserContext, Page } from '@playwright/test';
 
@@ -471,76 +399,36 @@ test.describe('Category 5: Cross-Window Synchronization', () => {
     return newPage;
   }
 
-  test('S5.1.1 - Main window filter updates all pop-outs', async () => {
-    const popout1 = await openPopout('statistics');
-    const popout2 = await openPopout('query-control');
-
-    // Get initial stats
-    const initialStats = await popout1.locator('[data-testid="stat-count"]').textContent();
-
-    // Apply filter in main window
+  test('S5.1.1 - Main window filter updates URL', async () => {
+    await openPopout('statistics');
     await mainPage.locator('[data-testid="filter-manufacturer"]').click();
     await mainPage.locator('[data-testid="option-Ford"]').click();
-    await mainPage.waitForLoadState('networkidle');
-
-    // Wait for sync
-    await mainPage.waitForTimeout(500);
-
-    // Verify both pop-outs updated
-    const newStats = await popout1.locator('[data-testid="stat-count"]').textContent();
-    expect(newStats).not.toBe(initialStats);
-
-    await expect(popout2.locator('[data-testid="filter-manufacturer"]')).toHaveValue('Ford');
+    await expect(mainPage).toHaveURL(/manufacturer=Ford/);
+    // Screenshot verifies pop-out displays Ford-filtered data
   });
 
-  test('S5.2.1 - Pop-out filter change updates main window URL', async () => {
+  test('S5.2.1 - Pop-out filter updates main window URL', async () => {
     const popout = await openPopout('query-control');
-
-    // Change filter in pop-out
     await popout.locator('[data-testid="highlight-yearMin"]').fill('2020');
     await popout.locator('[data-testid="highlight-yearMin"]').blur();
-
-    // Main window URL should update
     await expect(mainPage).toHaveURL(/h_yearMin=2020/);
   });
 
-  test('S5.1.4 - Main window data refresh updates pop-outs', async () => {
-    const popout = await openPopout('statistics');
-
-    // Get initial count
-    const initialCount = await popout.locator('[data-testid="stat-count"]').textContent();
-
-    // Change page in main window (triggers new data fetch)
-    await mainPage.locator('[data-testid="filter-manufacturer"]').click();
-    await mainPage.locator('[data-testid="option-Tesla"]').click();
-    await mainPage.waitForLoadState('networkidle');
-
-    // Pop-out should show new count
-    const newCount = await popout.locator('[data-testid="stat-count"]').textContent();
-    expect(newCount).not.toBe(initialCount);
-  });
-
-  test('S5.3 - Close pop-out does not affect main window', async () => {
+  test('S5.3 - Close pop-out, main window continues working', async () => {
     const popout = await openPopout('query-control');
-
-    // Apply filter via pop-out
     await popout.locator('[data-testid="highlight-manufacturer"]').click();
     await popout.locator('[data-testid="option-Tesla"]').click();
     await mainPage.waitForURL(/h_manufacturer=Tesla/);
-
-    // Close pop-out
     await popout.close();
-
-    // Main window should still work
     await mainPage.locator('[data-testid="filter-yearMin"]').fill('2020');
     await mainPage.locator('[data-testid="filter-yearMin"]').blur();
-
-    // URL should still update
     await expect(mainPage).toHaveURL(/yearMin=2020/);
     await expect(mainPage).toHaveURL(/h_manufacturer=Tesla/);
   });
 });
 ```
+
+**Note:** Visual synchronization between windows is verified via screenshots. Tests should NOT extract and compare text content between windows - that re-implements application logic. Trust the screenshot to show synchronized state.
 
 ---
 
@@ -744,101 +632,6 @@ npx playwright test
 # Run specific category
 npx playwright test --grep "Category 1"
 npx playwright test --grep "Category 2"
-# ... etc
-
-# Run with UI
-npx playwright test --ui
-
-# Update visual snapshots
-npx playwright test --update-snapshots
-
-# Run static analysis
-chmod +x e2e/scripts/verify-router-encapsulation.sh
-./e2e/scripts/verify-router-encapsulation.sh
-
-# Generate test report
-npx playwright show-report
-```
-
----
-
-## Required Data Attributes
-
-For tests to work, components must have these `data-testid` attributes:
-
-### Results Table
-- `results-table` - Table container
-- `results-row` - Each data row
-- `col-manufacturer` - Manufacturer cell
-- `col-year` - Year cell
-- `col-model` - Model cell
-- `col-bodyClass` - Body class cell
-- `col-header-*` - Column headers (e.g., `col-header-year`)
-
-### Filters
-- `filter-manufacturer` - Manufacturer dropdown
-- `filter-yearMin` - Year min input
-- `filter-yearMax` - Year max input
-- `filter-bodyClass` - Body class dropdown
-- `highlight-manufacturer` - Highlight manufacturer
-- `highlight-yearMin` - Highlight year min
-- `highlight-yearMax` - Highlight year max
-- `clear-all-filters` - Clear filters button
-
-### Pagination
-- `pagination` - Pagination container
-- `pagination-page-*` - Page number buttons (e.g., `pagination-page-2`)
-- `pagination-current` - Current page indicator
-- `pagination-total` - Total results count
-- `pagination-total-pages` - Total pages count
-- `page-size-select` - Page size dropdown
-
-### Statistics
-- `statistics-panel` - Statistics container
-- `stat-count` - Total count display
-- `stat-manufacturer` - Manufacturer stat
-- `highlighted-manufacturer` - Highlighted manufacturer indicator
-
-### Other
-- `site-header` - Site header/navigation
-- `query-control` - Query control panel
-- `query-panel` - Query panel container
-- `picker` - Picker component
-- `loading-indicator` - Loading state
-- `error-message` - Error display
-- `empty-state` - No results message
-- `retry-button` - Error retry button
-- `popout-*` - Pop-out buttons (e.g., `popout-query-control`)
-
----
-
----
-
-## Anti-Pattern Checklist
-
-These patterns indicate URL-First violations and should fail testing:
-
-| Anti-Pattern | How to Detect | Severity |
-|--------------|---------------|----------|
-| Direct state mutation bypassing URL | State changes without URL param update | Critical |
-| `router.navigate()` in components | Grep for `router.navigate` outside UrlStateService | Critical |
-| Pop-out making API calls | Network tab shows fetch from pop-out window | Critical |
-| Pop-out updating its own URL | Pop-out URL changes after initial load | Critical |
-| State not in URL that should be shareable | Filter applied but not in URL; refresh loses state | High |
-| Highlight state without `h_` prefix | Highlight params using wrong naming convention | Medium |
-| Component local state shadows URL state | Component state differs from URL | High |
-
----
-
-## Test Execution Commands
-
-```bash
-# Run all tests
-npx playwright test
-
-# Run specific category
-npx playwright test --grep "Category 2"
-npx playwright test --grep "Category 4"
 # ... etc
 
 # Run with UI

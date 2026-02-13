@@ -72,14 +72,18 @@ This rubric provides a systematic Playwright testing strategy for verifying URL-
 1. **Every screenshot MUST include the full browser URL bar** at the top of the image
 2. URL bar verifies URL-First state management is working correctly
 3. For popout screenshots, capture both windows showing synchronization state
+4. **Viewport must be vertical orientation (portrait mode): 1080x1920**
+5. Use `fullPage: true` for components that need scrolling to capture all content
 
 ### Playwright Screenshot Configuration
 ```typescript
-// Ensure URL bar is visible in all screenshots
-await page.screenshot({
-  path: 'screenshot-name.png',
-  fullPage: false  // Capture viewport only, ensuring URL bar is visible
-});
+// playwright.config.ts - Vertical orientation viewport
+use: {
+  viewport: { width: 1080, height: 1920 },
+}
+
+// Test files - URL bar injection helper required
+await screenshotWithUrl(page, 'screenshot-name.png', true);  // fullPage for scrollable content
 ```
 
 ---
@@ -132,6 +136,47 @@ Test that components render correctly in default and various states.
 | V1.5.1 | Results Table | `page=2&size=10` | `results-table-paginated-page2.png` |
 | V1.5.2 | Pagination Control | `page=5&size=25` | `pagination-page5.png` |
 | V1.5.3 | Results Table | Last page | `results-table-last-page.png` |
+
+### 1.6 Collapsed/Expanded Panel State Rendering
+
+| Test ID | Component | State | Screenshot |
+|---------|-----------|-------|------------|
+| V1.6.1 | Query Control | Collapsed | `query-control-collapsed.png` |
+| V1.6.2 | Query Panel | Collapsed | `query-panel-collapsed.png` |
+| V1.6.3 | Manufacturer-Model Picker | Collapsed | `picker-collapsed.png` |
+| V1.6.4 | All Panels | All expanded (default) | `all-panels-expanded.png` |
+| V1.6.5 | All Panels | All collapsed | `all-panels-collapsed.png` |
+| V1.6.6 | Mixed State | Some collapsed, some expanded | `panels-mixed-state.png` |
+
+### 1.7 Pagination Interaction Tests (Popped-In)
+
+| Test ID | Component | Action | Expected Result | Screenshot |
+|---------|-----------|--------|-----------------|------------|
+| V1.7.1 | Picker Table (in) | Click page 2 | Page 2 displayed, pagination shows page 2 active | `picker-page2.png` |
+| V1.7.2 | Picker Table (in) | Click page 3 | Page 3 displayed | `picker-page3.png` |
+| V1.7.3 | Picker Table (in) | Change rows per page to 10 | 10 rows displayed | `picker-rows-10.png` |
+| V1.7.4 | Picker Table (in) | Change rows per page to 50 | 50 rows displayed | `picker-rows-50.png` |
+| V1.7.5 | Picker Table (in) | Change rows per page to 100 | 100 rows displayed | `picker-rows-100.png` |
+| V1.7.6 | Results Table | Navigate via URL `?page=2` | Page 2 displayed | `results-page2-url.png` |
+| V1.7.7 | Results Table | Navigate via URL `?size=50` | 50 rows displayed | `results-rows-50-url.png` |
+
+### 1.8 Pagination Interaction Tests (Popped-Out)
+
+| Test ID | Component | Action | Expected Result | Screenshot |
+|---------|-----------|--------|-----------------|------------|
+| V1.8.1 | Picker Table (out) | Click page 2 | Page 2 displayed in pop-out window | `picker-popout-page2.png` |
+| V1.8.2 | Picker Table (out) | Change rows per page to 50 | 50 rows displayed in pop-out | `picker-popout-rows-50.png` |
+| V1.8.3 | Picker Table (out) | Change rows per page to 100 | 100 rows displayed in pop-out | `picker-popout-rows-100.png` |
+
+### 1.9 Picker Selection and Apply Tests
+
+| Test ID | Component | Action | Expected Result | Screenshot |
+|---------|-----------|--------|-----------------|------------|
+| V1.9.1 | Picker (in) | Select rows, before Apply | Rows checked, Apply button enabled | `picker-selected-before-apply.png` |
+| V1.9.2 | Picker (in) | After Apply clicked | URL updated with selection, results filtered | `picker-after-apply.png` |
+| V1.9.3 | Picker (out) | Select rows, before Apply | Rows checked in pop-out window | `picker-popout-selected.png` |
+| V1.9.4 | Picker (out) | After Apply clicked | Main window URL updated, results filtered | `picker-popout-after-apply.png` |
+| V1.9.5 | Picker (in) | Clear selection | All rows unchecked, Clear button state | `picker-cleared.png` |
 
 ---
 

@@ -93,34 +93,9 @@ For each chapter:
 2026-02-13_06:50:00
 Initialized quality review journal. Established scope: 75 textbook chapters to review against quality-instructions.md test specifications.
 
-2026-02-13_07:15:00
-Created comprehensive test-rubric.md with 8 test categories aligned with test-data/README.md. Updated quality-instructions.md to reference new rubric structure. Updated quality-journal.md to reference test-rubric.md and align test category numbering.
+2026-02-13_08:57:19
+Reset test cycle. Cleared e2e/ directory. Simplified over-engineered Playwright test examples in quality-instructions.md - tests now only perform user actions (click, type, navigate), verify URL changes, and capture screenshots. Added "Playwright Test Philosophy" section. Tests should NOT iterate rows, extract/sort data, monitor network, or re-implement application logic.
 
-2026-02-13_07:25:00
-Created kickoff-prompt.md to initialize testing sessions. Includes startup sequence, test execution order, journal entry format requirements, and critical reminder to append entry after EVERY individual test.
-
-2026-02-13_07:55:09
-Started testing session. Verified API accessible at http://generic-prime.minilab/api/specs/v1. Started development server on port 4207. Test server already running on port 4228. Beginning Category 1: Visual Appearance Tests.
-
-2026-02-13_07:56:50
-Test V1.1.1 - Results Table default render: PASS
-Screenshot captured: e2e/screenshots/results-table-default.png
-Results table rendered with 40 rows (default pagination)
-
-2026-02-13_07:57:11
-Tests V1.1.2 through V1.1.5 - All Default State Rendering tests: PASS
-Screenshots captured:
-- filter-panel-default.png
-- pagination-default.png
-- statistics-default.png
-- full-page-default.png
-All components render correctly in default state.
-
-2026-02-13_07:57:30
-Category 1 Visual Appearance Tests COMPLETE - All 15 tests PASS
-V1.2.x Filtered State: 3 tests passed (Ford, SUV, year range filters)
-V1.3.x Highlighted State: 3 tests passed (Tesla highlight, year highlight, filter+highlight combo)
-V1.4.x Sorted State: 2 tests passed (year desc, manufacturer asc)
-V1.5.x Paginated State: 2 tests passed (page 2 size 10, page 5 size 25)
-All 15 screenshots captured in e2e/screenshots/
+2026-02-13_09:00:39
+Sanity check of all four quality documents. Removed duplicate sections from quality-instructions.md (Anti-Pattern Checklist, Test Execution Commands, Required Data Attributes were duplicated). Updated kickoff-prompt.md to include: test philosophy (headless only, click/type/navigate/verify URL/screenshot), what tests should NOT do, and three test artifacts (URL assertion, screenshot, journal entry). All documents now mutually consistent.
 
