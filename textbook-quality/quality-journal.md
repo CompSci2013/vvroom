@@ -118,3 +118,36 @@ pagination shows "Showing 1 to 20 of 4887 results" with page numbers 1-5 and pag
 Query Control, Query Panel, Manufacturer-Model Picker, and Statistics panels all collapsed (showing ">" chevron).
 Fixed test to collapse panels per panel-visibility-reference.md specification.
 
+2026-02-13_09:49:20
+Committed and pushed V1.1.1 to github remote. Commit: 1cc0bd8
+
+2026-02-13_09:50:05
+Test V1.1.2 - Filter panel default render: PASS
+Screenshot: filter-panel-default.png
+Verified: URL bar shows /discover, Query Panel expanded showing all filter controls (Manufacturer, Model, Year Range Min/Max,
+Body Class dropdown, VIN Count Range Min/Max, Clear Filters button). All inputs empty/default state.
+Query Control, Manufacturer-Model Picker, Statistics, and Results Table panels all collapsed (showing ">" chevron).
+
+2026-02-13_09:50:42
+Test V1.1.3 - Pagination default render: PASS
+Screenshot: pagination-default.png
+Verified: URL bar shows /discover, Results Table expanded with pagination controls visible at bottom.
+Pagination shows "Showing 1 to 20 of 4887 results", page numbers 1-5 with navigation arrows, page 1 highlighted as active.
+Page size selector showing "20". All other panels collapsed.
+
+2026-02-13_09:51:20
+Test V1.1.4 - Statistics panel default render: PASS
+Screenshot: statistics-default.png
+Verified: URL bar shows /discover, Statistics panel expanded showing all 4 charts:
+1. Vehicles by Manufacturer (horizontal bar chart)
+2. Top Models by VIN Count (horizontal bar chart)
+3. Vehicles by Body Class (horizontal bar chart)
+4. Vehicles by Year (vertical bar chart)
+All charts show blue bars (default unfiltered/unhighlighted state). All other panels collapsed.
+
+2026-02-13_09:51:56
+Test V1.1.5 - Search input default render: PASS
+Screenshot: search-default.png
+Verified: URL bar shows /discover, Query Control panel expanded showing "Add filter by field..." dropdown and "Clear All" button.
+Search/filter controls in empty default state. All other panels collapsed (Query Panel, Manufacturer-Model Picker, Statistics, Results Table).
+

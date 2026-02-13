@@ -35,6 +35,8 @@ test.describe('Category 1: Visual Appearance Tests', () => {
       await page.goto(`${BASE_URL}/discover`);
       await page.waitForLoadState('networkidle');
       await page.getByRole('heading', { name: 'Query Panel' }).waitFor({ state: 'visible', timeout: 10000 });
+      // Collapse all panels except Query Panel
+      await collapsePanels(page, ['Query Control', 'Manufacturer-Model Picker', 'Statistics', 'Results Table']);
       await screenshotWithUrl(page, 'filter-panel-default.png', true);
       await expect(page).toHaveURL(/\/discover/);
     });
@@ -43,6 +45,8 @@ test.describe('Category 1: Visual Appearance Tests', () => {
       await page.goto(`${BASE_URL}/discover`);
       await page.waitForLoadState('networkidle');
       await page.getByText(/Showing \d+ to \d+ of/).first().waitFor({ state: 'visible', timeout: 10000 });
+      // Collapse all panels except Results Table (to focus on pagination)
+      await collapsePanels(page, ['Query Control', 'Query Panel', 'Manufacturer-Model Picker', 'Statistics']);
       await screenshotWithUrl(page, 'pagination-default.png', true);
       await expect(page).toHaveURL(/\/discover/);
     });
@@ -51,6 +55,8 @@ test.describe('Category 1: Visual Appearance Tests', () => {
       await page.goto(`${BASE_URL}/discover`);
       await page.waitForLoadState('networkidle');
       await page.getByRole('heading', { name: 'Statistics' }).waitFor({ state: 'visible', timeout: 10000 });
+      // Collapse all panels except Statistics
+      await collapsePanels(page, ['Query Control', 'Query Panel', 'Manufacturer-Model Picker', 'Results Table']);
       await screenshotWithUrl(page, 'statistics-default.png', true);
       await expect(page).toHaveURL(/\/discover/);
     });
@@ -59,6 +65,8 @@ test.describe('Category 1: Visual Appearance Tests', () => {
       await page.goto(`${BASE_URL}/discover`);
       await page.waitForLoadState('networkidle');
       await page.locator('table').first().waitFor({ state: 'visible', timeout: 10000 });
+      // Collapse all panels except Query Control (to show search input)
+      await collapsePanels(page, ['Query Panel', 'Manufacturer-Model Picker', 'Statistics', 'Results Table']);
       await screenshotWithUrl(page, 'search-default.png', true);
       await expect(page).toHaveURL(/\/discover/);
     });
