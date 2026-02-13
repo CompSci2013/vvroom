@@ -1,20 +1,30 @@
 You are to meticulously document each action we take in building this application.
 Each entry will contain a timestamp: YYYY-MM-DD_HH:MM:SS where time is the system time of the thor server.
-You will always append entries to the bottom of this file: ~/projects/vvroom/journal.md
+You will always append entries to the bottom of this file: ~/projects/vvroom/textbook-quality/quality-journal.md
 Give the timestamp of the entry, and then write the action taken on the next line.
 There should be a blank line between entries.
 You will add these entries automatically after each action.
 After you have recorded the last action taken, you will read the first 11 lines of this file.
-Then tail the last 150 lines of this file, journal.md, to remember where you left off.
+Then tail the last 150 lines of this file, quality-journal.md, to remember where you left off.
 After each successful test as verified by playwrite screenshot, commit the work, then push to all remote repositories.
 Add a blank line, then a time-stamped entry for the test just performed.
-You will then read quality-instructions.md
+You will then read quality-instructions.md and test-rubric.md
 
 # Textbook Quality Review Journal
 
 ## Purpose
 
 This journal tracks the quality review and testing of the vvroom textbook located at `~/projects/vvroom/textbook/`. The review verifies that textbook content accurately describes the implemented application and that code examples produce the expected behavior.
+
+---
+
+## Related Documents
+
+| Document | Purpose |
+|----------|---------|
+| [quality-instructions.md](quality-instructions.md) | Quality verification procedures and Playwright test code |
+| [test-rubric.md](test-rubric.md) | Comprehensive test specifications with real data values |
+| [../test-data/README.md](../test-data/README.md) | API data structure documentation |
 
 ---
 
@@ -40,15 +50,29 @@ This journal tracks the quality review and testing of the vvroom textbook locate
 | 950s | Reference | RxJS operators, TypeScript, debugging, glossary |
 | A0x | Appendices | Styling, testing rubric |
 
+### Test Categories (from test-rubric.md)
+
+| Category | Tests | Scope |
+|----------|-------|-------|
+| 1. Visual Appearance | V1.x | Component rendering in default and various states |
+| 2. URL-First Conformity | U2.x | URL to state and state to URL verification |
+| 3. URL Change Consistency | U3.x | Browser navigation and manual URL edits |
+| 4. Pop-Out Behavior | P4.x | Pop-out rendering and synchronization |
+| 5. Cross-Window Synchronization | S5.x | Bidirectional communication |
+| 6. Router Navigate Encapsulation | R6.x | Code-level compliance |
+| 7. Error Handling | E7.x | Error states and recovery |
+| 8. Visual Verification | VS8.x | Screenshot-based visual testing |
+
 ### Quality Criteria
 
 Each chapter will be reviewed against:
 
 1. **Code Accuracy**: Does the code compile and run as described?
-2. **API Compliance**: Do examples match `quality-instructions.md` test expectations?
+2. **API Compliance**: Do examples match test-rubric.md test expectations?
 3. **URL-First Adherence**: Does the chapter correctly implement URL-first state management?
 4. **Data Attributes**: Are required `data-testid` attributes documented?
 5. **Cross-References**: Do chapter references point to correct locations?
+6. **URL Parameters**: Are `sortBy`/`sortOrder` (not `sort`/`sortDirection`) used correctly?
 
 ---
 
@@ -57,7 +81,7 @@ Each chapter will be reviewed against:
 For each chapter:
 1. Read chapter content
 2. Compare code examples against actual implementation in `src/`
-3. Verify any Playwright test expectations match `quality-instructions.md`
+3. Verify any Playwright test expectations match `test-rubric.md`
 4. Run relevant tests if applicable
 5. Document findings with timestamp
 6. If issues found, create correction notes
@@ -68,4 +92,35 @@ For each chapter:
 
 2026-02-13_06:50:00
 Initialized quality review journal. Established scope: 75 textbook chapters to review against quality-instructions.md test specifications.
+
+2026-02-13_07:15:00
+Created comprehensive test-rubric.md with 8 test categories aligned with test-data/README.md. Updated quality-instructions.md to reference new rubric structure. Updated quality-journal.md to reference test-rubric.md and align test category numbering.
+
+2026-02-13_07:25:00
+Created kickoff-prompt.md to initialize testing sessions. Includes startup sequence, test execution order, journal entry format requirements, and critical reminder to append entry after EVERY individual test.
+
+2026-02-13_07:55:09
+Started testing session. Verified API accessible at http://generic-prime.minilab/api/specs/v1. Started development server on port 4207. Test server already running on port 4228. Beginning Category 1: Visual Appearance Tests.
+
+2026-02-13_07:56:50
+Test V1.1.1 - Results Table default render: PASS
+Screenshot captured: e2e/screenshots/results-table-default.png
+Results table rendered with 40 rows (default pagination)
+
+2026-02-13_07:57:11
+Tests V1.1.2 through V1.1.5 - All Default State Rendering tests: PASS
+Screenshots captured:
+- filter-panel-default.png
+- pagination-default.png
+- statistics-default.png
+- full-page-default.png
+All components render correctly in default state.
+
+2026-02-13_07:57:30
+Category 1 Visual Appearance Tests COMPLETE - All 15 tests PASS
+V1.2.x Filtered State: 3 tests passed (Ford, SUV, year range filters)
+V1.3.x Highlighted State: 3 tests passed (Tesla highlight, year highlight, filter+highlight combo)
+V1.4.x Sorted State: 2 tests passed (year desc, manufacturer asc)
+V1.5.x Paginated State: 2 tests passed (page 2 size 10, page 5 size 25)
+All 15 screenshots captured in e2e/screenshots/
 
