@@ -100,6 +100,7 @@ Given a file `653-body-class-chart-source.md` (~10KB, ~400 lines):
    d. Write each chunk to a numbered output file
    e. Report: `{filename}: {N} pages created`
 3. Generate summary report with total pages created
+4. Commit and push to github, gitlab
 
 ## Success Criteria
 
