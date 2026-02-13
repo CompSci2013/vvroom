@@ -201,3 +201,43 @@ Screenshot: statistics-filter-with-highlight.png
 Verified: URL bar shows ?manufacturer=Ford&h_yearMin=2018, combined filter+highlight working.
 Data filtered to Ford only, then 2018+ years highlighted in blue vs earlier years in gray.
 
+2026-02-13_09:57:26
+Test V1.4.1 - Results table sorted by year descending: PASS
+Screenshot: results-table-sorted-year-desc.png
+Verified: URL bar shows ?sortBy=year&sortOrder=desc, Results Table shows all 2024 vehicles at top (most recent first).
+All other panels collapsed per spec.
+
+Test V1.4.2 - Results table sorted by manufacturer ascending: PASS
+Screenshot: results-table-sorted-manufacturer-asc.png
+Verified: URL bar shows ?sortBy=manufacturer&sortOrder=asc, Results Table shows alphabetical order
+(Affordable Aluminum, Best Lane, Brammo, Buick...). All other panels collapsed.
+
+Test V1.4.3 - Results table sorted by instance count descending: PASS
+Screenshot: results-table-sorted-instancecount-desc.png
+Verified: URL bar shows ?sortBy=instance_count&sortOrder=desc. Note: API uses snake_case (instance_count)
+not camelCase (instanceCount). Test updated to use correct field name. 4887 results returned.
+
+2026-02-13_09:58:59
+Test V1.5.1 - Results table page 2 with 10 rows: PASS
+Screenshot: results-table-paginated-page2.png
+Verified: URL bar shows ?page=2&size=10, Results Table shows 10 rows, pagination shows "Showing 11 to 20 of 4887 results",
+page 2 highlighted, page size selector shows "10". All other panels collapsed.
+
+Test V1.5.2 - Pagination control page 5: PASS
+Screenshot: pagination-page5.png
+Verified: URL bar shows ?page=5&size=25, Results Table shows 25 rows, pagination shows "Showing 101 to 125 of 4887 results",
+page 5 highlighted. All other panels collapsed.
+
+Test V1.5.3 - Results table last page: PASS
+Screenshot: results-table-last-page.png
+Verified: URL bar shows ?page=999&size=25, Results Table shows "No results found" message with "Showing 0 to 0 of 0 results".
+App gracefully handles out-of-bounds page numbers. All other panels collapsed.
+
+=== CATEGORY 1 COMPLETE ===
+All 20 Visual Appearance Tests PASS:
+- V1.1.x (5 tests): Default State Rendering
+- V1.2.x (5 tests): Filtered State Rendering
+- V1.3.x (4 tests): Highlighted State Rendering
+- V1.4.x (3 tests): Sorted State Rendering
+- V1.5.x (3 tests): Paginated State Rendering
+

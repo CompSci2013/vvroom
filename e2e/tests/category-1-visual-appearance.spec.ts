@@ -214,6 +214,8 @@ test.describe('Category 1: Visual Appearance Tests', () => {
       await page.goto(`${BASE_URL}/discover?sortBy=year&sortOrder=desc`);
       await page.waitForLoadState('networkidle');
       await page.locator('table').first().waitFor({ state: 'visible', timeout: 10000 });
+      // Collapse all panels except Results Table
+      await collapsePanels(page, ['Query Control', 'Query Panel', 'Manufacturer-Model Picker', 'Statistics']);
       await screenshotWithUrl(page, 'results-table-sorted-year-desc.png', true);
       await expect(page).toHaveURL(/sortBy=year/);
       await expect(page).toHaveURL(/sortOrder=desc/);
@@ -223,17 +225,21 @@ test.describe('Category 1: Visual Appearance Tests', () => {
       await page.goto(`${BASE_URL}/discover?sortBy=manufacturer&sortOrder=asc`);
       await page.waitForLoadState('networkidle');
       await page.locator('table').first().waitFor({ state: 'visible', timeout: 10000 });
+      // Collapse all panels except Results Table
+      await collapsePanels(page, ['Query Control', 'Query Panel', 'Manufacturer-Model Picker', 'Statistics']);
       await screenshotWithUrl(page, 'results-table-sorted-manufacturer-asc.png', true);
       await expect(page).toHaveURL(/sortBy=manufacturer/);
       await expect(page).toHaveURL(/sortOrder=asc/);
     });
 
     test('V1.4.3 - Results table sorted by instance count descending', async ({ page }) => {
-      await page.goto(`${BASE_URL}/discover?sortBy=instanceCount&sortOrder=desc`);
+      await page.goto(`${BASE_URL}/discover?sortBy=instance_count&sortOrder=desc`);
       await page.waitForLoadState('networkidle');
       await page.locator('table').first().waitFor({ state: 'visible', timeout: 10000 });
+      // Collapse all panels except Results Table
+      await collapsePanels(page, ['Query Control', 'Query Panel', 'Manufacturer-Model Picker', 'Statistics']);
       await screenshotWithUrl(page, 'results-table-sorted-instancecount-desc.png', true);
-      await expect(page).toHaveURL(/sortBy=instanceCount/);
+      await expect(page).toHaveURL(/sortBy=instance_count/);
     });
   });
 
@@ -242,6 +248,8 @@ test.describe('Category 1: Visual Appearance Tests', () => {
       await page.goto(`${BASE_URL}/discover?page=2&size=10`);
       await page.waitForLoadState('networkidle');
       await page.locator('table').first().waitFor({ state: 'visible', timeout: 10000 });
+      // Collapse all panels except Results Table
+      await collapsePanels(page, ['Query Control', 'Query Panel', 'Manufacturer-Model Picker', 'Statistics']);
       await screenshotWithUrl(page, 'results-table-paginated-page2.png', true);
       await expect(page).toHaveURL(/page=2/);
       await expect(page).toHaveURL(/size=10/);
@@ -251,6 +259,8 @@ test.describe('Category 1: Visual Appearance Tests', () => {
       await page.goto(`${BASE_URL}/discover?page=5&size=25`);
       await page.waitForLoadState('networkidle');
       await page.getByText(/Showing \d+ to \d+ of/).first().waitFor({ state: 'visible', timeout: 10000 });
+      // Collapse all panels except Results Table
+      await collapsePanels(page, ['Query Control', 'Query Panel', 'Manufacturer-Model Picker', 'Statistics']);
       await screenshotWithUrl(page, 'pagination-page5.png', true);
       await expect(page).toHaveURL(/page=5/);
     });
@@ -259,6 +269,8 @@ test.describe('Category 1: Visual Appearance Tests', () => {
       await page.goto(`${BASE_URL}/discover?page=999&size=25`);
       await page.waitForLoadState('networkidle');
       await page.locator('table').first().waitFor({ state: 'visible', timeout: 10000 });
+      // Collapse all panels except Results Table
+      await collapsePanels(page, ['Query Control', 'Query Panel', 'Manufacturer-Model Picker', 'Statistics']);
       await screenshotWithUrl(page, 'results-table-last-page.png', true);
     });
   });
