@@ -180,3 +180,24 @@ Screenshot: results-table-model-combos.png
 Verified: URL bar shows ?models=Ford:Mustang,Chevrolet:Camaro, Statistics shows model combination data.
 Panels correctly collapsed per panel-visibility-reference.md.
 
+2026-02-13_09:54:40
+Test V1.3.1 - Statistics charts highlight Tesla: PASS
+Screenshot: statistics-highlight-tesla.png
+Verified: URL bar shows ?h_manufacturer=Tesla, Query Control shows "Highlight Manufacturer: Tesla" chip,
+Statistics shows 4 charts with "Other" (gray) vs "Highlighted" (blue) legend, Tesla data highlighted in blue.
+
+Test V1.3.2 - Statistics charts highlight year range: PASS
+Screenshot: statistics-highlight-years.png
+Verified: URL bar shows ?h_yearMin=2015&h_yearMax=2020, Query Control shows "Highlight Year: 2015 - 2020" chip,
+Statistics shows year bars 2015-2020 highlighted in blue, all other years gray.
+
+Test V1.3.3 - Statistics charts highlight body class: PASS
+Screenshot: statistics-highlight-pickup.png
+Verified: URL bar shows ?h_bodyClass=Pickup, Query Control shows "Highlight Body Class: Pickup" chip,
+Statistics shows Pickup vehicles highlighted in blue across all 4 charts.
+
+Test V1.3.4 - Statistics charts filter with highlight: PASS
+Screenshot: statistics-filter-with-highlight.png
+Verified: URL bar shows ?manufacturer=Ford&h_yearMin=2018, combined filter+highlight working.
+Data filtered to Ford only, then 2018+ years highlighted in blue vs earlier years in gray.
+
