@@ -3,7 +3,7 @@
 ## Background
 
 - **vroom** attempted to build golden-extension from scratch via a textbook approach, but the better reference is **generic-prime** (branch `angular/13`)
-- **vvroom** is the second attempt, using a different method: copy code directly from generic-prime and golden-extension instead of writing from scratch
+- **vvroom** is the second attempt, using a different method: copy code directly from generic-prime instead of writing from scratch
 - The application must follow the **URL-First State Management** paradigm documented in `~/projects/vroom/docs/`
 
 ### Methodology Shift
@@ -15,10 +15,10 @@ The original vroom approach (see `~/projects/vroom/plan/000-book-conventions.md`
 4. Delete code, re-apply from manuscript
 5. Verify again
 
-This proved error-prone. The new vvroom approach inverted the process:
-1. Copied working code from generic-prime or golden-extension
-2. Adapted textbook to match the actual implementation
-3. Verified both align
+This proved error-prone. The new vvroom approach inverts the process:
+1. Copy working code from generic-prime
+2. Adapt textbook to match the actual implementation
+3. Verify both align
 
 This ensures the textbook accurately reflects production-quality code.
 
@@ -54,13 +54,12 @@ For each textbook page, execute the following steps in order:
    - Ensure adherence to URL-First State Management principles
 
 5. **Build & Test**
-   - The application on port 4207 during development
-   - Run the application on port 4228 for playwright testing
+   - Run the application on port 4228
    - Fix any build errors
    - Repeat until the build succeeds
 
 6. **Capture Screenshots**
-   - Use Playwright (port 4228) to capture screenshots of all components implemented or modified in this page
+   - Use Playwright to capture screenshots of all components implemented or modified in this page
    - Save screenshots to `~/projects/vvroom/e2e/screenshots/`
 
 7. **Log & Proceed**
@@ -137,68 +136,3 @@ User Action → URL Update → State Service → Components Re-render
 - [ ] Screenshots captured for all implemented components
 - [ ] URL-First State Management paradigm maintained throughout
 - [ ] URL-First Compliance Checklist passes for each phase
-
-## Restest
-
-vvroom services should match golden-extension ~/projects/golden-extension/frontend/src/framework/services, especially for the popout* services.
-
-Doing so may resolve some of your recommendations.
-
-```
-Recommended Improvements (not blocking):
-
-High: Add FilterOptionsService for cached filter options in pop-outs
-High: Add Toast component to AppComponent for error notifications
-Medium: Implement lazy loading to reduce 5.63 MB bundle
-Medium: Add 404 route for unmatched paths
-Low: Extract PopOutManagerService from DiscoverComponent
-```
-
-Apply all of the recommend Improvements listed above.
-
-Run vvroom/textbook/A02-url-first-testing-rubric.md again. After each successful test
-as proved by playwright screenshots, commit the work and push to all remote repositories.
-
-## IMPORTANT
-
-This application must remain Pure Angular version 13. Strike out any Recommended Improvements that
-require features from Angular 14 or above.
-
-Run the ENTIRE test suite again until completion with no test failures. Capturing playwright screenshots, commiting, pushing to all remotes.
-Repeat until all tests pass.
-
-**Remember:**
-- Run the ENTIRE test suite again until completion with no test failures.
-- Capture playwright screenshots,
-- Commit all files in vvroom
-- Push to all remotes.
-- Repeat until all tests pass.
-
-## Test Success Criteria (UPDATED 2026-02-12)
-
-Tests must verify BOTH functional correctness AND visual presentation:
-
-### Functional Requirements
-1. **Data Accuracy** - Results table displays correct data matching URL filters
-2. **URL-First Compliance** - All state changes flow through URL updates
-3. **Pop-out Communication** - BroadcastChannel messages work bidirectionally
-
-### Visual Requirements (must pass manual inspection)
-1. **Icons Render Correctly** - No empty boxes or missing glyphs
-   - Hamburger/drag handle icon (pi-bars)
-   - Collapse/expand chevron icons (pi-chevron-down/up)
-   - Pop-out icon (pi-external-link)
-   - Clear button X icon (pi-times)
-2. **Pop-out Windows Load** - Must display content, not connection errors
-3. **Active Filters Display** - Chips show selected filter values
-4. **Results Table Populated** - Shows actual vehicle data, not empty/loading state
-
-### Known Issues to Fix
-- [ ] Broken icons (PrimeIcons not loading)
-- [ ] Pop-out windows show "connection refused" on port 4207
-- [ ] Test suite only checks URL params, not visual rendering
-
-### Test Validation Process
-1. Run automated tests
-2. **MANUALLY inspect screenshots** for visual defects
-3. Only commit if BOTH automated AND visual checks pass

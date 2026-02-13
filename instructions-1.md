@@ -3,7 +3,7 @@
 ## Background
 
 - **vroom** attempted to build golden-extension from scratch via a textbook approach, but the better reference is **generic-prime** (branch `angular/13`)
-- **vvroom** is the second attempt, using a different method: copy code directly from generic-prime and golden-extension instead of writing from scratch
+- **vvroom** is the second attempt, using a different method: copy code directly from generic-prime instead of writing from scratch
 - The application must follow the **URL-First State Management** paradigm documented in `~/projects/vroom/docs/`
 
 ### Methodology Shift
@@ -15,10 +15,10 @@ The original vroom approach (see `~/projects/vroom/plan/000-book-conventions.md`
 4. Delete code, re-apply from manuscript
 5. Verify again
 
-This proved error-prone. The new vvroom approach inverted the process:
-1. Copied working code from generic-prime or golden-extension
-2. Adapted textbook to match the actual implementation
-3. Verified both align
+This proved error-prone. The new vvroom approach inverts the process:
+1. Copy working code from generic-prime
+2. Adapt textbook to match the actual implementation
+3. Verify both align
 
 This ensures the textbook accurately reflects production-quality code.
 
