@@ -10,6 +10,13 @@
 </ng-container>
 
 <!-- Application Content -->
-<main class="app-content">
+<main class="app-content" [class.with-chrome]="!isPopOut">
   <router-outlet></router-outlet>
 </main>
+
+<!-- Footer Bar - Hidden in pop-out windows -->
+<ng-container *ngIf="!isPopOut">
+  <footer class="app-footer">
+    <span class="copyright">© 2026 vvroom</span>
+  </footer>
+</ng-container>

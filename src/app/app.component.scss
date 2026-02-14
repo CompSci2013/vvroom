@@ -28,6 +28,25 @@
 }
 
 .app-content {
-  height: calc(100vh - 60px);
+  height: 100vh;
   overflow-y: auto;
+
+  &.with-chrome {
+    height: calc(100vh - 120px);
+  }
+}
+
+.app-footer {
+  background-color: #2a2a2a;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #444;
+  height: 60px;
+
+  .copyright {
+    color: #888;
+    font-size: 0.9rem;
+  }
 }
