@@ -142,3 +142,23 @@ Verified: URL shows manufacturer=Chevrolet, Query Control shows filter chip, Sta
 Test V1.2.5 - Results table with model combinations: PASS
 Screenshot: V1.2.5-results-table-model-combos.png
 Verified: URL shows models=Ford:Mustang,Chevrolet:Camaro, Query Control shows model filter chips, Statistics shows filtered data for selected models
+
+2026-02-14_07:22:38
+Test V1.3.1 - Statistics charts highlight Tesla: PASS
+Screenshot: V1.3.1-statistics-highlight-tesla.png
+Verified: URL shows h_manufacturer=Tesla, Query Control shows "Highlight Manufacturer: Tesla" chip, Statistics shows 4 charts with Tesla bars in BLUE and others in gray, legend shows "Other/Highlighted"
+
+2026-02-14_07:22:38
+Test V1.3.2 - Statistics charts highlight year range: PASS
+Screenshot: V1.3.2-statistics-highlight-years.png
+Verified: URL shows h_yearMin=2015&h_yearMax=2020, Query Control shows "Highlight Year: 2015 - 2020" chip, all 4 charts show 2015-2020 data in BLUE
+
+2026-02-14_07:22:38
+Test V1.3.3 - Statistics charts highlight body class: PASS
+Screenshot: V1.3.3-statistics-highlight-pickup.png
+Verified: URL shows h_bodyClass=Pickup, Query Control shows "Highlight Body Class: Pickup" chip, all 4 charts show Pickup data highlighted in BLUE
+
+2026-02-14_07:22:38
+Test V1.3.4 - Statistics with filter AND highlight: PASS
+Screenshot: V1.3.4-statistics-filter-with-highlight.png
+Verified: URL shows manufacturer=Ford&h_yearMin=2018, Query Control shows BOTH "Manufacturer: Ford" filter chip AND "Highlight Year: 2018" chip, Statistics shows filtered+highlighted data, 665 results
