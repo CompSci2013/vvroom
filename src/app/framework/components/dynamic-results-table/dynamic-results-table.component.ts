@@ -159,6 +159,11 @@ export class DynamicResultsTableComponent<TFilters = any, TData = any, TStatisti
   ngAfterViewInit(): void {
     // Initial sync of paginator width to table width
     this.syncPaginatorWidth();
+
+    // Sync paginator width whenever results change (table might resize)
+    this.results$.pipe(takeUntil(this.destroy$)).subscribe(() => {
+      this.syncPaginatorWidth();
+    });
   }
 
   ngOnDestroy(): void {
@@ -236,14 +241,17 @@ export class DynamicResultsTableComponent<TFilters = any, TData = any, TStatisti
    * This ensures the paginator stays aligned with the table when columns are resized
    */
   private syncPaginatorWidth(): void {
-    const nativeEl = this.elementRef.nativeElement;
-    const table = nativeEl.querySelector('.p-datatable-table') as HTMLElement;
-    const paginator = nativeEl.querySelector('.p-paginator') as HTMLElement;
+    // Use requestAnimationFrame to ensure DOM has updated
+    requestAnimationFrame(() => {
+      const nativeEl = this.elementRef.nativeElement;
+      const table = nativeEl.querySelector('.p-datatable-table') as HTMLElement;
+      const paginator = nativeEl.querySelector('.p-paginator') as HTMLElement;
 
-    if (table && paginator) {
-      const tableWidth = table.offsetWidth;
-      paginator.style.width = `${tableWidth}px`;
-    }
+      if (table && paginator) {
+        const tableWidth = table.offsetWidth;
+        paginator.style.minWidth = `${tableWidth}px`;
+      }
+    });
   }
 
   /**

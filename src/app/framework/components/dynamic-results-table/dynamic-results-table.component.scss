@@ -98,13 +98,14 @@
         color: var(--p-primary-color, #34d399);
       }
 
-      // Paginator - remove border
+      // Paginator - remove border and match table width
       .p-paginator {
         border: none;
+        box-sizing: border-box;
       }
 
       // Ensure table wrapper allows horizontal scroll when columns are expanded
-      .p-datatable-table-container {
+      .p-datatable-wrapper {
         overflow-x: auto;
       }
     }
