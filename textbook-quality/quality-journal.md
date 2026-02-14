@@ -272,3 +272,28 @@ Verified: Pop-out shows ~50 rows of picker data, main window shows placeholder m
 Test V1.8.3 - Picker pop-out rows 100: PASS
 Screenshot: V1.8.3-picker-popout-rows-100.png, V1.8.3-picker-popout-main-overlay.png
 Verified: Pop-out shows ~100 rows, main window shows placeholder message
+
+2026-02-14_07:32:19
+Test V1.9.1 - Picker select rows before Apply: PASS
+Screenshot: V1.9.1-picker-selected-before-apply.png
+Verified: Picker expanded, 2 rows checked (Affordable Aluminum, Best Lane), Apply button visible
+
+2026-02-14_07:32:19
+Test V1.9.2 - Picker after Apply clicked: PASS
+Screenshot: V1.9.2-picker-after-apply.png
+Verified: URL shows modelCombos=..., Query Control shows "Manufacturer & Model" filter chip, Statistics shows 2 filtered results
+
+2026-02-14_07:32:19
+Test V1.9.3 - Picker pop-out select rows: PASS
+Screenshot: V1.9.3-picker-popout-selected.png, V1.9.3-picker-popout-main-overlay.png
+Verified: Pop-out shows 2 selected rows with blue checkmarks, main window shows placeholder
+
+2026-02-14_07:32:19
+Test V1.9.4 - Picker pop-out after Apply: PASS
+Screenshot: V1.9.4-picker-popout-after-apply.png
+Verified: Main window URL shows modelCombos=..., Query Control shows filter chip, Statistics shows 2 results
+
+2026-02-14_07:32:19
+Test V1.9.5 - Picker clear selection: PASS
+Screenshot: V1.9.5-picker-cleared.png
+Verified: Picker expanded, all checkboxes unchecked (cleared), Clear button visible

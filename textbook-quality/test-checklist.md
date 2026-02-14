@@ -105,9 +105,9 @@ ls -la e2e/screenshots/ | grep -E "^V1\.1\.[0-9]+-" | wc -l  # Should match subs
 
 | Done | Test ID | Screenshot | Commit |
 |------|---------|------------|--------|
-| [x] | V1.8.1 | V1.8.1-picker-popout-page2.png | pending |
-| [x] | V1.8.2 | V1.8.2-picker-popout-rows-50.png | pending |
-| [x] | V1.8.3 | V1.8.3-picker-popout-rows-100.png | pending |
+| [x] | V1.8.1 | V1.8.1-picker-popout-page2.png | 5f21121 |
+| [x] | V1.8.2 | V1.8.2-picker-popout-rows-50.png | 5f21121 |
+| [x] | V1.8.3 | V1.8.3-picker-popout-rows-100.png | 5f21121 |
 
 **Subsection verification:** `ls e2e/screenshots/V1.8.* | wc -l` should equal 3
 
@@ -115,11 +115,11 @@ ls -la e2e/screenshots/ | grep -E "^V1\.1\.[0-9]+-" | wc -l  # Should match subs
 
 | Done | Test ID | Screenshot | Commit |
 |------|---------|------------|--------|
-| [ ] | V1.9.1 | | |
-| [ ] | V1.9.2 | | |
-| [ ] | V1.9.3 | | |
-| [ ] | V1.9.4 | | |
-| [ ] | V1.9.5 | | |
+| [x] | V1.9.1 | V1.9.1-picker-selected-before-apply.png | pending |
+| [x] | V1.9.2 | V1.9.2-picker-after-apply.png | pending |
+| [x] | V1.9.3 | V1.9.3-picker-popout-selected.png | pending |
+| [x] | V1.9.4 | V1.9.4-picker-popout-after-apply.png | pending |
+| [x] | V1.9.5 | V1.9.5-picker-cleared.png | pending |
 
 **Subsection verification:** `ls e2e/screenshots/V1.9.* | wc -l` should equal 5
 
