@@ -192,3 +192,33 @@ Verified: URL shows page=5&size=25, pagination shows "Showing 101 to 125 of 4887
 Test V1.5.3 - Results table last page: PASS
 Screenshot: V1.5.3-results-table-last-page.png
 Verified: URL shows page=196&size=25, pagination shows "Showing 4876 to 4885 of 4887 results", WHITEGMC and Waterford models visible at end of dataset, confirms last page of data
+
+2026-02-14_07:27:34
+Test V1.6.1 - Query Control collapsed: PASS
+Screenshot: V1.6.1-query-control-collapsed.png (5 scroll images)
+Verified: Query Control COLLAPSED (header only), Query Panel/Picker/Statistics/Results Table all EXPANDED with content visible
+
+2026-02-14_07:27:34
+Test V1.6.2 - Query Panel collapsed: PASS
+Screenshot: V1.6.2-query-panel-collapsed.png (5 scroll images)
+Verified: Query Panel COLLAPSED (header only), Query Control/Picker/Statistics/Results Table all EXPANDED
+
+2026-02-14_07:27:34
+Test V1.6.3 - Manufacturer-Model Picker collapsed: PASS
+Screenshot: V1.6.3-picker-collapsed.png (3 scroll images)
+Verified: Picker COLLAPSED (header only), Query Control/Query Panel/Statistics/Results Table all EXPANDED
+
+2026-02-14_07:27:34
+Test V1.6.4 - All panels expanded: PASS
+Screenshot: V1.6.4-all-panels-expanded.png (5 scroll images)
+Verified: All 5 panels EXPANDED showing full content - Query Control, Query Panel, Picker, Statistics (4 charts), Results Table with pagination
+
+2026-02-14_07:27:34
+Test V1.6.5 - All panels collapsed: PASS
+Screenshot: V1.6.5-all-panels-collapsed.png
+Verified: All 5 panels COLLAPSED showing only header bars in compact stacked layout
+
+2026-02-14_07:27:34
+Test V1.6.6 - Mixed panel state: PASS
+Screenshot: V1.6.6-panels-mixed-state.png (2 scroll images)
+Verified: Query Control & Statistics EXPANDED, Query Panel/Picker/Results Table COLLAPSED

@@ -68,9 +68,9 @@ ls -la e2e/screenshots/ | grep -E "^V1\.1\.[0-9]+-" | wc -l  # Should match subs
 
 | Done | Test ID | Screenshot | Commit |
 |------|---------|------------|--------|
-| [x] | V1.5.1 | V1.5.1-results-table-paginated-page2.png | pending |
-| [x] | V1.5.2 | V1.5.2-pagination-page5.png | pending |
-| [x] | V1.5.3 | V1.5.3-results-table-last-page.png | pending |
+| [x] | V1.5.1 | V1.5.1-results-table-paginated-page2.png | 71afd1e |
+| [x] | V1.5.2 | V1.5.2-pagination-page5.png | 71afd1e |
+| [x] | V1.5.3 | V1.5.3-results-table-last-page.png | 71afd1e |
 
 **Subsection verification:** `ls e2e/screenshots/V1.5.* | wc -l` should equal 3
 
@@ -78,12 +78,12 @@ ls -la e2e/screenshots/ | grep -E "^V1\.1\.[0-9]+-" | wc -l  # Should match subs
 
 | Done | Test ID | Screenshot | Commit |
 |------|---------|------------|--------|
-| [ ] | V1.6.1 | | |
-| [ ] | V1.6.2 | | |
-| [ ] | V1.6.3 | | |
-| [ ] | V1.6.4 | | |
-| [ ] | V1.6.5 | | |
-| [ ] | V1.6.6 | | |
+| [x] | V1.6.1 | V1.6.1-query-control-collapsed.png | pending |
+| [x] | V1.6.2 | V1.6.2-query-panel-collapsed.png | pending |
+| [x] | V1.6.3 | V1.6.3-picker-collapsed.png | pending |
+| [x] | V1.6.4 | V1.6.4-all-panels-expanded.png | pending |
+| [x] | V1.6.5 | V1.6.5-all-panels-collapsed.png | pending |
+| [x] | V1.6.6 | V1.6.6-panels-mixed-state.png | pending |
 
 **Subsection verification:** `ls e2e/screenshots/V1.6.* | wc -l` should equal 6
 
