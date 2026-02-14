@@ -71,6 +71,11 @@ export async function setPanelVisibility(
   for (const panelId of expanded) {
     await expandPanel(page, panelId);
   }
+
+  // After changing panel visibility, scroll back to top
+  // Panel clicks can cause the page to scroll to focus on them
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.waitForTimeout(100);
 }
 
 const URL_BAR_HEIGHT = 36;
@@ -228,58 +233,80 @@ async function resetZoom(page: Page): Promise<void> {
 }
 
 /**
- * Check if the header is visible AND there's whitespace between
- * the header and the first control/content.
+ * Check if there's whitespace between the header/banner and the first control.
  *
- * If a control is flush against the header (no gap), content is being truncated at top.
+ * The header/banner is the nav bar at the very top (contains "Home", "Discover").
+ * There must be a visible gap between its bottom and the top of the first panel/control.
+ * This gap contains the page title, results count, etc.
+ *
+ * If the first control is flush against the header, content is being truncated.
  */
-async function isHeaderFullyVisible(page: Page): Promise<boolean> {
+async function isHeaderFullyVisible(page: Page): Promise<{ ok: boolean; debug: string }> {
   return page.evaluate(() => {
-    // Find the header element (contains navigation like "Home", "Discover")
+    // 1. Check that page is scrolled to top
+    if (window.scrollY > 0) {
+      return { ok: false, debug: `scrollY=${window.scrollY}` };
+    }
+
+    // 2. Find the header/nav bar at the top
     const header = document.querySelector('header') ||
                    document.querySelector('nav') ||
-                   document.querySelector('.app-header') ||
-                   document.querySelector('[class*="header"]');
+                   document.querySelector('[class*="navbar"]');
 
     if (!header) {
-      // No header found - can't verify, assume it might be truncated
-      return false;
+      return { ok: false, debug: 'no header found' };
     }
 
     const headerRect = header.getBoundingClientRect();
 
-    // Header must be visible at top of viewport
-    if (headerRect.top < 0) {
-      return false;
+    // Header must start at or near top of viewport
+    if (headerRect.top < -5) {
+      return { ok: false, debug: `header.top=${headerRect.top}` };
     }
 
-    // Find the first content element after the header
+    // 3. Find the page title (H1) - it must be fully visible below the header
+    const pageTitle = document.querySelector('h1');
+    if (pageTitle) {
+      const titleRect = pageTitle.getBoundingClientRect();
+      // Title must start BELOW the header bottom with some gap
+      if (titleRect.top < headerRect.bottom) {
+        return { ok: false, debug: `title at ${titleRect.top}, header.bottom=${headerRect.bottom} (title behind or above header)` };
+      }
+      // Title must not be cut off at top
+      if (titleRect.top < 0) {
+        return { ok: false, debug: `title.top=${titleRect.top} (cut off)` };
+      }
+    }
+
+    // 4. Find the first panel and ensure it's below the title area
     const contentSelectors = [
-      '.p-panel',
-      '[class*="panel"]',
-      'app-query-control',
-      'app-query-panel',
-      'app-statistics',
-      'app-results-table'
+      '[id^="panel-"]',
+      '.p-panel'
     ];
 
-    let firstContentTop = Infinity;
+    let firstPanelTop = Infinity;
+    let firstPanelId = '';
 
     for (const selector of contentSelectors) {
       const elements = document.querySelectorAll(selector);
       elements.forEach(el => {
         const rect = el.getBoundingClientRect();
-        // Only consider elements that are visible (have height)
-        if (rect.height > 0 && rect.top > headerRect.bottom) {
-          firstContentTop = Math.min(firstContentTop, rect.top);
+        if (rect.height > 0 && rect.top < firstPanelTop) {
+          firstPanelTop = rect.top;
+          firstPanelId = (el as HTMLElement).id || selector;
         }
       });
     }
 
-    // There must be a gap (at least 20px) between header and first content
-    const gapBetweenHeaderAndContent = firstContentTop - headerRect.bottom;
+    // First panel must be below header (with gap for title row)
+    // At minimum, first panel should start at header.bottom + 80 (title area)
+    const minPanelTop = headerRect.bottom + 60; // 60px for title row minimum
+    if (firstPanelTop < minPanelTop) {
+      return { ok: false, debug: `firstPanel (${firstPanelId}) at ${firstPanelTop}, min=${minPanelTop}` };
+    }
 
-    return gapBetweenHeaderAndContent >= 20;
+    const debug = `header.bottom=${headerRect.bottom}, firstPanel.top=${firstPanelTop} (${firstPanelId}), ok`;
+    return { ok: true, debug };
   });
 }
 
@@ -345,19 +372,8 @@ async function isFooterFullyVisible(page: Page, viewportHeight: number): Promise
 }
 
 /**
- * Take screenshot(s) with adaptive orientation:
- * 1. Default to landscape at 100%
- * 2. If content too tall, try landscape at 90% zoom
- * 3. If still too tall, switch to portrait at 100%
- * 4. If still too tall, try portrait at 90% zoom
- * 5. If still too tall, take multiple portrait shots with scrolling
+ * Take a full-page screenshot with URL bar composited at top.
  *
- * CRITICAL RULES:
- * - First image must ALWAYS capture the banner/header at top with whitespace between header and first control
- * - Last image must show the footer "© 2026 vvroom" with whitespace between last control and footer
- * - If content is flush against header or footer (no whitespace gap), it's truncated - need different approach
- *
- * All screenshots include a URL bar composited at the top.
  * Returns array of filenames created.
  */
 export async function takeScreenshot(
@@ -365,112 +381,48 @@ export async function takeScreenshot(
   testId: string,
   description: string
 ): Promise<string[]> {
-  const filenames: string[] = [];
   const currentUrl = page.url();
+  const filename = `${testId}-${description}.png`;
 
-  // Helper to get content height
-  const getContentHeight = async () => {
-    return page.evaluate(() => document.documentElement.scrollHeight);
-  };
-
-  // Helper to take screenshot and add URL bar
-  const captureWithUrlBar = async (filename: string, viewport: { width: number; height: number }) => {
-    const buffer = await page.screenshot({ fullPage: false });
-    const withUrlBar = await addUrlBarToScreenshot(page, buffer, currentUrl, viewport.width);
-    fs.writeFileSync(path.join('e2e/screenshots', filename), withUrlBar);
-    filenames.push(filename);
-  };
-
-  // Helper to check if single shot captures everything (header and footer visible with whitespace)
-  const canFitInSingleShot = async (viewport: { width: number; height: number }) => {
-    const contentHeight = await getContentHeight();
-    if (contentHeight > viewport.height) {
-      return false;
-    }
-    // Content height fits, but verify both header and footer are visible with whitespace
-    const headerOk = await isHeaderFullyVisible(page);
-    const footerOk = await isFooterFullyVisible(page, viewport.height);
-    return headerOk && footerOk;
-  };
-
-  // Helper to take multiple scrolling shots
-  const takeMultipleShots = async (viewport: { width: number; height: number }, zoom: number) => {
-    const contentHeight = await getContentHeight();
-    // Calculate overlap to ensure continuity (10% overlap)
-    const effectiveHeight = Math.floor(viewport.height * 0.85);
-    let scrollY = 0;
-    let shotIndex = 1;
-
-    // First shot - always from top (captures banner)
-    await page.evaluate(() => window.scrollTo(0, 0));
-    await page.waitForTimeout(100);
-    await captureWithUrlBar(`${testId}-${description}-${shotIndex}.png`, viewport);
-
-    // Continue scrolling until footer is fully visible
-    while (!(await isFooterFullyVisible(page, viewport.height))) {
-      scrollY += effectiveHeight;
-      // Safety check - don't scroll beyond content
-      if (scrollY >= contentHeight) {
-        break;
-      }
-      await page.evaluate((y) => window.scrollTo(0, y), scrollY);
-      await page.waitForTimeout(100);
-      shotIndex++;
-      await captureWithUrlBar(`${testId}-${description}-${shotIndex}.png`, viewport);
-
-      // Safety limit to prevent infinite loops
-      if (shotIndex > 10) {
-        console.warn(`Warning: Exceeded 10 shots for ${testId}-${description}`);
-        break;
-      }
-    }
-
-    // Scroll back to top
-    await page.evaluate(() => window.scrollTo(0, 0));
-  };
-
-  // Try landscape at 100%
+  // Set viewport to landscape for consistent width
   await page.setViewportSize(VIEWPORT.LANDSCAPE);
-  await resetZoom(page);
-  await page.evaluate(() => window.scrollTo(0, 0));
-  await page.waitForTimeout(100);
 
-  if (await canFitInSingleShot(VIEWPORT.LANDSCAPE)) {
-    await captureWithUrlBar(`${testId}-${description}.png`, VIEWPORT.LANDSCAPE);
-  } else {
-    // Try landscape at 90% zoom
-    await setZoom(page, 0.9);
-    await page.waitForTimeout(100);
+  // Scroll to absolute top - both window AND any scrollable containers
+  await page.evaluate(() => {
+    // Reset window scroll
+    window.scrollTo(0, 0);
 
-    if (await canFitInSingleShot(VIEWPORT.LANDSCAPE)) {
-      await captureWithUrlBar(`${testId}-${description}.png`, VIEWPORT.LANDSCAPE);
-    } else {
-      // Try portrait at 100%
-      await resetZoom(page);
-      await page.setViewportSize(VIEWPORT.PORTRAIT);
-      await page.waitForTimeout(100);
-
-      if (await canFitInSingleShot(VIEWPORT.PORTRAIT)) {
-        await captureWithUrlBar(`${testId}-${description}.png`, VIEWPORT.PORTRAIT);
-      } else {
-        // Try portrait at 90% zoom
-        await setZoom(page, 0.9);
-        await page.waitForTimeout(100);
-
-        if (await canFitInSingleShot(VIEWPORT.PORTRAIT)) {
-          await captureWithUrlBar(`${testId}-${description}.png`, VIEWPORT.PORTRAIT);
-        } else {
-          // Need multiple portrait shots with scrolling (at 90% zoom)
-          await takeMultipleShots(VIEWPORT.PORTRAIT, 0.9);
-        }
-      }
+    // Reset scroll on main content area (app-discover or main element)
+    const main = document.querySelector('main') || document.querySelector('app-discover');
+    if (main) {
+      (main as HTMLElement).scrollTop = 0;
     }
-  }
 
-  // Cleanup
-  await resetZoom(page);
+    // Reset scroll on discover-container's parent if it exists
+    const dc = document.querySelector('.discover-container');
+    if (dc && dc.parentElement) {
+      dc.parentElement.scrollTop = 0;
+    }
 
-  return filenames;
+    // Reset any element with overflow:auto or overflow:scroll
+    document.querySelectorAll('*').forEach(el => {
+      const htmlEl = el as HTMLElement;
+      if (htmlEl.scrollTop > 0) {
+        htmlEl.scrollTop = 0;
+      }
+    });
+  });
+  await page.waitForTimeout(200);
+
+
+  // Capture full page
+  const buffer = await page.screenshot({ fullPage: true });
+
+  // Add URL bar to the top
+  const withUrlBar = await addUrlBarToScreenshot(page, buffer, currentUrl, VIEWPORT.LANDSCAPE.width);
+  fs.writeFileSync(path.join('e2e/screenshots', filename), withUrlBar);
+
+  return [filename];
 }
 
 /**
