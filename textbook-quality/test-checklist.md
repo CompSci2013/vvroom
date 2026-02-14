@@ -23,11 +23,11 @@ ls -la e2e/screenshots/ | grep -E "^V1\.1\.[0-9]+-" | wc -l  # Should match subs
 
 | Done | Test ID | Screenshot | Commit |
 |------|---------|------------|--------|
-| [x] | V1.1.1 | V1.1.1-results-table-default.png | pending |
-| [x] | V1.1.2 | V1.1.2-filter-panel-default.png | pending |
-| [x] | V1.1.3 | V1.1.3-pagination-default.png | pending |
-| [x] | V1.1.4 | V1.1.4-statistics-default.png | pending |
-| [x] | V1.1.5 | V1.1.5-search-default.png | pending |
+| [x] | V1.1.1 | V1.1.1-results-table-default.png | 0ecb149 |
+| [x] | V1.1.2 | V1.1.2-filter-panel-default.png | 0ecb149 |
+| [x] | V1.1.3 | V1.1.3-pagination-default.png | 0ecb149 |
+| [x] | V1.1.4 | V1.1.4-statistics-default.png | 0ecb149 |
+| [x] | V1.1.5 | V1.1.5-search-default.png | 0ecb149 |
 
 **Subsection verification:** `ls e2e/screenshots/V1.1.* | wc -l` should equal 5
 
@@ -35,11 +35,11 @@ ls -la e2e/screenshots/ | grep -E "^V1\.1\.[0-9]+-" | wc -l  # Should match subs
 
 | Done | Test ID | Screenshot | Commit |
 |------|---------|------------|--------|
-| [ ] | V1.2.1 | | |
-| [ ] | V1.2.2 | | |
-| [ ] | V1.2.3 | | |
-| [ ] | V1.2.4 | | |
-| [ ] | V1.2.5 | | |
+| [x] | V1.2.1 | V1.2.1-results-table-filtered-ford.png | pending |
+| [x] | V1.2.2 | V1.2.2-results-table-filtered-suv.png | pending |
+| [x] | V1.2.3 | V1.2.3-results-table-filtered-recent.png | pending |
+| [x] | V1.2.4 | V1.2.4-statistics-filtered-chevrolet.png | pending |
+| [x] | V1.2.5 | V1.2.5-results-table-model-combos.png | pending |
 
 **Subsection verification:** `ls e2e/screenshots/V1.2.* | wc -l` should equal 5
 
