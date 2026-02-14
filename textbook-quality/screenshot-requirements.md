@@ -9,12 +9,16 @@
 - Landscape: 1650 x 1275 pixels
 - Portrait: 1275 x 1650 pixels
 
-## 3. Adaptive Orientation Logic
-1. **Default to landscape** at 100% zoom
-2. If content too tall for landscape, try **landscape at 90% zoom**
-3. If still too tall, switch to **portrait at 100%** zoom
-4. If still too tall, try **portrait at 90% zoom**
-5. If still too tall, take **multiple portrait shots with scrolling** (numbered `-1.png`, `-2.png`, etc.)
+## 3. Screenshot Capture Logic
+1. **Always use landscape** (1650 x 1275 pixels) with `fullPage: true`
+2. **First screenshot** captures from top - must show header with whitespace gap below
+3. **Additional screenshots** taken by scrolling down half-page (637px) until footer whitespace rule is satisfied
+4. Multiple screenshots numbered: `{testId}-{description}.png`, `{testId}-{description}-2.png`, etc.
+
+### Implementation Details (screenshot-helper.ts)
+- `resetAllScrollPositions()`: Resets scroll on window AND internal scrollable containers (main, app-discover)
+- `isFooterFullyVisible()`: Checks for 20px+ gap between last content element and footer
+- The app has an internal scrollable `<main>` element - must reset its `scrollTop` not just `window.scrollY`
 
 ## 4. Naming Convention
 - `{testId}-{description}.png` - e.g., `V1.1.1-results-table-default.png`
@@ -34,3 +38,12 @@
 - **Last image**: Must show the footer `© 2026 vvroom` with **whitespace between the last control and the footer**
 - If a control is flush against the header (no gap below) or footer (no gap above), content is being truncated
 - When truncated, take additional images with scrolling until there's visible whitespace gaps at both ends
+
+### Critical: Internal Scroll Reset
+The vvroom app uses an internal scrollable `<main>` element. Panel clicks (expand/collapse) cause this element to scroll, even when `window.scrollY === 0`. Before taking screenshots:
+1. Reset `window.scrollTo(0, 0)`
+2. Reset `main.scrollTop = 0` (or `app-discover.scrollTop = 0`)
+3. Reset `.discover-container` parent's scrollTop
+4. Reset ALL elements with `scrollTop > 0`
+
+Without this, the "Vvroom Discovery" title will be cut off even though window reports no scroll.

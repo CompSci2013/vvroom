@@ -372,7 +372,38 @@ async function isFooterFullyVisible(page: Page, viewportHeight: number): Promise
 }
 
 /**
- * Take a full-page screenshot with URL bar composited at top.
+ * Reset all scrollable elements to top position.
+ *
+ * CRITICAL: The vvroom app has an internal scrollable <main> element.
+ * Panel clicks (expand/collapse) cause this element to scroll internally,
+ * even when window.scrollY === 0. Without resetting main.scrollTop,
+ * the "Vvroom Discovery" title will be cut off in screenshots.
+ */
+async function resetAllScrollPositions(page: Page): Promise<void> {
+  await page.evaluate(() => {
+    window.scrollTo(0, 0);
+    const main = document.querySelector('main') || document.querySelector('app-discover');
+    if (main) {
+      (main as HTMLElement).scrollTop = 0;
+    }
+    const dc = document.querySelector('.discover-container');
+    if (dc && dc.parentElement) {
+      dc.parentElement.scrollTop = 0;
+    }
+    document.querySelectorAll('*').forEach(el => {
+      const htmlEl = el as HTMLElement;
+      if (htmlEl.scrollTop > 0) {
+        htmlEl.scrollTop = 0;
+      }
+    });
+  });
+}
+
+/**
+ * Take screenshot(s) with URL bar composited at top.
+ *
+ * Takes full-page screenshots, scrolling down by half-page increments
+ * until the footer whitespace rule is satisfied.
  *
  * Returns array of filenames created.
  */
@@ -381,48 +412,58 @@ export async function takeScreenshot(
   testId: string,
   description: string
 ): Promise<string[]> {
+  const filenames: string[] = [];
   const currentUrl = page.url();
-  const filename = `${testId}-${description}.png`;
 
   // Set viewport to landscape for consistent width
   await page.setViewportSize(VIEWPORT.LANDSCAPE);
 
-  // Scroll to absolute top - both window AND any scrollable containers
-  await page.evaluate(() => {
-    // Reset window scroll
-    window.scrollTo(0, 0);
-
-    // Reset scroll on main content area (app-discover or main element)
-    const main = document.querySelector('main') || document.querySelector('app-discover');
-    if (main) {
-      (main as HTMLElement).scrollTop = 0;
-    }
-
-    // Reset scroll on discover-container's parent if it exists
-    const dc = document.querySelector('.discover-container');
-    if (dc && dc.parentElement) {
-      dc.parentElement.scrollTop = 0;
-    }
-
-    // Reset any element with overflow:auto or overflow:scroll
-    document.querySelectorAll('*').forEach(el => {
-      const htmlEl = el as HTMLElement;
-      if (htmlEl.scrollTop > 0) {
-        htmlEl.scrollTop = 0;
-      }
-    });
-  });
+  // Reset to top
+  await resetAllScrollPositions(page);
   await page.waitForTimeout(200);
 
+  // First screenshot - full page from top
+  const buffer1 = await page.screenshot({ fullPage: true });
+  const filename1 = `${testId}-${description}.png`;
+  const withUrlBar1 = await addUrlBarToScreenshot(page, buffer1, currentUrl, VIEWPORT.LANDSCAPE.width);
+  fs.writeFileSync(path.join('e2e/screenshots', filename1), withUrlBar1);
+  filenames.push(filename1);
 
-  // Capture full page
-  const buffer = await page.screenshot({ fullPage: true });
+  // Check if footer rule is satisfied
+  let footerOk = await isFooterFullyVisible(page, VIEWPORT.LANDSCAPE.height);
 
-  // Add URL bar to the top
-  const withUrlBar = await addUrlBarToScreenshot(page, buffer, currentUrl, VIEWPORT.LANDSCAPE.width);
-  fs.writeFileSync(path.join('e2e/screenshots', filename), withUrlBar);
+  // If footer rule not satisfied, take additional screenshots scrolling down
+  let shotIndex = 1;
+  const halfPage = Math.floor(VIEWPORT.LANDSCAPE.height / 2);
 
-  return [filename];
+  while (!footerOk && shotIndex < 10) {
+    shotIndex++;
+
+    // Scroll down by half page
+    await page.evaluate((scrollAmount) => {
+      const main = document.querySelector('main') || document.querySelector('app-discover');
+      if (main) {
+        (main as HTMLElement).scrollTop += scrollAmount;
+      } else {
+        window.scrollBy(0, scrollAmount);
+      }
+    }, halfPage);
+    await page.waitForTimeout(200);
+
+    // Take another full-page screenshot
+    const buffer = await page.screenshot({ fullPage: true });
+    const filename = `${testId}-${description}-${shotIndex}.png`;
+    const withUrlBar = await addUrlBarToScreenshot(page, buffer, currentUrl, VIEWPORT.LANDSCAPE.width);
+    fs.writeFileSync(path.join('e2e/screenshots', filename), withUrlBar);
+    filenames.push(filename);
+
+    footerOk = await isFooterFullyVisible(page, VIEWPORT.LANDSCAPE.height);
+  }
+
+  // Reset scroll position
+  await resetAllScrollPositions(page);
+
+  return filenames;
 }
 
 /**
