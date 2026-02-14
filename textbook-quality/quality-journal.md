@@ -93,53 +93,28 @@ For each chapter:
 
 ## Action Log
 
-2026-02-14_02:45:48
+
+2026-02-14_02:57:18
 Test V1.1.1 - Results table default render: PASS
 Screenshot: V1.1.1-results-table-default.png
-Verified: URL bar shows /discover, Results Table expanded with 20 data rows, pagination shows "Showing 1 to 20 of 4887 results", other panels collapsed
+Verified: Results Table expanded with 20 rows showing, pagination shows "Showing 1 to 20 of 4887 results", page 1 active, other panels collapsed
 
-2026-02-14_02:45:48
+2026-02-14_02:57:18
 Test V1.1.2 - Filter panel default render: PASS
 Screenshot: V1.1.2-filter-panel-default.png
-Verified: URL bar shows /discover, Query Panel expanded showing Manufacturer/Model/Year Range/Body Class/VIN Count Range fields with Clear Filters button, other panels collapsed
+Verified: Query Panel expanded showing Manufacturer, Model, Year Range, Body Class, VIN Count Range controls all in empty/default state, Clear Filters button visible
 
-2026-02-14_02:45:48
+2026-02-14_02:57:18
 Test V1.1.3 - Pagination default render: PASS
 Screenshot: V1.1.3-pagination-default.png
-Verified: URL bar shows /discover, Results Table visible with pagination control showing "Showing 1 to 20 of 4887 results" with page numbers 1-5 and size dropdown
+Verified: Pagination shows "Showing 1 to 20 of 4887 results", page 1 highlighted, pages 1-5 visible with navigation arrows, page size dropdown showing "20"
 
-2026-02-14_02:45:48
+2026-02-14_02:57:18
 Test V1.1.4 - Statistics panel default render: PASS
 Screenshot: V1.1.4-statistics-default.png
-Verified: URL bar shows /discover, Statistics panel expanded with 4 charts (Vehicles by Manufacturer, Top Models by VIN Count, Vehicles by Body Class, Vehicles by Year), other panels collapsed
+Verified: Statistics panel expanded with 4 charts visible (Vehicles by Manufacturer, Top Models by VIN Count, Vehicles by Body Class, Vehicles by Year), all showing unfiltered data
 
-2026-02-14_02:45:48
+2026-02-14_02:57:18
 Test V1.1.5 - Search input default render: PASS
 Screenshot: V1.1.5-search-default.png
-Verified: URL bar shows /discover, Query Control expanded showing "Add filter by field..." dropdown and "Clear All" button, other panels collapsed
-
-2026-02-14_02:47:22
-Test V1.2.1 - Results table filtered by manufacturer: PASS
-Screenshot: V1.2.1-results-table-filtered-ford.png
-Verified: URL bar shows ?manufacturer=Ford, Query Control shows "Active Filters: Manufacturer: Ford" chip, Statistics shows Ford-only charts (665 results)
-
-2026-02-14_02:47:22
-Test V1.2.2 - Results table filtered by body class: PASS
-Screenshot: V1.2.2-results-table-filtered-suv.png
-Verified: URL bar shows ?bodyClass=SUV, filter chip visible, Statistics shows SUV data
-
-2026-02-14_02:47:22
-Test V1.2.3 - Results table filtered by year range: PASS
-Screenshot: V1.2.3-results-table-filtered-recent.png
-Verified: URL bar shows ?yearMin=2020&yearMax=2024, filter chip visible, Statistics shows recent years data
-
-2026-02-14_02:47:22
-Test V1.2.4 - Statistics filtered by manufacturer: PASS
-Screenshot: V1.2.4-statistics-filtered-chevrolet.png
-Verified: URL bar shows ?manufacturer=Chevrolet, filter chip visible, Statistics shows Chevrolet data
-
-2026-02-14_02:47:22
-Test V1.2.5 - Results table with model combinations: PASS
-Screenshot: V1.2.5-results-table-model-combos.png
-Verified: URL bar shows ?models=Ford:Mustang,Chevrolet:Camaro, Statistics shows filtered data for those models
-
+Verified: Query Control expanded showing "Add filter by field..." dropdown and "Clear All" button in default state, other panels collapsed
