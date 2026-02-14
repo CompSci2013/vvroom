@@ -177,3 +177,18 @@ Verified: URL shows sortBy=manufacturer&sortOrder=asc, Results Table shows A-Z o
 Test V1.4.3 - Results table sorted by instance count descending: PASS
 Screenshot: V1.4.3-results-table-sorted-instancecount-desc.png
 Verified: URL shows sortBy=instance_count&sortOrder=desc, VIN Count column sorted highest first (showing 12), column has downward arrow indicator
+
+2026-02-14_07:25:37
+Test V1.5.1 - Results table page 2 with 10 rows: PASS
+Screenshot: V1.5.1-results-table-paginated-page2.png
+Verified: URL shows page=2&size=10, Results Table shows "Showing 11 to 20 of 4887 results", page 2 highlighted, 10 Buick Century rows visible
+
+2026-02-14_07:25:37
+Test V1.5.2 - Pagination control page 5: PASS
+Screenshot: V1.5.2-pagination-page5.png
+Verified: URL shows page=5&size=25, pagination shows "Showing 101 to 125 of 4887 results", page 5 active
+
+2026-02-14_07:25:37
+Test V1.5.3 - Results table last page: PASS
+Screenshot: V1.5.3-results-table-last-page.png
+Verified: URL shows page=196&size=25, pagination shows "Showing 4876 to 4885 of 4887 results", WHITEGMC and Waterford models visible at end of dataset, confirms last page of data

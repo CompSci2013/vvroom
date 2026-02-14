@@ -58,9 +58,9 @@ ls -la e2e/screenshots/ | grep -E "^V1\.1\.[0-9]+-" | wc -l  # Should match subs
 
 | Done | Test ID | Screenshot | Commit |
 |------|---------|------------|--------|
-| [x] | V1.4.1 | V1.4.1-results-table-sorted-year-desc.png | pending |
-| [x] | V1.4.2 | V1.4.2-results-table-sorted-manufacturer-asc.png | pending |
-| [x] | V1.4.3 | V1.4.3-results-table-sorted-instancecount-desc.png | pending |
+| [x] | V1.4.1 | V1.4.1-results-table-sorted-year-desc.png | 048202a |
+| [x] | V1.4.2 | V1.4.2-results-table-sorted-manufacturer-asc.png | 048202a |
+| [x] | V1.4.3 | V1.4.3-results-table-sorted-instancecount-desc.png | 048202a |
 
 **Subsection verification:** `ls e2e/screenshots/V1.4.* | wc -l` should equal 3
 
@@ -68,9 +68,9 @@ ls -la e2e/screenshots/ | grep -E "^V1\.1\.[0-9]+-" | wc -l  # Should match subs
 
 | Done | Test ID | Screenshot | Commit |
 |------|---------|------------|--------|
-| [ ] | V1.5.1 | | |
-| [ ] | V1.5.2 | | |
-| [ ] | V1.5.3 | | |
+| [x] | V1.5.1 | V1.5.1-results-table-paginated-page2.png | pending |
+| [x] | V1.5.2 | V1.5.2-pagination-page5.png | pending |
+| [x] | V1.5.3 | V1.5.3-results-table-last-page.png | pending |
 
 **Subsection verification:** `ls e2e/screenshots/V1.5.* | wc -l` should equal 3
 
