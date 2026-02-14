@@ -193,3 +193,28 @@ Verified: Statistics panel expanded with 4 charts visible (Vehicles by Manufactu
 Test V1.1.5 - Search input default render: PASS
 Screenshot: V1.1.5-search-default.png
 Verified: Query Control expanded showing "Add filter by field..." dropdown and "Clear All" button in default state, other panels collapsed
+
+2026-02-14_04:46:53
+Test V1.2.1 - Results table filtered by manufacturer (Ford): PASS
+Screenshot: V1.2.1-results-table-filtered-ford.png
+Verified: URL shows manufacturer=Ford, "Manufacturer: Ford" filter chip visible, Vehicles by Manufacturer shows single Ford bar, Statistics show Ford-only data
+
+2026-02-14_04:46:53
+Test V1.2.2 - Results table filtered by body class (SUV): PASS
+Screenshot: V1.2.2-results-table-filtered-suv.png
+Verified: URL shows bodyClass=SUV, "Body Class: SUV" filter chip visible, Vehicles by Body Class shows single SUV bar
+
+2026-02-14_04:46:53
+Test V1.2.3 - Results table filtered by year range (2020-2024): PASS
+Screenshot: V1.2.3-results-table-filtered-recent.png
+Verified: URL shows yearMin=2020&yearMax=2024, "Year: 2020 - 2024" filter chip visible, Vehicles by Year shows only 2020-2024 bars
+
+2026-02-14_04:46:53
+Test V1.2.4 - Statistics filtered by manufacturer (Chevrolet): PASS
+Screenshot: V1.2.4-statistics-filtered-chevrolet.png
+Verified: URL shows manufacturer=Chevrolet, "Manufacturer: Chevrolet" chip visible, all charts show Chevrolet-only data
+
+2026-02-14_04:46:53
+Test V1.2.5 - Results table with model combinations: PASS
+Screenshot: V1.2.5-results-table-model-combos.png
+Verified: URL shows models=Ford:Mustang,Chevrolet:Camaro, charts show filtered data for the model combinations

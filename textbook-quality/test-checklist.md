@@ -35,11 +35,11 @@ ls -la e2e/screenshots/ | grep -E "^V1\.1\.[0-9]+-" | wc -l  # Should match subs
 
 | Done | Test ID | Screenshot | Commit |
 |------|---------|------------|--------|
-| [ ] | V1.2.1 | | |
-| [ ] | V1.2.2 | | |
-| [ ] | V1.2.3 | | |
-| [ ] | V1.2.4 | | |
-| [ ] | V1.2.5 | | |
+| [x] | V1.2.1 | V1.2.1-results-table-filtered-ford.png | |
+| [x] | V1.2.2 | V1.2.2-results-table-filtered-suv.png | |
+| [x] | V1.2.3 | V1.2.3-results-table-filtered-recent.png | |
+| [x] | V1.2.4 | V1.2.4-statistics-filtered-chevrolet.png | |
+| [x] | V1.2.5 | V1.2.5-results-table-model-combos.png | |
 
 **Subsection verification:** `ls e2e/screenshots/V1.2.* | wc -l` should equal 5
 
