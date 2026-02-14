@@ -257,3 +257,18 @@ Verified: URL shows page=2, Results Table shows page 2, "Showing 21 to 40 of 488
 Test V1.7.7 - Results Table via URL size=50: PASS
 Screenshot: V1.7.7-results-rows-50-url.png (3 scroll images)
 Verified: URL shows size=50, Results Table expanded, "Showing 1 to 50 of 4887 results"
+
+2026-02-14_07:30:49
+Test V1.8.1 - Picker pop-out page 2: PASS
+Screenshot: V1.8.1-picker-popout-page2.png, V1.8.1-picker-popout-main-overlay.png
+Verified: Pop-out shows page 2 with "Showing 21 to 40 of 881 entries", main window shows placeholder "Manufacturer-Model Picker is open in a separate window"
+
+2026-02-14_07:30:49
+Test V1.8.2 - Picker pop-out rows 50: PASS
+Screenshot: V1.8.2-picker-popout-rows-50.png, V1.8.2-picker-popout-main-overlay.png
+Verified: Pop-out shows ~50 rows of picker data, main window shows placeholder message
+
+2026-02-14_07:30:49
+Test V1.8.3 - Picker pop-out rows 100: PASS
+Screenshot: V1.8.3-picker-popout-rows-100.png, V1.8.3-picker-popout-main-overlay.png
+Verified: Pop-out shows ~100 rows, main window shows placeholder message
