@@ -78,12 +78,12 @@ ls -la e2e/screenshots/ | grep -E "^V1\.1\.[0-9]+-" | wc -l  # Should match subs
 
 | Done | Test ID | Screenshot | Commit |
 |------|---------|------------|--------|
-| [x] | V1.6.1 | V1.6.1-query-control-collapsed.png | pending |
-| [x] | V1.6.2 | V1.6.2-query-panel-collapsed.png | pending |
-| [x] | V1.6.3 | V1.6.3-picker-collapsed.png | pending |
-| [x] | V1.6.4 | V1.6.4-all-panels-expanded.png | pending |
-| [x] | V1.6.5 | V1.6.5-all-panels-collapsed.png | pending |
-| [x] | V1.6.6 | V1.6.6-panels-mixed-state.png | pending |
+| [x] | V1.6.1 | V1.6.1-query-control-collapsed.png | 9505ada |
+| [x] | V1.6.2 | V1.6.2-query-panel-collapsed.png | 9505ada |
+| [x] | V1.6.3 | V1.6.3-picker-collapsed.png | 9505ada |
+| [x] | V1.6.4 | V1.6.4-all-panels-expanded.png | 9505ada |
+| [x] | V1.6.5 | V1.6.5-all-panels-collapsed.png | 9505ada |
+| [x] | V1.6.6 | V1.6.6-panels-mixed-state.png | 9505ada |
 
 **Subsection verification:** `ls e2e/screenshots/V1.6.* | wc -l` should equal 6
 
@@ -91,13 +91,13 @@ ls -la e2e/screenshots/ | grep -E "^V1\.1\.[0-9]+-" | wc -l  # Should match subs
 
 | Done | Test ID | Screenshot | Commit |
 |------|---------|------------|--------|
-| [ ] | V1.7.1 | | |
-| [ ] | V1.7.2 | | |
-| [ ] | V1.7.3 | | |
-| [ ] | V1.7.4 | | |
-| [ ] | V1.7.5 | | |
-| [ ] | V1.7.6 | | |
-| [ ] | V1.7.7 | | |
+| [x] | V1.7.1 | V1.7.1-picker-page2.png | pending |
+| [x] | V1.7.2 | V1.7.2-picker-page3.png | pending |
+| [x] | V1.7.3 | V1.7.3-picker-rows-10.png | pending |
+| [x] | V1.7.4 | V1.7.4-picker-rows-50.png | pending |
+| [x] | V1.7.5 | V1.7.5-picker-rows-100.png | pending |
+| [x] | V1.7.6 | V1.7.6-results-page2-url.png | pending |
+| [x] | V1.7.7 | V1.7.7-results-rows-50-url.png | pending |
 
 **Subsection verification:** `ls e2e/screenshots/V1.7.* | wc -l` should equal 7
 

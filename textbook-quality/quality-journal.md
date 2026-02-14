@@ -222,3 +222,38 @@ Verified: All 5 panels COLLAPSED showing only header bars in compact stacked lay
 Test V1.6.6 - Mixed panel state: PASS
 Screenshot: V1.6.6-panels-mixed-state.png (2 scroll images)
 Verified: Query Control & Statistics EXPANDED, Query Panel/Picker/Results Table COLLAPSED
+
+2026-02-14_07:29:22
+Test V1.7.1 - Picker Table click page 2: PASS
+Screenshot: V1.7.1-picker-page2.png
+Verified: Picker expanded, pagination shows page 2 active, "Showing 21 to 40 of 881 entries"
+
+2026-02-14_07:29:22
+Test V1.7.2 - Picker Table click page 3: PASS
+Screenshot: V1.7.2-picker-page3.png
+Verified: Picker expanded, pagination shows page 3 active, "Showing 41 to 60 of 881 entries", Cadillac models visible
+
+2026-02-14_07:29:22
+Test V1.7.3 - Picker Table rows to 10: PASS
+Screenshot: V1.7.3-picker-rows-10.png
+Verified: Picker expanded, dropdown shows 10, "Showing 1 to 10 of 881 entries", exactly 10 rows visible
+
+2026-02-14_07:29:22
+Test V1.7.4 - Picker Table rows to 50: PASS
+Screenshot: V1.7.4-picker-rows-50.png (4 scroll images)
+Verified: Picker expanded, dropdown shows 50, "Showing 1 to 50 of 881 entries"
+
+2026-02-14_07:29:22
+Test V1.7.5 - Picker Table rows to 100: PASS
+Screenshot: V1.7.5-picker-rows-100.png (8 scroll images)
+Verified: Picker expanded, dropdown shows 100, "Showing 1 to 100 of 881 entries"
+
+2026-02-14_07:29:22
+Test V1.7.6 - Results Table via URL page=2: PASS
+Screenshot: V1.7.6-results-page2-url.png
+Verified: URL shows page=2, Results Table shows page 2, "Showing 21 to 40 of 4887 results"
+
+2026-02-14_07:29:22
+Test V1.7.7 - Results Table via URL size=50: PASS
+Screenshot: V1.7.7-results-rows-50-url.png (3 scroll images)
+Verified: URL shows size=50, Results Table expanded, "Showing 1 to 50 of 4887 results"
