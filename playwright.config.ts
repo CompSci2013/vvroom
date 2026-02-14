@@ -11,8 +11,8 @@ export default defineConfig({
     baseURL: 'http://localhost:4228',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
-    // Vertical orientation viewport (portrait mode)
-    viewport: { width: 1080, height: 1920 },
+    // 8.5" x 11" paper landscape at 150 DPI (suitable for print/PDF)
+    viewport: { width: 1650, height: 1275 },
   },
   projects: [
     {

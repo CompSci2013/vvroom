@@ -30,8 +30,24 @@ Read ~/projects/vvroom/textbook-quality/quality-journal.md (first 11 lines)
 Tail ~/projects/vvroom/textbook-quality/quality-journal.md (last 150 lines)
 Read ~/projects/vvroom/textbook-quality/test-rubric.md (Category 1 section)
 Read ~/projects/vvroom/textbook-quality/panel-visibility-reference.md
+Read ~/projects/vvroom/textbook-quality/screenshot-requirements.md
 Read ~/projects/vvroom/textbook-quality/kickoff-prompt.md
 ```
+
+## Test Library Setup
+
+If starting fresh (e2e/ directory is empty or missing), copy the screenshot helper:
+
+```bash
+mkdir -p e2e/tests
+cp ~/projects/vvroom/test-lib/screenshot-helper.ts ~/projects/vvroom/e2e/tests/
+```
+
+The helper provides:
+- `takeScreenshot()` - Adaptive screenshot capture with URL bar compositing
+- `setPanelVisibility()` - Panel expand/collapse control
+- `navigateToDiscover()` - URL navigation helper
+- `PANEL_IDS` - Panel ID constants
 
 ## Workflow for Each Subsection
 

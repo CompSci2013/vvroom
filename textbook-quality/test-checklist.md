@@ -23,11 +23,11 @@ ls -la e2e/screenshots/ | grep -E "^V1\.1\.[0-9]+-" | wc -l  # Should match subs
 
 | Done | Test ID | Screenshot | Commit |
 |------|---------|------------|--------|
-| [x] | V1.1.1 | V1.1.1-results-table-default.png | |
-| [x] | V1.1.2 | V1.1.2-filter-panel-default.png | |
-| [x] | V1.1.3 | V1.1.3-pagination-default.png | |
-| [x] | V1.1.4 | V1.1.4-statistics-default.png | |
-| [x] | V1.1.5 | V1.1.5-search-default.png | |
+| [ ] | V1.1.1 | | |
+| [ ] | V1.1.2 | | |
+| [ ] | V1.1.3 | | |
+| [ ] | V1.1.4 | | |
+| [ ] | V1.1.5 | | |
 
 **Subsection verification:** `ls e2e/screenshots/V1.1.* | wc -l` should equal 5
 
@@ -35,11 +35,11 @@ ls -la e2e/screenshots/ | grep -E "^V1\.1\.[0-9]+-" | wc -l  # Should match subs
 
 | Done | Test ID | Screenshot | Commit |
 |------|---------|------------|--------|
-| [x] | V1.2.1 | V1.2.1-results-table-filtered-ford.png | |
-| [x] | V1.2.2 | V1.2.2-results-table-filtered-suv.png | |
-| [x] | V1.2.3 | V1.2.3-results-table-filtered-recent.png | |
-| [x] | V1.2.4 | V1.2.4-statistics-filtered-chevrolet.png | |
-| [x] | V1.2.5 | V1.2.5-results-table-model-combos.png | |
+| [ ] | V1.2.1 | | |
+| [ ] | V1.2.2 | | |
+| [ ] | V1.2.3 | | |
+| [ ] | V1.2.4 | | |
+| [ ] | V1.2.5 | | |
 
 **Subsection verification:** `ls e2e/screenshots/V1.2.* | wc -l` should equal 5
 

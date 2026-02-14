@@ -27,6 +27,8 @@ Read ~/projects/vvroom/textbook-quality/test-rubric.md (Category 6 section)
 Read ~/projects/vvroom/textbook-quality/kickoff-prompt.md
 ```
 
+**Note:** Category 6 tests are code analysis only (no screenshots needed).
+
 ## Test Implementation
 
 These tests use grep to analyze the codebase, not Playwright browser tests.

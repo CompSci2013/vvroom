@@ -24,7 +24,16 @@ Read ~/projects/vvroom/textbook-quality/test-checklist.md
 Read ~/projects/vvroom/textbook-quality/quality-journal.md (first 11 lines)
 Tail ~/projects/vvroom/textbook-quality/quality-journal.md (last 150 lines)
 Read ~/projects/vvroom/textbook-quality/test-rubric.md (Category 8 section)
+Read ~/projects/vvroom/textbook-quality/screenshot-requirements.md
 Read ~/projects/vvroom/textbook-quality/kickoff-prompt.md
+```
+
+## Test Library Setup
+
+If test-lib helper is not in e2e/tests/, copy it:
+
+```bash
+cp ~/projects/vvroom/test-lib/screenshot-helper.ts ~/projects/vvroom/e2e/tests/
 ```
 
 ## Workflow for Each Subsection
