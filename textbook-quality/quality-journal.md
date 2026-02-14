@@ -8,7 +8,7 @@ After you have recorded the last action taken, you will read the first 11 lines 
 Then tail the last 150 lines of this file, quality-journal.md, to remember where you left off.
 After each successful test as verified by playwrite screenshot, commit the work, then push to all remote repositories.
 Add a blank line, then a time-stamped entry for the test just performed.
-You will then read quality-instructions.md and test-rubric.md
+You will then read kickoff-prompt.md and test-checklist.md
 
 # Textbook Quality Review Journal
 
@@ -22,9 +22,12 @@ This journal tracks the quality review and testing of the vvroom textbook locate
 
 | Document | Purpose |
 |----------|---------|
-| [quality-instructions.md](quality-instructions.md) | Quality verification procedures and Playwright test code |
+| [kickoff-prompt.md](kickoff-prompt.md) | Main testing workflow and procedures |
+| [kickoff-category-X.md](.) | Per-category testing prompts (1-8) |
+| [test-checklist.md](test-checklist.md) | Checkbox tracking of all 134 tests |
 | [test-rubric.md](test-rubric.md) | Comprehensive test specifications with real data values |
-| [../test-data/README.md](../test-data/README.md) | API data structure documentation |
+| [panel-visibility-reference.md](panel-visibility-reference.md) | Panel state requirements per test |
+| [verify-all-tests.sh](verify-all-tests.sh) | Final coverage verification script |
 
 ---
 
@@ -90,288 +93,28 @@ For each chapter:
 
 ## Action Log
 
-2026-02-13_06:50:00
-Initialized quality review journal. Established scope: 75 textbook chapters to review against quality-instructions.md test specifications.
-
-2026-02-13_08:57:19
-Reset test cycle. Cleared e2e/ directory. Simplified over-engineered Playwright test examples in quality-instructions.md - tests now only perform user actions (click, type, navigate), verify URL changes, and capture screenshots. Added "Playwright Test Philosophy" section. Tests should NOT iterate rows, extract/sort data, monitor network, or re-implement application logic.
-
-2026-02-13_09:00:39
-Sanity check of all four quality documents. Removed duplicate sections from quality-instructions.md (Anti-Pattern Checklist, Test Execution Commands, Required Data Attributes were duplicated). Updated kickoff-prompt.md to include: test philosophy (headless only, click/type/navigate/verify URL/screenshot), what tests should NOT do, and three test artifacts (URL assertion, screenshot, journal entry). All documents now mutually consistent.
-
-2026-02-13_09:30:25
-CRITICAL PROCEDURAL UPDATE: Added mandatory screenshot verification requirement to all four quality documents.
-
-Key changes:
-- kickoff-prompt.md: Added "IMPORTANT: Screenshot Verification is Mandatory" section. Test workflow now requires using Read tool to inspect screenshot images before declaring pass/fail.
-- quality-instructions.md: Added "Screenshot Verification Requirement" section explaining that Playwright "passing" only means code ran without errors, NOT that visual output is correct.
-- test-rubric.md: Added "Screenshot Verification (MANDATORY)" section with verification checklist. Updated 1.3 Highlighted State tests to specify Query Control must be expanded (shows active highlights chip), not just Statistics.
-- Highlight tests (V1.3.x) now correctly specify: Keep Query Control + Statistics expanded, collapse Query Panel + Manufacturer-Model Picker + Results Table.
-
-This addresses the issue where tests were reported as passing without verifying the screenshot content matched the test criteria.
-
-2026-02-13_09:48:47
+2026-02-14_02:45:48
 Test V1.1.1 - Results table default render: PASS
-Screenshot: results-table-default.png
-Verified: URL bar shows /discover, Results Table expanded with 20 data rows visible (Manufacturer, Model, Year, Body columns),
-pagination shows "Showing 1 to 20 of 4887 results" with page numbers 1-5 and page size selector showing "20".
-Query Control, Query Panel, Manufacturer-Model Picker, and Statistics panels all collapsed (showing ">" chevron).
-Fixed test to collapse panels per panel-visibility-reference.md specification.
+Screenshot: V1.1.1-results-table-default.png
+Verified: URL bar shows /discover, Results Table expanded with 20 data rows, pagination shows "Showing 1 to 20 of 4887 results", other panels collapsed
 
-2026-02-13_09:49:20
-Committed and pushed V1.1.1 to github remote. Commit: 1cc0bd8
-
-2026-02-13_09:50:05
+2026-02-14_02:45:48
 Test V1.1.2 - Filter panel default render: PASS
-Screenshot: filter-panel-default.png
-Verified: URL bar shows /discover, Query Panel expanded showing all filter controls (Manufacturer, Model, Year Range Min/Max,
-Body Class dropdown, VIN Count Range Min/Max, Clear Filters button). All inputs empty/default state.
-Query Control, Manufacturer-Model Picker, Statistics, and Results Table panels all collapsed (showing ">" chevron).
+Screenshot: V1.1.2-filter-panel-default.png
+Verified: URL bar shows /discover, Query Panel expanded showing Manufacturer/Model/Year Range/Body Class/VIN Count Range fields with Clear Filters button, other panels collapsed
 
-2026-02-13_09:50:42
+2026-02-14_02:45:48
 Test V1.1.3 - Pagination default render: PASS
-Screenshot: pagination-default.png
-Verified: URL bar shows /discover, Results Table expanded with pagination controls visible at bottom.
-Pagination shows "Showing 1 to 20 of 4887 results", page numbers 1-5 with navigation arrows, page 1 highlighted as active.
-Page size selector showing "20". All other panels collapsed.
+Screenshot: V1.1.3-pagination-default.png
+Verified: URL bar shows /discover, Results Table visible with pagination control showing "Showing 1 to 20 of 4887 results" with page numbers 1-5 and size dropdown
 
-2026-02-13_09:51:20
+2026-02-14_02:45:48
 Test V1.1.4 - Statistics panel default render: PASS
-Screenshot: statistics-default.png
-Verified: URL bar shows /discover, Statistics panel expanded showing all 4 charts:
-1. Vehicles by Manufacturer (horizontal bar chart)
-2. Top Models by VIN Count (horizontal bar chart)
-3. Vehicles by Body Class (horizontal bar chart)
-4. Vehicles by Year (vertical bar chart)
-All charts show blue bars (default unfiltered/unhighlighted state). All other panels collapsed.
+Screenshot: V1.1.4-statistics-default.png
+Verified: URL bar shows /discover, Statistics panel expanded with 4 charts (Vehicles by Manufacturer, Top Models by VIN Count, Vehicles by Body Class, Vehicles by Year), other panels collapsed
 
-2026-02-13_09:51:56
+2026-02-14_02:45:48
 Test V1.1.5 - Search input default render: PASS
-Screenshot: search-default.png
-Verified: URL bar shows /discover, Query Control panel expanded showing "Add filter by field..." dropdown and "Clear All" button.
-Search/filter controls in empty default state. All other panels collapsed (Query Panel, Manufacturer-Model Picker, Statistics, Results Table).
-
-2026-02-13_09:52:22
-Committed and pushed V1.1.x batch (5 tests) to github. Commit: 24e86cf. All Default State Rendering tests PASS.
-
-2026-02-13_09:53:24
-Test V1.2.1 - Results table filtered by manufacturer: PASS
-Screenshot: results-table-filtered-ford.png
-Verified: URL bar shows ?manufacturer=Ford, 665 results, Query Control shows "Manufacturer: Ford" chip,
-Statistics shows Ford-only data in all 4 charts. Panels correctly collapsed.
-
-Test V1.2.2 - Results table filtered by body class: PASS
-Screenshot: results-table-filtered-suv.png
-Verified: URL bar shows ?bodyClass=SUV, 998 results, Query Control shows "Body Class: SUV" chip,
-Statistics shows SUV-only data (Jeep, Chevrolet top manufacturers). Panels correctly collapsed.
-
-Test V1.2.3 - Results table filtered by year range: PASS
-Screenshot: results-table-filtered-recent.png
-Verified: URL bar shows ?yearMin=2020&yearMax=2024, 290 results, Query Control shows "Year: 2020 - 2024" chip,
-Statistics shows only 2020-2024 year bars. Panels correctly collapsed.
-
-Test V1.2.4 - Statistics filtered by manufacturer: PASS
-Screenshot: statistics-filtered-chevrolet.png
-Verified: URL bar shows ?manufacturer=Chevrolet, 849 results, Query Control shows "Manufacturer: Chevrolet" chip,
-Statistics shows Chevrolet-only data (Suburban, Corvette, Impala top models). Panels correctly collapsed.
-
-Test V1.2.5 - Results table with model combinations: PASS
-Screenshot: results-table-model-combos.png
-Verified: URL bar shows ?models=Ford:Mustang,Chevrolet:Camaro, Statistics shows model combination data.
-Panels correctly collapsed per panel-visibility-reference.md.
-
-2026-02-13_09:54:40
-Test V1.3.1 - Statistics charts highlight Tesla: PASS
-Screenshot: statistics-highlight-tesla.png
-Verified: URL bar shows ?h_manufacturer=Tesla, Query Control shows "Highlight Manufacturer: Tesla" chip,
-Statistics shows 4 charts with "Other" (gray) vs "Highlighted" (blue) legend, Tesla data highlighted in blue.
-
-Test V1.3.2 - Statistics charts highlight year range: PASS
-Screenshot: statistics-highlight-years.png
-Verified: URL bar shows ?h_yearMin=2015&h_yearMax=2020, Query Control shows "Highlight Year: 2015 - 2020" chip,
-Statistics shows year bars 2015-2020 highlighted in blue, all other years gray.
-
-Test V1.3.3 - Statistics charts highlight body class: PASS
-Screenshot: statistics-highlight-pickup.png
-Verified: URL bar shows ?h_bodyClass=Pickup, Query Control shows "Highlight Body Class: Pickup" chip,
-Statistics shows Pickup vehicles highlighted in blue across all 4 charts.
-
-Test V1.3.4 - Statistics charts filter with highlight: PASS
-Screenshot: statistics-filter-with-highlight.png
-Verified: URL bar shows ?manufacturer=Ford&h_yearMin=2018, combined filter+highlight working.
-Data filtered to Ford only, then 2018+ years highlighted in blue vs earlier years in gray.
-
-2026-02-13_09:57:26
-Test V1.4.1 - Results table sorted by year descending: PASS
-Screenshot: results-table-sorted-year-desc.png
-Verified: URL bar shows ?sortBy=year&sortOrder=desc, Results Table shows all 2024 vehicles at top (most recent first).
-All other panels collapsed per spec.
-
-Test V1.4.2 - Results table sorted by manufacturer ascending: PASS
-Screenshot: results-table-sorted-manufacturer-asc.png
-Verified: URL bar shows ?sortBy=manufacturer&sortOrder=asc, Results Table shows alphabetical order
-(Affordable Aluminum, Best Lane, Brammo, Buick...). All other panels collapsed.
-
-Test V1.4.3 - Results table sorted by instance count descending: PASS
-Screenshot: results-table-sorted-instancecount-desc.png
-Verified: URL bar shows ?sortBy=instance_count&sortOrder=desc. Note: API uses snake_case (instance_count)
-not camelCase (instanceCount). Test updated to use correct field name. 4887 results returned.
-
-2026-02-13_09:58:59
-Test V1.5.1 - Results table page 2 with 10 rows: PASS
-Screenshot: results-table-paginated-page2.png
-Verified: URL bar shows ?page=2&size=10, Results Table shows 10 rows, pagination shows "Showing 11 to 20 of 4887 results",
-page 2 highlighted, page size selector shows "10". All other panels collapsed.
-
-Test V1.5.2 - Pagination control page 5: PASS
-Screenshot: pagination-page5.png
-Verified: URL bar shows ?page=5&size=25, Results Table shows 25 rows, pagination shows "Showing 101 to 125 of 4887 results",
-page 5 highlighted. All other panels collapsed.
-
-Test V1.5.3 - Results table last page: PASS
-Screenshot: results-table-last-page.png
-Verified: URL bar shows ?page=999&size=25, Results Table shows "No results found" message with "Showing 0 to 0 of 0 results".
-App gracefully handles out-of-bounds page numbers. All other panels collapsed.
-
-=== CATEGORY 1 COMPLETE ===
-All 20 Visual Appearance Tests PASS:
-- V1.1.x (5 tests): Default State Rendering
-- V1.2.x (5 tests): Filtered State Rendering
-- V1.3.x (4 tests): Highlighted State Rendering
-- V1.4.x (3 tests): Sorted State Rendering
-- V1.5.x (3 tests): Paginated State Rendering
-
-2026-02-13_09:59:37
-Committed and pushed Category 1 completion to github. Commit: f96280b
-
-2026-02-13_10:05:39
-Starting Category 2: URL-First Conformity Tests (U2.1.x - U2.3.x)
-Creating new test file: e2e/tests/category-2-url-conformity.spec.ts
-
-2026-02-13_10:13:33
-=== CATEGORY 2 COMPLETE ===
-All 18 URL-First Conformity Tests PASS:
-
-U2.1.x URL to State (8 tests):
-- U2.1.1: manufacturer=Ford - chip shows, dropdown populated, 665 results
-- U2.1.2: yearMin=2010&yearMax=2020 - year range chip, inputs show 2010/2020, 632 results
-- U2.1.3: bodyClass=Pickup - body class chip, results filtered
-- U2.1.4: page=3&size=10 - shows rows 21-30
-- U2.1.5: sortBy=year&sortOrder=desc - sorted by year descending
-- U2.1.6: h_manufacturer=Tesla - highlight chip, statistics show blue/gray bars
-- U2.1.7: manufacturer=Chevrolet&h_yearMin=2015&h_yearMax=2020 - filter + highlight combined
-- U2.1.8: modelCombos=Ford:Mustang,Chevrolet:Camaro - model combos filter (note: URL param is modelCombos not models)
-
-U2.2.x State to URL (7 tests):
-- U2.2.1: Select Dodge manufacturer → URL has manufacturer=Dodge
-- U2.2.2: Set year min 2000 → URL has yearMin=2000
-- U2.2.3: Select SUV body class → URL has bodyClass=SUV
-- U2.2.4: Click page 4 → URL has page=4
-- U2.2.5: Change page size to 50 → URL has size=50
-- U2.2.6: Click year column to sort → URL has sortBy=year
-- U2.2.9: Clear all filters → URL has no filter parameters
-
-U2.3.x Combined Filters (3 tests):
-- U2.3.1: manufacturer=Ford&yearMin=2015&yearMax=2020&bodyClass=Coupe - 6 results, 3 filter chips
-- U2.3.2: manufacturer=Chevrolet&sortBy=year&sortOrder=desc&page=2&size=10 - filter+sort+pagination
-- U2.3.3: bodyClass=SUV&h_manufacturer=Jeep - SUVs filtered, Jeep SUVs highlighted in charts
-
-2026-02-13_10:14:25
-Committed and pushed Category 2 completion to github. Commit: f8a2242
-
-2026-02-13_10:30:37
-=== CATEGORY 4 COMPLETE ===
-All 21 Pop-Out Behavior Tests PASS:
-
-P4.1.x Pop-Out Window Rendering (6 tests):
-- P4.1.1: Pop out results table - displays in new window at /panel/discover route
-- P4.1.2: Pop out statistics panel - displays in new window
-- P4.1.3: Pop out filter panel (Query Panel) - displays in new window
-- P4.1.4: Pop-out URL contains /panel/ route path
-- P4.1.5: Pop-out hides site banner/header - only component visible
-- P4.1.6: Main window shows placeholder for popped-out component
-
-P4.2.x Pop-Out Synchronization (6 tests):
-- P4.2.1: Change filter in main window updates pop-out via BroadcastChannel
-- P4.2.2: Change filter in pop-out updates main window URL
-- P4.2.3: Change sort in main window updates pop-out statistics
-- P4.2.4: Apply highlight via Query Control updates pop-out
-- P4.2.5: Navigate page in main window updates pop-out
-- P4.2.6: Clear filters in main window updates pop-out
-
-P4.3.x Pop-Out API Behavior (3 tests):
-- P4.3.1: Pop-out does NOT update its own URL after load (URL remains static)
-- P4.3.2: Pop-out receives data via BroadcastChannel (verified with Tesla filter)
-- P4.3.3: Main window API refresh updates pop-outs
-
-P4.4.x Multiple Pop-Out Tests (2 tests):
-- P4.4.1: Multiple pop-outs of different types receive same BroadcastChannel messages
-- P4.4.2: Close pop-out, main window continues normally
-
-P4.5.x Pop-Out with URL Parameters (4 tests):
-- P4.5.1: Pop-out with manufacturer filter shows Ford data
-- P4.5.2: Pop-out with highlight shows Tesla highlighted
-- P4.5.3: Pop-out with sort shows sorted data
-- P4.5.4: Pop-out with pagination shows correct page
-
-=== CATEGORY 5 COMPLETE ===
-All 12 Cross-Window Synchronization Tests PASS:
-
-S5.1.x Main Window to Pop-Out (6 tests):
-- S5.1.1: Change manufacturer filter in main updates pop-out
-- S5.1.2: Apply year range filter in main updates pop-out
-- S5.1.3: Change sort column in main updates pop-out
-- S5.1.4: Change page in main updates pop-out
-- S5.1.5: Apply highlight in main updates pop-out
-- S5.1.6: Clear all filters in main updates pop-out
-
-S5.2.x Pop-Out to Main Window (3 tests):
-- S5.2.1: Change filter in pop-out updates main window URL
-- S5.2.2: Apply year range in pop-out updates main window URL
-- S5.2.3: Clear filters in pop-out updates main window URL
-
-S5.3.x BroadcastChannel Verification (3 tests):
-- S5.3.1: Filter change propagates via BroadcastChannel (pop-out URL unchanged, content updated)
-- S5.3.2: Multiple pop-outs receive same BroadcastChannel message (both update to Jeep)
-- S5.3.3: Highlight state transfers to statistics pop-out
-
-=== CATEGORY 8 COMPLETE ===
-All 15 Visual Verification Tests PASS:
-
-VS8.1.x Default State (5 tests):
-- VS8.1.1: Full page default state
-- VS8.1.2: Results table default state
-- VS8.1.3: Filter panel default state
-- VS8.1.4: Statistics panel default state
-- VS8.1.5: Pagination default state
-
-VS8.2.x Filtered State (4 tests):
-- VS8.2.1: Full page filtered by Ford
-- VS8.2.2: Full page filtered by SUV
-- VS8.2.3: Full page filtered by recent years (2020-2024)
-- VS8.2.4: Full page with combined filters (Chevrolet + Pickup)
-
-VS8.3.x Highlighted State (3 tests):
-- VS8.3.1: Full page with Tesla highlight
-- VS8.3.2: Full page with year range highlight (2015-2020)
-- VS8.3.3: Full page with filter and highlight combined (Ford + 2018-2022 highlighted)
-
-VS8.4.x Pop-Out Screenshots (3 tests):
-- VS8.4.1: Results table pop-out standalone and with main
-- VS8.4.2: Statistics pop-out standalone and with main
-- VS8.4.3: Filter panel pop-out standalone and with main
-
-=== ALL CATEGORIES COMPLETE ===
-Total Tests: 113
-All 113 tests PASS
-
-Category Summary:
-- Category 1: Visual Appearance Tests - 20 tests PASS
-- Category 2: URL-First Conformity Tests - 18 tests PASS
-- Category 3: URL Change Consistency Tests - 14 tests PASS
-- Category 4: Pop-Out Behavior Tests - 21 tests PASS
-- Category 5: Cross-Window Synchronization Tests - 12 tests PASS
-- Category 6: Router Encapsulation Tests - 4 tests PASS
-- Category 7: Error Handling Tests - 9 tests PASS
-- Category 8: Visual Verification Tests - 15 tests PASS
+Screenshot: V1.1.5-search-default.png
+Verified: URL bar shows /discover, Query Control expanded showing "Add filter by field..." dropdown and "Clear All" button, other panels collapsed
 
