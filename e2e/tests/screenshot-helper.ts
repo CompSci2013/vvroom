@@ -484,3 +484,30 @@ export async function navigateToDiscover(page: Page, urlParams = ''): Promise<vo
   await page.goto(url);
   await waitForPageLoad(page);
 }
+
+/**
+ * Take a single screenshot with URL bar (no scrolling/footer check).
+ * Used for overlay screenshots where footer rule is relaxed.
+ */
+export async function takeOverlayScreenshot(
+  page: Page,
+  testId: string,
+  description: string
+): Promise<string> {
+  const currentUrl = page.url();
+
+  // Set viewport to landscape
+  await page.setViewportSize(VIEWPORT.LANDSCAPE);
+
+  // Reset to top
+  await resetAllScrollPositions(page);
+  await page.waitForTimeout(200);
+
+  // Single full-page screenshot
+  const buffer = await page.screenshot({ fullPage: true });
+  const filename = `${testId}-${description}.png`;
+  const withUrlBar = await addUrlBarToScreenshot(page, buffer, currentUrl, VIEWPORT.LANDSCAPE.width);
+  fs.writeFileSync(path.join('e2e/screenshots', filename), withUrlBar);
+
+  return filename;
+}

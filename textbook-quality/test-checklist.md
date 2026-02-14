@@ -91,13 +91,13 @@ ls -la e2e/screenshots/ | grep -E "^V1\.1\.[0-9]+-" | wc -l  # Should match subs
 
 | Done | Test ID | Screenshot | Commit |
 |------|---------|------------|--------|
-| [x] | V1.7.1 | V1.7.1-picker-page2.png | pending |
-| [x] | V1.7.2 | V1.7.2-picker-page3.png | pending |
-| [x] | V1.7.3 | V1.7.3-picker-rows-10.png | pending |
-| [x] | V1.7.4 | V1.7.4-picker-rows-50.png | pending |
-| [x] | V1.7.5 | V1.7.5-picker-rows-100.png | pending |
-| [x] | V1.7.6 | V1.7.6-results-page2-url.png | pending |
-| [x] | V1.7.7 | V1.7.7-results-rows-50-url.png | pending |
+| [x] | V1.7.1 | V1.7.1-picker-page2.png | 354eccb |
+| [x] | V1.7.2 | V1.7.2-picker-page3.png | 354eccb |
+| [x] | V1.7.3 | V1.7.3-picker-rows-10.png | 354eccb |
+| [x] | V1.7.4 | V1.7.4-picker-rows-50.png | 354eccb |
+| [x] | V1.7.5 | V1.7.5-picker-rows-100.png | 354eccb |
+| [x] | V1.7.6 | V1.7.6-results-page2-url.png | 354eccb |
+| [x] | V1.7.7 | V1.7.7-results-rows-50-url.png | 354eccb |
 
 **Subsection verification:** `ls e2e/screenshots/V1.7.* | wc -l` should equal 7
 
@@ -105,9 +105,9 @@ ls -la e2e/screenshots/ | grep -E "^V1\.1\.[0-9]+-" | wc -l  # Should match subs
 
 | Done | Test ID | Screenshot | Commit |
 |------|---------|------------|--------|
-| [ ] | V1.8.1 | | |
-| [ ] | V1.8.2 | | |
-| [ ] | V1.8.3 | | |
+| [x] | V1.8.1 | V1.8.1-picker-popout-page2.png + V1.8.1-picker-popout-main-overlay.png | pending |
+| [x] | V1.8.2 | V1.8.2-picker-popout-rows-50.png + V1.8.2-picker-popout-main-overlay.png | pending |
+| [x] | V1.8.3 | V1.8.3-picker-popout-rows-100.png + V1.8.3-picker-popout-main-overlay.png | pending |
 
 **Subsection verification:** `ls e2e/screenshots/V1.8.* | wc -l` should equal 3
 

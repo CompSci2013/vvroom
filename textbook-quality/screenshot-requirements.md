@@ -4,6 +4,14 @@
 - Every screenshot must include a browser URL bar at the top showing the full URL with parameters
 - Implemented via post-processing: capture the page, then composite a rendered URL bar on top
 
+## 1.5 Pop-Out Test Screenshots (Special Rules)
+For all pop-out tests (V1.8.x, V1.9.x pop-out variants, P4.x, etc.):
+1. **Pop-out window screenshots**: Capture the pop-out window itself (multiple images if scrolling needed)
+2. **Main window overlay screenshot**: Capture ONE additional image of the main window showing the placeholder message (e.g., "Manufacturer-Model Picker is open in a separate window")
+   - Use `takeOverlayScreenshot()` helper - single image, footer rule relaxed
+   - Naming: `{testId}-{component}-main-overlay.png`
+   - This shows what the main page looks like when the component is popped out to another monitor
+
 ## 2. Page Size (Paper Format)
 - 8.5" x 11" at 150 DPI for print/PDF quality
 - Landscape: 1650 x 1275 pixels

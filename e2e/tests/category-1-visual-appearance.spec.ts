@@ -3,6 +3,7 @@ import {
   PANEL_IDS,
   setPanelVisibility,
   takeScreenshot,
+  takeOverlayScreenshot,
   navigateToDiscover,
   waitForPageLoad,
 } from './screenshot-helper';
@@ -559,57 +560,85 @@ test.describe('Category 1: Visual Appearance Tests', () => {
     test('V1.8.1 - Picker Table (pop-out) click page 2', async ({ page, context }) => {
       await navigateToDiscover(page);
 
-      // Click the pop-out button for Picker panel
+      // Listen for the new window BEFORE clicking pop-out
+      const popoutPromise = context.waitForEvent('page');
       await page.locator('#panel-manufacturer-model-picker .panel-header button[icon="pi pi-external-link"]').click();
-      await page.waitForTimeout(1000);
+      const popoutPage = await popoutPromise;
 
-      // Get the pop-out window
-      const pages = context.pages();
-      const popoutPage = pages[pages.length - 1];
       await popoutPage.waitForLoadState('domcontentloaded');
-      await popoutPage.waitForTimeout(500);
+      await popoutPage.waitForTimeout(1000);
 
       // Click page 2 in the pop-out Picker pagination
       await popoutPage.locator('.p-paginator-page').nth(1).click();
       await popoutPage.waitForTimeout(500);
 
+      // Screenshot the pop-out window
       await takeScreenshot(popoutPage, 'V1.8.1', 'picker-popout-page2');
+
+      // Overlay screenshot: main window showing placeholder message
+      await takeOverlayScreenshot(page, 'V1.8.1', 'picker-popout-main-overlay');
     });
 
     test('V1.8.2 - Picker Table (pop-out) change rows to 50', async ({ page, context }) => {
       await navigateToDiscover(page);
 
+      // Listen for the new window BEFORE clicking pop-out
+      const popoutPromise = context.waitForEvent('page');
       await page.locator('#panel-manufacturer-model-picker .panel-header button[icon="pi pi-external-link"]').click();
-      await page.waitForTimeout(1000);
+      const popoutPage = await popoutPromise;
 
-      const pages = context.pages();
-      const popoutPage = pages[pages.length - 1];
       await popoutPage.waitForLoadState('domcontentloaded');
-      await popoutPage.waitForTimeout(500);
+      await popoutPage.waitForTimeout(1000);
 
+      // Scroll to pagination area first
+      await popoutPage.locator('.p-paginator').scrollIntoViewIfNeeded();
+      await popoutPage.waitForTimeout(300);
+
+      // Click the dropdown trigger directly
       await popoutPage.locator('.p-paginator-rpp-options').click();
-      await popoutPage.locator('.p-dropdown-item').filter({ hasText: '50' }).click();
+      await popoutPage.waitForTimeout(300);
+
+      // Wait for dropdown panel to appear and click 50
+      await popoutPage.waitForSelector('.p-dropdown-panel', { state: 'visible', timeout: 5000 });
+      await popoutPage.locator('.p-dropdown-panel .p-dropdown-item').filter({ hasText: /^50$/ }).click();
       await popoutPage.waitForTimeout(500);
 
+      // Screenshot the pop-out window
       await takeScreenshot(popoutPage, 'V1.8.2', 'picker-popout-rows-50');
+
+      // Overlay screenshot: main window showing placeholder message
+      await takeOverlayScreenshot(page, 'V1.8.2', 'picker-popout-main-overlay');
     });
 
     test('V1.8.3 - Picker Table (pop-out) change rows to 100', async ({ page, context }) => {
       await navigateToDiscover(page);
 
+      // Listen for the new window BEFORE clicking pop-out
+      const popoutPromise = context.waitForEvent('page');
       await page.locator('#panel-manufacturer-model-picker .panel-header button[icon="pi pi-external-link"]').click();
-      await page.waitForTimeout(1000);
+      const popoutPage = await popoutPromise;
 
-      const pages = context.pages();
-      const popoutPage = pages[pages.length - 1];
       await popoutPage.waitForLoadState('domcontentloaded');
-      await popoutPage.waitForTimeout(500);
+      await popoutPage.waitForTimeout(1000);
 
+      // Scroll to pagination area first
+      await popoutPage.locator('.p-paginator').scrollIntoViewIfNeeded();
+      await popoutPage.waitForTimeout(300);
+
+      // Click the dropdown trigger directly
       await popoutPage.locator('.p-paginator-rpp-options').click();
-      await popoutPage.locator('.p-dropdown-item').filter({ hasText: '100' }).click();
+      await popoutPage.waitForTimeout(300);
+
+      // Wait for dropdown panel to appear and click 100
+      await popoutPage.waitForSelector('.p-dropdown-panel', { state: 'visible', timeout: 5000 });
+      await popoutPage.locator('.p-dropdown-panel .p-dropdown-item').filter({ hasText: /^100$/ }).click();
       await popoutPage.waitForTimeout(500);
 
+      // Screenshot the pop-out window
       await takeScreenshot(popoutPage, 'V1.8.3', 'picker-popout-rows-100');
+
+      // Overlay screenshot: main window showing placeholder message
+      await takeOverlayScreenshot(page, 'V1.8.3', 'picker-popout-main-overlay');
     });
   });
 

@@ -257,3 +257,25 @@ Verified: URL bar shows /discover?page=2, Results Table expanded showing page 2 
 Test V1.7.7 - Results Table navigate via URL size=50: PASS
 Screenshot: V1.7.7-results-rows-50-url.png (3 images)
 Verified: URL bar shows ?size=50, Results Table expanded showing 50 rows (Buick Century models), pagination shows "Showing 1 to 50 of 4887 results", dropdown shows "50" selected, other panels collapsed, footer visible
+
+2026-02-14_06:01:58
+Committed V1.7.x subsection: 354eccb
+Pushed to github and gitlab remotes
+
+2026-02-14_06:10:42
+Test V1.8.1 - Picker Table (pop-out) click page 2: PASS
+Screenshots: V1.8.1-picker-popout-page2.png + V1.8.1-picker-popout-main-overlay.png
+Verified Pop-out: URL bar shows pop-out URL /panel/discover/manufacturer-model-picker, Picker showing page 2 (Buick Lucerne through Cadillac 60 Special), pagination shows "Showing 21 to 40 of 881 entries", page 2 active, no site header
+Verified Overlay: Main window shows placeholder message "Manufacturer-Model Picker is open in a separate window"
+
+2026-02-14_06:21:50
+Test V1.8.2 - Picker Table (pop-out) change rows to 50: PASS
+Screenshots: V1.8.2-picker-popout-rows-50.png + V1.8.2-picker-popout-main-overlay.png
+Verified Pop-out: URL bar shows pop-out URL, Picker showing 50 rows (Affordable Aluminum through Buick Park Avenue visible), no site header
+Verified Overlay: Main window shows placeholder message "Manufacturer-Model Picker is open in a separate window"
+
+2026-02-14_06:23:02
+Test V1.8.3 - Picker Table (pop-out) change rows to 100: PASS
+Screenshots: V1.8.3-picker-popout-rows-100.png + V1.8.3-picker-popout-main-overlay.png
+Verified Pop-out: URL bar shows pop-out URL /panel/discover/manufacturer-model-picker, Picker showing 100 rows, no site header
+Verified Overlay: Main window shows placeholder message "Manufacturer-Model Picker is open in a separate window"
