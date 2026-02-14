@@ -228,6 +228,62 @@ async function resetZoom(page: Page): Promise<void> {
 }
 
 /**
+ * Check if the header is visible AND there's whitespace between
+ * the header and the first control/content.
+ *
+ * If a control is flush against the header (no gap), content is being truncated at top.
+ */
+async function isHeaderFullyVisible(page: Page): Promise<boolean> {
+  return page.evaluate(() => {
+    // Find the header element (contains navigation like "Home", "Discover")
+    const header = document.querySelector('header') ||
+                   document.querySelector('nav') ||
+                   document.querySelector('.app-header') ||
+                   document.querySelector('[class*="header"]');
+
+    if (!header) {
+      // No header found - can't verify, assume it might be truncated
+      return false;
+    }
+
+    const headerRect = header.getBoundingClientRect();
+
+    // Header must be visible at top of viewport
+    if (headerRect.top < 0) {
+      return false;
+    }
+
+    // Find the first content element after the header
+    const contentSelectors = [
+      '.p-panel',
+      '[class*="panel"]',
+      'app-query-control',
+      'app-query-panel',
+      'app-statistics',
+      'app-results-table'
+    ];
+
+    let firstContentTop = Infinity;
+
+    for (const selector of contentSelectors) {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        // Only consider elements that are visible (have height)
+        if (rect.height > 0 && rect.top > headerRect.bottom) {
+          firstContentTop = Math.min(firstContentTop, rect.top);
+        }
+      });
+    }
+
+    // There must be a gap (at least 20px) between header and first content
+    const gapBetweenHeaderAndContent = firstContentTop - headerRect.bottom;
+
+    return gapBetweenHeaderAndContent >= 20;
+  });
+}
+
+/**
  * Check if the footer is visible AND there's whitespace between
  * the last control/content and the footer.
  *
@@ -297,9 +353,9 @@ async function isFooterFullyVisible(page: Page, viewportHeight: number): Promise
  * 5. If still too tall, take multiple portrait shots with scrolling
  *
  * CRITICAL RULES:
- * - First image must ALWAYS capture the banner/header at top
- * - Last image must show the footer "© 2026 vvroom" with whitespace below
- * - If content is flush against footer, it's truncated - need more shots
+ * - First image must ALWAYS capture the banner/header at top with whitespace between header and first control
+ * - Last image must show the footer "© 2026 vvroom" with whitespace between last control and footer
+ * - If content is flush against header or footer (no whitespace gap), it's truncated - need different approach
  *
  * All screenshots include a URL bar composited at the top.
  * Returns array of filenames created.
@@ -325,14 +381,16 @@ export async function takeScreenshot(
     filenames.push(filename);
   };
 
-  // Helper to check if single shot captures everything (footer visible with space)
+  // Helper to check if single shot captures everything (header and footer visible with whitespace)
   const canFitInSingleShot = async (viewport: { width: number; height: number }) => {
     const contentHeight = await getContentHeight();
     if (contentHeight > viewport.height) {
       return false;
     }
-    // Content height fits, but verify footer is actually visible with whitespace
-    return isFooterFullyVisible(page, viewport.height);
+    // Content height fits, but verify both header and footer are visible with whitespace
+    const headerOk = await isHeaderFullyVisible(page);
+    const footerOk = await isFooterFullyVisible(page, viewport.height);
+    return headerOk && footerOk;
   };
 
   // Helper to take multiple scrolling shots
