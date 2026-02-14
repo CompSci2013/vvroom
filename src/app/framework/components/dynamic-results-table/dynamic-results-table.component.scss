@@ -98,15 +98,18 @@
         color: var(--p-primary-color, #34d399);
       }
 
-      // Paginator - remove border and match table width
+      // Make entire datatable scroll horizontally together (table + paginator)
+      overflow-x: auto;
+
+      .p-datatable-wrapper {
+        overflow-x: visible;
+      }
+
       .p-paginator {
         border: none;
         box-sizing: border-box;
-      }
-
-      // Ensure table wrapper allows horizontal scroll when columns are expanded
-      .p-datatable-wrapper {
-        overflow-x: auto;
+        min-width: 0 !important;
+        width: 100%;
       }
     }
 
