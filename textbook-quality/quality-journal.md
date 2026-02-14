@@ -162,3 +162,18 @@ Verified: URL shows h_bodyClass=Pickup, Query Control shows "Highlight Body Clas
 Test V1.3.4 - Statistics with filter AND highlight: PASS
 Screenshot: V1.3.4-statistics-filter-with-highlight.png
 Verified: URL shows manufacturer=Ford&h_yearMin=2018, Query Control shows BOTH "Manufacturer: Ford" filter chip AND "Highlight Year: 2018" chip, Statistics shows filtered+highlighted data, 665 results
+
+2026-02-14_07:23:58
+Test V1.4.1 - Results table sorted by year descending: PASS
+Screenshot: V1.4.1-results-table-sorted-year-desc.png
+Verified: URL shows sortBy=year&sortOrder=desc, Results Table shows data sorted by year (all 2024 entries visible), Year column has sort indicator, 4887 results
+
+2026-02-14_07:23:58
+Test V1.4.2 - Results table sorted by manufacturer ascending: PASS
+Screenshot: V1.4.2-results-table-sorted-manufacturer-asc.png
+Verified: URL shows sortBy=manufacturer&sortOrder=asc, Results Table shows A-Z order (Affordable Aluminum, Best Lane, Brammo, Buick), Manufacturer column has upward arrow indicator
+
+2026-02-14_07:23:58
+Test V1.4.3 - Results table sorted by instance count descending: PASS
+Screenshot: V1.4.3-results-table-sorted-instancecount-desc.png
+Verified: URL shows sortBy=instance_count&sortOrder=desc, VIN Count column sorted highest first (showing 12), column has downward arrow indicator

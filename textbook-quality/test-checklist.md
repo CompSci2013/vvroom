@@ -47,10 +47,10 @@ ls -la e2e/screenshots/ | grep -E "^V1\.1\.[0-9]+-" | wc -l  # Should match subs
 
 | Done | Test ID | Screenshot | Commit |
 |------|---------|------------|--------|
-| [x] | V1.3.1 | V1.3.1-statistics-highlight-tesla.png | pending |
-| [x] | V1.3.2 | V1.3.2-statistics-highlight-years.png | pending |
-| [x] | V1.3.3 | V1.3.3-statistics-highlight-pickup.png | pending |
-| [x] | V1.3.4 | V1.3.4-statistics-filter-with-highlight.png | pending |
+| [x] | V1.3.1 | V1.3.1-statistics-highlight-tesla.png | 1f5c027 |
+| [x] | V1.3.2 | V1.3.2-statistics-highlight-years.png | 1f5c027 |
+| [x] | V1.3.3 | V1.3.3-statistics-highlight-pickup.png | 1f5c027 |
+| [x] | V1.3.4 | V1.3.4-statistics-filter-with-highlight.png | 1f5c027 |
 
 **Subsection verification:** `ls e2e/screenshots/V1.3.* | wc -l` should equal 4
 
@@ -58,9 +58,9 @@ ls -la e2e/screenshots/ | grep -E "^V1\.1\.[0-9]+-" | wc -l  # Should match subs
 
 | Done | Test ID | Screenshot | Commit |
 |------|---------|------------|--------|
-| [ ] | V1.4.1 | | |
-| [ ] | V1.4.2 | | |
-| [ ] | V1.4.3 | | |
+| [x] | V1.4.1 | V1.4.1-results-table-sorted-year-desc.png | pending |
+| [x] | V1.4.2 | V1.4.2-results-table-sorted-manufacturer-asc.png | pending |
+| [x] | V1.4.3 | V1.4.3-results-table-sorted-instancecount-desc.png | pending |
 
 **Subsection verification:** `ls e2e/screenshots/V1.4.* | wc -l` should equal 3
 
