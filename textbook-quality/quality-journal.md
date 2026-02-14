@@ -279,3 +279,32 @@ Test V1.8.3 - Picker Table (pop-out) change rows to 100: PASS
 Screenshots: V1.8.3-picker-popout-rows-100.png + V1.8.3-picker-popout-main-overlay.png
 Verified Pop-out: URL bar shows pop-out URL /panel/discover/manufacturer-model-picker, Picker showing 100 rows, no site header
 Verified Overlay: Main window shows placeholder message "Manufacturer-Model Picker is open in a separate window"
+
+2026-02-14_06:24:01
+Committed V1.8.x subsection: d5a849b
+Pushed to github and gitlab remotes
+
+2026-02-14_06:25:07
+Test V1.9.1 - Picker (in) select rows before Apply: PASS
+Screenshot: V1.9.1-picker-selected-before-apply.png
+Verified: URL bar shows /discover, Picker expanded with 2 rows selected (Affordable Aluminum, Best Lane Enterprises - checkmarks visible), Clear/Apply buttons visible, results count still shows 4887 (filter not yet applied), footer visible
+
+2026-02-14_06:26:47
+Test V1.9.2 - Picker (in) after Apply clicked: PASS
+Screenshot: V1.9.2-picker-after-apply.png
+Verified: URL bar shows modelCombos= with selected models, results count shows "2 results" (filter applied), Query Control expanded with Active Filters showing model chips, Statistics expanded with filtered charts, footer visible
+
+2026-02-14_06:27:46
+Test V1.9.3 - Picker (out) select rows before Apply: PASS
+Screenshot: V1.9.3-picker-popout-selected.png
+Verified: URL bar shows pop-out URL /panel/discover/manufacturer-model-picker, 2 rows selected (Affordable Aluminum, Best Lane Enterprises - checkmarks visible), Clear/Apply buttons visible, no site header (pop-out mode), pagination visible
+
+2026-02-14_06:28:31
+Test V1.9.4 - Picker (out) after Apply clicked: PASS
+Screenshot: V1.9.4-picker-popout-after-apply.png
+Verified: URL bar shows modelCombos= with selected models, results count shows "2 results" (filter applied via pop-out), Query Control expanded with Active Filters showing model chips, Statistics expanded with filtered charts, footer visible
+
+2026-02-14_06:29:16
+Test V1.9.5 - Picker (in) clear selection: PASS
+Screenshot: V1.9.5-picker-cleared.png
+Verified: URL bar shows /discover?page=1 (no modelCombos - cleared), results count shows "4887 results" (back to full dataset), Picker expanded with all checkboxes unchecked, Clear/Apply buttons visible, footer visible

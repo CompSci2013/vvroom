@@ -691,7 +691,7 @@ test.describe('Category 1: Visual Appearance Tests', () => {
 
       await takeScreenshot(page, 'V1.9.2', 'picker-after-apply');
 
-      expect(page.url()).toContain('models=');
+      expect(page.url()).toContain('modelCombos=');
     });
 
     test('V1.9.3 - Picker (out) select rows before Apply', async ({ page, context }) => {
@@ -748,7 +748,7 @@ test.describe('Category 1: Visual Appearance Tests', () => {
 
       await takeScreenshot(page, 'V1.9.4', 'picker-popout-after-apply');
 
-      expect(page.url()).toContain('models=');
+      expect(page.url()).toContain('modelCombos=');
     });
 
     test('V1.9.5 - Picker (in) clear selection', async ({ page }) => {
