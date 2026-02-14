@@ -22,7 +22,8 @@
       icon="pi pi-times"
       (onClick)="clearAll()"
       styleClass="p-button-secondary p-button-sm"
-      [disabled]="!hasActiveFiltersOrHighlights()">
+      [disabled]="!hasActiveFiltersOrHighlights()"
+      [attr.data-testid]="environment.includeTestIds ? 'clear-all-button' : null">
     </p-button>
   </div>
 

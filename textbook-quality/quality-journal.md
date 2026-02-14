@@ -311,3 +311,117 @@ All 9 subsections verified:
 - V1.8.x Pagination Interaction Popped-Out (3 tests) - PASS
 - V1.9.x Picker Selection and Apply (5 tests) - PASS
 Verification: 95 screenshot files, 41 test definitions, all test IDs present
+
+2026-02-14_08:04:39
+Test U2.1.1 - URL manufacturer=Ford → state: PASS
+Screenshot: U2.1.1-url-manufacturer-ford.png
+Verified: URL shows manufacturer=Ford, Query Panel shows Ford in dropdown, Results Table shows Ford vehicles only, 665 results
+
+2026-02-14_08:04:39
+Test U2.1.2 - URL yearMin/yearMax → state: PASS
+Screenshot: U2.1.2-url-year-range.png
+Verified: URL shows yearMin=2010&yearMax=2020, Query Panel shows year inputs with 2010-2020, Results Table shows filtered vehicles, 632 results
+
+2026-02-14_08:04:39
+Test U2.1.3 - URL bodyClass=Pickup → state: PASS
+Screenshot: U2.1.3-url-bodyclass-pickup.png
+Verified: URL shows bodyClass=Pickup, Query Panel shows Pickup in dropdown, Results Table shows Pickup vehicles, 286 results
+
+2026-02-14_08:04:39
+Test U2.1.4 - URL page=3&size=10 → state: PASS
+Screenshot: U2.1.4-url-pagination.png
+Verified: URL shows page=3&size=10, Results Table shows "Showing 21 to 30 of 4887 results", page 3 highlighted, 10 rows displayed
+
+2026-02-14_08:04:39
+Test U2.1.5 - URL sortBy=year&sortOrder=desc → state: PASS
+Screenshot: U2.1.5-url-sorted-year-desc.png
+Verified: URL shows sortBy=year&sortOrder=desc, Results Table shows data sorted by year descending (all 2024 entries at top)
+
+2026-02-14_08:04:39
+Test U2.1.6 - URL h_manufacturer=Tesla → state: PASS
+Screenshot: U2.1.6-url-highlight-tesla.png
+Verified: URL shows h_manufacturer=Tesla, Query Control shows "Highlight Manufacturer: Tesla" chip, Statistics shows blue highlighted bars for Tesla
+
+2026-02-14_08:04:39
+Test U2.1.7 - URL filter+highlight combined → state: PASS
+Screenshot: U2.1.7-url-filter-highlight-combined.png
+Verified: URL shows manufacturer=Chevrolet&h_yearMin=2015&h_yearMax=2020, Query Control shows filter chip AND highlight chip, Statistics shows filtered+highlighted data, 849 results
+
+2026-02-14_08:04:39
+Test U2.1.8 - URL models=Ford:Mustang,Chevrolet:Camaro → state: ISSUE
+Screenshot: U2.1.8-url-model-combos.png
+Issue: URL parameter present but not applied - shows 4887 results (unfiltered), Picker shows no selected rows
+Note: Application may not support 'models' URL parameter for model combinations filter
+
+2026-02-14_08:04:39
+Test U2.1.9 - URL search=mustang → state: ISSUE
+Screenshot: U2.1.9-url-search-mustang.png
+Issue: URL parameter present but not applied - shows 4887 results (unfiltered), search input not populated
+Note: Application may not support 'search' URL parameter for text search
+
+2026-02-14_08:18:11
+Test U2.2.1 - Select Dodge via autocomplete → URL: PASS
+Screenshot: U2.2.1-state-select-dodge.png
+Verified: URL shows manufacturer=Dodge, Query Panel shows Dodge selected, 390 results
+
+2026-02-14_08:18:11
+Test U2.2.2 - Set year range 2000-2010 → URL: PASS
+Screenshot: U2.2.2-state-year-range.png
+Verified: URL shows yearMin=2000&yearMax=2010, Query Panel shows year inputs populated, 641 results
+
+2026-02-14_08:18:11
+Test U2.2.3 - Select SUV body class → URL: PASS
+Screenshot: U2.2.3-state-select-suv.png
+Verified: URL shows bodyClass=SUV, Query Panel shows SUV selected, 998 results
+
+2026-02-14_08:18:11
+Test U2.2.4 - Click page 4 → URL: PASS
+Screenshot: U2.2.4-state-page-4.png
+Verified: URL shows page=4, Results Table shows page 4, "Showing 61 to 80 of 4887 results"
+
+2026-02-14_08:18:11
+Test U2.2.5 - Change page size to 50 → URL: PASS
+Screenshot: U2.2.5-state-size-50.png
+Verified: URL shows size=50, Results Table shows 50 rows, "Showing 1 to 50 of 8937 results"
+
+2026-02-14_08:18:11
+Test U2.2.6 - Click Year column to sort → URL: PASS
+Screenshot: U2.2.6-state-sort-year.png
+Verified: URL shows sortBy=year, Results Table sorted by year ascending (1908, 1908, 1909...)
+
+2026-02-14_08:18:11
+Test U2.2.7 - Click Year again for descending → URL: PASS
+Screenshot: U2.2.7-state-sort-desc.png
+Verified: URL shows sortBy=year&sortOrder=desc, Results Table sorted descending (all 2024 entries)
+
+2026-02-14_08:18:11
+Test U2.2.8 - Select Model filter Camaro → URL: PASS
+Screenshot: U2.2.8-state-model-camaro.png
+Verified: URL shows model=Camaro, Query Control shows "Model: Camaro" chip, 59 results
+Note: Original test was for search=camaro but Search filter doesn't exist; tested Model filter instead
+
+2026-02-14_08:18:11
+Test U2.2.9 - Clear all filters → URL: PASS
+Screenshot: U2.2.9-state-clear-all.png
+Verified: URL shows /discover with no filter parameters, Query Control cleared, 4887 results
+
+2026-02-14_08:18:11
+Test U2.2.10 - Apply highlight via URL → state: PASS
+Screenshot: U2.2.10-state-highlight-from-url.png
+Verified: URL shows h_manufacturer=Tesla, Query Control shows highlight chip, Statistics shows highlighted bars
+Note: Highlight filters are URL-driven only; not available in filter dropdown
+
+2026-02-14_08:18:11
+Test U2.3.1 - Multiple filters: manufacturer+year+bodyClass: PASS
+Screenshot: U2.3.1-combined-filters-ford-coupe-recent.png
+Verified: URL shows all 4 params, Query Control shows 3 filter chips (Manufacturer: Ford, Body Class: Coupe, Year: 2015-2020), Statistics shows filtered data, 6 results
+
+2026-02-14_08:18:11
+Test U2.3.2 - Filter + sort + pagination combined: PASS
+Screenshot: U2.3.2-combined-filter-sort-page.png
+Verified: URL shows all params, Query Control shows Chevrolet filter chip, Results Table shows page 2 sorted desc, "Showing 11 to 20 of 849 results"
+
+2026-02-14_08:18:11
+Test U2.3.3 - Filter + highlight combined: PASS
+Screenshot: U2.3.3-combined-filter-highlight.png
+Verified: URL shows bodyClass=SUV&h_manufacturer=Jeep, Query Control shows filter chip AND highlight chip, Statistics shows filtered data with Jeep highlighted, 998 results

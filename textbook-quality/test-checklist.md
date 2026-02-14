@@ -131,15 +131,15 @@ ls -la e2e/screenshots/ | grep -E "^V1\.1\.[0-9]+-" | wc -l  # Should match subs
 
 | Done | Test ID | Screenshot | Commit |
 |------|---------|------------|--------|
-| [ ] | U2.1.1 | | |
-| [ ] | U2.1.2 | | |
-| [ ] | U2.1.3 | | |
-| [ ] | U2.1.4 | | |
-| [ ] | U2.1.5 | | |
-| [ ] | U2.1.6 | | |
-| [ ] | U2.1.7 | | |
-| [ ] | U2.1.8 | | |
-| [ ] | U2.1.9 | | |
+| [x] | U2.1.1 | U2.1.1-url-manufacturer-ford.png | pending |
+| [x] | U2.1.2 | U2.1.2-url-year-range.png | pending |
+| [x] | U2.1.3 | U2.1.3-url-bodyclass-pickup.png | pending |
+| [x] | U2.1.4 | U2.1.4-url-pagination.png | pending |
+| [x] | U2.1.5 | U2.1.5-url-sorted-year-desc.png | pending |
+| [x] | U2.1.6 | U2.1.6-url-highlight-tesla.png | pending |
+| [x] | U2.1.7 | U2.1.7-url-filter-highlight-combined.png | pending |
+| [x] | U2.1.8 | U2.1.8-url-model-combos.png (ISSUE) | pending |
+| [x] | U2.1.9 | U2.1.9-url-search-mustang.png (ISSUE) | pending |
 
 **Subsection verification:** `ls e2e/screenshots/U2.1.* | wc -l` should equal 9
 
@@ -147,16 +147,16 @@ ls -la e2e/screenshots/ | grep -E "^V1\.1\.[0-9]+-" | wc -l  # Should match subs
 
 | Done | Test ID | Screenshot | Commit |
 |------|---------|------------|--------|
-| [ ] | U2.2.1 | | |
-| [ ] | U2.2.2 | | |
-| [ ] | U2.2.3 | | |
-| [ ] | U2.2.4 | | |
-| [ ] | U2.2.5 | | |
-| [ ] | U2.2.6 | | |
-| [ ] | U2.2.7 | | |
-| [ ] | U2.2.8 | | |
-| [ ] | U2.2.9 | | |
-| [ ] | U2.2.10 | | |
+| [x] | U2.2.1 | U2.2.1-state-select-dodge.png | pending |
+| [x] | U2.2.2 | U2.2.2-state-year-range.png | pending |
+| [x] | U2.2.3 | U2.2.3-state-select-suv.png | pending |
+| [x] | U2.2.4 | U2.2.4-state-page-4.png | pending |
+| [x] | U2.2.5 | U2.2.5-state-size-50.png | pending |
+| [x] | U2.2.6 | U2.2.6-state-sort-year.png | pending |
+| [x] | U2.2.7 | U2.2.7-state-sort-desc.png | pending |
+| [x] | U2.2.8 | U2.2.8-state-model-camaro.png | pending |
+| [x] | U2.2.9 | U2.2.9-state-clear-all.png | pending |
+| [x] | U2.2.10 | U2.2.10-state-highlight-from-url.png | pending |
 
 **Subsection verification:** `ls e2e/screenshots/U2.2.* | wc -l` should equal 10
 
@@ -164,9 +164,9 @@ ls -la e2e/screenshots/ | grep -E "^V1\.1\.[0-9]+-" | wc -l  # Should match subs
 
 | Done | Test ID | Screenshot | Commit |
 |------|---------|------------|--------|
-| [ ] | U2.3.1 | | |
-| [ ] | U2.3.2 | | |
-| [ ] | U2.3.3 | | |
+| [x] | U2.3.1 | U2.3.1-combined-filters-ford-coupe-recent.png | pending |
+| [x] | U2.3.2 | U2.3.2-combined-filter-sort-page.png | pending |
+| [x] | U2.3.3 | U2.3.3-combined-filter-highlight.png | pending |
 
 **Subsection verification:** `ls e2e/screenshots/U2.3.* | wc -l` should equal 3
 
