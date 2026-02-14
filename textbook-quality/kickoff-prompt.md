@@ -94,6 +94,9 @@ A test is NOT complete until you have visually inspected the screenshot. The Pla
 5. Append a timestamped entry to `~/projects/vvroom/textbook-quality/quality-journal.md`
 6. Format: `YYYY-MM-DD_HH:MM:SS` followed by test result on next line
 7. Include test ID, pass/fail status, and what you observed in the screenshot
+8. **RE-READ THIS CHECKLIST (steps 1-8) before proceeding to the next test**
+
+**STOP. Do not proceed to the next test until steps 1-8 are complete.**
 
 **After completing a SUBSECTION (not individual test):**
 1. Run subsection verification command

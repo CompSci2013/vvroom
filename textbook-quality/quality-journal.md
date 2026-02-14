@@ -222,3 +222,38 @@ Verified: URL bar shows /discover, all 5 panels collapsed showing only headers (
 Test V1.6.6 - Mixed panel state: PASS
 Screenshot: V1.6.6-panels-mixed-state.png
 Verified: URL bar shows /discover, Query Control expanded, Query Panel collapsed, Picker collapsed, Statistics expanded with 4 charts, Results Table collapsed, footer visible
+
+2026-02-14_05:51:50
+Test V1.7.1 - Picker Table click page 2: PASS
+Screenshot: V1.7.1-picker-page2.png
+Verified: URL bar shows /discover, Picker expanded showing page 2 data (Buick models: Lucerne, Model 10, Model D, etc.), pagination shows page 2 active
+
+2026-02-14_05:59:26
+Test V1.7.2 - Picker Table click page 3: PASS
+Screenshot: V1.7.2-picker-page3.png
+Verified: URL bar shows /discover, Picker expanded showing page 3 data (Cadillac models: ATS, Allante, Armored Vehicle, Brougham, CT4, CT5, CT6, CTS, etc.), pagination shows page 3 active, footer visible
+
+2026-02-14_05:59:26
+Test V1.7.3 - Picker Table change rows to 10: PASS
+Screenshot: V1.7.3-picker-rows-10.png
+Verified: URL bar shows /discover, Picker expanded showing 10 rows (Affordable Aluminum through Buick Century), pagination shows "Showing 1 to 10 of 881 entries", dropdown shows "10" selected, footer visible
+
+2026-02-14_05:59:26
+Test V1.7.4 - Picker Table change rows to 50: PASS
+Screenshot: V1.7.4-picker-rows-50.png (4 images)
+Verified: URL bar shows /discover, Picker expanded showing 50 rows, pagination shows "Showing 1 to 50 of 881 entries", dropdown shows "50" selected, footer visible
+
+2026-02-14_05:59:26
+Test V1.7.5 - Picker Table change rows to 100: PASS
+Screenshot: V1.7.5-picker-rows-100.png (8 images)
+Verified: URL bar shows /discover, Picker expanded showing 100 rows, pagination shows "Showing 1 to 100 of 881 entries", dropdown shows "100" selected, footer visible
+
+2026-02-14_06:00:08
+Test V1.7.6 - Results Table navigate via URL page=2: PASS
+Screenshot: V1.7.6-results-page2-url.png
+Verified: URL bar shows /discover?page=2, Results Table expanded showing page 2 data (Buick Century models from various years), other panels collapsed, footer visible
+
+2026-02-14_06:00:55
+Test V1.7.7 - Results Table navigate via URL size=50: PASS
+Screenshot: V1.7.7-results-rows-50-url.png (3 images)
+Verified: URL bar shows ?size=50, Results Table expanded showing 50 rows (Buick Century models), pagination shows "Showing 1 to 50 of 4887 results", dropdown shows "50" selected, other panels collapsed, footer visible

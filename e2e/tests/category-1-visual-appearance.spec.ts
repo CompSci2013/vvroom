@@ -486,7 +486,7 @@ test.describe('Category 1: Visual Appearance Tests', () => {
 
       // Change rows per page in Picker
       await page.locator('#panel-manufacturer-model-picker .p-paginator-rpp-options').click();
-      await page.locator('.p-dropdown-item').filter({ hasText: '10' }).click();
+      await page.getByRole('option', { name: '10', exact: true }).click();
       await page.waitForTimeout(500);
 
       await takeScreenshot(page, 'V1.7.3', 'picker-rows-10');
