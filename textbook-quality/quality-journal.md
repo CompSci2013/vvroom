@@ -218,3 +218,28 @@ Verified: URL shows manufacturer=Chevrolet, "Manufacturer: Chevrolet" chip visib
 Test V1.2.5 - Results table with model combinations: PASS
 Screenshot: V1.2.5-results-table-model-combos.png
 Verified: URL shows models=Ford:Mustang,Chevrolet:Camaro, charts show filtered data for the model combinations
+
+2026-02-14_04:56:32
+Test V1.1.1 - Results table default render: PASS
+Screenshot: V1.1.1-results-table-default.png
+Verified: URL bar shows /discover, Results Table expanded with 20 rows showing, pagination shows "Showing 1 to 20 of 4887 results", page 1 active, other panels collapsed
+
+2026-02-14_04:56:32
+Test V1.1.2 - Filter panel default render: PASS
+Screenshot: V1.1.2-filter-panel-default.png
+Verified: Query Panel expanded showing Manufacturer, Model, Year Range, Body Class, VIN Count Range controls all in empty/default state, Clear Filters button visible, other panels collapsed
+
+2026-02-14_04:56:32
+Test V1.1.3 - Pagination default render: PASS
+Screenshot: V1.1.3-pagination-default.png
+Verified: Results Table expanded with pagination showing "Showing 1 to 20 of 4887 results", page 1 highlighted, URL bar shows /discover
+
+2026-02-14_04:56:32
+Test V1.1.4 - Statistics panel default render: PASS
+Screenshot: V1.1.4-statistics-default.png
+Verified: Statistics panel expanded with 4 charts visible (Vehicles by Manufacturer, Top Models by VIN Count, Vehicles by Body Class, Vehicles by Year), all showing unfiltered data, other panels collapsed
+
+2026-02-14_04:56:32
+Test V1.1.5 - Search input default render: PASS
+Screenshot: V1.1.5-search-default.png
+Verified: Query Control expanded showing "Add filter by field..." dropdown and "Clear All" button in default state, other panels collapsed
