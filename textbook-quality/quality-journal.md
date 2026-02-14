@@ -297,3 +297,17 @@ Verified: Main window URL shows modelCombos=..., Query Control shows filter chip
 Test V1.9.5 - Picker clear selection: PASS
 Screenshot: V1.9.5-picker-cleared.png
 Verified: Picker expanded, all checkboxes unchecked (cleared), Clear button visible
+
+2026-02-14_07:33:44
+CATEGORY 1 COMPLETE - Visual Appearance Tests (41/41 tests)
+All 9 subsections verified:
+- V1.1.x Default State Rendering (5 tests) - PASS
+- V1.2.x Filtered State Rendering (5 tests) - PASS
+- V1.3.x Highlighted State Rendering (4 tests) - PASS
+- V1.4.x Sorted State Rendering (3 tests) - PASS
+- V1.5.x Paginated State Rendering (3 tests) - PASS
+- V1.6.x Panel State (6 tests) - PASS
+- V1.7.x Pagination Interaction Popped-In (7 tests) - PASS
+- V1.8.x Pagination Interaction Popped-Out (3 tests) - PASS
+- V1.9.x Picker Selection and Apply (5 tests) - PASS
+Verification: 95 screenshot files, 41 test definitions, all test IDs present
