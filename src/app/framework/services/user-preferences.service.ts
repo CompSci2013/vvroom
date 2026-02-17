@@ -2,6 +2,7 @@ import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, timeout } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 /**
  * User preferences service for persisting application state
@@ -333,13 +334,13 @@ export class UserPreferencesService {
 
   /**
    * Load preferences from backend API
-   * Attempts to fetch preferences from `/api/preferences/v1/:userId`
+   * Attempts to fetch preferences from the preferences API endpoint
    *
    * @private
    * @returns Observable of preferences object
    */
   private loadFromBackendApi(): Observable<any> {
-    return this.http.get<any>(`/api/preferences/v1/${this.userId}`).pipe(
+    return this.http.get<any>(`${environment.preferencesApiUrl}/${this.userId}`).pipe(
       catchError((error) => {
         if (isDevMode()) {
           console.debug('[UserPreferencesService] Backend API not available, falling back to localStorage');
@@ -351,14 +352,14 @@ export class UserPreferencesService {
 
   /**
    * Save preferences to backend API
-   * Sends preferences object to `/api/preferences/v1/:userId`
+   * Sends preferences object to the preferences API endpoint
    *
    * @private
    * @param prefs - Full preferences object to save
    * @returns Observable of save result
    */
   private savePreferencesToBackend(prefs: any): Observable<any> {
-    return this.http.post<any>(`/api/preferences/v1/${this.userId}`, prefs).pipe(
+    return this.http.post<any>(`${environment.preferencesApiUrl}/${this.userId}`, prefs).pipe(
       catchError((error) => {
         if (isDevMode()) {
           console.debug('[UserPreferencesService] Failed to save to backend API:', error);

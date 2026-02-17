@@ -47,6 +47,13 @@ export const environment = {
   apiBaseUrl: 'http://generic-prime.minilab/api/specs/v1',
 
   /**
+   * User preferences API endpoint for production
+   *
+   * URL pattern: http://generic-prime.minilab/api/preferences/v1
+   */
+  preferencesApiUrl: 'http://generic-prime.minilab/api/preferences/v1',
+
+  /**
    * E2E test attribute flag for production
    *
    * Set to false in production to remove all [attr.data-testid] attributes from HTML.

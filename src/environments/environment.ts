@@ -54,6 +54,14 @@ export const environment = {
   apiBaseUrl: 'http://generic-prime.minilab/api/specs/v1',
 
   /**
+   * User preferences API endpoint
+   *
+   * URL pattern: http://generic-prime.minilab/api/preferences/v1
+   * Same backend host, different route prefix for user preferences service.
+   */
+  preferencesApiUrl: 'http://generic-prime.minilab/api/preferences/v1',
+
+  /**
    * E2E test attribute flag
    *
    * When true, Angular components can use [attr.data-testid] for test selectors.

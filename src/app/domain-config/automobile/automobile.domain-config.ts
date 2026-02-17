@@ -98,7 +98,7 @@ export function createAutomobileDomainConfig(injector: Injector): DomainConfig<
 
     // ==================== UI Configuration ====================
     // REFACTORED: Configs generated from AUTOMOBILE_RESOURCE
-    tableConfig: generateTableConfig<VehicleResult>(AUTOMOBILE_RESOURCE),
+    tableConfig: generateTableConfig<VehicleResult>(AUTOMOBILE_RESOURCE, { expandable: true }),
     pickers: AUTOMOBILE_PICKER_CONFIGS,
     filters: generateFilterDefinitions(AUTOMOBILE_RESOURCE),
   queryControlFilters: AUTOMOBILE_QUERY_CONTROL_FILTERS,
