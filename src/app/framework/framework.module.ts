@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { PrimengModule } from '../primeng.module';
 
 import * as PlotlyJS from 'plotly.js-dist-min';
-import { PlotlyModule } from 'ngx-plotly-wrapper';
+import { PlotlyModule } from '@halolabs/ngx-plotly-wrapper';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 

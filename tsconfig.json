@@ -26,12 +26,7 @@
       "node_modules/@types",
       "src/types"
     ],
-    "paths": {
-      "popout": [
-        "dist/popout/popout",
-        "dist/popout"
-      ]
-    }
+    "paths": {}
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

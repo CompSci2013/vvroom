@@ -13,7 +13,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MessageService } from 'primeng/api';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { PopOutManagerService, PopOutMessageType } from 'popout';
+import { PopOutManagerService, PopOutMessageType } from '@halolabs/ngx-popout';
 import { createAutomobilePickerConfigs } from '../../domain-config/automobile/configs/automobile.picker-configs';
 import { DomainConfig } from '../../framework/models';
 import { DOMAIN_CONFIG } from '../../framework/services/domain-config-registry.service';

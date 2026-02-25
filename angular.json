@@ -127,26 +127,6 @@
           }
         }
       }
-    },
-    "popout": {
-      "projectType": "library",
-      "root": "projects/popout",
-      "sourceRoot": "projects/popout/src",
-      "prefix": "popout",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/popout/tsconfig.lib.json",
-            "project": "projects/popout/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/popout/tsconfig.lib.prod.json"
-            }
-          }
-        }
-      }
     }
   },
   "defaultProject": "vvroom"
