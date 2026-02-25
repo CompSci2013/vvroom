@@ -1,22 +1,18 @@
 <!-- Global Toast Notifications -->
 <p-toast key="app-toast" position="top-right"></p-toast>
 
-<!-- Navigation Banner - Hidden in pop-out windows -->
-<ng-container *ngIf="!isPopOut">
-  <header class="app-header">
-    <a routerLink="/" class="home-link">🏠 Home</a>
-    <a routerLink="/discover" routerLinkActive="active" class="discover-link">🔍 Discover</a>
-  </header>
-</ng-container>
+<!-- Navigation Banner -->
+<header class="app-header">
+  <a routerLink="/" class="home-link">🏠 Home</a>
+  <a routerLink="/discover" routerLinkActive="active" class="discover-link">🔍 Discover</a>
+</header>
 
 <!-- Application Content -->
-<main class="app-content" [class.with-chrome]="!isPopOut">
+<main class="app-content with-chrome">
   <router-outlet></router-outlet>
 </main>
 
-<!-- Footer Bar - Hidden in pop-out windows -->
-<ng-container *ngIf="!isPopOut">
-  <footer class="app-footer">
-    <span class="copyright">© 2026 vvroom</span>
-  </footer>
-</ng-container>
+<!-- Footer Bar -->
+<footer class="app-footer">
+  <span class="copyright">© 2026 vvroom</span>
+</footer>

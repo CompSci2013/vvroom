@@ -25,7 +25,13 @@
     "typeRoots": [
       "node_modules/@types",
       "src/types"
-    ]
+    ],
+    "paths": {
+      "popout": [
+        "dist/popout/popout",
+        "dist/popout"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

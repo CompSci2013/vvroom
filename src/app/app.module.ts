@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PrimengModule } from './primeng.module';
 import { FrameworkModule } from './framework/framework.module';
+import { PopoutModule, PopOutManagerService } from 'popout';
 import { GlobalErrorHandler } from './framework/services/global-error.handler';
 import { HttpErrorInterceptor } from './framework/services/http-error.interceptor';
 import { DOMAIN_CONFIG } from './framework/services/domain-config-registry.service';
@@ -21,8 +22,6 @@ import { createAutomobileDomainConfig } from './domain-config/automobile';
 // Feature Components
 import { HomeComponent } from './features/home/home.component';
 import { DiscoverComponent } from './features/discover/discover.component';
-import { PopoutComponent } from './features/popout/popout.component';
-import { PanelPopoutComponent } from './features/panel-popout/panel-popout.component';
 import { AutomobileComponent } from './features/automobile/automobile.component';
 
 /**
@@ -42,8 +41,6 @@ import { AutomobileComponent } from './features/automobile/automobile.component'
     AppComponent,
     HomeComponent,
     DiscoverComponent,
-    PopoutComponent,
-    PanelPopoutComponent,
     AutomobileComponent
   ],
   imports: [
@@ -54,9 +51,11 @@ import { AutomobileComponent } from './features/automobile/automobile.component'
     DragDropModule,
     AppRoutingModule,
     PrimengModule,
-    FrameworkModule
+    FrameworkModule,
+    PopoutModule
   ],
   providers: [
+    PopOutManagerService,
     MessageService,
     {
       provide: ErrorHandler,

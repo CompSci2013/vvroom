@@ -68,6 +68,9 @@ export class StatisticsPanel2Component implements OnInit, OnDestroy {
    */
   @Input() isPanelPoppedOut: (panelId: string) => boolean = () => false;
 
+  /** When true, disables child chart pop-outs (set by portal host when rendered in a popout) */
+  @Input() isRenderedInPopout = false;
+
   // ============================================================================
   // Outputs
   // ============================================================================
@@ -92,7 +95,7 @@ export class StatisticsPanel2Component implements OnInit, OnDestroy {
    * Used to disable individual chart pop-outs when already in pop-out
    */
   get isInPopOut(): boolean {
-    return this.popOutContext.isInPopOut();
+    return this.isRenderedInPopout || this.popOutContext.isInPopOut();
   }
 
   // ============================================================================
