@@ -23,6 +23,7 @@
     "@types/katex": "^0.16.8",
     "dockview-core": "^4.13.1",
     "katex": "^0.16.28",
+    "ngx-plotly-wrapper": "file:../ngx-plotly-wrapper/dist/ngx-plotly-wrapper/ngx-plotly-wrapper-1.0.0.tgz",
     "plotly.js-dist-min": "^2.27.0",
     "primeicons": "^5.0.0",
     "primeng": "^13.4.1",

@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PrimengModule } from '../primeng.module';
 
+import * as PlotlyJS from 'plotly.js-dist-min';
+import { PlotlyModule } from 'ngx-plotly-wrapper';
+
+PlotlyModule.plotlyjs = PlotlyJS;
+
 // Components
 import { AiChatComponent } from './components/ai-chat/ai-chat.component';
 import { BasePickerComponent } from './components/base-picker/base-picker.component';
@@ -46,7 +51,8 @@ import { StatisticsPanel2Component } from './components/statistics-panel-2/stati
   imports: [
     CommonModule,
     FormsModule,
-    PrimengModule
+    PrimengModule,
+    PlotlyModule
   ],
   exports: [
     AiChatComponent,
