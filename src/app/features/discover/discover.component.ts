@@ -126,8 +126,8 @@ export class DiscoverComponent<TFilters = any, TData = any, TStatistics = any>
     // Handle messages from pop-out components (@Output() events relayed as COMPONENT_OUTPUT)
     this.popOutManager.messages$
       .pipe(takeUntil(this.destroy$))
-      .subscribe(({ panelId, message }) => {
-        this.handlePopOutMessage(panelId, message);
+      .subscribe(({ popoutId, message }) => {
+        this.handlePopOutMessage(popoutId, message);
       });
 
     // Handle pop-out window closures
@@ -261,7 +261,7 @@ export class DiscoverComponent<TFilters = any, TData = any, TStatistics = any>
    */
   private async handlePopOutMessage(panelId: string, message: any): Promise<void> {
     switch (message.type) {
-      case PopOutMessageType.PANEL_READY:
+      case PopOutMessageType.POPOUT_READY:
         const currentState = this.resourceService.getCurrentState();
         this.popOutManager.broadcastState(currentState);
         break;

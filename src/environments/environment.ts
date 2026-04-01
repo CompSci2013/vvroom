@@ -51,7 +51,7 @@ export const environment = {
    * - Port: 80 (standard HTTP, routed through Traefik ingress)
    * - Path: /api/specs/v1 (API route prefix for data discovery service)
    */
-  apiBaseUrl: 'http://generic-prime.minilab/api/specs/v1',
+  apiBaseUrl: '/api/specs/v1',
 
   /**
    * User preferences API endpoint
@@ -59,7 +59,7 @@ export const environment = {
    * URL pattern: http://generic-prime.minilab/api/preferences/v1
    * Same backend host, different route prefix for user preferences service.
    */
-  preferencesApiUrl: 'http://generic-prime.minilab/api/preferences/v1',
+  preferencesApiUrl: '/api/preferences/v1',
 
   /**
    * E2E test attribute flag
