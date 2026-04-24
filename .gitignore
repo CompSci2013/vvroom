@@ -46,3 +46,6 @@ tools/.venv/
 
 # Auth tokens
 .npmrc
+
+# Continue
+.continue/
