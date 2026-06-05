@@ -1,0 +1,5883 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "874f92520579cf9a050e3ec6565c3b7ccbee7f7b",
+  "generatedAt": "2026-05-24T01:43:51.416Z",
+  "files": {
+    ".browserslistrc": {
+      "filePath": ".browserslistrc",
+      "contentHash": "4d917afcae808de480b3f540909d6f0a40ea6650bf6376a72d9708c8b8330640",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 17,
+      "hasStructuralAnalysis": false
+    },
+    ".claude/skills/generated/adapters/SKILL.md": {
+      "filePath": ".claude/skills/generated/adapters/SKILL.md",
+      "contentHash": "473522dcb413b852b3e1eb500279f2465a3a4f6014a99e15557021942965cf42",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 93,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/skills/generated/ai-chat/SKILL.md": {
+      "filePath": ".claude/skills/generated/ai-chat/SKILL.md",
+      "contentHash": "d04428263eeb232220d22947751c43750d05215e4b8dda57245be100802c2592",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 60,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/skills/generated/base-chart/SKILL.md": {
+      "filePath": ".claude/skills/generated/base-chart/SKILL.md",
+      "contentHash": "e5dda50e7dee7a0ed0d80f682008cd2972ed9754e39a271bf33c0498238cc2cc",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 65,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/skills/generated/base-picker/SKILL.md": {
+      "filePath": ".claude/skills/generated/base-picker/SKILL.md",
+      "contentHash": "267a35284182afc5b92a9a9fefc7e93035310c8f1659815e7db50fbaf630c5f1",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 83,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/skills/generated/configs/SKILL.md": {
+      "filePath": ".claude/skills/generated/configs/SKILL.md",
+      "contentHash": "7d76fab62583c628caf8198592e1bcd0e79f09c80e72962918d017be5fa40fdd",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 60,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/skills/generated/discover/SKILL.md": {
+      "filePath": ".claude/skills/generated/discover/SKILL.md",
+      "contentHash": "9b14f85b3f5a6587f1edede8c733018038ee7c688c240b9f4cbfd4651f153dfd",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 65,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/skills/generated/dynamic-results-table/SKILL.md": {
+      "filePath": ".claude/skills/generated/dynamic-results-table/SKILL.md",
+      "contentHash": "d1429a00323dc7909cd2e9377814e7a84fe2e4b193d013471f7ea41d71582197",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 43,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/skills/generated/models/SKILL.md": {
+      "filePath": ".claude/skills/generated/models/SKILL.md",
+      "contentHash": "c43b49ede2643dcca3d9dbb7008c71a16db5fdb481699be6be2b299a108c0334",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 89,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/skills/generated/panel-popout/SKILL.md": {
+      "filePath": ".claude/skills/generated/panel-popout/SKILL.md",
+      "contentHash": "3bcd29a1bb5106c6d08949416e30a2e0647feae64a6507a07e1e62d75900a66a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 62,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/skills/generated/query-control/SKILL.md": {
+      "filePath": ".claude/skills/generated/query-control/SKILL.md",
+      "contentHash": "aeba264148d99e750305543469a46c032d58f3f01941e419d7c3303ecd6fc7b7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 78,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/skills/generated/query-panel/SKILL.md": {
+      "filePath": ".claude/skills/generated/query-panel/SKILL.md",
+      "contentHash": "97fe069abbab7d0303e5413268d3f47e051a2244b79181faacaa46778c281f37",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 58,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/skills/generated/results-table/SKILL.md": {
+      "filePath": ".claude/skills/generated/results-table/SKILL.md",
+      "contentHash": "cad961d53292e2b2d5eaac1e3bbe6c416e0e0718a83f3a14efabf98ded1fb611",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 45,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/skills/generated/services/SKILL.md": {
+      "filePath": ".claude/skills/generated/services/SKILL.md",
+      "contentHash": "fbb0b30815ae1caad96c33c7bf1ca155672ed5e25176d85949685702fc267d0e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 93,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/skills/generated/tests/SKILL.md": {
+      "filePath": ".claude/skills/generated/tests/SKILL.md",
+      "contentHash": "b547b6ba4bb7be6f5e121de78897f3ba2e9dbc8e9909e35bbd627da41a9e7896",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 53,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/skills/gitnexus/gitnexus-cli/SKILL.md": {
+      "filePath": ".claude/skills/gitnexus/gitnexus-cli/SKILL.md",
+      "contentHash": "d96337c948a333c8fa81cf7267ecee76083ff28665a07dff7b8f1b3da580b504",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 84,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/skills/gitnexus/gitnexus-debugging/SKILL.md": {
+      "filePath": ".claude/skills/gitnexus/gitnexus-debugging/SKILL.md",
+      "contentHash": "4a1e82aa835c52e38227d853c20ef05ea33be1dfb6aa6511474d15357f1d3f2e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 90,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/skills/gitnexus/gitnexus-exploring/SKILL.md": {
+      "filePath": ".claude/skills/gitnexus/gitnexus-exploring/SKILL.md",
+      "contentHash": "ffafeaa0ce52be079e4d4b3a48c0a166728c009380a243c394c4e08f728527bb",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 79,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/skills/gitnexus/gitnexus-guide/SKILL.md": {
+      "filePath": ".claude/skills/gitnexus/gitnexus-guide/SKILL.md",
+      "contentHash": "40b047beeb9a7c5d47f17426b4061d2c2562c85c11288fa7f8da376d910e4f91",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 65,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/skills/gitnexus/gitnexus-impact-analysis/SKILL.md": {
+      "filePath": ".claude/skills/gitnexus/gitnexus-impact-analysis/SKILL.md",
+      "contentHash": "a4d6e8003c4a822c380b0e81b2fa0d642612236c734a9d51834e362c4be52f33",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 98,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/skills/gitnexus/gitnexus-refactoring/SKILL.md": {
+      "filePath": ".claude/skills/gitnexus/gitnexus-refactoring/SKILL.md",
+      "contentHash": "6aab994ee0266063245245483ee3280645aca66c0c5e56730ffad3f32ecbbc5c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 122,
+      "hasStructuralAnalysis": true
+    },
+    "AGENTS.md": {
+      "filePath": "AGENTS.md",
+      "contentHash": "0e35661d1d234e4f9007f67bc25f1ed84d594a165b9a3838cd33e43f47ebf797",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 44,
+      "hasStructuralAnalysis": true
+    },
+    "angular.json": {
+      "filePath": "angular.json",
+      "contentHash": "99c024f6404c00f4f284be680b267136015e382b8ea3a9cb3a1b5a6d19ebc9a5",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 134,
+      "hasStructuralAnalysis": true
+    },
+    "CLAUDE.md": {
+      "filePath": "CLAUDE.md",
+      "contentHash": "0e35661d1d234e4f9007f67bc25f1ed84d594a165b9a3838cd33e43f47ebf797",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 44,
+      "hasStructuralAnalysis": true
+    },
+    "docs/ARCHITECTURE-OVERVIEW.md": {
+      "filePath": "docs/ARCHITECTURE-OVERVIEW.md",
+      "contentHash": "ca482cb66c777299195d913f0c0d9ace03b87e8277d6702cc28673d815e08528",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 550,
+      "hasStructuralAnalysis": true
+    },
+    "docs/STATE-MANAGEMENT-SPECIFICATION.md": {
+      "filePath": "docs/STATE-MANAGEMENT-SPECIFICATION.md",
+      "contentHash": "16d74f11a2d82256389485b13646d53dec1a85298d64e04f2c5f96661a6684c2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1782,
+      "hasStructuralAnalysis": true
+    },
+    "docs/VVROOM-COMPONENTS.md": {
+      "filePath": "docs/VVROOM-COMPONENTS.md",
+      "contentHash": "fd358d19ee6d557e1305f182e0d5cc33ed1534a4a25666d8f26cb61c0ead16fb",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 193,
+      "hasStructuralAnalysis": true
+    },
+    "docs/VVROOM-DOMAIN.md": {
+      "filePath": "docs/VVROOM-DOMAIN.md",
+      "contentHash": "5f1253f33a4f808fd1bf5752c48d5d6de3299eaffa88c5742815506ad234e969",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 209,
+      "hasStructuralAnalysis": true
+    },
+    "docs/VVROOM-MODELS.md": {
+      "filePath": "docs/VVROOM-MODELS.md",
+      "contentHash": "4681f54483feb8f28da3f781a33b861f9bef7ddc206fea6ee7e669b1a8816163",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 395,
+      "hasStructuralAnalysis": true
+    },
+    "docs/VVROOM-SERVICES.md": {
+      "filePath": "docs/VVROOM-SERVICES.md",
+      "contentHash": "30f7b5c34bfac8be8b8fac37af6d4bf106be409d1c7194c67d938322d38899e0",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 431,
+      "hasStructuralAnalysis": true
+    },
+    "e2e/tests/category-1-visual-appearance.spec.ts": {
+      "filePath": "e2e/tests/category-1-visual-appearance.spec.ts",
+      "contentHash": "fd891ee169fa90ac660fb3f6855b73ff9607468b13f099a4dfa1548e466ba660",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "@playwright/test",
+          "specifiers": [
+            "test",
+            "expect"
+          ]
+        },
+        {
+          "source": "./screenshot-helper",
+          "specifiers": [
+            "PANEL_IDS",
+            "setPanelVisibility",
+            "takeScreenshot",
+            "takeOverlayScreenshot",
+            "navigateToDiscover",
+            "waitForPageLoad"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 780,
+      "hasStructuralAnalysis": true
+    },
+    "e2e/tests/category-2-url-conformity.spec.ts": {
+      "filePath": "e2e/tests/category-2-url-conformity.spec.ts",
+      "contentHash": "d4582d003e4a29d86945f4087f6b130adace379dadcc6e9554c84f6f2a3c2c96",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "@playwright/test",
+          "specifiers": [
+            "test",
+            "expect"
+          ]
+        },
+        {
+          "source": "./screenshot-helper",
+          "specifiers": [
+            "PANEL_IDS",
+            "setPanelVisibility",
+            "takeScreenshot",
+            "navigateToDiscover"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 481,
+      "hasStructuralAnalysis": true
+    },
+    "e2e/tests/category-3-url-consistency.spec.ts": {
+      "filePath": "e2e/tests/category-3-url-consistency.spec.ts",
+      "contentHash": "13139de9fa1e8ea209219f88c4369d8ee1a0af7ad222b1d74a769f0b040e8f02",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "@playwright/test",
+          "specifiers": [
+            "test",
+            "expect"
+          ]
+        },
+        {
+          "source": "./screenshot-helper",
+          "specifiers": [
+            "PANEL_IDS",
+            "setPanelVisibility",
+            "takeScreenshot",
+            "navigateToDiscover"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 383,
+      "hasStructuralAnalysis": true
+    },
+    "e2e/tests/screenshot-helper.ts": {
+      "filePath": "e2e/tests/screenshot-helper.ts",
+      "contentHash": "1424d0adbbec4a093a4a7d59a7053c1ee994cd5628c9b1ef142a6e5ee9d8d065",
+      "functions": [
+        {
+          "name": "collapsePanel",
+          "params": [
+            "page",
+            "panelId"
+          ],
+          "returnType": "Promise<void>",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "expandPanel",
+          "params": [
+            "page",
+            "panelId"
+          ],
+          "returnType": "Promise<void>",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "setPanelVisibility",
+          "params": [
+            "page",
+            "expanded",
+            "collapsed"
+          ],
+          "returnType": "Promise<void>",
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "addUrlBarToScreenshot",
+          "params": [
+            "page",
+            "screenshotBuffer",
+            "url",
+            "width"
+          ],
+          "returnType": "Promise<Buffer>",
+          "exported": false,
+          "lineCount": 111
+        },
+        {
+          "name": "getImageHeight",
+          "params": [
+            "buffer",
+            "page"
+          ],
+          "returnType": "Promise<number>",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "setZoom",
+          "params": [
+            "page",
+            "scale"
+          ],
+          "returnType": "Promise<void>",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "resetZoom",
+          "params": [
+            "page"
+          ],
+          "returnType": "Promise<void>",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "isHeaderFullyVisible",
+          "params": [
+            "page"
+          ],
+          "returnType": "Promise<{ ok: boolean; debug: string }>",
+          "exported": false,
+          "lineCount": 68
+        },
+        {
+          "name": "isFooterFullyVisible",
+          "params": [
+            "page",
+            "viewportHeight"
+          ],
+          "returnType": "Promise<boolean>",
+          "exported": false,
+          "lineCount": 54
+        },
+        {
+          "name": "resetAllScrollPositions",
+          "params": [
+            "page"
+          ],
+          "returnType": "Promise<void>",
+          "exported": false,
+          "lineCount": 19
+        },
+        {
+          "name": "takeScreenshot",
+          "params": [
+            "page",
+            "testId",
+            "description"
+          ],
+          "returnType": "Promise<string[]>",
+          "exported": true,
+          "lineCount": 58
+        },
+        {
+          "name": "waitForPageLoad",
+          "params": [
+            "page"
+          ],
+          "returnType": "Promise<void>",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "navigateToDiscover",
+          "params": [
+            "page",
+            "urlParams"
+          ],
+          "returnType": "Promise<void>",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "takeOverlayScreenshot",
+          "params": [
+            "page",
+            "testId",
+            "description"
+          ],
+          "returnType": "Promise<string>",
+          "exported": true,
+          "lineCount": 22
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "@playwright/test",
+          "specifiers": [
+            "Page"
+          ]
+        },
+        {
+          "source": "fs",
+          "specifiers": [
+            "* as fs"
+          ]
+        },
+        {
+          "source": "path",
+          "specifiers": [
+            "* as path"
+          ]
+        }
+      ],
+      "exports": [
+        "VIEWPORT",
+        "PANEL_IDS",
+        "collapsePanel",
+        "expandPanel",
+        "setPanelVisibility",
+        "takeScreenshot",
+        "waitForPageLoad",
+        "navigateToDiscover",
+        "takeOverlayScreenshot"
+      ],
+      "totalLines": 514,
+      "hasStructuralAnalysis": true
+    },
+    "e2e/tests/screenshots/expanded-row-vin-table.spec.ts": {
+      "filePath": "e2e/tests/screenshots/expanded-row-vin-table.spec.ts",
+      "contentHash": "6aa61243b9d61dfec80d97ad8e0b319e58c9244c750b9328125ec4db1ff02b4d",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "@playwright/test",
+          "specifiers": [
+            "test",
+            "expect"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 45,
+      "hasStructuralAnalysis": true
+    },
+    "e2e/tests/url-mapper-regression.spec.ts": {
+      "filePath": "e2e/tests/url-mapper-regression.spec.ts",
+      "contentHash": "82b216221663852a4c00f7d23af0072f0c7bb9efc7816e18d6aadc28f4a6ba5e",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "@playwright/test",
+          "specifiers": [
+            "test",
+            "expect"
+          ]
+        },
+        {
+          "source": "./screenshot-helper",
+          "specifiers": [
+            "navigateToDiscover"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 422,
+      "hasStructuralAnalysis": true
+    },
+    "karma.conf.js": {
+      "filePath": "karma.conf.js",
+      "contentHash": "e65cb661f0cfa87b19652f2f6e2b93dfed521e06d1c1b16fc0abb75e85a28008",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 45,
+      "hasStructuralAnalysis": true
+    },
+    "package.json": {
+      "filePath": "package.json",
+      "contentHash": "b3fbfa06de014043d4015774ecfea085c116d2c09a0e679a11d95a9fcbe7f38a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 53,
+      "hasStructuralAnalysis": true
+    },
+    "playwright-report/data/c85f268601e66015143421da736cae9814e15f22.md": {
+      "filePath": "playwright-report/data/c85f268601e66015143421da736cae9814e15f22.md",
+      "contentHash": "25cdafeffd9d2ba8cc2aabaa7c4dc98e55c240a0567ddf4c175ed88727c3383e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 721,
+      "hasStructuralAnalysis": true
+    },
+    "playwright-report/data/ee8e0a1d59c304b220d9758a0e1192cfc4ab5f42.md": {
+      "filePath": "playwright-report/data/ee8e0a1d59c304b220d9758a0e1192cfc4ab5f42.md",
+      "contentHash": "d22e596fb5664a6eab226146644d876cfb695b00666f41ad38846163a84e9246",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 97,
+      "hasStructuralAnalysis": true
+    },
+    "playwright-report/index.html": {
+      "filePath": "playwright-report/index.html",
+      "contentHash": "5efda5701a2adf80bebbe5ffaa4196ab3a023f471f5ef27d1fda1f4edfbf5696",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 85,
+      "hasStructuralAnalysis": false
+    },
+    "playwright.config.ts": {
+      "filePath": "playwright.config.ts",
+      "contentHash": "452fca9306cf30bec2ac5d1ea2ba24262f3ae36ca0b14cc44559a00ed8eb0d7f",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "@playwright/test",
+          "specifiers": [
+            "defineConfig"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 32,
+      "hasStructuralAnalysis": true
+    },
+    "proxy.conf.json": {
+      "filePath": "proxy.conf.json",
+      "contentHash": "7cf863806992c3cc0e12a57f34f5fb4ec87ba53b9682a1435af0fffc79b4bafd",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 9,
+      "hasStructuralAnalysis": true
+    },
+    "README.md": {
+      "filePath": "README.md",
+      "contentHash": "5e3e634287827334740eeb8a2621bd01597a826551c57131f1cf229187ac0c81",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 28,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/app-routing.module.ts": {
+      "filePath": "src/app/app-routing.module.ts",
+      "contentHash": "43ea5c5e70ad87072848d26e589bb2819183766f45d29aa66850fe7487ee9062",
+      "functions": [],
+      "classes": [
+        {
+          "name": "AppRoutingModule",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 1
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "NgModule"
+          ]
+        },
+        {
+          "source": "@angular/router",
+          "specifiers": [
+            "RouterModule",
+            "Routes"
+          ]
+        },
+        {
+          "source": "./features/home/home.component",
+          "specifiers": [
+            "HomeComponent"
+          ]
+        },
+        {
+          "source": "./features/discover/discover.component",
+          "specifiers": [
+            "DiscoverComponent"
+          ]
+        }
+      ],
+      "exports": [
+        "AppRoutingModule"
+      ],
+      "totalLines": 22,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/app.component.html": {
+      "filePath": "src/app/app.component.html",
+      "contentHash": "a8f04f68885aacc5d42f12b6545367459876ea85258082a5147278233e004a92",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 19,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/app.component.scss": {
+      "filePath": "src/app/app.component.scss",
+      "contentHash": "75f1eb7be44499f83ee325c300090ebc4c85b88bff3e268ec99adaf3c3996132",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 53,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/app.component.ts": {
+      "filePath": "src/app/app.component.ts",
+      "contentHash": "3b10e6b9c0c42e6f85c30253a8228b58ac933d2c361bde5f70e3818e696dbd42",
+      "functions": [],
+      "classes": [
+        {
+          "name": "AppComponent",
+          "methods": [],
+          "properties": [
+            "title"
+          ],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Component"
+          ]
+        }
+      ],
+      "exports": [
+        "AppComponent"
+      ],
+      "totalLines": 14,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/app.module.ts": {
+      "filePath": "src/app/app.module.ts",
+      "contentHash": "529e5e66ec67a626f77c4441c5988ef42b0419c9ec619f85fc9b3e661ed1507e",
+      "functions": [],
+      "classes": [
+        {
+          "name": "AppModule",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 1
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "NgModule",
+            "ErrorHandler",
+            "Injector"
+          ]
+        },
+        {
+          "source": "@angular/platform-browser",
+          "specifiers": [
+            "BrowserModule"
+          ]
+        },
+        {
+          "source": "@angular/platform-browser/animations",
+          "specifiers": [
+            "BrowserAnimationsModule"
+          ]
+        },
+        {
+          "source": "@angular/common/http",
+          "specifiers": [
+            "HttpClientModule",
+            "HTTP_INTERCEPTORS"
+          ]
+        },
+        {
+          "source": "@angular/forms",
+          "specifiers": [
+            "FormsModule"
+          ]
+        },
+        {
+          "source": "primeng/api",
+          "specifiers": [
+            "MessageService"
+          ]
+        },
+        {
+          "source": "@angular/cdk/drag-drop",
+          "specifiers": [
+            "DragDropModule"
+          ]
+        },
+        {
+          "source": "./app-routing.module",
+          "specifiers": [
+            "AppRoutingModule"
+          ]
+        },
+        {
+          "source": "./app.component",
+          "specifiers": [
+            "AppComponent"
+          ]
+        },
+        {
+          "source": "./primeng.module",
+          "specifiers": [
+            "PrimengModule"
+          ]
+        },
+        {
+          "source": "./framework/framework.module",
+          "specifiers": [
+            "FrameworkModule"
+          ]
+        },
+        {
+          "source": "@halolabs/ngx-popout",
+          "specifiers": [
+            "PopoutModule",
+            "PopOutManagerService"
+          ]
+        },
+        {
+          "source": "./framework/services/global-error.handler",
+          "specifiers": [
+            "GlobalErrorHandler"
+          ]
+        },
+        {
+          "source": "./framework/services/http-error.interceptor",
+          "specifiers": [
+            "HttpErrorInterceptor"
+          ]
+        },
+        {
+          "source": "./framework/services/domain-config-registry.service",
+          "specifiers": [
+            "DOMAIN_CONFIG"
+          ]
+        },
+        {
+          "source": "./domain-config/automobile",
+          "specifiers": [
+            "createAutomobileDomainConfig"
+          ]
+        },
+        {
+          "source": "./features/home/home.component",
+          "specifiers": [
+            "HomeComponent"
+          ]
+        },
+        {
+          "source": "./features/discover/discover.component",
+          "specifiers": [
+            "DiscoverComponent"
+          ]
+        },
+        {
+          "source": "./features/automobile/automobile.component",
+          "specifiers": [
+            "AutomobileComponent"
+          ]
+        }
+      ],
+      "exports": [
+        "AppModule"
+      ],
+      "totalLines": 78,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/domain-config/automobile/adapters/.gitkeep": {
+      "filePath": "src/app/domain-config/automobile/adapters/.gitkeep",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/domain-config/automobile/adapters/automobile-cache-key-builder.ts": {
+      "filePath": "src/app/domain-config/automobile/adapters/automobile-cache-key-builder.ts",
+      "contentHash": "538053682833ee54ed0348795c3bb2c2aef55be2e7132772d01e95e8e29216e2",
+      "functions": [],
+      "classes": [
+        {
+          "name": "AutomobileCacheKeyBuilder",
+          "methods": [
+            "buildKey",
+            "getFilterEntries",
+            "serializeValue",
+            "getPrefix"
+          ],
+          "properties": [
+            "PREFIX"
+          ],
+          "exported": true,
+          "lineCount": 154
+        },
+        {
+          "name": "DefaultCacheKeyBuilder",
+          "methods": [
+            "buildKey",
+            "simpleHash",
+            "getPrefix"
+          ],
+          "properties": [
+            "PREFIX"
+          ],
+          "exported": true,
+          "lineCount": 57
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Injectable"
+          ]
+        },
+        {
+          "source": "../../../framework/models/resource-management.interface",
+          "specifiers": [
+            "ICacheKeyBuilder"
+          ]
+        },
+        {
+          "source": "../models/automobile.filters",
+          "specifiers": [
+            "AutoSearchFilters"
+          ]
+        }
+      ],
+      "exports": [
+        "AutomobileCacheKeyBuilder",
+        "DefaultCacheKeyBuilder"
+      ],
+      "totalLines": 261,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/domain-config/automobile/adapters/index.ts": {
+      "filePath": "src/app/domain-config/automobile/adapters/index.ts",
+      "contentHash": "218e91e2c4de65443a135f13a89b9e9a72a91d6cde536adf778fbce913c9b693",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 12,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/domain-config/automobile/automobile.domain-config.ts": {
+      "filePath": "src/app/domain-config/automobile/automobile.domain-config.ts",
+      "contentHash": "451eed11f89d34f49cdd071f0788b6dab49720f8ea0c40f7f9997ed72105330d",
+      "functions": [
+        {
+          "name": "createAutomobileDomainConfig",
+          "params": [
+            "injector"
+          ],
+          "returnType": "DomainConfig<\n  AutoSearchFilters,\n  VehicleResult,\n  VehicleStatistics\n>",
+          "exported": true,
+          "lineCount": 72
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Injector"
+          ]
+        },
+        {
+          "source": "../../framework/models",
+          "specifiers": [
+            "DomainConfig"
+          ]
+        },
+        {
+          "source": "../../framework/services",
+          "specifiers": [
+            "ApiService"
+          ]
+        },
+        {
+          "source": "../../../environments/environment",
+          "specifiers": [
+            "environment"
+          ]
+        },
+        {
+          "source": "./models",
+          "specifiers": [
+            "AutoSearchFilters",
+            "VehicleResult",
+            "VehicleStatistics"
+          ]
+        },
+        {
+          "source": "./adapters",
+          "specifiers": [
+            "AutomobileCacheKeyBuilder"
+          ]
+        },
+        {
+          "source": "./configs",
+          "specifiers": [
+            "AUTOMOBILE_QUERY_CONTROL_FILTERS",
+            "AUTOMOBILE_HIGHLIGHT_FILTERS",
+            "AUTOMOBILE_CHART_CONFIGS",
+            "AUTOMOBILE_PICKER_CONFIGS"
+          ]
+        },
+        {
+          "source": "../../framework/adapters/generic-url-mapper",
+          "specifiers": [
+            "GenericUrlMapper"
+          ]
+        },
+        {
+          "source": "../../framework/adapters/generic-api-adapter",
+          "specifiers": [
+            "GenericApiAdapter"
+          ]
+        },
+        {
+          "source": "../../framework/utils/config-generators",
+          "specifiers": [
+            "generateTableConfig",
+            "generateFilterDefinitions"
+          ]
+        },
+        {
+          "source": "./automobile.resource",
+          "specifiers": [
+            "AUTOMOBILE_RESOURCE"
+          ]
+        },
+        {
+          "source": "./chart-sources",
+          "specifiers": [
+            "ManufacturerChartDataSource",
+            "TopModelsChartDataSource",
+            "BodyClassChartDataSource",
+            "YearChartDataSource"
+          ]
+        },
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Provider"
+          ]
+        },
+        {
+          "source": "../../framework/services",
+          "specifiers": [
+            "DOMAIN_CONFIG"
+          ]
+        }
+      ],
+      "exports": [
+        "createAutomobileDomainConfig",
+        "DOMAIN_PROVIDER"
+      ],
+      "totalLines": 174,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/domain-config/automobile/automobile.resource.ts": {
+      "filePath": "src/app/domain-config/automobile/automobile.resource.ts",
+      "contentHash": "c15c292094480b18194a81b52e3506910ed79772c8b586f2444a1960e076fdcb",
+      "functions": [
+        {
+          "name": "getAutomobileFilterFields",
+          "params": [],
+          "returnType": "ResourceField[]",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "getAutomobileTableFields",
+          "params": [],
+          "returnType": "ResourceField[]",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "getAutomobileHighlightFields",
+          "params": [],
+          "returnType": "ResourceField[]",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "getAutomobileRangeGroups",
+          "params": [],
+          "returnType": "Map<string, { min?: ResourceField; max?: ResourceField }>",
+          "exported": true,
+          "lineCount": 15
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../../framework/models/resource-definition.interface",
+          "specifiers": [
+            "ResourceDefinition",
+            "ResourceField"
+          ]
+        }
+      ],
+      "exports": [
+        "AUTOMOBILE_RESOURCE",
+        "getAutomobileFilterFields",
+        "getAutomobileTableFields",
+        "getAutomobileHighlightFields",
+        "getAutomobileRangeGroups"
+      ],
+      "totalLines": 368,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/domain-config/automobile/chart-sources/.gitkeep": {
+      "filePath": "src/app/domain-config/automobile/chart-sources/.gitkeep",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/domain-config/automobile/chart-sources/body-class-chart-source.ts": {
+      "filePath": "src/app/domain-config/automobile/chart-sources/body-class-chart-source.ts",
+      "contentHash": "6b5756f1f97415e3f8c64c6d66ef9e8a9e1a9ad164674e713a95dcedaa76dcd7",
+      "functions": [],
+      "classes": [
+        {
+          "name": "BodyClassChartDataSource",
+          "methods": [
+            "transform",
+            "getTitle",
+            "handleClick",
+            "toUrlParams"
+          ],
+          "properties": [
+            "BODY_CLASS_COLORS"
+          ],
+          "exported": true,
+          "lineCount": 160
+        }
+      ],
+      "imports": [
+        {
+          "source": "../../../framework/components/base-chart/base-chart.component",
+          "specifiers": [
+            "ChartDataSource",
+            "ChartData"
+          ]
+        },
+        {
+          "source": "../models/automobile.statistics",
+          "specifiers": [
+            "VehicleStatistics"
+          ]
+        }
+      ],
+      "exports": [
+        "BodyClassChartDataSource"
+      ],
+      "totalLines": 178,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/domain-config/automobile/chart-sources/index.ts": {
+      "filePath": "src/app/domain-config/automobile/chart-sources/index.ts",
+      "contentHash": "98d7d1f219580c76178261ceea0363fe2c88fe6e8bce25f327a234302961bbbb",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 11,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/domain-config/automobile/chart-sources/manufacturer-chart-source.ts": {
+      "filePath": "src/app/domain-config/automobile/chart-sources/manufacturer-chart-source.ts",
+      "contentHash": "af084c220a6f80fe9600fa7dd5e207b5ebaf6469002298ece8ab37f427fa9a4b",
+      "functions": [],
+      "classes": [
+        {
+          "name": "ManufacturerChartDataSource",
+          "methods": [
+            "transform",
+            "getTitle",
+            "handleClick",
+            "toUrlParams"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 146
+        }
+      ],
+      "imports": [
+        {
+          "source": "../../../framework/components/base-chart/base-chart.component",
+          "specifiers": [
+            "ChartDataSource",
+            "ChartData"
+          ]
+        },
+        {
+          "source": "../models/automobile.statistics",
+          "specifiers": [
+            "VehicleStatistics"
+          ]
+        }
+      ],
+      "exports": [
+        "ManufacturerChartDataSource"
+      ],
+      "totalLines": 165,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/domain-config/automobile/chart-sources/top-models-chart-source.ts": {
+      "filePath": "src/app/domain-config/automobile/chart-sources/top-models-chart-source.ts",
+      "contentHash": "77d1ecc7e1d24544a8e686a36c20549ab24fe8f2f7305aabaeb2b4ea565803da",
+      "functions": [],
+      "classes": [
+        {
+          "name": "TopModelsChartDataSource",
+          "methods": [
+            "transform",
+            "getTitle",
+            "handleClick",
+            "toUrlParams"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 154
+        }
+      ],
+      "imports": [
+        {
+          "source": "../../../framework/components/base-chart/base-chart.component",
+          "specifiers": [
+            "ChartDataSource",
+            "ChartData"
+          ]
+        },
+        {
+          "source": "../models/automobile.statistics",
+          "specifiers": [
+            "VehicleStatistics"
+          ]
+        }
+      ],
+      "exports": [
+        "TopModelsChartDataSource"
+      ],
+      "totalLines": 172,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/domain-config/automobile/chart-sources/year-chart-source.ts": {
+      "filePath": "src/app/domain-config/automobile/chart-sources/year-chart-source.ts",
+      "contentHash": "613961c6d026af5c9cfb68973d331ca250bc4305b9f13bfd0f77fd3a9331ffd0",
+      "functions": [],
+      "classes": [
+        {
+          "name": "YearChartDataSource",
+          "methods": [
+            "transform",
+            "getTitle",
+            "handleClick",
+            "toUrlParams"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 157
+        }
+      ],
+      "imports": [
+        {
+          "source": "../../../framework/components/base-chart/base-chart.component",
+          "specifiers": [
+            "ChartDataSource",
+            "ChartData"
+          ]
+        },
+        {
+          "source": "../models/automobile.statistics",
+          "specifiers": [
+            "VehicleStatistics"
+          ]
+        }
+      ],
+      "exports": [
+        "YearChartDataSource"
+      ],
+      "totalLines": 175,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/domain-config/automobile/configs/.gitkeep": {
+      "filePath": "src/app/domain-config/automobile/configs/.gitkeep",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/domain-config/automobile/configs/automobile.chart-configs.ts": {
+      "filePath": "src/app/domain-config/automobile/configs/automobile.chart-configs.ts",
+      "contentHash": "e020ef2f058352482da4b507d48de84869844470a60291477e4bd667fc6e5187",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../../../framework/models/domain-config.interface",
+          "specifiers": [
+            "ChartConfig"
+          ]
+        }
+      ],
+      "exports": [
+        "AUTOMOBILE_CHART_CONFIGS"
+      ],
+      "totalLines": 84,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/domain-config/automobile/configs/automobile.highlight-filters.ts": {
+      "filePath": "src/app/domain-config/automobile/configs/automobile.highlight-filters.ts",
+      "contentHash": "4e1cd7e430eb8c487897b2e9ba6f3073d12320373430592fa95e8ec1e36be3b5",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../../../framework/models/filter-definition.interface",
+          "specifiers": [
+            "FilterDefinition",
+            "FilterOption"
+          ]
+        },
+        {
+          "source": "../models/automobile.filters",
+          "specifiers": [
+            "HighlightFilters"
+          ]
+        },
+        {
+          "source": "../../../../environments/environment",
+          "specifiers": [
+            "environment"
+          ]
+        }
+      ],
+      "exports": [
+        "AUTOMOBILE_HIGHLIGHT_FILTERS"
+      ],
+      "totalLines": 143,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/domain-config/automobile/configs/automobile.picker-configs.ts": {
+      "filePath": "src/app/domain-config/automobile/configs/automobile.picker-configs.ts",
+      "contentHash": "2f6c95cac5b3393efab8842d3c08cee092674d2e39196b0fc31e43fb2b95f665",
+      "functions": [
+        {
+          "name": "createManufacturerModelPickerConfig",
+          "params": [
+            "apiService"
+          ],
+          "returnType": "PickerConfig<ManufacturerModelRow>",
+          "exported": true,
+          "lineCount": 105
+        },
+        {
+          "name": "createAutomobilePickerConfigs",
+          "params": [
+            "injector"
+          ],
+          "returnType": "PickerConfig<any>[]",
+          "exported": true,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../../../framework/models/picker-config.interface",
+          "specifiers": [
+            "PickerConfig"
+          ]
+        },
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Injector"
+          ]
+        },
+        {
+          "source": "../../../framework/services",
+          "specifiers": [
+            "ApiService"
+          ]
+        },
+        {
+          "source": "../../../../environments/environment",
+          "specifiers": [
+            "environment"
+          ]
+        }
+      ],
+      "exports": [
+        "createManufacturerModelPickerConfig",
+        "createAutomobilePickerConfigs",
+        "AUTOMOBILE_PICKER_CONFIGS"
+      ],
+      "totalLines": 172,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/domain-config/automobile/configs/automobile.query-control-filters.ts": {
+      "filePath": "src/app/domain-config/automobile/configs/automobile.query-control-filters.ts",
+      "contentHash": "e86f011ee0269901b4f323714e66086ccac2bd1c3066e23c26e8ff4e30399cbd",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../../../framework/models/filter-definition.interface",
+          "specifiers": [
+            "FilterDefinition",
+            "FilterOption"
+          ]
+        },
+        {
+          "source": "../models/automobile.filters",
+          "specifiers": [
+            "AutoSearchFilters"
+          ]
+        },
+        {
+          "source": "../../../../environments/environment",
+          "specifiers": [
+            "environment"
+          ]
+        }
+      ],
+      "exports": [
+        "AUTOMOBILE_QUERY_CONTROL_FILTERS"
+      ],
+      "totalLines": 150,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/domain-config/automobile/configs/index.ts": {
+      "filePath": "src/app/domain-config/automobile/configs/index.ts",
+      "contentHash": "38bac77e6825cfed08bc8d31f419b8eeac66eb9ec5455e912fe35ac11c415a56",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 15,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/domain-config/automobile/index.ts": {
+      "filePath": "src/app/domain-config/automobile/index.ts",
+      "contentHash": "be8f12d23eb30c3fd6806a7919d9e84cdf386abd1e21ad8fc9937fc8ffaf0054",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/domain-config/automobile/models/.gitkeep": {
+      "filePath": "src/app/domain-config/automobile/models/.gitkeep",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/domain-config/automobile/models/automobile.data.ts": {
+      "filePath": "src/app/domain-config/automobile/models/automobile.data.ts",
+      "contentHash": "1882a223592bd42af160686fdc515cb30edf26724c75941f1359dae3ce91d871",
+      "functions": [],
+      "classes": [
+        {
+          "name": "VehicleResult",
+          "methods": [
+            "constructor",
+            "fromApiResponse",
+            "getDisplayName",
+            "getFullDescription",
+            "hasInstances",
+            "getAge",
+            "isCurrentYear"
+          ],
+          "properties": [
+            "vehicle_id",
+            "manufacturer",
+            "model",
+            "year",
+            "body_class",
+            "instance_count",
+            "first_seen",
+            "last_seen",
+            "drive_type",
+            "engine",
+            "transmission",
+            "fuel_type",
+            "vehicle_class"
+          ],
+          "exported": true,
+          "lineCount": 176
+        },
+        {
+          "name": "VinInstance",
+          "methods": [
+            "constructor",
+            "fromApiResponse",
+            "getFormattedVin",
+            "isValidLength"
+          ],
+          "properties": [
+            "vin",
+            "vehicle_id",
+            "registration_date",
+            "registration_state",
+            "odometer_reading",
+            "status",
+            "color",
+            "owner_id",
+            "last_updated"
+          ],
+          "exported": true,
+          "lineCount": 106
+        }
+      ],
+      "imports": [],
+      "exports": [
+        "VehicleResult",
+        "VinInstance"
+      ],
+      "totalLines": 330,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/domain-config/automobile/models/automobile.filters.ts": {
+      "filePath": "src/app/domain-config/automobile/models/automobile.filters.ts",
+      "contentHash": "fde74d91d1445981e5f5cc04f931f133b805d6c7ab160547a71addb59e07a68e",
+      "functions": [],
+      "classes": [
+        {
+          "name": "AutoSearchFilters",
+          "methods": [
+            "constructor",
+            "fromPartial",
+            "getDefaults",
+            "isEmpty",
+            "clone",
+            "merge",
+            "clearSearch"
+          ],
+          "properties": [
+            "manufacturer",
+            "model",
+            "yearMin",
+            "yearMax",
+            "bodyClass",
+            "instanceCountMin",
+            "instanceCountMax",
+            "page",
+            "size",
+            "sort",
+            "sortDirection",
+            "search",
+            "modelCombos"
+          ],
+          "exported": true,
+          "lineCount": 194
+        }
+      ],
+      "imports": [],
+      "exports": [
+        "AutoSearchFilters"
+      ],
+      "totalLines": 279,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/domain-config/automobile/models/automobile.statistics.ts": {
+      "filePath": "src/app/domain-config/automobile/models/automobile.statistics.ts",
+      "contentHash": "1d60da2ae59a9c93a127f3bf20436cce118f498fe0796e6101f44e9da05c2bfe",
+      "functions": [],
+      "classes": [
+        {
+          "name": "VehicleStatistics",
+          "methods": [
+            "constructor",
+            "fromApiResponse",
+            "fromSegmentedStats",
+            "transformByManufacturer",
+            "transformModelsByManufacturer",
+            "transformByBodyClass",
+            "transformByYearRange",
+            "getYearSpan",
+            "getAverageVehiclesPerManufacturer",
+            "getAverageModelsPerManufacturer"
+          ],
+          "properties": [
+            "totalVehicles",
+            "totalInstances",
+            "manufacturerCount",
+            "modelCount",
+            "bodyClassCount",
+            "yearRange",
+            "averageInstancesPerVehicle",
+            "medianInstancesPerVehicle",
+            "topManufacturers",
+            "topModels",
+            "bodyClassDistribution",
+            "yearDistribution",
+            "manufacturerDistribution",
+            "byManufacturer",
+            "byBodyClass",
+            "byYearRange",
+            "modelsByManufacturer"
+          ],
+          "exported": true,
+          "lineCount": 448
+        },
+        {
+          "name": "ManufacturerStat",
+          "methods": [
+            "constructor",
+            "fromApiResponse"
+          ],
+          "properties": [
+            "name",
+            "count",
+            "instanceCount",
+            "percentage",
+            "modelCount"
+          ],
+          "exported": true,
+          "lineCount": 84
+        },
+        {
+          "name": "ModelStat",
+          "methods": [
+            "constructor",
+            "fromApiResponse",
+            "getFullName"
+          ],
+          "properties": [
+            "name",
+            "manufacturer",
+            "count",
+            "instanceCount",
+            "percentage"
+          ],
+          "exported": true,
+          "lineCount": 95
+        },
+        {
+          "name": "BodyClassStat",
+          "methods": [
+            "constructor",
+            "fromApiResponse"
+          ],
+          "properties": [
+            "name",
+            "count",
+            "instanceCount",
+            "percentage"
+          ],
+          "exported": true,
+          "lineCount": 73
+        },
+        {
+          "name": "YearStat",
+          "methods": [
+            "constructor",
+            "fromApiResponse",
+            "isCurrentYear",
+            "getAge"
+          ],
+          "properties": [
+            "year",
+            "count",
+            "instanceCount",
+            "percentage"
+          ],
+          "exported": true,
+          "lineCount": 97
+        }
+      ],
+      "imports": [],
+      "exports": [
+        "VehicleStatistics",
+        "ManufacturerStat",
+        "ModelStat",
+        "BodyClassStat",
+        "YearStat"
+      ],
+      "totalLines": 857,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/domain-config/automobile/models/index.ts": {
+      "filePath": "src/app/domain-config/automobile/models/index.ts",
+      "contentHash": "eaf7a5842136e99c257a3f4ca019a5371f7b67594230b4b9aa87283cd1f0b213",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 10,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/features/automobile/automobile-discover/.gitkeep": {
+      "filePath": "src/app/features/automobile/automobile-discover/.gitkeep",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/features/automobile/automobile.component.html": {
+      "filePath": "src/app/features/automobile/automobile.component.html",
+      "contentHash": "aca8bb7f79d821bbd5ba506b35b9c9bdfb38339cd55bc4bf3b11a6ba7c2c5e68",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 56,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/features/automobile/automobile.component.scss": {
+      "filePath": "src/app/features/automobile/automobile.component.scss",
+      "contentHash": "550218689d9c71f67c6e0ed13da2b863f6339699fa6283fc0ed603023aea25df",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 280,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/features/automobile/automobile.component.ts": {
+      "filePath": "src/app/features/automobile/automobile.component.ts",
+      "contentHash": "c57158bf67d084e843be667a2de53742ab523ddfd68523f52dbf7d82ef9c85f4",
+      "functions": [],
+      "classes": [
+        {
+          "name": "AutomobileComponent",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Component"
+          ]
+        }
+      ],
+      "exports": [
+        "AutomobileComponent"
+      ],
+      "totalLines": 33,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/features/discover/discover.component.html": {
+      "filePath": "src/app/features/discover/discover.component.html",
+      "contentHash": "e31ff4169ee1abcceae81a335eccfd06187a7300873e0e983ce8a220663bc7a1",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 149,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/features/discover/discover.component.scss": {
+      "filePath": "src/app/features/discover/discover.component.scss",
+      "contentHash": "478f0ed0d33873d07c3a6064b54c9bcf5718e958b868fcf84c02b9cc79ef6edb",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 452,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/features/discover/discover.component.ts": {
+      "filePath": "src/app/features/discover/discover.component.ts",
+      "contentHash": "ad168d64112fac4f5655fc4972009b5bb9c4a82db9d264ffbfd055df1258dafc",
+      "functions": [],
+      "classes": [
+        {
+          "name": "DiscoverComponent",
+          "methods": [
+            "constructor",
+            "ngOnInit",
+            "isPanelPoppedOut",
+            "isPanelCollapsed",
+            "togglePanelCollapse",
+            "onPanelDrop",
+            "getPanelTitle",
+            "popOutPanel",
+            "onChartPopOut",
+            "handlePopOutMessage",
+            "handleComponentOutput",
+            "onUrlParamsChange",
+            "onClearAllFilters",
+            "onStandaloneChartClick",
+            "onPickerSelectionChangeAndUpdateUrl",
+            "ngOnDestroy"
+          ],
+          "properties": [
+            "domainConfig",
+            "collapsedPanels",
+            "panelOrder",
+            "destroy$",
+            "panelComponentMap"
+          ],
+          "exported": true,
+          "lineCount": 312
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "ChangeDetectionStrategy",
+            "ChangeDetectorRef",
+            "Component",
+            "Inject",
+            "Injector",
+            "OnDestroy",
+            "OnInit",
+            "Type"
+          ]
+        },
+        {
+          "source": "@angular/router",
+          "specifiers": [
+            "Params"
+          ]
+        },
+        {
+          "source": "@angular/cdk/drag-drop",
+          "specifiers": [
+            "CdkDragDrop",
+            "moveItemInArray"
+          ]
+        },
+        {
+          "source": "primeng/api",
+          "specifiers": [
+            "MessageService"
+          ]
+        },
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "Subject"
+          ]
+        },
+        {
+          "source": "rxjs/operators",
+          "specifiers": [
+            "takeUntil"
+          ]
+        },
+        {
+          "source": "@halolabs/ngx-popout",
+          "specifiers": [
+            "PopOutManagerService",
+            "PopOutMessageType"
+          ]
+        },
+        {
+          "source": "../../domain-config/automobile/configs/automobile.picker-configs",
+          "specifiers": [
+            "createAutomobilePickerConfigs"
+          ]
+        },
+        {
+          "source": "../../framework/models",
+          "specifiers": [
+            "DomainConfig"
+          ]
+        },
+        {
+          "source": "../../framework/services/domain-config-registry.service",
+          "specifiers": [
+            "DOMAIN_CONFIG"
+          ]
+        },
+        {
+          "source": "../../framework/services/picker-config-registry.service",
+          "specifiers": [
+            "PickerConfigRegistry"
+          ]
+        },
+        {
+          "source": "../../framework/services/resource-management.service",
+          "specifiers": [
+            "ResourceManagementService"
+          ]
+        },
+        {
+          "source": "../../framework/services/url-state.service",
+          "specifiers": [
+            "UrlStateService"
+          ]
+        },
+        {
+          "source": "../../framework/services/user-preferences.service",
+          "specifiers": [
+            "UserPreferencesService"
+          ]
+        },
+        {
+          "source": "../../framework/components/base-chart/base-chart.component",
+          "specifiers": [
+            "BaseChartComponent",
+            "ChartDataSource"
+          ]
+        },
+        {
+          "source": "../../framework/components/base-picker/base-picker.component",
+          "specifiers": [
+            "BasePickerComponent"
+          ]
+        },
+        {
+          "source": "../../framework/components/dynamic-results-table/dynamic-results-table.component",
+          "specifiers": [
+            "DynamicResultsTableComponent"
+          ]
+        },
+        {
+          "source": "../../framework/components/query-control/query-control.component",
+          "specifiers": [
+            "QueryControlComponent"
+          ]
+        },
+        {
+          "source": "../../framework/components/query-panel/query-panel.component",
+          "specifiers": [
+            "QueryPanelComponent"
+          ]
+        },
+        {
+          "source": "../../framework/components/results-table/results-table.component",
+          "specifiers": [
+            "ResultsTableComponent"
+          ]
+        },
+        {
+          "source": "../../framework/components/statistics-panel-2/statistics-panel-2.component",
+          "specifiers": [
+            "StatisticsPanel2Component"
+          ]
+        }
+      ],
+      "exports": [
+        "DiscoverComponent"
+      ],
+      "totalLines": 351,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/features/home/home.component.html": {
+      "filePath": "src/app/features/home/home.component.html",
+      "contentHash": "644cbc1b506e9e064ec36d9ab37cec4497237817ff735215bbb3654792c7cb52",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 40,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/features/home/home.component.scss": {
+      "filePath": "src/app/features/home/home.component.scss",
+      "contentHash": "10efa1d5e9a3b1d2c4e311beebb9f5cdd90471e3f79fd03168c1d6daaecb398a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 271,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/features/home/home.component.ts": {
+      "filePath": "src/app/features/home/home.component.ts",
+      "contentHash": "ffe45b642670c2111c615fcbd2c9bb6beb7cb4af608e331dd80f19578c0e29cc",
+      "functions": [],
+      "classes": [
+        {
+          "name": "HomeComponent",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 2
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Component"
+          ]
+        }
+      ],
+      "exports": [
+        "HomeComponent"
+      ],
+      "totalLines": 23,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/features/panel-popout/panel-popout.component.html": {
+      "filePath": "src/app/features/panel-popout/panel-popout.component.html",
+      "contentHash": "a61cb34775319bab104a3ba9e7b0d015288a4b5d1dbef459414623332593f258",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 66,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/features/panel-popout/panel-popout.component.scss": {
+      "filePath": "src/app/features/panel-popout/panel-popout.component.scss",
+      "contentHash": "b8590554e53791ca5411c53e38bdaa14f50be29e2b69ec1b356a7949ab69d2a8",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 48,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/features/panel-popout/panel-popout.component.ts": {
+      "filePath": "src/app/features/panel-popout/panel-popout.component.ts",
+      "contentHash": "d8a0dbf7c3eefef125b4ad7dd384a1009baadbcbd06eac3dea97496f95d66fb9",
+      "functions": [],
+      "classes": [
+        {
+          "name": "PanelPopoutComponent",
+          "methods": [
+            "constructor",
+            "ngOnInit",
+            "handleMessage",
+            "getChartDataSource",
+            "getPickerConfigId",
+            "onUrlParamsChange",
+            "onClearAllFilters",
+            "onPickerSelectionChange",
+            "onChartClick",
+            "ngOnDestroy"
+          ],
+          "properties": [
+            "gridId",
+            "panelId",
+            "panelType",
+            "domainConfig",
+            "destroy$"
+          ],
+          "exported": true,
+          "lineCount": 208
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "ChangeDetectionStrategy",
+            "ChangeDetectorRef",
+            "Component",
+            "Inject",
+            "Injector",
+            "OnDestroy",
+            "OnInit"
+          ]
+        },
+        {
+          "source": "@angular/router",
+          "specifiers": [
+            "ActivatedRoute"
+          ]
+        },
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "Subject"
+          ]
+        },
+        {
+          "source": "rxjs/operators",
+          "specifiers": [
+            "takeUntil"
+          ]
+        },
+        {
+          "source": "../../domain-config/automobile/configs/automobile.picker-configs",
+          "specifiers": [
+            "createAutomobilePickerConfigs"
+          ]
+        },
+        {
+          "source": "../../framework/models",
+          "specifiers": [
+            "DomainConfig"
+          ]
+        },
+        {
+          "source": "../../framework/models/picker-config.interface",
+          "specifiers": [
+            "PickerSelectionEvent"
+          ]
+        },
+        {
+          "source": "../../framework/models/popout.interface",
+          "specifiers": [
+            "PopOutMessage",
+            "PopOutMessageType"
+          ]
+        },
+        {
+          "source": "../../framework/services/domain-config-registry.service",
+          "specifiers": [
+            "DOMAIN_CONFIG"
+          ]
+        },
+        {
+          "source": "../../framework/services/picker-config-registry.service",
+          "specifiers": [
+            "PickerConfigRegistry"
+          ]
+        },
+        {
+          "source": "../../framework/services/popout-context.service",
+          "specifiers": [
+            "PopOutContextService"
+          ]
+        },
+        {
+          "source": "../../framework/services/resource-management.service",
+          "specifiers": [
+            "ResourceManagementService"
+          ]
+        },
+        {
+          "source": "../../framework/tokens/popout.token",
+          "specifiers": [
+            "IS_POPOUT_TOKEN"
+          ]
+        }
+      ],
+      "exports": [
+        "PanelPopoutComponent"
+      ],
+      "totalLines": 273,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/features/popout/popout.component.ts": {
+      "filePath": "src/app/features/popout/popout.component.ts",
+      "contentHash": "3a9d61b18b62c16f911ed49d263f78bf9f4baaff4bf7630545f13f752481d735",
+      "functions": [],
+      "classes": [
+        {
+          "name": "PopoutComponent",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 1
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Component"
+          ]
+        }
+      ],
+      "exports": [
+        "PopoutComponent"
+      ],
+      "totalLines": 33,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/adapters/generic-api-adapter.ts": {
+      "filePath": "src/app/framework/adapters/generic-api-adapter.ts",
+      "contentHash": "73b03aa7167be77d56d7e13281968d0ec3e45e9b37b161e3e5694c6f357ac5e5",
+      "functions": [
+        {
+          "name": "createApiAdapter",
+          "params": [
+            "apiService",
+            "definition",
+            "config"
+          ],
+          "returnType": "GenericApiAdapter<TFilters, TData, TStatistics>",
+          "exported": true,
+          "lineCount": 15
+        }
+      ],
+      "classes": [
+        {
+          "name": "GenericApiAdapter",
+          "methods": [
+            "constructor",
+            "fetchData",
+            "filtersToApiParams",
+            "handleSorting",
+            "findSortFieldName",
+            "findSortDirectionFieldName",
+            "addHighlightParams",
+            "transformResponse",
+            "getSearchEndpoint",
+            "getStatsEndpoint"
+          ],
+          "properties": [
+            "definition",
+            "apiService",
+            "config",
+            "highlightPrefix"
+          ],
+          "exported": true,
+          "lineCount": 194
+        }
+      ],
+      "imports": [
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "Observable"
+          ]
+        },
+        {
+          "source": "rxjs/operators",
+          "specifiers": [
+            "map"
+          ]
+        },
+        {
+          "source": "../models/resource-management.interface",
+          "specifiers": [
+            "IApiAdapter",
+            "ApiAdapterResponse"
+          ]
+        },
+        {
+          "source": "../models/api-response.interface",
+          "specifiers": [
+            "ApiResponse"
+          ]
+        },
+        {
+          "source": "../services/api.service",
+          "specifiers": [
+            "ApiService"
+          ]
+        },
+        {
+          "source": "../models/resource-definition.interface",
+          "specifiers": [
+            "ResourceDefinition",
+            "ResourceField",
+            "getApiParamName",
+            "DEFAULT_HIGHLIGHTS"
+          ]
+        }
+      ],
+      "exports": [
+        "GenericApiAdapter",
+        "createApiAdapter"
+      ],
+      "totalLines": 310,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/adapters/generic-url-mapper.spec.ts": {
+      "filePath": "src/app/framework/adapters/generic-url-mapper.spec.ts",
+      "contentHash": "f2b6d46254d9550f1da06520c230b631573ad0f486915850176d0dff062a1136",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./generic-url-mapper",
+          "specifiers": [
+            "GenericUrlMapper"
+          ]
+        },
+        {
+          "source": "../../domain-config/automobile/adapters/automobile-url-mapper",
+          "specifiers": [
+            "AutomobileUrlMapper"
+          ]
+        },
+        {
+          "source": "../../domain-config/automobile/automobile.resource",
+          "specifiers": [
+            "AUTOMOBILE_RESOURCE"
+          ]
+        },
+        {
+          "source": "../../domain-config/automobile/models/automobile.filters",
+          "specifiers": [
+            "AutoSearchFilters"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 274,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/adapters/generic-url-mapper.ts": {
+      "filePath": "src/app/framework/adapters/generic-url-mapper.ts",
+      "contentHash": "93f1014fc7c12c57181bccabeffd4736c579cc1a55306993b0fb03b7d51853ae",
+      "functions": [
+        {
+          "name": "createUrlMapper",
+          "params": [
+            "definition"
+          ],
+          "returnType": "GenericUrlMapper<TFilters>",
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "classes": [
+        {
+          "name": "GenericUrlMapper",
+          "methods": [
+            "constructor",
+            "buildUrlParamMap",
+            "toUrlParams",
+            "fromUrlParams",
+            "extractHighlights",
+            "serializeValue",
+            "parseValue",
+            "parseNumber",
+            "getParameterMapping",
+            "getUrlParamName",
+            "buildShareableUrl",
+            "validateUrlParams",
+            "validateRanges",
+            "sanitizeUrlParams"
+          ],
+          "properties": [
+            "definition",
+            "fieldsByUrlParam",
+            "highlightPrefix",
+            "highlightSeparator",
+            "normalizePipes"
+          ],
+          "exported": true,
+          "lineCount": 393
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/router",
+          "specifiers": [
+            "Params"
+          ]
+        },
+        {
+          "source": "../models/resource-management.interface",
+          "specifiers": [
+            "IFilterUrlMapper"
+          ]
+        },
+        {
+          "source": "../models/resource-definition.interface",
+          "specifiers": [
+            "ResourceDefinition",
+            "ResourceField",
+            "getUrlParamName",
+            "findFieldByUrlParam",
+            "DEFAULT_HIGHLIGHTS"
+          ]
+        }
+      ],
+      "exports": [
+        "GenericUrlMapper",
+        "createUrlMapper"
+      ],
+      "totalLines": 453,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/components/ai-chat/ai-chat.component.html": {
+      "filePath": "src/app/framework/components/ai-chat/ai-chat.component.html",
+      "contentHash": "2f52afdc3a180831230311807db87202f573a653822df3de34c8354dc3912b25",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 173,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/ai-chat/ai-chat.component.scss": {
+      "filePath": "src/app/framework/components/ai-chat/ai-chat.component.scss",
+      "contentHash": "da5913e39dcea7e1d553667ef75fca9ccc33a90c817c4fa4c33fddb9be10651c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 439,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/ai-chat/ai-chat.component.ts": {
+      "filePath": "src/app/framework/components/ai-chat/ai-chat.component.ts",
+      "contentHash": "52ed744af89ba8c2ad8396f4f9cb96b8536cdbca7017ea9bdaa0c19694d985ba",
+      "functions": [],
+      "classes": [
+        {
+          "name": "AiChatComponent",
+          "methods": [
+            "constructor",
+            "messages",
+            "isLoading",
+            "error",
+            "hasMessages",
+            "hasApiContext",
+            "isDeepSeekMode",
+            "ngOnInit",
+            "ngOnDestroy",
+            "checkConnection",
+            "sendMessage",
+            "onKeyDown",
+            "onPaste",
+            "processImageFile",
+            "clearPendingImage",
+            "getPendingImageUrl",
+            "clearChat",
+            "close",
+            "toggleExpanded",
+            "retryConnection",
+            "toggleDeepSeek",
+            "useExampleQuery",
+            "getMessageClass",
+            "formatTime",
+            "renderContent",
+            "escapeHtml",
+            "scrollToBottom"
+          ],
+          "properties": [
+            "messageInput",
+            "messagesContainer",
+            "closeChat",
+            "destroy$",
+            "renderedCache",
+            "userMessage",
+            "pendingImage",
+            "isExpanded",
+            "connectionStatus"
+          ],
+          "exported": true,
+          "lineCount": 316
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "ChangeDetectionStrategy",
+            "ChangeDetectorRef",
+            "Component",
+            "ElementRef",
+            "EventEmitter",
+            "OnInit",
+            "OnDestroy",
+            "Output",
+            "ViewChild"
+          ]
+        },
+        {
+          "source": "@angular/platform-browser",
+          "specifiers": [
+            "DomSanitizer",
+            "SafeHtml"
+          ]
+        },
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "Subject"
+          ]
+        },
+        {
+          "source": "rxjs/operators",
+          "specifiers": [
+            "takeUntil"
+          ]
+        },
+        {
+          "source": "katex",
+          "specifiers": [
+            "katex"
+          ]
+        },
+        {
+          "source": "../../services/ai.service",
+          "specifiers": [
+            "AiService"
+          ]
+        },
+        {
+          "source": "../../models/ai.models",
+          "specifiers": [
+            "ChatMessage",
+            "ImageAttachment"
+          ]
+        }
+      ],
+      "exports": [
+        "AiChatComponent"
+      ],
+      "totalLines": 351,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/components/base-chart/.gitkeep": {
+      "filePath": "src/app/framework/components/base-chart/.gitkeep",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/base-chart/base-chart.component.html": {
+      "filePath": "src/app/framework/components/base-chart/base-chart.component.html",
+      "contentHash": "6659b627a1c319107c6b49c42c59f1a3eebb135590c0337e35649368f4311660",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 44,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/base-chart/base-chart.component.scss": {
+      "filePath": "src/app/framework/components/base-chart/base-chart.component.scss",
+      "contentHash": "eef20193ed5b8968f30f7ce3e1c5dbd0e0006a74c10700741f35891412b6d2a6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 93,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/base-chart/base-chart.component.ts": {
+      "filePath": "src/app/framework/components/base-chart/base-chart.component.ts",
+      "contentHash": "36ca3b3b080c82b257ba8395fc3e269fe7483b37def25fa930a1f0699b536bb3",
+      "functions": [],
+      "classes": [
+        {
+          "name": "BaseChartComponent",
+          "methods": [
+            "constructor",
+            "ngOnInit",
+            "ngOnChanges",
+            "onHighlightKeyDown",
+            "onHighlightKeyUp",
+            "onPlotlyClick",
+            "onPlotlySelected",
+            "onPlotlyError",
+            "retryRender",
+            "buildConfig",
+            "updateChart",
+            "handleRenderError"
+          ],
+          "properties": [
+            "chartWrapper",
+            "dataSource",
+            "statistics",
+            "highlights",
+            "selectedValue",
+            "hideTitle",
+            "canPopOut",
+            "chartClick",
+            "popOutClick",
+            "plotData",
+            "plotLayout",
+            "plotConfig",
+            "plotRevision",
+            "isHighlightModeActive",
+            "chartTitle",
+            "hasError",
+            "errorMessage"
+          ],
+          "exported": true,
+          "lineCount": 173
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Component",
+            "Input",
+            "Output",
+            "EventEmitter",
+            "OnInit",
+            "OnChanges",
+            "ChangeDetectionStrategy",
+            "ChangeDetectorRef",
+            "ElementRef",
+            "ViewChild",
+            "HostListener"
+          ]
+        }
+      ],
+      "exports": [
+        "BaseChartComponent"
+      ],
+      "totalLines": 232,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/components/base-picker/.gitkeep": {
+      "filePath": "src/app/framework/components/base-picker/.gitkeep",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/base-picker/base-picker.component.html": {
+      "filePath": "src/app/framework/components/base-picker/base-picker.component.html",
+      "contentHash": "854a2e722db00f53358171f8bbc2c25d05876843ce2f5d9c50ddfa9d4b416b8f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 146,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/base-picker/base-picker.component.scss": {
+      "filePath": "src/app/framework/components/base-picker/base-picker.component.scss",
+      "contentHash": "7bf385576c4342d01e649e7b468ee1b6dc175516f26a6936cedb8c44b4a84f46",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 142,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/base-picker/base-picker.component.ts": {
+      "filePath": "src/app/framework/components/base-picker/base-picker.component.ts",
+      "contentHash": "240a8c828389f526a038922ef32e6ed6d4bd7fb3618af67412b3ff639919ead5",
+      "functions": [],
+      "classes": [
+        {
+          "name": "BasePickerComponent",
+          "methods": [
+            "constructor",
+            "ngOnInit",
+            "ngOnDestroy",
+            "ngAfterViewInit",
+            "syncPaginatorWidth",
+            "loadConfiguration",
+            "initializeState",
+            "subscribeToUrlChanges",
+            "hydrateFromUrl",
+            "hydrateSelections",
+            "loadData",
+            "onRowSelectionChange",
+            "onSelectAll",
+            "onLazyLoad",
+            "onPageChange",
+            "onSearch",
+            "onSort",
+            "isRowSelected",
+            "allVisibleSelected",
+            "emitSelectionChange",
+            "applySelections",
+            "clearSelections",
+            "fieldToString"
+          ],
+          "properties": [
+            "environment",
+            "configId",
+            "config",
+            "selectionChange",
+            "state",
+            "activeConfig",
+            "destroy$"
+          ],
+          "exported": true,
+          "lineCount": 467
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "AfterViewInit",
+            "ChangeDetectionStrategy",
+            "ChangeDetectorRef",
+            "Component",
+            "ElementRef",
+            "EventEmitter",
+            "Inject",
+            "Input",
+            "OnDestroy",
+            "OnInit",
+            "Optional",
+            "Output"
+          ]
+        },
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "Subject"
+          ]
+        },
+        {
+          "source": "rxjs/operators",
+          "specifiers": [
+            "distinctUntilChanged",
+            "map",
+            "takeUntil"
+          ]
+        },
+        {
+          "source": "../../../../environments/environment",
+          "specifiers": [
+            "environment"
+          ]
+        },
+        {
+          "source": "../../models/picker-config.interface",
+          "specifiers": [
+            "getDefaultPickerState",
+            "PickerApiParams",
+            "PickerConfig",
+            "PickerSelectionEvent",
+            "PickerState"
+          ]
+        },
+        {
+          "source": "../../services/picker-config-registry.service",
+          "specifiers": [
+            "PickerConfigRegistry"
+          ]
+        },
+        {
+          "source": "../../services/resource-management.service",
+          "specifiers": [
+            "ResourceManagementService"
+          ]
+        },
+        {
+          "source": "../../services/url-state.service",
+          "specifiers": [
+            "UrlStateService"
+          ]
+        }
+      ],
+      "exports": [
+        "BasePickerComponent"
+      ],
+      "totalLines": 525,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/components/basic-results-table/.gitkeep": {
+      "filePath": "src/app/framework/components/basic-results-table/.gitkeep",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/basic-results-table/basic-results-table.component.html": {
+      "filePath": "src/app/framework/components/basic-results-table/basic-results-table.component.html",
+      "contentHash": "c1c267808cd0ce542e9d734abfbd9360e2f028ed9bc53d1ac63b69a165af0e2b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 121,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/basic-results-table/basic-results-table.component.scss": {
+      "filePath": "src/app/framework/components/basic-results-table/basic-results-table.component.scss",
+      "contentHash": "b2f9212616edccf66bfd11ccf55e93dcf1e0ed0d7abcc61db1411e63b304b2cd",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 114,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/basic-results-table/basic-results-table.component.ts": {
+      "filePath": "src/app/framework/components/basic-results-table/basic-results-table.component.ts",
+      "contentHash": "a5c5a907ec4ac37bd91ea5798b1a392626d74cafd4be2e13b72819f419c4c154",
+      "functions": [],
+      "classes": [
+        {
+          "name": "BasicResultsTableComponent",
+          "methods": [
+            "filters",
+            "results",
+            "totalResults",
+            "loading",
+            "paginatorFirst",
+            "currentFilters",
+            "constructor",
+            "ngOnInit",
+            "ngOnDestroy",
+            "onPageChange",
+            "onSort",
+            "refresh",
+            "ngAfterViewInit",
+            "syncPaginatorWidth"
+          ],
+          "properties": [
+            "destroy$",
+            "environment",
+            "domainConfig",
+            "urlParamsChange",
+            "expandedRows",
+            "Object"
+          ],
+          "exported": true,
+          "lineCount": 178
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "AfterViewInit",
+            "ChangeDetectionStrategy",
+            "ChangeDetectorRef",
+            "Component",
+            "ElementRef",
+            "EventEmitter",
+            "Input",
+            "OnDestroy",
+            "OnInit",
+            "Output"
+          ]
+        },
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "Subject"
+          ]
+        },
+        {
+          "source": "rxjs/operators",
+          "specifiers": [
+            "filter",
+            "takeUntil"
+          ]
+        },
+        {
+          "source": "../../../../environments/environment",
+          "specifiers": [
+            "environment"
+          ]
+        },
+        {
+          "source": "../../models/domain-config.interface",
+          "specifiers": [
+            "DomainConfig"
+          ]
+        },
+        {
+          "source": "../../services/resource-management.service",
+          "specifiers": [
+            "ResourceManagementService"
+          ]
+        },
+        {
+          "source": "../../services/popout-context.service",
+          "specifiers": [
+            "PopOutContextService"
+          ]
+        },
+        {
+          "source": "../../models/popout.interface",
+          "specifiers": [
+            "PopOutMessageType"
+          ]
+        }
+      ],
+      "exports": [
+        "BasicResultsTableComponent"
+      ],
+      "totalLines": 215,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/components/column-manager/.gitkeep": {
+      "filePath": "src/app/framework/components/column-manager/.gitkeep",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/dockview-statistics-panel/.gitkeep": {
+      "filePath": "src/app/framework/components/dockview-statistics-panel/.gitkeep",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/dynamic-results-table/dynamic-results-table.component.html": {
+      "filePath": "src/app/framework/components/dynamic-results-table/dynamic-results-table.component.html",
+      "contentHash": "3a64d639e585c24d942194b698dedb9831ff4a353b6d93d8d0f8efa9dbfee866",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 150,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/dynamic-results-table/dynamic-results-table.component.scss": {
+      "filePath": "src/app/framework/components/dynamic-results-table/dynamic-results-table.component.scss",
+      "contentHash": "b4613332f5c893625afb8486d19a631d8e0e47b3c8d7ca70dc630100ec14f304",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 250,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/dynamic-results-table/dynamic-results-table.component.ts": {
+      "filePath": "src/app/framework/components/dynamic-results-table/dynamic-results-table.component.ts",
+      "contentHash": "a4b51ae5addc73ccee3f96ef9606a3e31a7664fddbb184a143b7117c8c90eb1b",
+      "functions": [],
+      "classes": [
+        {
+          "name": "DynamicResultsTableComponent",
+          "methods": [
+            "filters$",
+            "results$",
+            "totalResults$",
+            "loading$",
+            "paginatorFirst",
+            "currentFilters",
+            "getObjectKeys",
+            "trackByField",
+            "constructor",
+            "ngOnInit",
+            "ngAfterViewInit",
+            "ngOnDestroy",
+            "onPageChange",
+            "onSort",
+            "onColReorder",
+            "onColResize",
+            "onRowExpand",
+            "getVinsForVehicle",
+            "isVinLoading",
+            "syncPaginatorWidth",
+            "refresh"
+          ],
+          "properties": [
+            "destroy$",
+            "environment",
+            "domainConfig",
+            "urlParamsChange",
+            "expandedRows",
+            "Object",
+            "columns",
+            "vinCache",
+            "vinLoading",
+            "vinColumns"
+          ],
+          "exported": true,
+          "lineCount": 292
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "AfterViewInit",
+            "ChangeDetectionStrategy",
+            "ChangeDetectorRef",
+            "Component",
+            "ElementRef",
+            "EventEmitter",
+            "Input",
+            "OnDestroy",
+            "OnInit",
+            "Output"
+          ]
+        },
+        {
+          "source": "@angular/common/http",
+          "specifiers": [
+            "HttpClient"
+          ]
+        },
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "Observable",
+            "Subject"
+          ]
+        },
+        {
+          "source": "rxjs/operators",
+          "specifiers": [
+            "filter",
+            "takeUntil"
+          ]
+        },
+        {
+          "source": "../../../../environments/environment",
+          "specifiers": [
+            "environment"
+          ]
+        },
+        {
+          "source": "../../models/domain-config.interface",
+          "specifiers": [
+            "DomainConfig"
+          ]
+        },
+        {
+          "source": "../../services/resource-management.service",
+          "specifiers": [
+            "ResourceManagementService"
+          ]
+        },
+        {
+          "source": "../../services/popout-context.service",
+          "specifiers": [
+            "PopOutContextService"
+          ]
+        },
+        {
+          "source": "../../models/popout.interface",
+          "specifiers": [
+            "PopOutMessageType"
+          ]
+        }
+      ],
+      "exports": [
+        "DynamicResultsTableComponent"
+      ],
+      "totalLines": 342,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/components/inline-filters/.gitkeep": {
+      "filePath": "src/app/framework/components/inline-filters/.gitkeep",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/query-control/query-control.component.html": {
+      "filePath": "src/app/framework/components/query-control/query-control.component.html",
+      "contentHash": "dd2a23b2b5bcddf6f54787e10ca40416ac589a855ad6f200bc25b1ca0031eb8e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 225,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/query-control/query-control.component.scss": {
+      "filePath": "src/app/framework/components/query-control/query-control.component.scss",
+      "contentHash": "a4edb11e8ec3bca52a29d9b340b6191b2d48e3f74706d674d1f1170e2b8ef607",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 238,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/query-control/query-control.component.ts": {
+      "filePath": "src/app/framework/components/query-control/query-control.component.ts",
+      "contentHash": "96fd25b20f6e22b0b2303e47930ad6e0f4c7c84737e189d9cfb723086c13c9c3",
+      "functions": [],
+      "classes": [
+        {
+          "name": "QueryControlComponent",
+          "methods": [
+            "constructor",
+            "ngOnInit",
+            "ngOnDestroy",
+            "resetFilterDropdown",
+            "onDropdownKeydown",
+            "onFieldSelected",
+            "onDropdownHide",
+            "openFilterDialog",
+            "isHighlightFilterDef",
+            "openMultiselectDialog",
+            "onMultiselectDialogShow",
+            "onSearchChange",
+            "retryLoadOptions",
+            "applyFilter",
+            "openRangeDialog",
+            "parseRangeValue",
+            "getRangeStep",
+            "getRangeUseGrouping",
+            "getRangeDecimalPlaces",
+            "onRangeDialogShow",
+            "applyRange",
+            "cancelDialog",
+            "onDialogHide",
+            "removeFilter",
+            "onChipClick",
+            "onHighlightChipClick",
+            "isRemoveButtonClick",
+            "editFilter",
+            "editHighlight",
+            "removeHighlight",
+            "clearAllHighlights",
+            "clearAll",
+            "hasActiveFiltersOrHighlights",
+            "syncFiltersFromUrl",
+            "syncFiltersFromPopoutState",
+            "syncFilterFromUrl",
+            "getChipLabel",
+            "getChipTooltip",
+            "getSelectionSummary"
+          ],
+          "properties": [
+            "destroy$",
+            "environment",
+            "domainConfig",
+            "urlParamsChange",
+            "clearAllFilters",
+            "searchInput",
+            "filterFieldDropdown",
+            "filterFieldOptions",
+            "selectedField",
+            "isHighlightFilter",
+            "pendingFieldSelection",
+            "activeFilters",
+            "activeHighlights",
+            "currentFilterDef",
+            "showMultiselectDialog",
+            "multiselectDialogTitle",
+            "multiselectDialogSubtitle",
+            "loadingOptions",
+            "optionsError",
+            "allOptions",
+            "filteredOptions",
+            "selectedOptions",
+            "searchQuery",
+            "showRangeDialog",
+            "rangeMin",
+            "rangeMax",
+            "availableRange",
+            "currentRangeConfig"
+          ],
+          "exported": true,
+          "lineCount": 884
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "ChangeDetectionStrategy",
+            "ChangeDetectorRef",
+            "Component",
+            "EventEmitter",
+            "Input",
+            "OnDestroy",
+            "OnInit",
+            "Output",
+            "ViewChild"
+          ]
+        },
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "Subject"
+          ]
+        },
+        {
+          "source": "rxjs/operators",
+          "specifiers": [
+            "filter",
+            "takeUntil"
+          ]
+        },
+        {
+          "source": "../../../../environments/environment",
+          "specifiers": [
+            "environment"
+          ]
+        },
+        {
+          "source": "../../models/domain-config.interface",
+          "specifiers": [
+            "DomainConfig"
+          ]
+        },
+        {
+          "source": "../../models/filter-definition.interface",
+          "specifiers": [
+            "FilterDefinition",
+            "FilterOption",
+            "RangeConfig"
+          ]
+        },
+        {
+          "source": "../../services/api.service",
+          "specifiers": [
+            "ApiService"
+          ]
+        },
+        {
+          "source": "../../services/url-state.service",
+          "specifiers": [
+            "UrlStateService"
+          ]
+        },
+        {
+          "source": "../../services/popout-context.service",
+          "specifiers": [
+            "PopOutContextService"
+          ]
+        },
+        {
+          "source": "../../models/popout.interface",
+          "specifiers": [
+            "PopOutMessageType"
+          ]
+        },
+        {
+          "source": "primeng/dropdown",
+          "specifiers": [
+            "Dropdown"
+          ]
+        }
+      ],
+      "exports": [
+        "QueryControlComponent"
+      ],
+      "totalLines": 973,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/components/query-panel/.gitkeep": {
+      "filePath": "src/app/framework/components/query-panel/.gitkeep",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/query-panel/query-panel.component.html": {
+      "filePath": "src/app/framework/components/query-panel/query-panel.component.html",
+      "contentHash": "9d5894ce98e458f92592ad4aa9f87ae89b2520b13a1109555072a1e5a265a3dc",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 168,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/query-panel/query-panel.component.scss": {
+      "filePath": "src/app/framework/components/query-panel/query-panel.component.scss",
+      "contentHash": "d6af9eefd4eb1c61c470533192b541906ee79ee7a8e7e7d7254c799d7f4dffcf",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 89,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/query-panel/query-panel.component.ts": {
+      "filePath": "src/app/framework/components/query-panel/query-panel.component.ts",
+      "contentHash": "5ad5f8f191f17ae838c04494bc788ca20676c46d4a95f1b84a7eef1d5f52a4a3",
+      "functions": [],
+      "classes": [
+        {
+          "name": "QueryPanelComponent",
+          "methods": [
+            "constructor",
+            "ngOnInit",
+            "ngOnDestroy",
+            "onFilterChange",
+            "applyFilterChange",
+            "clearFilters",
+            "getFilterOptions",
+            "loadDynamicFilterOptions",
+            "onAutocompleteKeyUp",
+            "handleAutocompleteBlur",
+            "onAutocompleteFocus",
+            "onAutocompleteSearch",
+            "onRangeSliderChange",
+            "clearRangeFilter"
+          ],
+          "properties": [
+            "environment",
+            "domainConfig",
+            "urlParamsChange",
+            "clearAllFilters",
+            "filters$",
+            "currentFilters",
+            "dynamicOptions",
+            "autocompleteSuggestions",
+            "destroy$",
+            "searchSubject"
+          ],
+          "exported": true,
+          "lineCount": 340
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "ChangeDetectionStrategy",
+            "ChangeDetectorRef",
+            "Component",
+            "EventEmitter",
+            "Input",
+            "OnDestroy",
+            "OnInit",
+            "Output"
+          ]
+        },
+        {
+          "source": "@angular/common/http",
+          "specifiers": [
+            "HttpClient"
+          ]
+        },
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "Observable",
+            "Subject"
+          ]
+        },
+        {
+          "source": "rxjs/operators",
+          "specifiers": [
+            "takeUntil",
+            "filter",
+            "debounceTime"
+          ]
+        },
+        {
+          "source": "../../../../environments/environment",
+          "specifiers": [
+            "environment"
+          ]
+        },
+        {
+          "source": "../../models/domain-config.interface",
+          "specifiers": [
+            "DomainConfig",
+            "FilterDefinition",
+            "FilterOption"
+          ]
+        },
+        {
+          "source": "../../services/resource-management.service",
+          "specifiers": [
+            "ResourceManagementService"
+          ]
+        },
+        {
+          "source": "../../services/popout-context.service",
+          "specifiers": [
+            "PopOutContextService"
+          ]
+        },
+        {
+          "source": "../../models/popout.interface",
+          "specifiers": [
+            "PopOutMessageType"
+          ]
+        }
+      ],
+      "exports": [
+        "QueryPanelComponent"
+      ],
+      "totalLines": 396,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/components/results-table/results-table.component.html": {
+      "filePath": "src/app/framework/components/results-table/results-table.component.html",
+      "contentHash": "a72c4acab429a8dc54db30c3c53056474182836a3c4b60345f01cb8e856a0131",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 273,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/results-table/results-table.component.scss": {
+      "filePath": "src/app/framework/components/results-table/results-table.component.scss",
+      "contentHash": "34e416b8c75fc69a76f1d5b33cb2238997556f7b78923f782db19986d5153332",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 221,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/results-table/results-table.component.ts": {
+      "filePath": "src/app/framework/components/results-table/results-table.component.ts",
+      "contentHash": "173810c02f93368d92106fe320c4c05313fd1d12a8f47208714295f0b8e69be5",
+      "functions": [],
+      "classes": [
+        {
+          "name": "ResultsTableComponent",
+          "methods": [
+            "filters",
+            "results",
+            "totalResults",
+            "loading",
+            "error",
+            "statistics",
+            "paginatorFirst",
+            "currentFilters",
+            "constructor",
+            "ngOnInit",
+            "ngOnDestroy",
+            "onPageChange",
+            "onSort",
+            "onFilterChange",
+            "clearFilters",
+            "toggleFilterPanel",
+            "refresh",
+            "getFilterOptions",
+            "loadDynamicFilterOptions",
+            "syncPaginatorWidth",
+            "ngAfterViewInit"
+          ],
+          "properties": [
+            "destroy$",
+            "environment",
+            "domainConfig",
+            "expandedRows",
+            "filterPanelCollapsed",
+            "dynamicOptions",
+            "Object"
+          ],
+          "exported": true,
+          "lineCount": 294
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "AfterViewInit",
+            "ChangeDetectionStrategy",
+            "ChangeDetectorRef",
+            "Component",
+            "ElementRef",
+            "Input",
+            "OnDestroy",
+            "OnInit"
+          ]
+        },
+        {
+          "source": "@angular/common/http",
+          "specifiers": [
+            "HttpClient"
+          ]
+        },
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "Subject"
+          ]
+        },
+        {
+          "source": "rxjs/operators",
+          "specifiers": [
+            "filter",
+            "takeUntil"
+          ]
+        },
+        {
+          "source": "../../../../environments/environment",
+          "specifiers": [
+            "environment"
+          ]
+        },
+        {
+          "source": "../../models/domain-config.interface",
+          "specifiers": [
+            "DomainConfig",
+            "FilterOption"
+          ]
+        },
+        {
+          "source": "../../services/resource-management.service",
+          "specifiers": [
+            "ResourceManagementService"
+          ]
+        },
+        {
+          "source": "../../services/popout-context.service",
+          "specifiers": [
+            "PopOutContextService"
+          ]
+        },
+        {
+          "source": "../../models/popout.interface",
+          "specifiers": [
+            "PopOutMessageType"
+          ]
+        }
+      ],
+      "exports": [
+        "ResultsTableComponent"
+      ],
+      "totalLines": 330,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/components/statistics-panel-2/.gitkeep": {
+      "filePath": "src/app/framework/components/statistics-panel-2/.gitkeep",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/statistics-panel-2/statistics-panel-2.component.html": {
+      "filePath": "src/app/framework/components/statistics-panel-2/statistics-panel-2.component.html",
+      "contentHash": "c82108d3189a2815318e7c9155ec920d7601a1c983e67d2eeeba4bc8b414ff8d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 48,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/statistics-panel-2/statistics-panel-2.component.scss": {
+      "filePath": "src/app/framework/components/statistics-panel-2/statistics-panel-2.component.scss",
+      "contentHash": "45eed96bccdae854efe6b71c9430df1f4b7250ce6215a6c2d3f68ab66b4d1dc7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 156,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/components/statistics-panel-2/statistics-panel-2.component.ts": {
+      "filePath": "src/app/framework/components/statistics-panel-2/statistics-panel-2.component.ts",
+      "contentHash": "f642d1143bdf0c34520b32761914b434ef73cf56378811e783a04f4a829ccf7c",
+      "functions": [],
+      "classes": [
+        {
+          "name": "StatisticsPanel2Component",
+          "methods": [
+            "statistics",
+            "highlights",
+            "isInPopOut",
+            "constructor",
+            "ngOnInit",
+            "ngOnDestroy",
+            "onChartDrop",
+            "onChartPopOut",
+            "onChartClick",
+            "getDataSource"
+          ],
+          "properties": [
+            "destroy$",
+            "environment",
+            "domainConfig",
+            "isPanelPoppedOut",
+            "isRenderedInPopout",
+            "chartPopOut",
+            "chartClicked",
+            "chartOrder"
+          ],
+          "exported": true,
+          "lineCount": 140
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "ChangeDetectionStrategy",
+            "ChangeDetectorRef",
+            "Component",
+            "EventEmitter",
+            "Input",
+            "OnDestroy",
+            "OnInit",
+            "Output"
+          ]
+        },
+        {
+          "source": "@angular/cdk/drag-drop",
+          "specifiers": [
+            "CdkDragDrop",
+            "moveItemInArray"
+          ]
+        },
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "Subject"
+          ]
+        },
+        {
+          "source": "rxjs/operators",
+          "specifiers": [
+            "takeUntil"
+          ]
+        },
+        {
+          "source": "../../../../environments/environment",
+          "specifiers": [
+            "environment"
+          ]
+        },
+        {
+          "source": "../../models/domain-config.interface",
+          "specifiers": [
+            "ChartConfig",
+            "DomainConfig"
+          ]
+        },
+        {
+          "source": "../../models/popout.interface",
+          "specifiers": [
+            "PopOutMessageType"
+          ]
+        },
+        {
+          "source": "../../services/popout-context.service",
+          "specifiers": [
+            "PopOutContextService"
+          ]
+        },
+        {
+          "source": "../../services/resource-management.service",
+          "specifiers": [
+            "ResourceManagementService"
+          ]
+        },
+        {
+          "source": "../../services/url-state.service",
+          "specifiers": [
+            "UrlStateService"
+          ]
+        },
+        {
+          "source": "../base-chart/base-chart.component",
+          "specifiers": [
+            "ChartDataSource",
+            "BaseChartComponent"
+          ]
+        }
+      ],
+      "exports": [
+        "StatisticsPanel2Component"
+      ],
+      "totalLines": 193,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/components/statistics-panel/.gitkeep": {
+      "filePath": "src/app/framework/components/statistics-panel/.gitkeep",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/framework.module.ts": {
+      "filePath": "src/app/framework/framework.module.ts",
+      "contentHash": "fd49d81abc6e2b6dade375137e6165e82a619742682cf7cf9a8b3ffd8b725f43",
+      "functions": [],
+      "classes": [
+        {
+          "name": "FrameworkModule",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 1
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "NgModule"
+          ]
+        },
+        {
+          "source": "@angular/common",
+          "specifiers": [
+            "CommonModule"
+          ]
+        },
+        {
+          "source": "@angular/forms",
+          "specifiers": [
+            "FormsModule"
+          ]
+        },
+        {
+          "source": "../primeng.module",
+          "specifiers": [
+            "PrimengModule"
+          ]
+        },
+        {
+          "source": "plotly.js-dist-min",
+          "specifiers": [
+            "* as PlotlyJS"
+          ]
+        },
+        {
+          "source": "@halolabs/ngx-plotly-wrapper",
+          "specifiers": [
+            "PlotlyModule"
+          ]
+        },
+        {
+          "source": "./components/ai-chat/ai-chat.component",
+          "specifiers": [
+            "AiChatComponent"
+          ]
+        },
+        {
+          "source": "./components/base-picker/base-picker.component",
+          "specifiers": [
+            "BasePickerComponent"
+          ]
+        },
+        {
+          "source": "./components/results-table/results-table.component",
+          "specifiers": [
+            "ResultsTableComponent"
+          ]
+        },
+        {
+          "source": "./components/basic-results-table/basic-results-table.component",
+          "specifiers": [
+            "BasicResultsTableComponent"
+          ]
+        },
+        {
+          "source": "./components/dynamic-results-table/dynamic-results-table.component",
+          "specifiers": [
+            "DynamicResultsTableComponent"
+          ]
+        },
+        {
+          "source": "./components/query-control/query-control.component",
+          "specifiers": [
+            "QueryControlComponent"
+          ]
+        },
+        {
+          "source": "./components/query-panel/query-panel.component",
+          "specifiers": [
+            "QueryPanelComponent"
+          ]
+        },
+        {
+          "source": "./components/base-chart/base-chart.component",
+          "specifiers": [
+            "BaseChartComponent"
+          ]
+        },
+        {
+          "source": "./components/statistics-panel-2/statistics-panel-2.component",
+          "specifiers": [
+            "StatisticsPanel2Component"
+          ]
+        }
+      ],
+      "exports": [
+        "FrameworkModule"
+      ],
+      "totalLines": 74,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/models/ai.models.ts": {
+      "filePath": "src/app/framework/models/ai.models.ts",
+      "contentHash": "c37bbe8dec9ba5c64d800ebea6d14791116ea8af6616edb9b1fe44e00966df95",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 202,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/models/api-response.interface.ts": {
+      "filePath": "src/app/framework/models/api-response.interface.ts",
+      "contentHash": "3b099ef50292ec1c9c13275052266898b6da39883ed14cff86abc898199519e2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 104,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/models/domain-config.interface.ts": {
+      "filePath": "src/app/framework/models/domain-config.interface.ts",
+      "contentHash": "5877bed9d554f3301634fec251d68993e9f876767ebc9616b4aa3adc55334a8a",
+      "functions": [
+        {
+          "name": "mergeDomainFeatures",
+          "params": [
+            "features"
+          ],
+          "returnType": "DomainFeatures",
+          "exported": true,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Type"
+          ]
+        },
+        {
+          "source": "./resource-management.interface",
+          "specifiers": [
+            "IApiAdapter",
+            "IFilterUrlMapper",
+            "ICacheKeyBuilder"
+          ]
+        },
+        {
+          "source": "./table-config.interface",
+          "specifiers": [
+            "TableConfig"
+          ]
+        },
+        {
+          "source": "./picker-config.interface",
+          "specifiers": [
+            "PickerConfig"
+          ]
+        },
+        {
+          "source": "./filter-definition.interface",
+          "specifiers": [
+            "QueryFilterDefinition"
+          ]
+        }
+      ],
+      "exports": [
+        "DEFAULT_DOMAIN_FEATURES",
+        "mergeDomainFeatures"
+      ],
+      "totalLines": 837,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/models/error-notification.interface.ts": {
+      "filePath": "src/app/framework/models/error-notification.interface.ts",
+      "contentHash": "32cb2387a3d5ff72caa90ece58dad004da5230be75cf546d0b01e8c4b2c33109",
+      "functions": [
+        {
+          "name": "getErrorCategoryFromStatus",
+          "params": [
+            "status"
+          ],
+          "returnType": "ErrorCategory",
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "getErrorCategoryFromCode",
+          "params": [
+            "code"
+          ],
+          "returnType": "ErrorCategory",
+          "exported": true,
+          "lineCount": 29
+        },
+        {
+          "name": "createErrorNotificationFromHttpError",
+          "params": [
+            "error"
+          ],
+          "returnType": "ErrorNotification",
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "createErrorNotificationFromError",
+          "params": [
+            "error"
+          ],
+          "returnType": "ErrorNotification",
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "getSummaryForCategory",
+          "params": [
+            "category"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 19
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "DEFAULT_ERROR_DISPLAY_OPTIONS",
+        "ERROR_CATEGORY_SEVERITY_MAP",
+        "getErrorCategoryFromStatus",
+        "getErrorCategoryFromCode",
+        "createErrorNotificationFromHttpError",
+        "createErrorNotificationFromError"
+      ],
+      "totalLines": 312,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/models/filter-definition.interface.ts": {
+      "filePath": "src/app/framework/models/filter-definition.interface.ts",
+      "contentHash": "4469b5bc6737d529e301e1e4ce394d23012cc10a59f1ea99a872c9e752abe6a7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 251,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/models/index.ts": {
+      "filePath": "src/app/framework/models/index.ts",
+      "contentHash": "3c04c5307f0cfc2a3f664f0ba767f81c0270715f5d4209bc05966b5064cffd4a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "QueryFilterDefinition",
+        "QueryFilterOption"
+      ],
+      "totalLines": 16,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/models/pagination.interface.ts": {
+      "filePath": "src/app/framework/models/pagination.interface.ts",
+      "contentHash": "901fc3d8a37508b865e38d694ef91a44aa36fd9256ad0c91cdbecea54f604778",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 60,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/models/picker-config.interface.ts": {
+      "filePath": "src/app/framework/models/picker-config.interface.ts",
+      "contentHash": "e48e397c4922bebe871f850926302018ca20b2d3eddb9041929778c9f34ae7f3",
+      "functions": [
+        {
+          "name": "getDefaultPickerState",
+          "params": [
+            "pageSize"
+          ],
+          "returnType": "PickerState<T>",
+          "exported": true,
+          "lineCount": 17
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "Observable"
+          ]
+        },
+        {
+          "source": "./table-config.interface",
+          "specifiers": [
+            "PrimeNGColumn"
+          ]
+        }
+      ],
+      "exports": [
+        "getDefaultPickerState"
+      ],
+      "totalLines": 403,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/models/popout.interface.ts": {
+      "filePath": "src/app/framework/models/popout.interface.ts",
+      "contentHash": "05ef03f66a2f534e8edfe6a4603100e897bf785206f2135ca5067c70e5795349",
+      "functions": [
+        {
+          "name": "buildWindowFeatures",
+          "params": [
+            "features"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 29
+        },
+        {
+          "name": "parsePopOutRoute",
+          "params": [
+            "url"
+          ],
+          "returnType": "PopOutContext | null",
+          "exported": true,
+          "lineCount": 14
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "buildWindowFeatures",
+        "parsePopOutRoute"
+      ],
+      "totalLines": 401,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/models/resource-definition.interface.ts": {
+      "filePath": "src/app/framework/models/resource-definition.interface.ts",
+      "contentHash": "880b2bc300dd29ce92922071224db1792ffc0282e5e6869c2332c394880eabd3",
+      "functions": [
+        {
+          "name": "getFilterableFields",
+          "params": [
+            "definition"
+          ],
+          "returnType": "ResourceField[]",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "getSortableFields",
+          "params": [
+            "definition"
+          ],
+          "returnType": "ResourceField[]",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "getVisibleFields",
+          "params": [
+            "definition"
+          ],
+          "returnType": "ResourceField[]",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "getHighlightableFields",
+          "params": [
+            "definition"
+          ],
+          "returnType": "ResourceField[]",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "getUrlParamName",
+          "params": [
+            "field"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "getApiParamName",
+          "params": [
+            "field"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "groupRangeFields",
+          "params": [
+            "definition"
+          ],
+          "returnType": "Map<string, { min?: ResourceField; max?: ResourceField }>",
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "findField",
+          "params": [
+            "definition",
+            "name"
+          ],
+          "returnType": "ResourceField | undefined",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "findFieldByUrlParam",
+          "params": [
+            "definition",
+            "urlParam"
+          ],
+          "returnType": "ResourceField | undefined",
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "DEFAULT_PAGINATION",
+        "DEFAULT_SORTING",
+        "DEFAULT_HIGHLIGHTS",
+        "getFilterableFields",
+        "getSortableFields",
+        "getVisibleFields",
+        "getHighlightableFields",
+        "getUrlParamName",
+        "getApiParamName",
+        "groupRangeFields",
+        "findField",
+        "findFieldByUrlParam"
+      ],
+      "totalLines": 639,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/models/resource-management.interface.ts": {
+      "filePath": "src/app/framework/models/resource-management.interface.ts",
+      "contentHash": "ff5b513d731a60a4c755fdd3a3e780f7661d12f0655a7f474931673f5ecae9ab",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "Observable"
+          ]
+        },
+        {
+          "source": "@angular/router",
+          "specifiers": [
+            "Params"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 186,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/models/table-config.interface.ts": {
+      "filePath": "src/app/framework/models/table-config.interface.ts",
+      "contentHash": "8d8afdad7980b74c277316f030ab7f8d2af9c7a3e6b2d093e3e9fa4491576642",
+      "functions": [
+        {
+          "name": "getDefaultTableConfig",
+          "params": [
+            "tableId",
+            "dataKey",
+            "columns"
+          ],
+          "returnType": "TableConfig<T>",
+          "exported": true,
+          "lineCount": 31
+        },
+        {
+          "name": "getVisibleColumns",
+          "params": [
+            "config"
+          ],
+          "returnType": "PrimeNGColumn<T>[]",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "getTableBindings",
+          "params": [
+            "config"
+          ],
+          "returnType": "{\n  dataKey: keyof T;\n  stateStorage: 'local' | 'session' | null;\n  stateKey: string;\n  paginator: boolean;\n  rows: number;\n  rowsPerPageOptions: number[];\n  lazy: boolean;\n  reorderableColumns: boolean;\n  resizableColumns: boolean;\n  columnResizeMode: 'fit' | 'expand';\n  responsive: boolean;\n  responsiveLayout: 'scroll' | 'stack';\n  styleClass: string;\n}",
+          "exported": true,
+          "lineCount": 31
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "getDefaultTableConfig",
+        "getVisibleColumns",
+        "getTableBindings"
+      ],
+      "totalLines": 400,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/services/.gitkeep": {
+      "filePath": "src/app/framework/services/.gitkeep",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/services/ai.service.ts": {
+      "filePath": "src/app/framework/services/ai.service.ts",
+      "contentHash": "7af475a2ee79c32f40e9d61eba43f71b29647cd7914449d836910979ba42c595",
+      "functions": [
+        {
+          "name": "createAutomobileApiContext",
+          "params": [],
+          "returnType": "ApiContext",
+          "exported": true,
+          "lineCount": 83
+        }
+      ],
+      "classes": [
+        {
+          "name": "AiService",
+          "methods": [
+            "messages$",
+            "isLoading$",
+            "error$",
+            "hasApiContext$",
+            "isDeepSeekMode$",
+            "messages",
+            "isLoading",
+            "error",
+            "hasApiContext",
+            "isDeepSeekMode",
+            "constructor",
+            "preloadModels",
+            "preloadModel",
+            "selectModel",
+            "getTimeout",
+            "configure",
+            "setApiContext",
+            "clearApiContext",
+            "toggleDeepSeekMode",
+            "sendMessage",
+            "summarizeResults",
+            "generateRequestId",
+            "clearSession",
+            "getSession",
+            "checkHealth",
+            "getAvailableModels",
+            "buildChatRequest",
+            "buildSystemPrompt",
+            "processResponse",
+            "stripQueryBlock",
+            "extractQueryFromResponse",
+            "parseQueryJson",
+            "handleError",
+            "generateSessionId"
+          ],
+          "properties": [
+            "OLLAMA_HOST",
+            "TEXT_MODEL",
+            "VISION_MODEL",
+            "DEEPSEEK_MODEL",
+            "defaultConfig",
+            "config$",
+            "session$",
+            "apiContext$",
+            "modelsPreloaded",
+            "deepSeekMode$",
+            "responseStream$"
+          ],
+          "exported": true,
+          "lineCount": 735
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Injectable"
+          ]
+        },
+        {
+          "source": "@angular/common/http",
+          "specifiers": [
+            "HttpClient",
+            "HttpErrorResponse"
+          ]
+        },
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "Observable",
+            "Subject",
+            "BehaviorSubject",
+            "throwError",
+            "of"
+          ]
+        },
+        {
+          "source": "rxjs/operators",
+          "specifiers": [
+            "catchError",
+            "map",
+            "timeout",
+            "tap",
+            "finalize"
+          ]
+        },
+        {
+          "source": "../models/ai.models",
+          "specifiers": [
+            "ChatMessage",
+            "ChatSession",
+            "OllamaChatRequest",
+            "OllamaChatResponse",
+            "AiServiceConfig",
+            "ApiContext",
+            "ExtractedQuery",
+            "ImageAttachment"
+          ]
+        }
+      ],
+      "exports": [
+        "AiService",
+        "createAutomobileApiContext"
+      ],
+      "totalLines": 854,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/services/api.service.ts": {
+      "filePath": "src/app/framework/services/api.service.ts",
+      "contentHash": "c4bfa8c7dbbdd26b3c69fa4d0df631c532799c333ea8da405a27f6b8f89c50cd",
+      "functions": [],
+      "classes": [
+        {
+          "name": "ApiService",
+          "methods": [
+            "constructor",
+            "get",
+            "post",
+            "put",
+            "patch",
+            "delete",
+            "getStandard",
+            "buildHttpParams",
+            "handleError"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 224
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Injectable"
+          ]
+        },
+        {
+          "source": "@angular/common/http",
+          "specifiers": [
+            "HttpClient",
+            "HttpParams",
+            "HttpErrorResponse"
+          ]
+        },
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "Observable",
+            "throwError"
+          ]
+        },
+        {
+          "source": "rxjs/operators",
+          "specifiers": [
+            "catchError",
+            "map"
+          ]
+        },
+        {
+          "source": "../models/api-response.interface",
+          "specifiers": [
+            "ApiResponse",
+            "StandardApiResponse"
+          ]
+        }
+      ],
+      "exports": [
+        "ApiService"
+      ],
+      "totalLines": 283,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/services/domain-config-registry.service.ts": {
+      "filePath": "src/app/framework/services/domain-config-registry.service.ts",
+      "contentHash": "8ff56e86fee9f51665cf44b6d309fd320311c6fcc398847fd185b553aeccaa7b",
+      "functions": [],
+      "classes": [
+        {
+          "name": "DomainConfigRegistry",
+          "methods": [
+            "constructor",
+            "register",
+            "registerMultiple",
+            "registerDomainProviders",
+            "get",
+            "getActive",
+            "setActive",
+            "getActiveDomainName",
+            "has",
+            "getAllDomainNames",
+            "getAll",
+            "unregister",
+            "clear",
+            "getCount",
+            "validate",
+            "getValidationSummary"
+          ],
+          "properties": [
+            "configs",
+            "activeDomainName"
+          ],
+          "exported": true,
+          "lineCount": 257
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Injectable",
+            "InjectionToken",
+            "Injector",
+            "Provider"
+          ]
+        },
+        {
+          "source": "../models/domain-config.interface",
+          "specifiers": [
+            "DomainConfig"
+          ]
+        },
+        {
+          "source": "./domain-config-validator.service",
+          "specifiers": [
+            "DomainConfigValidator"
+          ]
+        }
+      ],
+      "exports": [
+        "DOMAIN_CONFIG",
+        "DomainConfigRegistry"
+      ],
+      "totalLines": 312,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/services/domain-config-validator.service.ts": {
+      "filePath": "src/app/framework/services/domain-config-validator.service.ts",
+      "contentHash": "4bdb2253b93854620a1bfcfd4963a5ab51692e8c1eb508b6b221fbfd0aa8764b",
+      "functions": [],
+      "classes": [
+        {
+          "name": "DomainConfigValidator",
+          "methods": [
+            "constructor",
+            "validate",
+            "validateAndSanitize",
+            "validateRequiredString",
+            "validateRequiredField",
+            "validateDomainNameFormat",
+            "validateApiBaseUrl",
+            "validateApiAdapter",
+            "validateUrlMapper",
+            "validateCacheKeyBuilder",
+            "validateTableConfig",
+            "validateArray",
+            "validatePickers",
+            "validateFilters",
+            "validateCharts",
+            "validateFeatures",
+            "getValidationSummary"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 531
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Injectable"
+          ]
+        },
+        {
+          "source": "../models/domain-config.interface",
+          "specifiers": [
+            "DomainConfig",
+            "ConfigValidationError",
+            "ConfigValidationResult",
+            "ConfigErrorType",
+            "mergeDomainFeatures"
+          ]
+        }
+      ],
+      "exports": [
+        "DomainConfigValidator"
+      ],
+      "totalLines": 564,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/services/error-notification.service.ts": {
+      "filePath": "src/app/framework/services/error-notification.service.ts",
+      "contentHash": "19b70c76bb57897e8a93252829d00487b09594a8215eec841935a7e50ea6cfab",
+      "functions": [],
+      "classes": [
+        {
+          "name": "ErrorNotificationService",
+          "methods": [
+            "constructor",
+            "showError",
+            "showWarning",
+            "showInfo",
+            "showSuccess",
+            "showHttpError",
+            "showGenericError",
+            "show",
+            "clearAll",
+            "clear",
+            "isDuplicate",
+            "recordError",
+            "getErrorSignature",
+            "logError",
+            "startCleanupTimer",
+            "cleanupRecentErrors",
+            "ngOnDestroy"
+          ],
+          "properties": [
+            "recentErrors",
+            "DEDUPLICATION_WINDOW",
+            "CLEANUP_INTERVAL",
+            "cleanupTimer"
+          ],
+          "exported": true,
+          "lineCount": 351
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Injectable"
+          ]
+        },
+        {
+          "source": "primeng/api",
+          "specifiers": [
+            "MessageService"
+          ]
+        },
+        {
+          "source": "../models/error-notification.interface",
+          "specifiers": [
+            "ErrorNotification",
+            "ErrorCategory",
+            "ErrorSeverity",
+            "ErrorDisplayOptions",
+            "DEFAULT_ERROR_DISPLAY_OPTIONS",
+            "createErrorNotificationFromHttpError",
+            "createErrorNotificationFromError"
+          ]
+        }
+      ],
+      "exports": [
+        "ErrorNotificationService"
+      ],
+      "totalLines": 392,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/services/filter-options.service.ts": {
+      "filePath": "src/app/framework/services/filter-options.service.ts",
+      "contentHash": "dbe5447f865ef1a2a7719f368fa8efed4ff18ab651296591b5f8ae634c6075ab",
+      "functions": [],
+      "classes": [
+        {
+          "name": "FilterOptionsService",
+          "methods": [
+            "constructor",
+            "getCache",
+            "getCache$",
+            "getOptions",
+            "getRawResponse",
+            "getRawResponseAsync",
+            "syncFromExternal",
+            "isCached",
+            "clearCache"
+          ],
+          "properties": [
+            "cache",
+            "cache$"
+          ],
+          "exported": true,
+          "lineCount": 146
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Injectable"
+          ]
+        },
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "BehaviorSubject",
+            "Observable",
+            "of"
+          ]
+        },
+        {
+          "source": "rxjs/operators",
+          "specifiers": [
+            "tap",
+            "catchError",
+            "map"
+          ]
+        },
+        {
+          "source": "./api.service",
+          "specifiers": [
+            "ApiService"
+          ]
+        },
+        {
+          "source": "../models/filter-definition.interface",
+          "specifiers": [
+            "FilterOption"
+          ]
+        }
+      ],
+      "exports": [
+        "FilterOptionsService"
+      ],
+      "totalLines": 190,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/services/global-error.handler.ts": {
+      "filePath": "src/app/framework/services/global-error.handler.ts",
+      "contentHash": "33a321946d424671920f8cd08a35e5fb4deaf541795fd04c84a28281922718f8",
+      "functions": [],
+      "classes": [
+        {
+          "name": "GlobalErrorHandler",
+          "methods": [
+            "errorNotificationService",
+            "constructor",
+            "handleError",
+            "unwrapError",
+            "isHttpError",
+            "isChunkLoadError",
+            "isPromiseRejection",
+            "handleHttpError",
+            "handleChunkLoadError",
+            "handlePromiseRejection",
+            "handleGenericError",
+            "logErrorToConsole",
+            "sendErrorToLoggingService"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 282
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "ErrorHandler",
+            "Injectable",
+            "Injector"
+          ]
+        },
+        {
+          "source": "@angular/common/http",
+          "specifiers": [
+            "HttpErrorResponse"
+          ]
+        },
+        {
+          "source": "./error-notification.service",
+          "specifiers": [
+            "ErrorNotificationService"
+          ]
+        },
+        {
+          "source": "../models/error-notification.interface",
+          "specifiers": [
+            "ErrorCategory"
+          ]
+        }
+      ],
+      "exports": [
+        "GlobalErrorHandler"
+      ],
+      "totalLines": 312,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/services/http-error.interceptor.ts": {
+      "filePath": "src/app/framework/services/http-error.interceptor.ts",
+      "contentHash": "31ea6d06024ddcdea1a8211f8896a8a0385fd1efc061013f167d142394a84d46",
+      "functions": [],
+      "classes": [
+        {
+          "name": "HttpErrorInterceptor",
+          "methods": [
+            "intercept",
+            "handleError",
+            "getErrorCode",
+            "getErrorMessage",
+            "logError",
+            "setRetryConfig"
+          ],
+          "properties": [
+            "retryConfig"
+          ],
+          "exported": true,
+          "lineCount": 217
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Injectable"
+          ]
+        },
+        {
+          "source": "@angular/common/http",
+          "specifiers": [
+            "HttpEvent",
+            "HttpInterceptor",
+            "HttpHandler",
+            "HttpRequest",
+            "HttpErrorResponse"
+          ]
+        },
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "Observable",
+            "throwError"
+          ]
+        },
+        {
+          "source": "rxjs/operators",
+          "specifiers": [
+            "catchError",
+            "retry"
+          ]
+        }
+      ],
+      "exports": [
+        "HttpErrorInterceptor"
+      ],
+      "totalLines": 274,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/services/index.ts": {
+      "filePath": "src/app/framework/services/index.ts",
+      "contentHash": "23912d986bb39d02102b5369904515c0817474694bdf18f7f7e78e388c5baf30",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 19,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/services/picker-config-registry.service.ts": {
+      "filePath": "src/app/framework/services/picker-config-registry.service.ts",
+      "contentHash": "7502e91aee0e1435eeffba4e09f3de7d7368bb6eb003edac01bcddb8e8ca8522",
+      "functions": [],
+      "classes": [
+        {
+          "name": "PickerConfigRegistry",
+          "methods": [
+            "register",
+            "registerMultiple",
+            "get",
+            "has",
+            "getAllIds",
+            "getAll",
+            "unregister",
+            "clear",
+            "getCount"
+          ],
+          "properties": [
+            "configs"
+          ],
+          "exported": true,
+          "lineCount": 175
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Injectable"
+          ]
+        },
+        {
+          "source": "../models/picker-config.interface",
+          "specifiers": [
+            "PickerConfig"
+          ]
+        }
+      ],
+      "exports": [
+        "PickerConfigRegistry"
+      ],
+      "totalLines": 215,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/services/popout-context.service.ts": {
+      "filePath": "src/app/framework/services/popout-context.service.ts",
+      "contentHash": "4ee1e6c58cdaec9423d785a7d447c0fe2440cbdac0274cc6857bed52ee43a778",
+      "functions": [],
+      "classes": [
+        {
+          "name": "PopOutContextService",
+          "methods": [
+            "constructor",
+            "isInPopOut",
+            "getContext",
+            "initializeAsPopOut",
+            "initializeAsParent",
+            "setupChannel",
+            "sendMessage",
+            "getMessages$",
+            "createChannelForPanel",
+            "close",
+            "ngOnDestroy"
+          ],
+          "properties": [
+            "channel",
+            "messagesSubject",
+            "context",
+            "initialized"
+          ],
+          "exported": true,
+          "lineCount": 322
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Injectable",
+            "OnDestroy",
+            "NgZone"
+          ]
+        },
+        {
+          "source": "@angular/router",
+          "specifiers": [
+            "Router"
+          ]
+        },
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "Observable",
+            "Subject",
+            "ReplaySubject"
+          ]
+        },
+        {
+          "source": "../models/popout.interface",
+          "specifiers": [
+            "PopOutMessage",
+            "PopOutMessageType",
+            "PopOutContext",
+            "parsePopOutRoute"
+          ]
+        }
+      ],
+      "exports": [
+        "PopOutContextService"
+      ],
+      "totalLines": 385,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/services/popout-manager.service.ts": {
+      "filePath": "src/app/framework/services/popout-manager.service.ts",
+      "contentHash": "a73bc6a38079a3b7624b093ceee88469eea7a0ac0a100abe21c0a58a26e2cab8",
+      "functions": [],
+      "classes": [
+        {
+          "name": "PopOutManagerService",
+          "methods": [
+            "constructor",
+            "initialize",
+            "isPoppedOut",
+            "getPoppedOutPanels",
+            "openPopOut",
+            "broadcastState",
+            "closePopOut",
+            "closeAllPopOuts",
+            "handlePopOutClosed",
+            "ngOnDestroy"
+          ],
+          "properties": [
+            "gridId",
+            "poppedOutPanels",
+            "popoutWindows",
+            "messagesSubject",
+            "closedSubject",
+            "blockedSubject",
+            "beforeUnloadHandler",
+            "initialized",
+            "messages$",
+            "closed$",
+            "blocked$"
+          ],
+          "exported": true,
+          "lineCount": 178
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Injectable",
+            "NgZone",
+            "OnDestroy"
+          ]
+        },
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "Subject"
+          ]
+        },
+        {
+          "source": "../models/popout.interface",
+          "specifiers": [
+            "buildWindowFeatures",
+            "PopOutMessage",
+            "PopOutMessageType",
+            "PopOutWindowFeatures",
+            "PopOutWindowRef"
+          ]
+        },
+        {
+          "source": "./popout-context.service",
+          "specifiers": [
+            "PopOutContextService"
+          ]
+        },
+        {
+          "source": "./filter-options.service",
+          "specifiers": [
+            "FilterOptionsCache"
+          ]
+        }
+      ],
+      "exports": [
+        "PopOutManagerService"
+      ],
+      "totalLines": 204,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/services/request-coordinator.service.ts": {
+      "filePath": "src/app/framework/services/request-coordinator.service.ts",
+      "contentHash": "e4375548fef588132570e993beb26bf20b33a707011fb799c673747ff3af1aef",
+      "functions": [],
+      "classes": [
+        {
+          "name": "RequestCoordinatorService",
+          "methods": [
+            "execute",
+            "getLoadingState$",
+            "getGlobalLoading$",
+            "clearCache",
+            "invalidateCache",
+            "invalidateCachePattern",
+            "getCacheSize",
+            "getInFlightCount",
+            "getCachedResponse",
+            "setCachedResponse",
+            "setLoadingState",
+            "getEffectiveConfig"
+          ],
+          "properties": [
+            "cache",
+            "inFlightRequests",
+            "loadingStateSubject",
+            "loadingState$"
+          ],
+          "exported": true,
+          "lineCount": 251
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Injectable"
+          ]
+        },
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "Observable",
+            "BehaviorSubject",
+            "timer"
+          ]
+        },
+        {
+          "source": "rxjs/operators",
+          "specifiers": [
+            "tap",
+            "finalize",
+            "shareReplay",
+            "retry",
+            "map",
+            "distinctUntilChanged"
+          ]
+        }
+      ],
+      "exports": [
+        "RequestCoordinatorService"
+      ],
+      "totalLines": 335,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/services/resource-management.service.ts": {
+      "filePath": "src/app/framework/services/resource-management.service.ts",
+      "contentHash": "6f324d6dc335152a59a3d0b13dfb7e54f5e02e79a5a6d15cf2cd229c0b209eb8",
+      "functions": [],
+      "classes": [
+        {
+          "name": "ResourceManagementService",
+          "methods": [
+            "constructor",
+            "updateFilters",
+            "clearFilters",
+            "refresh",
+            "getCurrentState",
+            "getCurrentFilters",
+            "filters",
+            "results",
+            "totalResults",
+            "loading",
+            "error",
+            "statistics",
+            "highlights",
+            "extractHighlights",
+            "initializeFromUrl",
+            "watchUrlChanges",
+            "fetchData",
+            "updateState",
+            "syncStateFromExternal",
+            "destroy",
+            "ngOnDestroy"
+          ],
+          "properties": [
+            "stateSubject",
+            "destroy$",
+            "config",
+            "state$",
+            "filters$",
+            "results$",
+            "totalResults$",
+            "loading$",
+            "error$",
+            "statistics$",
+            "highlights$"
+          ],
+          "exported": true,
+          "lineCount": 593
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Inject",
+            "Injectable",
+            "NgZone",
+            "OnDestroy",
+            "Optional"
+          ]
+        },
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "BehaviorSubject",
+            "Observable",
+            "Subject",
+            "of"
+          ]
+        },
+        {
+          "source": "rxjs/operators",
+          "specifiers": [
+            "catchError",
+            "distinctUntilChanged",
+            "finalize",
+            "map",
+            "takeUntil"
+          ]
+        },
+        {
+          "source": "../models/domain-config.interface",
+          "specifiers": [
+            "DomainConfig"
+          ]
+        },
+        {
+          "source": "../models/resource-management.interface",
+          "specifiers": [
+            "ResourceManagementConfig",
+            "ResourceState"
+          ]
+        },
+        {
+          "source": "./domain-config-registry.service",
+          "specifiers": [
+            "DOMAIN_CONFIG"
+          ]
+        },
+        {
+          "source": "./popout-context.service",
+          "specifiers": [
+            "PopOutContextService"
+          ]
+        },
+        {
+          "source": "./url-state.service",
+          "specifiers": [
+            "UrlStateService"
+          ]
+        },
+        {
+          "source": "../tokens/popout.token",
+          "specifiers": [
+            "IS_POPOUT_TOKEN"
+          ]
+        }
+      ],
+      "exports": [
+        "ResourceManagementService"
+      ],
+      "totalLines": 688,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/services/url-state.service.ts": {
+      "filePath": "src/app/framework/services/url-state.service.ts",
+      "contentHash": "82c91cca01828d4daae51a625d7050dfd68a1dd4bf6b20c916a92f5c95d28849",
+      "functions": [],
+      "classes": [
+        {
+          "name": "UrlStateService",
+          "methods": [
+            "constructor",
+            "getParams",
+            "setParams",
+            "watchParams",
+            "clearParams",
+            "getParam",
+            "setParam",
+            "hasParam",
+            "watchParam",
+            "serializeParams",
+            "deserializeParams",
+            "initializeFromRoute",
+            "watchRouteChanges",
+            "extractQueryParams"
+          ],
+          "properties": [
+            "paramsSubject",
+            "params$"
+          ],
+          "exported": true,
+          "lineCount": 300
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Injectable",
+            "NgZone"
+          ]
+        },
+        {
+          "source": "@angular/router",
+          "specifiers": [
+            "Router",
+            "ActivatedRoute",
+            "Params",
+            "NavigationEnd"
+          ]
+        },
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "Observable",
+            "BehaviorSubject"
+          ]
+        },
+        {
+          "source": "rxjs/operators",
+          "specifiers": [
+            "map",
+            "distinctUntilChanged",
+            "filter"
+          ]
+        }
+      ],
+      "exports": [
+        "UrlStateService"
+      ],
+      "totalLines": 335,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/services/user-preferences.service.ts": {
+      "filePath": "src/app/framework/services/user-preferences.service.ts",
+      "contentHash": "ba0bb49d445956e59ef55394564c1f82f82f41b57fe5282ff581e9f79b532c15",
+      "functions": [],
+      "classes": [
+        {
+          "name": "UserPreferencesService",
+          "methods": [
+            "constructor",
+            "getPanelOrder",
+            "getCollapsedPanels",
+            "savePanelOrder",
+            "saveCollapsedPanels",
+            "reset",
+            "loadPanelOrder",
+            "mergePanelOrder",
+            "loadCollapsedPanels",
+            "loadFromBackendApi",
+            "savePreferencesToBackend",
+            "loadFromLocalStorage",
+            "saveToLocalStorage",
+            "initializeFromPreferences",
+            "getPrefKey",
+            "checkStorageAvailable",
+            "handleStorageError",
+            "extractCurrentDomain"
+          ],
+          "properties": [
+            "DEFAULT_PANEL_ORDER",
+            "DEFAULT_COLLAPSED_PANELS",
+            "currentDomain",
+            "panelOrderSubject",
+            "collapsedPanelsSubject",
+            "storageAvailable",
+            "apiAvailable",
+            "fullPreferences",
+            "userId"
+          ],
+          "exported": true,
+          "lineCount": 473
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "Injectable",
+            "isDevMode"
+          ]
+        },
+        {
+          "source": "@angular/common/http",
+          "specifiers": [
+            "HttpClient"
+          ]
+        },
+        {
+          "source": "rxjs",
+          "specifiers": [
+            "BehaviorSubject",
+            "Observable",
+            "of"
+          ]
+        },
+        {
+          "source": "rxjs/operators",
+          "specifiers": [
+            "catchError",
+            "timeout"
+          ]
+        },
+        {
+          "source": "../../../environments/environment",
+          "specifiers": [
+            "environment"
+          ]
+        }
+      ],
+      "exports": [
+        "UserPreferencesService"
+      ],
+      "totalLines": 523,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/tokens/.gitkeep": {
+      "filePath": "src/app/framework/tokens/.gitkeep",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/framework/tokens/popout.token.ts": {
+      "filePath": "src/app/framework/tokens/popout.token.ts",
+      "contentHash": "2710999bb83c69acd13affb9d6f7eb7bc5bbb8278969c9421f0458db83bb155b",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "InjectionToken"
+          ]
+        }
+      ],
+      "exports": [
+        "IS_POPOUT_TOKEN"
+      ],
+      "totalLines": 9,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/framework/utils/config-generators.ts": {
+      "filePath": "src/app/framework/utils/config-generators.ts",
+      "contentHash": "ac35d8ce25ef2747ece07eff4b38565cec84747cad4bcbee0b285145c4df57ef",
+      "functions": [
+        {
+          "name": "generateTableConfig",
+          "params": [
+            "definition",
+            "options"
+          ],
+          "returnType": "TableConfig<T>",
+          "exported": true,
+          "lineCount": 45
+        },
+        {
+          "name": "getFilterMatchMode",
+          "params": [
+            "field"
+          ],
+          "returnType": "'startsWith' | 'contains' | 'equals'",
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "generateFilterDefinitions",
+          "params": [
+            "definition"
+          ],
+          "returnType": "FilterDefinition[]",
+          "exported": true,
+          "lineCount": 32
+        },
+        {
+          "name": "generateFieldFilterDef",
+          "params": [
+            "field"
+          ],
+          "returnType": "FilterDefinition",
+          "exported": false,
+          "lineCount": 44
+        },
+        {
+          "name": "generateRangeFilterDef",
+          "params": [
+            "rangeFieldName",
+            "group"
+          ],
+          "returnType": "FilterDefinition",
+          "exported": false,
+          "lineCount": 37
+        },
+        {
+          "name": "getFilterType",
+          "params": [
+            "field"
+          ],
+          "returnType": "FilterType",
+          "exported": false,
+          "lineCount": 29
+        },
+        {
+          "name": "toTitleCase",
+          "params": [
+            "str"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "generateHighlightFilterDefinitions",
+          "params": [
+            "definition"
+          ],
+          "returnType": "FilterDefinition[]",
+          "exported": true,
+          "lineCount": 34
+        },
+        {
+          "name": "validateConfigParity",
+          "params": [
+            "generated",
+            "expected"
+          ],
+          "returnType": "{ match: boolean; differences: string[] }",
+          "exported": true,
+          "lineCount": 43
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../models/resource-definition.interface",
+          "specifiers": [
+            "ResourceDefinition",
+            "ResourceField",
+            "getVisibleFields",
+            "getFilterableFields",
+            "groupRangeFields"
+          ]
+        },
+        {
+          "source": "../models/table-config.interface",
+          "specifiers": [
+            "TableConfig",
+            "PrimeNGColumn",
+            "getDefaultTableConfig"
+          ]
+        },
+        {
+          "source": "../models/domain-config.interface",
+          "specifiers": [
+            "FilterDefinition",
+            "FilterType"
+          ]
+        }
+      ],
+      "exports": [
+        "generateTableConfig",
+        "generateFilterDefinitions",
+        "generateHighlightFilterDefinitions",
+        "validateConfigParity"
+      ],
+      "totalLines": 402,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/primeng.module.ts": {
+      "filePath": "src/app/primeng.module.ts",
+      "contentHash": "b96bc264ca2b2671fe254b9a031ae64921a07f1e0ab7d0dbe621bde919cf5428",
+      "functions": [],
+      "classes": [
+        {
+          "name": "PrimengModule",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 1
+        }
+      ],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "NgModule"
+          ]
+        },
+        {
+          "source": "@angular/common",
+          "specifiers": [
+            "CommonModule"
+          ]
+        },
+        {
+          "source": "primeng/table",
+          "specifiers": [
+            "TableModule"
+          ]
+        },
+        {
+          "source": "primeng/button",
+          "specifiers": [
+            "ButtonModule"
+          ]
+        },
+        {
+          "source": "primeng/multiselect",
+          "specifiers": [
+            "MultiSelectModule"
+          ]
+        },
+        {
+          "source": "primeng/inputtext",
+          "specifiers": [
+            "InputTextModule"
+          ]
+        },
+        {
+          "source": "primeng/dropdown",
+          "specifiers": [
+            "DropdownModule"
+          ]
+        },
+        {
+          "source": "primeng/dialog",
+          "specifiers": [
+            "DialogModule"
+          ]
+        },
+        {
+          "source": "primeng/toast",
+          "specifiers": [
+            "ToastModule"
+          ]
+        },
+        {
+          "source": "primeng/panel",
+          "specifiers": [
+            "PanelModule"
+          ]
+        },
+        {
+          "source": "primeng/toolbar",
+          "specifiers": [
+            "ToolbarModule"
+          ]
+        },
+        {
+          "source": "primeng/ripple",
+          "specifiers": [
+            "RippleModule"
+          ]
+        },
+        {
+          "source": "primeng/inputnumber",
+          "specifiers": [
+            "InputNumberModule"
+          ]
+        },
+        {
+          "source": "primeng/checkbox",
+          "specifiers": [
+            "CheckboxModule"
+          ]
+        },
+        {
+          "source": "primeng/skeleton",
+          "specifiers": [
+            "SkeletonModule"
+          ]
+        },
+        {
+          "source": "primeng/message",
+          "specifiers": [
+            "MessageModule"
+          ]
+        },
+        {
+          "source": "primeng/chip",
+          "specifiers": [
+            "ChipModule"
+          ]
+        },
+        {
+          "source": "primeng/progressspinner",
+          "specifiers": [
+            "ProgressSpinnerModule"
+          ]
+        },
+        {
+          "source": "primeng/tooltip",
+          "specifiers": [
+            "TooltipModule"
+          ]
+        },
+        {
+          "source": "primeng/tieredmenu",
+          "specifiers": [
+            "TieredMenuModule"
+          ]
+        },
+        {
+          "source": "primeng/autocomplete",
+          "specifiers": [
+            "AutoCompleteModule"
+          ]
+        },
+        {
+          "source": "primeng/calendar",
+          "specifiers": [
+            "CalendarModule"
+          ]
+        },
+        {
+          "source": "primeng/paginator",
+          "specifiers": [
+            "PaginatorModule"
+          ]
+        },
+        {
+          "source": "primeng/slider",
+          "specifiers": [
+            "SliderModule"
+          ]
+        }
+      ],
+      "exports": [
+        "PrimengModule"
+      ],
+      "totalLines": 80,
+      "hasStructuralAnalysis": true
+    },
+    "src/assets/.gitkeep": {
+      "filePath": "src/assets/.gitkeep",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": false
+    },
+    "src/environments/environment.prod.ts": {
+      "filePath": "src/environments/environment.prod.ts",
+      "contentHash": "9fd8553c171299bc6efefc8ae8b3e30c3fa84c568477bb96ca4d9a361110ed0e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "environment"
+      ],
+      "totalLines": 63,
+      "hasStructuralAnalysis": true
+    },
+    "src/environments/environment.ts": {
+      "filePath": "src/environments/environment.ts",
+      "contentHash": "096b6315cbe1bea633f50a46586f06b2dbb20c27f95c47aabe69b2704a84e4a6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "environment"
+      ],
+      "totalLines": 81,
+      "hasStructuralAnalysis": true
+    },
+    "src/index.html": {
+      "filePath": "src/index.html",
+      "contentHash": "e4722a59527bd0304d96569b8924311697c73c483a0fb85be50ff6bcd969887f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 14,
+      "hasStructuralAnalysis": false
+    },
+    "src/main.ts": {
+      "filePath": "src/main.ts",
+      "contentHash": "44bab8ced43078310e1affbf44ca0682f42151082fe1d59a653699697ecabd7d",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "@angular/core",
+          "specifiers": [
+            "enableProdMode"
+          ]
+        },
+        {
+          "source": "@angular/platform-browser-dynamic",
+          "specifiers": [
+            "platformBrowserDynamic"
+          ]
+        },
+        {
+          "source": "./app/app.module",
+          "specifiers": [
+            "AppModule"
+          ]
+        },
+        {
+          "source": "./environments/environment",
+          "specifiers": [
+            "environment"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 13,
+      "hasStructuralAnalysis": true
+    },
+    "src/polyfills.ts": {
+      "filePath": "src/polyfills.ts",
+      "contentHash": "89ffc08dc7116a75e1540fa70018c4be63ac94cda5d76966e441dca3460c87c1",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "zone.js",
+          "specifiers": []
+        }
+      ],
+      "exports": [],
+      "totalLines": 54,
+      "hasStructuralAnalysis": true
+    },
+    "src/styles.scss": {
+      "filePath": "src/styles.scss",
+      "contentHash": "c0fb1954eddade7be977a3a5b9fea5df7b0abbb61ea9b964353a521d7ee36286",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 21,
+      "hasStructuralAnalysis": false
+    },
+    "src/test.ts": {
+      "filePath": "src/test.ts",
+      "contentHash": "e8f56f5cd291a88e1cb59dd56fe09136f4682451d6df19ec2100aaa11dfee4f7",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "zone.js/testing",
+          "specifiers": []
+        },
+        {
+          "source": "@angular/core/testing",
+          "specifiers": [
+            "getTestBed"
+          ]
+        },
+        {
+          "source": "@angular/platform-browser-dynamic/testing",
+          "specifiers": [
+            "BrowserDynamicTestingModule",
+            "platformBrowserDynamicTesting"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 27,
+      "hasStructuralAnalysis": true
+    },
+    "src/types/plotly.d.ts": {
+      "filePath": "src/types/plotly.d.ts",
+      "contentHash": "7c9b5dc9442161e17faec0c3d253d54f2f046b4ca8488302b0cb1c00f02e939c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 461,
+      "hasStructuralAnalysis": true
+    },
+    "tsconfig.app.json": {
+      "filePath": "tsconfig.app.json",
+      "contentHash": "4565e3536a07fd9da5ce4292f5a2ae0cef541a394408011ce690383311e12df7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 16,
+      "hasStructuralAnalysis": true
+    },
+    "tsconfig.json": {
+      "filePath": "tsconfig.json",
+      "contentHash": "54052d0cee6ca65299460756608d139af17e1070502488de78e61ea381dcf51d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 38,
+      "hasStructuralAnalysis": true
+    },
+    "tsconfig.spec.json": {
+      "filePath": "tsconfig.spec.json",
+      "contentHash": "675a808e1665edc8de37d994740e7aaeb8869957e61b44b0a4fdff566f1e504c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 19,
+      "hasStructuralAnalysis": true
+    }
+  }
+}

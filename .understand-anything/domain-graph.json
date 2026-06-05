@@ -1,0 +1,898 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "vvroom",
+    "languages": ["TypeScript", "HTML", "SCSS", "JavaScript"],
+    "frameworks": ["Angular 14", "PrimeNG", "Plotly.js", "RxJS", "Playwright", "KaTeX"],
+    "description": "An automobile data discovery and visualization platform that enables users to search, filter, and analyze vehicle datasets through interactive charts, configurable query controls, and data tables, with URL-driven state management for shareable queries and multi-monitor pop-out panel support.",
+    "analyzedAt": "2026-05-23T12:00:00.000Z",
+    "gitCommitHash": "874f92520579cf9a050e3ec6565c3b7ccbee7f7b"
+  },
+  "nodes": [
+    {
+      "id": "domain:vehicle-data-discovery",
+      "type": "domain",
+      "name": "Vehicle Data Discovery",
+      "summary": "The core business domain enabling users to search, filter, and browse automobile datasets. Encompasses the multi-panel discover dashboard, query controls, manufacturer-model pickers, and results tables that together form the primary user workflow for finding vehicle information.",
+      "tags": ["search", "filtering", "discovery", "automobile", "dashboard"],
+      "complexity": "complex",
+      "domainMeta": {
+        "entities": ["AutoSearchFilters", "VehicleResult", "VinInstance", "DomainConfig", "ResourceDefinition"],
+        "businessRules": [
+          "All filter state is encoded in URL query parameters so any search is shareable as a link",
+          "Filters support manufacturer, model, year range, body class, and VIN count criteria",
+          "Manufacturer-model picker enforces combo selection (manufacturer + model paired)",
+          "Pagination defaults are domain-configurable with server-side lazy loading"
+        ],
+        "crossDomainInteractions": [
+          "Triggers data visualization when statistics are fetched alongside search results",
+          "Provides filter state to AI Chat for context-aware queries",
+          "Synchronizes state with pop-out windows via BroadcastChannel"
+        ]
+      }
+    },
+    {
+      "id": "domain:data-visualization",
+      "type": "domain",
+      "name": "Data Visualization & Analytics",
+      "summary": "Transforms vehicle statistics into interactive Plotly.js charts showing distribution breakdowns by manufacturer, model, body class, and year. Supports highlight-aware segmentation for comparing filtered subsets against the full dataset, and click-to-filter interactivity for exploratory analysis.",
+      "tags": ["charts", "statistics", "plotly", "visualization", "analytics"],
+      "complexity": "complex",
+      "domainMeta": {
+        "entities": ["VehicleStatistics", "ManufacturerStat", "ModelStat", "BodyClassStat", "YearStat", "ChartDataSource"],
+        "businessRules": [
+          "Four chart types: manufacturer distribution (stacked bar), top models (horizontal bar), body class (pie), year distribution (bar)",
+          "Highlight mode segments charts into filtered-vs-total for comparative analysis",
+          "Chart clicks apply the clicked category as a URL filter parameter",
+          "Chart data sources are pluggable per domain via DomainConfig"
+        ],
+        "crossDomainInteractions": [
+          "Receives statistics data from Vehicle Data Discovery search results",
+          "Click interactions update URL state which triggers new searches in the discovery domain"
+        ]
+      }
+    },
+    {
+      "id": "domain:url-state-management",
+      "type": "domain",
+      "name": "URL State Management",
+      "summary": "Implements a URL-first reactive state architecture where all application state is bidirectionally synchronized with URL query parameters. This makes every filter combination, sort order, and pagination state a shareable, bookmarkable link and enables browser back/forward navigation to restore previous states.",
+      "tags": ["state-management", "url", "routing", "reactive", "rxjs"],
+      "complexity": "complex",
+      "domainMeta": {
+        "entities": ["UrlStateService", "GenericUrlMapper", "GenericApiAdapter", "ResourceManagementService"],
+        "businessRules": [
+          "URL is the single source of truth for application state",
+          "Type-aware serialization supports strings, numbers, booleans, dates, and comma-separated arrays",
+          "URL parameters are validated with range checks and sanitized before application",
+          "Browser back/forward navigation must correctly restore all filter, sort, and pagination state"
+        ],
+        "crossDomainInteractions": [
+          "Provides state to all other domains through reactive observables",
+          "Vehicle Data Discovery reads and writes filters through URL state",
+          "Pop-out windows synchronize state bidirectionally via URL parameters and BroadcastChannel"
+        ]
+      }
+    },
+    {
+      "id": "domain:multi-window-workspace",
+      "type": "domain",
+      "name": "Multi-Window Workspace",
+      "summary": "Enables users to pop out any dashboard panel (charts, pickers, query controls, results tables) into separate browser windows for multi-monitor workflows. Manages cross-window communication via BroadcastChannel API, window lifecycle tracking, and bidirectional state synchronization between parent and child windows.",
+      "tags": ["pop-out", "multi-monitor", "cross-window", "broadcast-channel", "workspace"],
+      "complexity": "moderate",
+      "domainMeta": {
+        "entities": ["PopOutContextService", "PopOutManagerService", "PanelPopoutComponent", "PopOutMessage"],
+        "businessRules": [
+          "Any panel type can be popped out to a separate browser window",
+          "Filter changes in pop-out windows propagate back to the parent window",
+          "Chart click events in pop-out windows update the parent's URL state",
+          "Window lifecycle is tracked via polling intervals with automatic cleanup on close"
+        ],
+        "crossDomainInteractions": [
+          "Receives panel components and state from Vehicle Data Discovery",
+          "Synchronizes filter state with URL State Management",
+          "Renders visualization charts from Data Visualization domain"
+        ]
+      }
+    },
+    {
+      "id": "domain:ai-chat-assistant",
+      "type": "domain",
+      "name": "AI Chat Assistant",
+      "summary": "Provides a conversational AI interface powered by a local Ollama LLM backend, enabling users to ask natural language questions about the automobile dataset. Supports multiple models (text, vision, DeepSeek), image paste/upload, markdown and LaTeX rendering, and automobile-domain-aware prompt construction.",
+      "tags": ["ai", "chat", "ollama", "natural-language", "katex"],
+      "complexity": "moderate",
+      "domainMeta": {
+        "entities": ["AiService", "AiChatComponent", "ChatMessage", "ChatSession", "AiApiContext"],
+        "businessRules": [
+          "Connects to a local Ollama backend (Mimir) for LLM inference",
+          "System prompts include automobile field metadata for domain-aware responses",
+          "Supports DeepSeek mode toggle for reasoning-focused responses",
+          "Responses can contain embedded queries extracted from natural language"
+        ],
+        "crossDomainInteractions": [
+          "Receives automobile domain context from domain configuration for prompt building",
+          "Could trigger searches in Vehicle Data Discovery via extracted queries"
+        ]
+      }
+    },
+    {
+      "id": "domain:error-handling-resilience",
+      "type": "domain",
+      "name": "Error Handling & Resilience",
+      "summary": "Provides multi-layered error handling across the application: HTTP interceptor with automatic retry and exponential backoff for transient errors, global error handler for unhandled exceptions, structured error notification system with duplicate suppression, and request coordination with TTL-based caching and in-flight deduplication.",
+      "tags": ["error-handling", "retry", "caching", "resilience", "notification"],
+      "complexity": "complex",
+      "domainMeta": {
+        "entities": ["HttpErrorInterceptor", "GlobalErrorHandler", "ErrorNotificationService", "RequestCoordinatorService", "ErrorNotification"],
+        "businessRules": [
+          "Transient 5xx and 429 errors are automatically retried with exponential backoff",
+          "Duplicate error notifications are suppressed within a deduplication window",
+          "HTTP responses are cached with TTL and in-flight requests are deduplicated",
+          "Errors are categorized by type (network, authentication, not-found, server, timeout)"
+        ],
+        "crossDomainInteractions": [
+          "Intercepts all HTTP requests from Vehicle Data Discovery and AI Chat",
+          "Provides caching layer used by URL State Management for API responses",
+          "Displays toast notifications to users via PrimeNG MessageService"
+        ]
+      }
+    },
+    {
+      "id": "flow:vehicle-search",
+      "type": "flow",
+      "name": "Vehicle Search & Filter",
+      "summary": "User applies search filters via query controls, picker, or query panel to find vehicles matching specific criteria. Filters are serialized to URL parameters, triggering an API search that returns paginated vehicle results displayed in the results table.",
+      "tags": ["search", "filtering", "api", "pagination"],
+      "complexity": "complex",
+      "domainMeta": {
+        "entryPoint": "User interaction with QueryControlComponent or QueryPanelComponent",
+        "entryType": "manual"
+      }
+    },
+    {
+      "id": "flow:manufacturer-model-selection",
+      "type": "flow",
+      "name": "Manufacturer-Model Picker Selection",
+      "summary": "User selects manufacturer-model combinations from a searchable, paginated picker table. Selections are serialized into comma-separated modelCombos URL parameters that constrain the search results.",
+      "tags": ["picker", "selection", "manufacturer", "model"],
+      "complexity": "moderate",
+      "domainMeta": {
+        "entryPoint": "User interaction with BasePickerComponent in discover dashboard",
+        "entryType": "manual"
+      }
+    },
+    {
+      "id": "flow:vin-detail-expansion",
+      "type": "flow",
+      "name": "VIN Detail Expansion",
+      "summary": "User expands a vehicle result row to view individual VIN records with registration details, odometer readings, and status information, loaded on demand from the API.",
+      "tags": ["vin", "detail", "row-expansion", "lazy-loading"],
+      "complexity": "moderate",
+      "domainMeta": {
+        "entryPoint": "User clicks expand button on a row in DynamicResultsTableComponent",
+        "entryType": "manual"
+      }
+    },
+    {
+      "id": "flow:chart-rendering",
+      "type": "flow",
+      "name": "Statistics Chart Rendering",
+      "summary": "Vehicle statistics data is transformed by domain-specific chart data sources into Plotly.js chart configurations, rendered in a drag-and-drop grid of charts showing manufacturer, model, body class, and year distributions.",
+      "tags": ["chart", "plotly", "statistics", "rendering"],
+      "complexity": "complex",
+      "domainMeta": {
+        "entryPoint": "ResourceManagementService emits new statistics observable",
+        "entryType": "event"
+      }
+    },
+    {
+      "id": "flow:chart-click-filter",
+      "type": "flow",
+      "name": "Chart Click-to-Filter",
+      "summary": "User clicks a chart element (bar, pie slice, data point) to apply that category as a filter. The chart data source translates the click into URL parameter updates that trigger a new search with the selected criteria.",
+      "tags": ["chart", "click", "filter", "interactive"],
+      "complexity": "moderate",
+      "domainMeta": {
+        "entryPoint": "User clicks on a Plotly.js chart element in BaseChartComponent",
+        "entryType": "manual"
+      }
+    },
+    {
+      "id": "flow:highlight-segmentation",
+      "type": "flow",
+      "name": "Highlight Segmentation",
+      "summary": "User applies highlight filters (h_manufacturer, h_modelCombos, h_yearMin, h_yearMax, h_bodyClass) to segment chart visualizations into highlighted-vs-other stacked views for comparative analysis of a subset against the full dataset.",
+      "tags": ["highlight", "segmentation", "comparison", "chart"],
+      "complexity": "moderate",
+      "domainMeta": {
+        "entryPoint": "User applies highlight filters via QueryControlComponent",
+        "entryType": "manual"
+      }
+    },
+    {
+      "id": "flow:url-state-sync",
+      "type": "flow",
+      "name": "URL State Synchronization",
+      "summary": "Bidirectional synchronization between application state and URL query parameters. URL changes (from user navigation or programmatic updates) are deserialized into filter objects, while filter changes are serialized back to URL parameters, maintaining the URL as the single source of truth.",
+      "tags": ["url", "state", "synchronization", "bidirectional"],
+      "complexity": "complex",
+      "domainMeta": {
+        "entryPoint": "Angular router navigation event or programmatic UrlStateService.setParams()",
+        "entryType": "event"
+      }
+    },
+    {
+      "id": "flow:shareable-url-generation",
+      "type": "flow",
+      "name": "Shareable URL Generation",
+      "summary": "Current filter state is serialized into a clean, shareable URL that captures all search criteria, pagination, and sort state. Opening this URL in a new browser reproduces the exact same view.",
+      "tags": ["url", "sharing", "serialization", "bookmark"],
+      "complexity": "simple",
+      "domainMeta": {
+        "entryPoint": "GenericUrlMapper.buildShareableUrl()",
+        "entryType": "manual"
+      }
+    },
+    {
+      "id": "flow:panel-pop-out",
+      "type": "flow",
+      "name": "Panel Pop-Out to Window",
+      "summary": "User pops out a dashboard panel into a separate browser window. The system opens a new window, initializes BroadcastChannel communication, renders the panel component, and begins bidirectional state synchronization with the parent window.",
+      "tags": ["pop-out", "window", "multi-monitor"],
+      "complexity": "complex",
+      "domainMeta": {
+        "entryPoint": "User clicks pop-out button on a panel in DiscoverComponent",
+        "entryType": "manual"
+      }
+    },
+    {
+      "id": "flow:cross-window-state-sync",
+      "type": "flow",
+      "name": "Cross-Window State Synchronization",
+      "summary": "State updates (filter changes, chart clicks, picker selections) are transmitted between parent and pop-out windows via BroadcastChannel messages, ensuring all windows reflect the same application state.",
+      "tags": ["cross-window", "broadcast-channel", "state-sync"],
+      "complexity": "moderate",
+      "domainMeta": {
+        "entryPoint": "PopOutContextService receives BroadcastChannel message",
+        "entryType": "event"
+      }
+    },
+    {
+      "id": "flow:ai-chat-conversation",
+      "type": "flow",
+      "name": "AI Chat Conversation",
+      "summary": "User sends a natural language question via the chat panel. The message is sent to the local Ollama backend with automobile domain context, and the response is rendered with markdown and LaTeX formatting.",
+      "tags": ["ai", "chat", "conversation", "ollama"],
+      "complexity": "moderate",
+      "domainMeta": {
+        "entryPoint": "User types message and presses Enter in AiChatComponent",
+        "entryType": "manual"
+      }
+    },
+    {
+      "id": "flow:api-request-resilience",
+      "type": "flow",
+      "name": "API Request with Resilience",
+      "summary": "HTTP requests pass through the interceptor pipeline which provides automatic retry for transient errors, response caching with TTL, in-flight request deduplication, and structured error formatting before reaching the caller.",
+      "tags": ["http", "retry", "caching", "deduplication"],
+      "complexity": "complex",
+      "domainMeta": {
+        "entryPoint": "ApiService.get() or ApiService.post()",
+        "entryType": "http"
+      }
+    },
+    {
+      "id": "flow:domain-config-bootstrap",
+      "type": "flow",
+      "name": "Domain Configuration Bootstrap",
+      "summary": "At application startup, the automobile domain configuration factory assembles the complete DomainConfig by combining resource definitions, generic adapters, chart data sources, filter configs, and feature flags, then registers it with the DomainConfigRegistry.",
+      "tags": ["bootstrap", "configuration", "factory", "domain"],
+      "complexity": "moderate",
+      "domainMeta": {
+        "entryPoint": "Angular module initialization via DOMAIN_PROVIDER factory",
+        "entryType": "event"
+      }
+    },
+    {
+      "id": "flow:user-preference-persistence",
+      "type": "flow",
+      "name": "User Preference Persistence",
+      "summary": "Panel order and collapsed state preferences are saved to a backend API with automatic localStorage fallback. On page load, preferences are restored to recreate the user's customized dashboard layout.",
+      "tags": ["preferences", "persistence", "localStorage", "api"],
+      "complexity": "moderate",
+      "domainMeta": {
+        "entryPoint": "User reorders or collapses panels in DiscoverComponent",
+        "entryType": "manual"
+      }
+    },
+    {
+      "id": "step:vehicle-search:select-filter-field",
+      "type": "step",
+      "name": "Select Filter Field",
+      "summary": "User opens the filter field dropdown in the query control and selects which field to filter on (manufacturer, body class, year range, VIN count).",
+      "tags": ["ui", "dropdown", "filter-selection"],
+      "complexity": "simple",
+      "filePath": "src/app/framework/components/query-control/query-control.component.ts",
+      "lineRange": [89, 972]
+    },
+    {
+      "id": "step:vehicle-search:configure-filter-value",
+      "type": "step",
+      "name": "Configure Filter Value",
+      "summary": "User configures the filter value via a multiselect dialog (for categorical fields) or range slider (for numeric fields like year range or VIN count).",
+      "tags": ["ui", "dialog", "multiselect", "range"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/components/query-control/query-control.component.ts",
+      "lineRange": [89, 972]
+    },
+    {
+      "id": "step:vehicle-search:serialize-to-url",
+      "type": "step",
+      "name": "Serialize Filters to URL",
+      "summary": "Applied filters are serialized into URL query parameters using the GenericUrlMapper, with type-aware serialization for strings, numbers, and arrays.",
+      "tags": ["serialization", "url", "state"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/adapters/generic-url-mapper.ts",
+      "lineRange": [48, 440]
+    },
+    {
+      "id": "step:vehicle-search:build-api-params",
+      "type": "step",
+      "name": "Build API Query Parameters",
+      "summary": "The GenericApiAdapter converts the filter object into API query parameters, resolving sort fields, adding highlight parameters, and mapping filter values to API field names.",
+      "tags": ["api", "adapter", "parameter-mapping"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/adapters/generic-api-adapter.ts",
+      "lineRange": [92, 285]
+    },
+    {
+      "id": "step:vehicle-search:fetch-results",
+      "type": "step",
+      "name": "Fetch Search Results",
+      "summary": "ResourceManagementService triggers an API request through the RequestCoordinatorService with caching and deduplication, fetching paginated vehicle results from the search endpoint.",
+      "tags": ["api", "fetch", "pagination"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/services/resource-management.service.ts",
+      "lineRange": [95, 687]
+    },
+    {
+      "id": "step:vehicle-search:transform-response",
+      "type": "step",
+      "name": "Transform API Response",
+      "summary": "Raw API response is transformed into VehicleResult objects using the domain's data transformer, parsing fields like manufacturer, model, year, body class, and instance count.",
+      "tags": ["transformation", "parsing", "data-model"],
+      "complexity": "moderate",
+      "filePath": "src/app/domain-config/automobile/models/automobile.data.ts",
+      "lineRange": [30, 205]
+    },
+    {
+      "id": "step:vehicle-search:render-results-table",
+      "type": "step",
+      "name": "Render Results Table",
+      "summary": "Transformed vehicle results are rendered in the dynamic results table with auto-generated columns, pagination controls, sortable headers, and expandable row details.",
+      "tags": ["rendering", "table", "pagination"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/components/dynamic-results-table/dynamic-results-table.component.ts",
+      "lineRange": [50, 341]
+    },
+    {
+      "id": "step:manufacturer-model-selection:load-picker-data",
+      "type": "step",
+      "name": "Load Picker Data",
+      "summary": "BasePickerComponent fetches manufacturer-model combinations from the API endpoint defined in the picker configuration, with pagination and search support.",
+      "tags": ["api", "loading", "picker"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/components/base-picker/base-picker.component.ts",
+      "lineRange": [58, 524]
+    },
+    {
+      "id": "step:manufacturer-model-selection:select-combinations",
+      "type": "step",
+      "name": "Select Manufacturer-Model Combinations",
+      "summary": "User selects one or more manufacturer-model rows via checkbox selection, with keyboard shortcuts for bulk select and search filtering to narrow the list.",
+      "tags": ["selection", "checkbox", "keyboard"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/components/base-picker/base-picker.component.ts",
+      "lineRange": [58, 524]
+    },
+    {
+      "id": "step:manufacturer-model-selection:serialize-selections",
+      "type": "step",
+      "name": "Serialize Selections to URL",
+      "summary": "Selected manufacturer-model combinations are serialized into comma-separated modelCombos URL parameters via the picker config's serializer function.",
+      "tags": ["serialization", "url", "picker"],
+      "complexity": "moderate",
+      "filePath": "src/app/domain-config/automobile/configs/automobile.picker-configs.ts",
+      "lineRange": [46, 150]
+    },
+    {
+      "id": "step:manufacturer-model-selection:trigger-search",
+      "type": "step",
+      "name": "Trigger Filtered Search",
+      "summary": "URL parameter update triggers ResourceManagementService to re-fetch search results with the modelCombos filter applied.",
+      "tags": ["search", "trigger", "state-change"],
+      "complexity": "simple",
+      "filePath": "src/app/framework/services/resource-management.service.ts",
+      "lineRange": [95, 687]
+    },
+    {
+      "id": "step:vin-detail-expansion:click-expand",
+      "type": "step",
+      "name": "Click Row Expand Button",
+      "summary": "User clicks the expand button on a vehicle result row in the dynamic results table to reveal the VIN detail section.",
+      "tags": ["ui", "click", "expansion"],
+      "complexity": "simple",
+      "filePath": "src/app/framework/components/dynamic-results-table/dynamic-results-table.component.ts",
+      "lineRange": [50, 341]
+    },
+    {
+      "id": "step:vin-detail-expansion:fetch-vin-records",
+      "type": "step",
+      "name": "Fetch VIN Records",
+      "summary": "The component issues an HTTP request to fetch VIN instances for the expanded vehicle, loading registration details, odometer readings, and status information.",
+      "tags": ["api", "fetch", "vin"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/components/dynamic-results-table/dynamic-results-table.component.ts",
+      "lineRange": [50, 341]
+    },
+    {
+      "id": "step:vin-detail-expansion:render-vin-subtable",
+      "type": "step",
+      "name": "Render VIN Sub-Table",
+      "summary": "VIN records are displayed in an inline sub-table within the expanded row, showing VIN number, registration date, odometer, and status fields.",
+      "tags": ["rendering", "table", "vin"],
+      "complexity": "simple",
+      "filePath": "src/app/domain-config/automobile/models/automobile.data.ts",
+      "lineRange": [224, 329]
+    },
+    {
+      "id": "step:chart-rendering:subscribe-statistics",
+      "type": "step",
+      "name": "Subscribe to Statistics Stream",
+      "summary": "StatisticsPanel2Component subscribes to the ResourceManagementService statistics observable to receive VehicleStatistics data whenever search results change.",
+      "tags": ["subscription", "observable", "statistics"],
+      "complexity": "simple",
+      "filePath": "src/app/framework/components/statistics-panel-2/statistics-panel-2.component.ts",
+      "lineRange": [53, 192]
+    },
+    {
+      "id": "step:chart-rendering:transform-to-chart-data",
+      "type": "step",
+      "name": "Transform Statistics to Chart Data",
+      "summary": "Domain-specific chart data sources (ManufacturerChartDataSource, BodyClassChartDataSource, etc.) transform VehicleStatistics into Plotly.js-compatible data arrays, layouts, and configurations.",
+      "tags": ["transformation", "chart", "plotly"],
+      "complexity": "complex",
+      "filePath": "src/app/domain-config/automobile/chart-sources/manufacturer-chart-source.ts",
+      "lineRange": [19, 164]
+    },
+    {
+      "id": "step:chart-rendering:render-plotly-charts",
+      "type": "step",
+      "name": "Render Plotly.js Charts",
+      "summary": "BaseChartComponent renders each chart using Plotly.js, applying the layout configuration, registering click/selection handlers, and providing error recovery with retry capability.",
+      "tags": ["rendering", "plotly", "chart"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/components/base-chart/base-chart.component.ts",
+      "lineRange": [59, 231]
+    },
+    {
+      "id": "step:chart-rendering:arrange-chart-grid",
+      "type": "step",
+      "name": "Arrange Charts in Draggable Grid",
+      "summary": "Charts are arranged in a CSS grid within the statistics panel, supporting drag-and-drop reordering via Angular CDK and pop-out to separate windows.",
+      "tags": ["layout", "drag-drop", "grid"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/components/statistics-panel-2/statistics-panel-2.component.ts",
+      "lineRange": [53, 192]
+    },
+    {
+      "id": "step:chart-click-filter:capture-click-event",
+      "type": "step",
+      "name": "Capture Chart Click Event",
+      "summary": "BaseChartComponent captures the Plotly.js plotly_click event and extracts the clicked data point's category information.",
+      "tags": ["event", "click", "plotly"],
+      "complexity": "simple",
+      "filePath": "src/app/framework/components/base-chart/base-chart.component.ts",
+      "lineRange": [59, 231]
+    },
+    {
+      "id": "step:chart-click-filter:translate-to-filter",
+      "type": "step",
+      "name": "Translate Click to Filter Parameters",
+      "summary": "The chart data source's click handler translates the clicked category (e.g., manufacturer name, body class, year) into URL filter parameter key-value pairs.",
+      "tags": ["translation", "filter", "url"],
+      "complexity": "moderate",
+      "filePath": "src/app/domain-config/automobile/chart-sources/body-class-chart-source.ts",
+      "lineRange": [18, 177]
+    },
+    {
+      "id": "step:chart-click-filter:apply-url-filter",
+      "type": "step",
+      "name": "Apply Filter via URL Update",
+      "summary": "The filter parameters are applied by updating URL query parameters, which triggers the standard search flow to re-fetch results matching the clicked category.",
+      "tags": ["url", "filter", "state-change"],
+      "complexity": "simple",
+      "filePath": "src/app/framework/services/url-state.service.ts",
+      "lineRange": [35, 334]
+    },
+    {
+      "id": "step:highlight-segmentation:apply-highlight-filters",
+      "type": "step",
+      "name": "Apply Highlight Filters",
+      "summary": "User adds highlight filters (h_manufacturer, h_yearMin, etc.) via the query control component, which are serialized as h_* URL parameters.",
+      "tags": ["highlight", "filter", "url"],
+      "complexity": "moderate",
+      "filePath": "src/app/domain-config/automobile/configs/automobile.highlight-filters.ts",
+      "lineRange": [0, 0]
+    },
+    {
+      "id": "step:highlight-segmentation:fetch-segmented-stats",
+      "type": "step",
+      "name": "Fetch Segmented Statistics",
+      "summary": "ResourceManagementService extracts highlight parameters and fetches both total and highlighted statistics from the API for comparison.",
+      "tags": ["api", "statistics", "segmentation"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/services/resource-management.service.ts",
+      "lineRange": [95, 687]
+    },
+    {
+      "id": "step:highlight-segmentation:render-stacked-charts",
+      "type": "step",
+      "name": "Render Stacked Comparison Charts",
+      "summary": "Chart data sources detect highlight mode and produce stacked bar/pie charts with highlighted-vs-other segments, using distinct colors to differentiate the subsets.",
+      "tags": ["chart", "stacked", "comparison"],
+      "complexity": "complex",
+      "filePath": "src/app/domain-config/automobile/chart-sources/manufacturer-chart-source.ts",
+      "lineRange": [19, 164]
+    },
+    {
+      "id": "step:url-state-sync:detect-url-change",
+      "type": "step",
+      "name": "Detect URL Parameter Change",
+      "summary": "UrlStateService subscribes to Angular router events and detects when URL query parameters change, either from user navigation or programmatic updates.",
+      "tags": ["url", "router", "detection"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/services/url-state.service.ts",
+      "lineRange": [35, 334]
+    },
+    {
+      "id": "step:url-state-sync:deserialize-params",
+      "type": "step",
+      "name": "Deserialize URL Parameters",
+      "summary": "GenericUrlMapper deserializes URL query parameters into typed filter objects using resource field definitions, handling type conversion for numbers, booleans, dates, and arrays.",
+      "tags": ["deserialization", "parsing", "type-conversion"],
+      "complexity": "complex",
+      "filePath": "src/app/framework/adapters/generic-url-mapper.ts",
+      "lineRange": [48, 440]
+    },
+    {
+      "id": "step:url-state-sync:broadcast-state",
+      "type": "step",
+      "name": "Broadcast State Change",
+      "summary": "ResourceManagementService emits the new filter state through its BehaviorSubject observables, notifying all subscribed components to update their views.",
+      "tags": ["broadcast", "observable", "state"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/services/resource-management.service.ts",
+      "lineRange": [95, 687]
+    },
+    {
+      "id": "step:url-state-sync:trigger-data-fetch",
+      "type": "step",
+      "name": "Trigger Data Fetch",
+      "summary": "State change triggers API calls to fetch new search results and statistics using the updated filter parameters.",
+      "tags": ["api", "fetch", "trigger"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/services/resource-management.service.ts",
+      "lineRange": [95, 687]
+    },
+    {
+      "id": "step:panel-pop-out:click-popout-button",
+      "type": "step",
+      "name": "Click Pop-Out Button",
+      "summary": "User clicks the pop-out button on a panel header in the discover dashboard, initiating the pop-out process for that panel type.",
+      "tags": ["ui", "click", "pop-out"],
+      "complexity": "simple",
+      "filePath": "src/app/features/discover/discover.component.ts",
+      "lineRange": [39, 350]
+    },
+    {
+      "id": "step:panel-pop-out:open-browser-window",
+      "type": "step",
+      "name": "Open Pop-Out Window",
+      "summary": "PopOutManagerService opens a new browser window with configurable dimensions and features, navigating to the /popout/:domain/:component route.",
+      "tags": ["window", "browser-api", "routing"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/services/popout-manager.service.ts",
+      "lineRange": [26, 203]
+    },
+    {
+      "id": "step:panel-pop-out:initialize-broadcast-channel",
+      "type": "step",
+      "name": "Initialize BroadcastChannel",
+      "summary": "PopOutContextService creates a BroadcastChannel for the new window and establishes bidirectional message passing between parent and child windows.",
+      "tags": ["broadcast-channel", "initialization", "communication"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/services/popout-context.service.ts",
+      "lineRange": [63, 384]
+    },
+    {
+      "id": "step:panel-pop-out:render-panel-component",
+      "type": "step",
+      "name": "Render Panel in Pop-Out",
+      "summary": "PanelPopoutComponent parses the route to determine the panel type and renders the appropriate component (chart, picker, query control, or results table) in the standalone window.",
+      "tags": ["rendering", "component", "routing"],
+      "complexity": "moderate",
+      "filePath": "src/app/features/panel-popout/panel-popout.component.ts",
+      "lineRange": [65, 272]
+    },
+    {
+      "id": "step:panel-pop-out:sync-initial-state",
+      "type": "step",
+      "name": "Synchronize Initial State",
+      "summary": "Parent window broadcasts the current application state (filters, results, statistics) to the pop-out window so it renders with up-to-date data.",
+      "tags": ["sync", "state", "initialization"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/services/popout-manager.service.ts",
+      "lineRange": [26, 203]
+    },
+    {
+      "id": "step:ai-chat-conversation:compose-message",
+      "type": "step",
+      "name": "Compose Chat Message",
+      "summary": "User types a question in the chat input textarea, optionally pasting or uploading an image for vision model queries.",
+      "tags": ["input", "text", "image"],
+      "complexity": "simple",
+      "filePath": "src/app/framework/components/ai-chat/ai-chat.component.ts",
+      "lineRange": [35, 350]
+    },
+    {
+      "id": "step:ai-chat-conversation:build-prompt",
+      "type": "step",
+      "name": "Build Domain-Aware Prompt",
+      "summary": "AiService constructs a system prompt with automobile field metadata (make, model, year, price, mileage) to give the LLM domain context for generating relevant responses.",
+      "tags": ["prompt", "context", "domain"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/services/ai.service.ts",
+      "lineRange": [771, 853]
+    },
+    {
+      "id": "step:ai-chat-conversation:send-to-ollama",
+      "type": "step",
+      "name": "Send to Ollama Backend",
+      "summary": "AiService sends the message with system prompt to the local Ollama LLM backend, selecting the appropriate model (text, vision, or DeepSeek) based on mode and content.",
+      "tags": ["api", "ollama", "llm"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/services/ai.service.ts",
+      "lineRange": [26, 760]
+    },
+    {
+      "id": "step:ai-chat-conversation:render-response",
+      "type": "step",
+      "name": "Render AI Response",
+      "summary": "The LLM response is processed and rendered with markdown formatting, KaTeX LaTeX math rendering, and safe HTML injection via DomSanitizer.",
+      "tags": ["rendering", "markdown", "katex"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/components/ai-chat/ai-chat.component.ts",
+      "lineRange": [35, 350]
+    },
+    {
+      "id": "step:api-request-resilience:intercept-request",
+      "type": "step",
+      "name": "Intercept HTTP Request",
+      "summary": "HttpErrorInterceptor wraps outgoing HTTP requests, attaching retry logic and error formatting middleware to the observable pipeline.",
+      "tags": ["interceptor", "middleware", "http"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/services/http-error.interceptor.ts",
+      "lineRange": [57, 273]
+    },
+    {
+      "id": "step:api-request-resilience:check-cache",
+      "type": "step",
+      "name": "Check Response Cache",
+      "summary": "RequestCoordinatorService checks its TTL-based cache for a valid cached response matching the request's cache key, returning it immediately if found.",
+      "tags": ["cache", "lookup", "ttl"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/services/request-coordinator.service.ts",
+      "lineRange": [84, 334]
+    },
+    {
+      "id": "step:api-request-resilience:deduplicate-inflight",
+      "type": "step",
+      "name": "Deduplicate In-Flight Requests",
+      "summary": "If the same request is already in-flight, RequestCoordinatorService returns the existing observable via shareReplay instead of issuing a duplicate HTTP call.",
+      "tags": ["deduplication", "shareReplay", "optimization"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/services/request-coordinator.service.ts",
+      "lineRange": [84, 334]
+    },
+    {
+      "id": "step:api-request-resilience:retry-on-failure",
+      "type": "step",
+      "name": "Retry on Transient Error",
+      "summary": "For 5xx server errors and 429 rate limits, the interceptor automatically retries with exponential backoff before surfacing the error to the caller.",
+      "tags": ["retry", "backoff", "error-recovery"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/services/http-error.interceptor.ts",
+      "lineRange": [57, 273]
+    },
+    {
+      "id": "step:api-request-resilience:notify-error",
+      "type": "step",
+      "name": "Display Error Notification",
+      "summary": "If the request ultimately fails, ErrorNotificationService categorizes the error and displays a toast notification with duplicate suppression to prevent flooding the user.",
+      "tags": ["notification", "toast", "error-display"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/services/error-notification.service.ts",
+      "lineRange": [41, 391]
+    },
+    {
+      "id": "step:domain-config-bootstrap:create-resource-definition",
+      "type": "step",
+      "name": "Define Resource Fields",
+      "summary": "The automobile resource definition declares all field definitions (filters, pagination, sorting, table columns) and API endpoints as the single source of truth for the domain.",
+      "tags": ["resource", "definition", "fields"],
+      "complexity": "complex",
+      "filePath": "src/app/domain-config/automobile/automobile.resource.ts",
+      "lineRange": [0, 0]
+    },
+    {
+      "id": "step:domain-config-bootstrap:assemble-domain-config",
+      "type": "step",
+      "name": "Assemble Domain Configuration",
+      "summary": "The createAutomobileDomainConfig factory combines resource definitions, generic adapters (URL mapper, API adapter), chart data sources, filter configs, picker configs, and feature flags into a complete DomainConfig object.",
+      "tags": ["factory", "assembly", "configuration"],
+      "complexity": "complex",
+      "filePath": "src/app/domain-config/automobile/automobile.domain-config.ts",
+      "lineRange": [66, 137]
+    },
+    {
+      "id": "step:domain-config-bootstrap:validate-config",
+      "type": "step",
+      "name": "Validate Domain Configuration",
+      "summary": "DomainConfigValidator checks required fields, URL formats, adapter functions, table configurations, and feature flags, returning structured validation results with errors and warnings.",
+      "tags": ["validation", "checking", "quality"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/services/domain-config-validator.service.ts",
+      "lineRange": [33, 563]
+    },
+    {
+      "id": "step:domain-config-bootstrap:register-domain",
+      "type": "step",
+      "name": "Register Domain in Registry",
+      "summary": "The validated DomainConfig is registered with the DomainConfigRegistry, making it available to all framework services and components via dependency injection.",
+      "tags": ["registry", "registration", "di"],
+      "complexity": "simple",
+      "filePath": "src/app/framework/services/domain-config-registry.service.ts",
+      "lineRange": [55, 311]
+    },
+    {
+      "id": "step:user-preference-persistence:capture-layout-change",
+      "type": "step",
+      "name": "Capture Layout Change",
+      "summary": "DiscoverComponent detects when the user reorders panels via drag-and-drop or collapses/expands a panel section, and notifies UserPreferencesService of the change.",
+      "tags": ["event", "layout", "drag-drop"],
+      "complexity": "simple",
+      "filePath": "src/app/features/discover/discover.component.ts",
+      "lineRange": [39, 350]
+    },
+    {
+      "id": "step:user-preference-persistence:save-preferences",
+      "type": "step",
+      "name": "Save Preferences",
+      "summary": "UserPreferencesService saves the updated panel order and collapsed state to the backend API, with automatic fallback to localStorage if the API is unavailable.",
+      "tags": ["persistence", "api", "localStorage"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/services/user-preferences.service.ts",
+      "lineRange": [50, 522]
+    },
+    {
+      "id": "step:user-preference-persistence:restore-on-load",
+      "type": "step",
+      "name": "Restore Preferences on Load",
+      "summary": "On page load, UserPreferencesService fetches saved preferences from the backend (falling back to localStorage) and applies them to restore the user's customized dashboard layout.",
+      "tags": ["restoration", "loading", "initialization"],
+      "complexity": "moderate",
+      "filePath": "src/app/framework/services/user-preferences.service.ts",
+      "lineRange": [50, 522]
+    }
+  ],
+  "edges": [
+    { "source": "domain:vehicle-data-discovery", "target": "flow:vehicle-search", "type": "contains_flow", "direction": "forward", "weight": 1.0 },
+    { "source": "domain:vehicle-data-discovery", "target": "flow:manufacturer-model-selection", "type": "contains_flow", "direction": "forward", "weight": 1.0 },
+    { "source": "domain:vehicle-data-discovery", "target": "flow:vin-detail-expansion", "type": "contains_flow", "direction": "forward", "weight": 1.0 },
+    { "source": "domain:vehicle-data-discovery", "target": "flow:domain-config-bootstrap", "type": "contains_flow", "direction": "forward", "weight": 1.0 },
+    { "source": "domain:vehicle-data-discovery", "target": "flow:user-preference-persistence", "type": "contains_flow", "direction": "forward", "weight": 1.0 },
+
+    { "source": "domain:data-visualization", "target": "flow:chart-rendering", "type": "contains_flow", "direction": "forward", "weight": 1.0 },
+    { "source": "domain:data-visualization", "target": "flow:chart-click-filter", "type": "contains_flow", "direction": "forward", "weight": 1.0 },
+    { "source": "domain:data-visualization", "target": "flow:highlight-segmentation", "type": "contains_flow", "direction": "forward", "weight": 1.0 },
+
+    { "source": "domain:url-state-management", "target": "flow:url-state-sync", "type": "contains_flow", "direction": "forward", "weight": 1.0 },
+    { "source": "domain:url-state-management", "target": "flow:shareable-url-generation", "type": "contains_flow", "direction": "forward", "weight": 1.0 },
+
+    { "source": "domain:multi-window-workspace", "target": "flow:panel-pop-out", "type": "contains_flow", "direction": "forward", "weight": 1.0 },
+    { "source": "domain:multi-window-workspace", "target": "flow:cross-window-state-sync", "type": "contains_flow", "direction": "forward", "weight": 1.0 },
+
+    { "source": "domain:ai-chat-assistant", "target": "flow:ai-chat-conversation", "type": "contains_flow", "direction": "forward", "weight": 1.0 },
+
+    { "source": "domain:error-handling-resilience", "target": "flow:api-request-resilience", "type": "contains_flow", "direction": "forward", "weight": 1.0 },
+
+    { "source": "flow:vehicle-search", "target": "step:vehicle-search:select-filter-field", "type": "flow_step", "direction": "forward", "weight": 0.1 },
+    { "source": "flow:vehicle-search", "target": "step:vehicle-search:configure-filter-value", "type": "flow_step", "direction": "forward", "weight": 0.2 },
+    { "source": "flow:vehicle-search", "target": "step:vehicle-search:serialize-to-url", "type": "flow_step", "direction": "forward", "weight": 0.3 },
+    { "source": "flow:vehicle-search", "target": "step:vehicle-search:build-api-params", "type": "flow_step", "direction": "forward", "weight": 0.4 },
+    { "source": "flow:vehicle-search", "target": "step:vehicle-search:fetch-results", "type": "flow_step", "direction": "forward", "weight": 0.6 },
+    { "source": "flow:vehicle-search", "target": "step:vehicle-search:transform-response", "type": "flow_step", "direction": "forward", "weight": 0.7 },
+    { "source": "flow:vehicle-search", "target": "step:vehicle-search:render-results-table", "type": "flow_step", "direction": "forward", "weight": 0.9 },
+
+    { "source": "flow:manufacturer-model-selection", "target": "step:manufacturer-model-selection:load-picker-data", "type": "flow_step", "direction": "forward", "weight": 0.2 },
+    { "source": "flow:manufacturer-model-selection", "target": "step:manufacturer-model-selection:select-combinations", "type": "flow_step", "direction": "forward", "weight": 0.4 },
+    { "source": "flow:manufacturer-model-selection", "target": "step:manufacturer-model-selection:serialize-selections", "type": "flow_step", "direction": "forward", "weight": 0.7 },
+    { "source": "flow:manufacturer-model-selection", "target": "step:manufacturer-model-selection:trigger-search", "type": "flow_step", "direction": "forward", "weight": 0.9 },
+
+    { "source": "flow:vin-detail-expansion", "target": "step:vin-detail-expansion:click-expand", "type": "flow_step", "direction": "forward", "weight": 0.2 },
+    { "source": "flow:vin-detail-expansion", "target": "step:vin-detail-expansion:fetch-vin-records", "type": "flow_step", "direction": "forward", "weight": 0.5 },
+    { "source": "flow:vin-detail-expansion", "target": "step:vin-detail-expansion:render-vin-subtable", "type": "flow_step", "direction": "forward", "weight": 0.9 },
+
+    { "source": "flow:chart-rendering", "target": "step:chart-rendering:subscribe-statistics", "type": "flow_step", "direction": "forward", "weight": 0.2 },
+    { "source": "flow:chart-rendering", "target": "step:chart-rendering:transform-to-chart-data", "type": "flow_step", "direction": "forward", "weight": 0.4 },
+    { "source": "flow:chart-rendering", "target": "step:chart-rendering:render-plotly-charts", "type": "flow_step", "direction": "forward", "weight": 0.7 },
+    { "source": "flow:chart-rendering", "target": "step:chart-rendering:arrange-chart-grid", "type": "flow_step", "direction": "forward", "weight": 0.9 },
+
+    { "source": "flow:chart-click-filter", "target": "step:chart-click-filter:capture-click-event", "type": "flow_step", "direction": "forward", "weight": 0.2 },
+    { "source": "flow:chart-click-filter", "target": "step:chart-click-filter:translate-to-filter", "type": "flow_step", "direction": "forward", "weight": 0.5 },
+    { "source": "flow:chart-click-filter", "target": "step:chart-click-filter:apply-url-filter", "type": "flow_step", "direction": "forward", "weight": 0.9 },
+
+    { "source": "flow:highlight-segmentation", "target": "step:highlight-segmentation:apply-highlight-filters", "type": "flow_step", "direction": "forward", "weight": 0.2 },
+    { "source": "flow:highlight-segmentation", "target": "step:highlight-segmentation:fetch-segmented-stats", "type": "flow_step", "direction": "forward", "weight": 0.5 },
+    { "source": "flow:highlight-segmentation", "target": "step:highlight-segmentation:render-stacked-charts", "type": "flow_step", "direction": "forward", "weight": 0.9 },
+
+    { "source": "flow:url-state-sync", "target": "step:url-state-sync:detect-url-change", "type": "flow_step", "direction": "forward", "weight": 0.2 },
+    { "source": "flow:url-state-sync", "target": "step:url-state-sync:deserialize-params", "type": "flow_step", "direction": "forward", "weight": 0.4 },
+    { "source": "flow:url-state-sync", "target": "step:url-state-sync:broadcast-state", "type": "flow_step", "direction": "forward", "weight": 0.7 },
+    { "source": "flow:url-state-sync", "target": "step:url-state-sync:trigger-data-fetch", "type": "flow_step", "direction": "forward", "weight": 0.9 },
+
+    { "source": "flow:panel-pop-out", "target": "step:panel-pop-out:click-popout-button", "type": "flow_step", "direction": "forward", "weight": 0.1 },
+    { "source": "flow:panel-pop-out", "target": "step:panel-pop-out:open-browser-window", "type": "flow_step", "direction": "forward", "weight": 0.3 },
+    { "source": "flow:panel-pop-out", "target": "step:panel-pop-out:initialize-broadcast-channel", "type": "flow_step", "direction": "forward", "weight": 0.5 },
+    { "source": "flow:panel-pop-out", "target": "step:panel-pop-out:render-panel-component", "type": "flow_step", "direction": "forward", "weight": 0.7 },
+    { "source": "flow:panel-pop-out", "target": "step:panel-pop-out:sync-initial-state", "type": "flow_step", "direction": "forward", "weight": 0.9 },
+
+    { "source": "flow:ai-chat-conversation", "target": "step:ai-chat-conversation:compose-message", "type": "flow_step", "direction": "forward", "weight": 0.2 },
+    { "source": "flow:ai-chat-conversation", "target": "step:ai-chat-conversation:build-prompt", "type": "flow_step", "direction": "forward", "weight": 0.4 },
+    { "source": "flow:ai-chat-conversation", "target": "step:ai-chat-conversation:send-to-ollama", "type": "flow_step", "direction": "forward", "weight": 0.6 },
+    { "source": "flow:ai-chat-conversation", "target": "step:ai-chat-conversation:render-response", "type": "flow_step", "direction": "forward", "weight": 0.9 },
+
+    { "source": "flow:api-request-resilience", "target": "step:api-request-resilience:intercept-request", "type": "flow_step", "direction": "forward", "weight": 0.1 },
+    { "source": "flow:api-request-resilience", "target": "step:api-request-resilience:check-cache", "type": "flow_step", "direction": "forward", "weight": 0.3 },
+    { "source": "flow:api-request-resilience", "target": "step:api-request-resilience:deduplicate-inflight", "type": "flow_step", "direction": "forward", "weight": 0.5 },
+    { "source": "flow:api-request-resilience", "target": "step:api-request-resilience:retry-on-failure", "type": "flow_step", "direction": "forward", "weight": 0.7 },
+    { "source": "flow:api-request-resilience", "target": "step:api-request-resilience:notify-error", "type": "flow_step", "direction": "forward", "weight": 0.9 },
+
+    { "source": "flow:domain-config-bootstrap", "target": "step:domain-config-bootstrap:create-resource-definition", "type": "flow_step", "direction": "forward", "weight": 0.2 },
+    { "source": "flow:domain-config-bootstrap", "target": "step:domain-config-bootstrap:assemble-domain-config", "type": "flow_step", "direction": "forward", "weight": 0.4 },
+    { "source": "flow:domain-config-bootstrap", "target": "step:domain-config-bootstrap:validate-config", "type": "flow_step", "direction": "forward", "weight": 0.7 },
+    { "source": "flow:domain-config-bootstrap", "target": "step:domain-config-bootstrap:register-domain", "type": "flow_step", "direction": "forward", "weight": 0.9 },
+
+    { "source": "flow:user-preference-persistence", "target": "step:user-preference-persistence:capture-layout-change", "type": "flow_step", "direction": "forward", "weight": 0.2 },
+    { "source": "flow:user-preference-persistence", "target": "step:user-preference-persistence:save-preferences", "type": "flow_step", "direction": "forward", "weight": 0.5 },
+    { "source": "flow:user-preference-persistence", "target": "step:user-preference-persistence:restore-on-load", "type": "flow_step", "direction": "forward", "weight": 0.9 },
+
+    { "source": "flow:shareable-url-generation", "target": "step:url-state-sync:deserialize-params", "type": "flow_step", "direction": "forward", "weight": 0.9 },
+
+    { "source": "flow:cross-window-state-sync", "target": "step:panel-pop-out:initialize-broadcast-channel", "type": "flow_step", "direction": "forward", "weight": 0.3 },
+    { "source": "flow:cross-window-state-sync", "target": "step:panel-pop-out:sync-initial-state", "type": "flow_step", "direction": "forward", "weight": 0.9 },
+
+    { "source": "domain:vehicle-data-discovery", "target": "domain:data-visualization", "type": "cross_domain", "direction": "forward", "description": "Search results include statistics data that feeds into chart visualizations; chart click-to-filter actions trigger new searches.", "weight": 0.8 },
+    { "source": "domain:vehicle-data-discovery", "target": "domain:url-state-management", "type": "cross_domain", "direction": "forward", "description": "All search filters, pagination, and sort state are read from and written to URL parameters via the URL state management layer.", "weight": 0.9 },
+    { "source": "domain:vehicle-data-discovery", "target": "domain:multi-window-workspace", "type": "cross_domain", "direction": "forward", "description": "Dashboard panels (charts, pickers, tables) can be popped out to separate windows with synchronized state.", "weight": 0.6 },
+    { "source": "domain:data-visualization", "target": "domain:url-state-management", "type": "cross_domain", "direction": "forward", "description": "Chart click-to-filter interactions update URL state parameters to trigger filtered searches.", "weight": 0.7 },
+    { "source": "domain:multi-window-workspace", "target": "domain:url-state-management", "type": "cross_domain", "direction": "forward", "description": "Pop-out windows synchronize filter state changes back to the parent via BroadcastChannel, which then updates URL parameters.", "weight": 0.7 },
+    { "source": "domain:ai-chat-assistant", "target": "domain:vehicle-data-discovery", "type": "cross_domain", "direction": "forward", "description": "AI chat uses automobile domain context for prompts and can extract search queries from natural language responses.", "weight": 0.5 },
+    { "source": "domain:error-handling-resilience", "target": "domain:vehicle-data-discovery", "type": "cross_domain", "direction": "forward", "description": "Provides caching, retry, and error notification for all API calls made during vehicle search and data fetching.", "weight": 0.7 }
+  ],
+  "layers": [],
+  "tour": []
+}
