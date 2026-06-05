@@ -45,7 +45,7 @@ This project is indexed by GitNexus as **vvroom** (2103 symbols, 4202 relationsh
 <!-- nexus:start -->
 # Nexus — Code Intelligence
 
-This project is indexed by Nexus as **vvroom** (2220 symbols, 5738 relationships, 151 execution flows). Use the Nexus MCP tools to understand code, assess impact, and navigate safely.
+This project is indexed by Nexus as **vvroom** (2230 symbols, 5748 relationships, 151 execution flows). Use the Nexus MCP tools to understand code, assess impact, and navigate safely.
 
 > If any Nexus tool warns the index is stale, run `npx nexus analyze` in terminal first.
 
