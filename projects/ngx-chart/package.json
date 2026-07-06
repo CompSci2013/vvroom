@@ -1,0 +1,25 @@
+{
+  "name": "@halolabs/ngx-chart",
+  "version": "0.0.1",
+  "description": "Renderer-agnostic chart library for Angular — decouples chart rendering from Plotly via a pluggable ChartRenderer interface.",
+  "author": "Halo Labs",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/halo-labs/vvroom",
+    "directory": "projects/ngx-chart"
+  },
+  "peerDependencies": {
+    "@angular/common": "^14.2.0",
+    "@angular/core": "^14.2.0",
+    "@angular/cdk": "^14.2.0",
+    "primeicons": "^5.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "ng-packagr": "^14.2.0",
+    "typescript": "~4.7.2"
+  },
+  "schematics": "./src/schematics/collection.json",
+  "ngPackage": {}
+}

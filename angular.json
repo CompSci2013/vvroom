@@ -127,6 +127,37 @@
           }
         }
       }
+    },
+    "ngx-chart": {
+      "projectType": "library",
+      "root": "projects/ngx-chart",
+      "sourceRoot": "projects/ngx-chart/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngx-chart/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-chart/tsconfig.lib.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-chart/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-chart/src/test.ts",
+            "tsConfig": "projects/ngx-chart/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-chart/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "vvroom"
