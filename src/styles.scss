@@ -18,3 +18,7 @@ body {
   background-color: #3c3c3c; // Dark gray background (VS theme)
   color: #ffffff; // White text for better readability
 }
+
+/* Presentation-only dashboard polish. Kept separate from component logic. */
+@import "polish";
+@import "themes";

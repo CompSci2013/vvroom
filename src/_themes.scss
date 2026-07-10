@@ -1,0 +1,254 @@
+/* Vvroom selectable color themes and global overlay behavior. */
+
+/* PrimeNG overlays render at body level and must clear every panel/viewport edge. */
+body > .p-dropdown-panel,
+body > .p-multiselect-panel,
+body > .p-autocomplete-panel,
+body > .p-datepicker,
+.p-component-overlay {
+  z-index: 10050 !important;
+}
+
+.p-dropdown-panel,
+.p-multiselect-panel,
+.p-autocomplete-panel {
+  max-height: min(360px, calc(100vh - 24px));
+}
+
+.p-dropdown-items-wrapper,
+.p-multiselect-items-wrapper,
+.p-autocomplete-items-wrapper {
+  max-height: min(300px, calc(100vh - 96px)) !important;
+}
+
+/* Current polished theme. Explicit selector makes it a first-class theme. */
+html[data-theme="dark-blue"] {
+  color-scheme: dark;
+}
+
+/* Bright neutral workspace with restrained blue interaction color. */
+html[data-theme="white-blue"] {
+  color-scheme: light;
+  --vv-bg: #edf3fa;
+  --vv-bg-raised: #ffffff;
+  --vv-surface: rgba(29, 78, 145, 0.045);
+  --vv-surface-hover: rgba(37, 99, 235, 0.09);
+  --vv-surface-strong: #e8f0fa;
+  --vv-border: rgba(30, 64, 110, 0.15);
+  --vv-border-soft: rgba(30, 64, 110, 0.09);
+  --vv-text: #142038;
+  --vv-text-2: #3f4f68;
+  --vv-muted: #718097;
+  --vv-accent: #2563eb;
+  --vv-accent-hover: #1d4ed8;
+  --vv-accent-soft: rgba(37, 99, 235, 0.1);
+  --vv-shadow: 0 1px 0 rgba(255, 255, 255, 0.75) inset,
+               0 18px 46px rgba(42, 67, 101, 0.09);
+
+  body {
+    color: var(--vv-text);
+    background:
+      radial-gradient(1000px 520px at 50% -240px, rgba(37, 99, 235, 0.14), transparent 68%),
+      linear-gradient(180deg, #f7faff 0%, var(--vv-bg) 72%);
+  }
+
+  .app-header {
+    background: rgba(250, 252, 255, 0.88) !important;
+    box-shadow: 0 1px 0 rgba(47, 73, 110, 0.08);
+  }
+
+  .app-footer { background: rgba(247, 250, 255, 0.94) !important; }
+
+  .discover-container .panel-wrapper {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(250, 252, 255, 0.91)) !important;
+
+    > .panel-header {
+      background: rgba(232, 240, 251, 0.54);
+      .panel-title { color: #263650 !important; }
+    }
+  }
+
+  .query-panel-container .filter-panel-container,
+  .chart-grid .chart-box {
+    background: rgba(241, 246, 253, 0.78) !important;
+  }
+
+  .picker-container .table-caption {
+    background: #eef4fb !important;
+    border-bottom-color: var(--vv-border-soft) !important;
+  }
+
+  .p-inputtext,
+  .p-inputnumber-input,
+  .p-autocomplete-input,
+  .p-multiselect,
+  .p-dropdown,
+  .p-select,
+  .p-calendar .p-inputtext {
+    color: var(--vv-text-2) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+  }
+
+  .p-inputtext::placeholder,
+  .p-autocomplete-input::placeholder { color: #8490a3 !important; }
+
+  .p-button {
+    color: #42536e !important;
+    background: rgba(37, 99, 235, 0.045) !important;
+  }
+
+  .p-datatable {
+    background: rgba(255, 255, 255, 0.8) !important;
+
+    .p-datatable-thead > tr > th {
+      color: #52627a !important;
+      background: #eef4fb !important;
+    }
+
+    .p-datatable-tbody > tr {
+      background: #ffffff !important;
+      &:nth-child(even) { background: #f8fbff !important; }
+      &:hover { background: #edf4ff !important; }
+      > td { color: #35455f !important; }
+    }
+
+    .p-paginator {
+      color: #6c7a90 !important;
+      background: #f4f8fd !important;
+    }
+  }
+
+  .chart-title { color: #30425f !important; }
+
+  .js-plotly-plot {
+    .gtitle,
+    .xtick text,
+    .ytick text,
+    .legendtext { fill: #62718a !important; }
+    .gridlayer path { stroke: rgba(31, 66, 112, 0.1) !important; }
+  }
+
+  .p-dropdown-panel,
+  .p-multiselect-panel,
+  .p-autocomplete-panel,
+  .p-dialog,
+  .p-overlaypanel {
+    color: var(--vv-text-2) !important;
+    background: #ffffff !important;
+  }
+
+  .p-dropdown-item,
+  .p-multiselect-item,
+  .p-autocomplete-item {
+    color: #35455f !important;
+    &:hover { background: #edf4ff !important; }
+  }
+}
+
+/* Photographer's darkroom: near-black surfaces under dim red safelight. */
+html[data-theme="dark-room"] {
+  color-scheme: dark;
+  --vv-bg: #050202;
+  --vv-bg-raised: #100606;
+  --vv-surface: rgba(255, 65, 65, 0.035);
+  --vv-surface-hover: rgba(255, 71, 71, 0.09);
+  --vv-surface-strong: #190909;
+  --vv-border: rgba(255, 90, 90, 0.15);
+  --vv-border-soft: rgba(255, 85, 85, 0.075);
+  --vv-text: #ffd6d6;
+  --vv-text-2: #dca9a9;
+  --vv-muted: #8e5c5c;
+  --vv-accent: #e5484d;
+  --vv-accent-hover: #ff5a5f;
+  --vv-accent-soft: rgba(229, 72, 77, 0.13);
+  --vv-shadow: 0 1px 0 rgba(255, 102, 102, 0.025) inset,
+               0 18px 48px rgba(0, 0, 0, 0.38);
+
+  body {
+    color: var(--vv-text);
+    background:
+      radial-gradient(900px 460px at 50% -210px, rgba(215, 38, 44, 0.17), transparent 67%),
+      linear-gradient(180deg, #090303 0%, var(--vv-bg) 70%);
+  }
+
+  .app-header,
+  .app-footer { background: rgba(7, 2, 2, 0.91) !important; }
+
+  .discover-container .panel-wrapper {
+    background: linear-gradient(180deg, rgba(255, 57, 57, 0.035), rgba(255, 40, 40, 0.018)) !important;
+
+    > .panel-header {
+      background: rgba(229, 72, 77, 0.018);
+      .panel-title { color: #efc2c2 !important; }
+    }
+  }
+
+  .query-panel-container .filter-panel-container,
+  .chart-grid .chart-box { background: rgba(30, 5, 5, 0.38) !important; }
+
+  .picker-container .table-caption {
+    background: rgba(229, 72, 77, 0.035) !important;
+    border-bottom-color: var(--vv-border-soft) !important;
+  }
+
+  .p-inputtext,
+  .p-inputnumber-input,
+  .p-autocomplete-input,
+  .p-multiselect,
+  .p-dropdown,
+  .p-select,
+  .p-calendar .p-inputtext {
+    color: var(--vv-text-2) !important;
+    background: rgba(20, 3, 3, 0.72) !important;
+  }
+
+  .p-button {
+    color: #d8a4a4 !important;
+    background: rgba(229, 72, 77, 0.045) !important;
+  }
+
+  .p-slider {
+    .p-slider-range { background: linear-gradient(90deg, #9d272b, var(--vv-accent)) !important; }
+    .p-slider-handle { border-color: #ff6569 !important; }
+  }
+
+  .p-datatable {
+    background: rgba(10, 2, 2, 0.65) !important;
+
+    .p-datatable-thead > tr > th {
+      color: #a86f6f !important;
+      background: rgba(229, 72, 77, 0.035) !important;
+    }
+
+    .p-datatable-tbody > tr {
+      background: transparent !important;
+      &:nth-child(even) { background: rgba(255, 42, 42, 0.012) !important; }
+      &:hover { background: rgba(229, 72, 77, 0.08) !important; }
+      > td { color: #d7aaaa !important; }
+    }
+
+    .p-paginator {
+      color: #8e5c5c !important;
+      background: rgba(12, 3, 3, 0.76) !important;
+    }
+  }
+
+  .chart-title { color: #e4b8b8 !important; }
+
+  .js-plotly-plot {
+    .gtitle,
+    .xtick text,
+    .ytick text,
+    .legendtext { fill: #a87373 !important; }
+    .gridlayer path { stroke: rgba(255, 80, 80, 0.065) !important; }
+  }
+
+  .p-dropdown-panel,
+  .p-multiselect-panel,
+  .p-autocomplete-panel,
+  .p-dialog,
+  .p-overlaypanel {
+    color: var(--vv-text-2) !important;
+    background: #170707 !important;
+  }
+}

@@ -5,6 +5,15 @@
 <header class="app-header">
   <a routerLink="/" class="home-link">🏠 Home</a>
   <a routerLink="/discover" routerLinkActive="active" class="discover-link">🔍 Discover</a>
+  <label class="theme-picker" title="Choose color theme">
+    <i class="pi pi-palette" aria-hidden="true"></i>
+    <select
+      aria-label="Color theme"
+      [(ngModel)]="theme"
+      (ngModelChange)="setTheme($event)">
+      <option *ngFor="let item of themes" [ngValue]="item.value">{{ item.label }}</option>
+    </select>
+  </label>
 </header>
 
 <!-- Application Content -->
