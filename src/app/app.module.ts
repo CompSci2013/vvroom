@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PrimengModule } from './primeng.module';
 import { FrameworkModule } from './framework/framework.module';
-import { PopoutModule, PopOutManagerService } from '@halolabs/ngx-popout';
+import { PopoutModule, PopOutManagerService } from './framework/popout';
 import { GlobalErrorHandler } from './framework/services/global-error.handler';
 import { HttpErrorInterceptor } from './framework/services/http-error.interceptor';
 import { DOMAIN_CONFIG } from './framework/services/domain-config-registry.service';
