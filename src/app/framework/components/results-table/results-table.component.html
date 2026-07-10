@@ -85,7 +85,7 @@
               [showClear]="true"
               [filter]="true"
               filterBy="label"
-              appendTo="body"
+              [appendTo]="overlayAppendTo"
               [placeholder]="filterDef.placeholder || 'Select...'">
             </p-dropdown>
           </ng-container>
@@ -101,7 +101,7 @@
               [filter]="true"
               filterBy="label"
               [showClear]="true"
-              appendTo="body"
+              [appendTo]="overlayAppendTo"
               [placeholder]="filterDef.placeholder || 'Select...'">
             </p-multiSelect>
           </ng-container>
@@ -111,7 +111,7 @@
               <p-calendar [id]="filterDef.id"
                 [(ngModel)]="currentFilters[filterDef.id]"
                 (ngModelChange)="onFilterChange(filterDef.id, $event)"
-                appendTo="body"
+                [appendTo]="overlayAppendTo"
                 dateFormat="yy-mm-dd">
               </p-calendar>
               <button

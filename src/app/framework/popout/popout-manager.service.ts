@@ -145,11 +145,32 @@ export class PopOutManagerService implements OnDestroy {
     const portal = new ComponentPortal(componentType);
     const componentRef = outlet.attach(portal);
 
-    // NOW copy styles (including the component styles Angular just created)
-    this.copyStylesToPopout(popoutWindow);
+    // NOW copy styles (including the component styles Angular just created).
+    // A single snapshot is not enough: Angular/PrimeNG inject some stylesheets
+    // AFTER portal attachment and outside the MutationObserver's childList window
+    // (e.g. the p-dropdown layout sheet), so the popout can miss them and render
+    // overlays unstyled. We track which parent nodes we've already copied (by
+    // identity) and run several deferred catch-up passes to close that race.
+    const copiedSources = new WeakSet<Node>();
+    this.copyStylesToPopout(popoutWindow, copiedSources);
 
     // Watch for late style injections (Plotly, lazy-loaded components, etc.)
-    const styleObserver = this.observeParentStyles(popoutWindow);
+    const styleObserver = this.observeParentStyles(popoutWindow, copiedSources);
+
+    // Deferred catch-up passes: re-scan the parent <head> for any not-yet-copied
+    // stylesheet the initial snapshot and the observer missed.
+    const styleResyncTimers = [120, 350, 800, 1600].map(delay =>
+      window.setTimeout(() => {
+        if (!popoutWindow.closed) {
+          this.copyStylesToPopout(popoutWindow, copiedSources);
+        }
+      }, delay)
+    );
+
+    // Embed in-use fonts (e.g. PrimeIcons) as data: URIs so icon glyphs render
+    // in the pop-out. A network-url @font-face in about:blank hangs the render/
+    // screenshot font-wait; a data: URI has no network step and settles at once.
+    void this.embedUsedFontsIntoPopout(popoutWindow);
 
     // Forward drag-continuation events from popout document to parent document.
     // Libraries like Plotly bind mousemove/mouseup to the parent's `document` during
@@ -220,7 +241,8 @@ export class PopOutManagerService implements OnDestroy {
       outlet,
       componentRef,
       styleObserver,
-      eventForwardingController
+      eventForwardingController,
+      styleResyncTimers
     });
 
     return true;
@@ -404,9 +426,24 @@ export class PopOutManagerService implements OnDestroy {
    * 3. <style> with CSSOM-only rules — serialized from sheet.cssRules
    *    (Plotly creates empty <style> elements and uses insertRule() to add CSS)
    */
-  private copyStylesToPopout(popoutWindow: Window): void {
+  private copyStylesToPopout(popoutWindow: Window, copiedSources: WeakSet<Node>): void {
     const doc = popoutWindow.document;
     document.head.querySelectorAll('link[rel="stylesheet"], style').forEach(node => {
+      // Skip nodes already copied in a prior pass (or by the observer).
+      if (copiedSources.has(node)) {
+        return;
+      }
+      // Defer empty CSSOM-only <style> nodes (e.g. Plotly) until their rules
+      // exist — leave them for the observer or a later pass so cloneStyleNode
+      // can serialize real content rather than copying an empty element.
+      if (
+        node instanceof HTMLStyleElement &&
+        !node.textContent?.trim() &&
+        !(node.sheet && node.sheet.cssRules.length > 0)
+      ) {
+        return;
+      }
+      copiedSources.add(node);
       doc.head.appendChild(this.cloneStyleNode(node, doc));
     });
   }
@@ -419,6 +456,42 @@ export class PopOutManagerService implements OnDestroy {
    * textContent and inject rules programmatically — a naive clone loses them.
    */
   private cloneStyleNode(node: Node, targetDoc: Document): Node {
+    // <link rel="stylesheet" href="styles.css"> carries the global styles
+    // (PrimeNG theme + component CSS, e.g. the .p-dropdown layout rules). A
+    // pop-out's about:blank document will NOT reliably load a <link> subresource
+    // — even with an absolute href it stays unparsed — so the pop-out (and any
+    // overlay appended into it) renders unthemed. The parent sheet is same-origin
+    // and already parsed, so INLINE its rules into a <style>. Fall back to an
+    // absolute-href <link> only if the rules are unreadable (cross-origin CDN).
+    if (node instanceof HTMLLinkElement && node.rel === 'stylesheet') {
+      try {
+        const rules = node.sheet?.cssRules;
+        if (rules && rules.length > 0) {
+          const style = targetDoc.createElement('style');
+          style.setAttribute('data-popout-inlined-from', node.href);
+          // Drop @font-face rules here: a network-url @font-face declared in the
+          // pop-out's about:blank document makes Playwright's screenshot path
+          // (document.fonts.ready) hang, and the fonts are handled separately by
+          // embedUsedFontsIntoPopout() as data: URIs (no network, settles
+          // instantly). Non-@font-face url()s (background images) are absolutized
+          // against the sheet href so they still resolve from about:blank.
+          const FONT_FACE_RULE = 5; // CSSRule.FONT_FACE_RULE
+          const kept = Array.from(rules).filter(r => r.type !== FONT_FACE_RULE);
+          const cssText = kept.map(r => r.cssText).join('\n');
+          style.textContent = this.absolutizeCssUrls(cssText, node.href);
+          return style;
+        }
+      } catch {
+        // CORS-restricted — fall through to an absolute-href link
+      }
+      const link = targetDoc.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = node.href;
+      if (node.media) {
+        link.media = node.media;
+      }
+      return link;
+    }
     if (node instanceof HTMLStyleElement && node.sheet) {
       try {
         const rules = node.sheet.cssRules;
@@ -441,6 +514,181 @@ export class PopOutManagerService implements OnDestroy {
   }
 
   /**
+   * Rewrite relative url() references in a CSS text block to absolute URLs,
+   * resolved against a base href (the source stylesheet's URL).
+   *
+   * When a stylesheet's rules are inlined into a pop-out's about:blank document,
+   * relative url()s (fonts, images) would resolve against `about:blank` and fail.
+   * Absolutizing them against the original sheet URL keeps assets (e.g. the
+   * PrimeIcons font) loading correctly in the pop-out.
+   *
+   * Leaves already-absolute (http:, https:, //), data:, and in-document (#…)
+   * references untouched.
+   */
+  /** Normalize a CSS font-family token for comparison (strip quotes, lower-case). */
+  private normalizeFontFamily(family: string): string {
+    return family.trim().replace(/^['"]|['"]$/g, '').toLowerCase();
+  }
+
+  /**
+   * Font families the app is actually using in the parent document
+   * (status 'loaded' or 'loading'). Used to drop @font-face rules for
+   * bundled-but-unused fonts when inlining styles into a pop-out.
+   */
+  private getUsedFontFamilies(): Set<string> {
+    const used = new Set<string>();
+    try {
+      (document as Document & { fonts: FontFaceSet }).fonts.forEach(f => {
+        if (f.status === 'loaded' || f.status === 'loading') {
+          used.add(this.normalizeFontFamily(f.family));
+        }
+      });
+    } catch {
+      // FontFaceSet unavailable — caller treats empty set as "keep all".
+    }
+    return used;
+  }
+
+  /** Extract the normalized font-family from a CSSFontFaceRule, or null. */
+  private fontFaceFamily(rule: CSSRule): string | null {
+    const family = (rule as CSSFontFaceRule).style?.getPropertyValue('font-family');
+    return family ? this.normalizeFontFamily(family) : null;
+  }
+
+  /**
+   * Fetch the @font-face rules for fonts the app actually uses, rewrite their
+   * url()s to base64 data: URIs, and inject them into the pop-out as a <style>.
+   *
+   * Fetching happens in the PARENT window (same-origin, usually cache-hit since
+   * the font is already loaded), and the resulting data: URIs carry no network
+   * dependency — so icon glyphs render in the about:blank pop-out and the font
+   * loads settle instantly (no screenshot/render font-wait hang).
+   */
+  private async embedUsedFontsIntoPopout(popoutWindow: Window): Promise<void> {
+    const usedFamilies = this.getUsedFontFamilies();
+    if (usedFamilies.size === 0) {
+      return;
+    }
+
+    const FONT_FACE_RULE = 5; // CSSRule.FONT_FACE_RULE
+    const faces: { cssText: string; baseHref: string }[] = [];
+    for (const sheet of Array.from(document.styleSheets)) {
+      let rules: CSSRuleList;
+      try {
+        rules = sheet.cssRules;
+      } catch {
+        continue; // cross-origin sheet
+      }
+      const baseHref = sheet.href || document.baseURI;
+      for (const rule of Array.from(rules)) {
+        if (rule.type !== FONT_FACE_RULE) {
+          continue;
+        }
+        const family = this.fontFaceFamily(rule);
+        if (family && usedFamilies.has(family)) {
+          faces.push({ cssText: rule.cssText, baseHref });
+        }
+      }
+    }
+    if (faces.length === 0) {
+      return;
+    }
+
+    const embedded = await Promise.all(
+      faces.map(f => this.inlineFontUrlsAsDataUris(f.cssText, f.baseHref))
+    );
+    const css = embedded.filter(Boolean).join('\n');
+    if (popoutWindow.closed || !css) {
+      return;
+    }
+    const style = popoutWindow.document.createElement('style');
+    style.setAttribute('data-popout-embedded-fonts', 'true');
+    style.textContent = css;
+    popoutWindow.document.head.appendChild(style);
+  }
+
+  /** Replace url()s in a @font-face cssText with base64 data: URIs (fetched). */
+  private async inlineFontUrlsAsDataUris(cssText: string, baseHref: string): Promise<string> {
+    const urlRe = /url\(\s*(['"]?)([^'")]+)\1\s*\)/g;
+    const urls = new Set<string>();
+    let match: RegExpExecArray | null;
+    while ((match = urlRe.exec(cssText)) !== null) {
+      const raw = match[2].trim();
+      if (!/^(data:|#)/i.test(raw)) {
+        urls.add(raw);
+      }
+    }
+
+    const dataUris = new Map<string, string>();
+    await Promise.all(
+      Array.from(urls).map(async raw => {
+        try {
+          const abs = new URL(raw, baseHref).href;
+          const resp = await fetch(abs);
+          if (!resp.ok) {
+            return;
+          }
+          const buf = await resp.arrayBuffer();
+          dataUris.set(raw, `data:${this.fontMimeType(abs)};base64,${this.arrayBufferToBase64(buf)}`);
+        } catch {
+          // leave this url() as-is (absolutized) on failure
+        }
+      })
+    );
+
+    return cssText.replace(urlRe, (whole, _q, raw) => {
+      const key = (raw as string).trim();
+      const dataUri = dataUris.get(key);
+      if (dataUri) {
+        return `url("${dataUri}")`;
+      }
+      if (/^(data:|#)/i.test(key)) {
+        return whole;
+      }
+      try {
+        return `url("${new URL(key, baseHref).href}")`;
+      } catch {
+        return whole;
+      }
+    });
+  }
+
+  private fontMimeType(url: string): string {
+    if (/\.woff2(\?|$)/i.test(url)) return 'font/woff2';
+    if (/\.woff(\?|$)/i.test(url)) return 'font/woff';
+    if (/\.otf(\?|$)/i.test(url)) return 'font/otf';
+    if (/\.eot(\?|$)/i.test(url)) return 'application/vnd.ms-fontobject';
+    return 'font/ttf';
+  }
+
+  private arrayBufferToBase64(buffer: ArrayBuffer): string {
+    const bytes = new Uint8Array(buffer);
+    let binary = '';
+    const chunk = 0x8000;
+    for (let i = 0; i < bytes.length; i += chunk) {
+      binary += String.fromCharCode.apply(null, Array.from(bytes.subarray(i, i + chunk)));
+    }
+    return btoa(binary);
+  }
+
+  private absolutizeCssUrls(cssText: string, baseHref: string): string {
+    return cssText.replace(
+      /url\(\s*(['"]?)([^'")]+)\1\s*\)/g,
+      (match, quote, rawUrl) => {
+        const url = rawUrl.trim();
+        if (/^(https?:|data:|blob:|\/\/|#)/i.test(url)) {
+          return match;
+        }
+        try {
+          return `url("${new URL(url, baseHref).href}")`;
+        } catch {
+          return match;
+        }
+      }
+    );
+  }
+
+  /**
    * Watch for styles added to the parent <head> after initial copy.
    * Libraries like Plotly inject styles lazily at render time — after our
    * copyStylesToPopout() has already run.
@@ -449,7 +697,7 @@ export class PopOutManagerService implements OnDestroy {
    * empty textContent, waits briefly for insertRule() calls to populate it,
    * then serializes the rules into the popout's copy.
    */
-  private observeParentStyles(popoutWindow: Window): MutationObserver {
+  private observeParentStyles(popoutWindow: Window, copiedSources: WeakSet<Node>): MutationObserver {
     const observer = new MutationObserver((mutations) => {
       if (popoutWindow.closed) {
         observer.disconnect();
@@ -458,6 +706,11 @@ export class PopOutManagerService implements OnDestroy {
       for (const mutation of mutations) {
         for (const node of Array.from(mutation.addedNodes)) {
           if (node instanceof HTMLStyleElement || (node instanceof HTMLLinkElement && node.rel === 'stylesheet')) {
+            // Skip nodes a catch-up pass already copied.
+            if (copiedSources.has(node)) {
+              continue;
+            }
+            copiedSources.add(node);
             if (node instanceof HTMLStyleElement && !node.textContent?.trim()) {
               // Likely a CSSOM-only element (e.g., Plotly) — defer to let insertRule() populate it
               setTimeout(() => {
@@ -618,6 +871,9 @@ export class PopOutManagerService implements OnDestroy {
 
     clearInterval(ref.checkInterval);
 
+    // Cancel any pending style catch-up passes
+    ref.styleResyncTimers?.forEach(t => clearTimeout(t));
+
     // Stop watching for new styles
     if (ref.styleObserver) {
       ref.styleObserver.disconnect();
@@ -646,6 +902,7 @@ export class PopOutManagerService implements OnDestroy {
 
     this.popoutWindows.forEach((ref) => {
       clearInterval(ref.checkInterval);
+      ref.styleResyncTimers?.forEach(t => clearTimeout(t));
       if (ref.styleObserver) {
         ref.styleObserver.disconnect();
       }

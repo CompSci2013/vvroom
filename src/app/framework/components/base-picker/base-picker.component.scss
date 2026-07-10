@@ -103,6 +103,16 @@
       padding: 0.5rem 1rem;
     }
 
+    // PrimeNG's caption wrapper (.p-datatable-header) ships a near-black
+    // background + 16px padding that framed the toolbar like a heavy border
+    // (and did not follow theme changes). The toolbar's own styling lives on
+    // .table-caption, so make the wrapper transparent + padding-free.
+    .p-datatable-header {
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+
     // Ensure table wrapper allows horizontal scroll when columns are expanded
     .p-datatable-table-container {
       overflow-x: auto;

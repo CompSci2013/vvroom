@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnDestroy,
@@ -86,7 +87,8 @@ export class QueryPanelComponent<TFilters = any, TData = any, TStatistics = any>
     private resourceService: ResourceManagementService<TFilters, TData, TStatistics>,
     private cdr: ChangeDetectorRef,
     private http: HttpClient,
-    private popOutContext: PopOutContextService
+    private popOutContext: PopOutContextService,
+    private elementRef: ElementRef
   ) {
     // Setup debounced search for text inputs
     this.searchSubject.pipe(
@@ -95,6 +97,15 @@ export class QueryPanelComponent<TFilters = any, TData = any, TStatistics = any>
     ).subscribe(({ field, value }) => {
       this.applyFilterChange(field, value);
     });
+  }
+
+  /**
+   * Target for PrimeNG overlays (`[appendTo]`). Resolves to the body of the
+   * document this component lives in — the pop-out window's document when
+   * popped out — so overlays don't render in the main window behind the pop-out.
+   */
+  get overlayAppendTo(): HTMLElement {
+    return this.elementRef.nativeElement?.ownerDocument?.body ?? document.body;
   }
 
   ngOnInit(): void {

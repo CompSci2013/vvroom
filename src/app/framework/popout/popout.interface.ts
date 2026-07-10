@@ -50,6 +50,8 @@ export interface PopOutWindowRef {
   componentRef: ComponentRef<any>;
   styleObserver: MutationObserver | null;
   eventForwardingController: AbortController | null;
+  /** Deferred style catch-up timers (see PopOutManagerService style sync). */
+  styleResyncTimers: number[];
 }
 
 /**

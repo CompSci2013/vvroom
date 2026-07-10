@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnDestroy,
@@ -144,8 +145,20 @@ export class QueryControlComponent<TFilters = any, TData = any, TStatistics = an
     private cdr: ChangeDetectorRef,
     private apiService: ApiService,
     private urlState: UrlStateService,
-    private popOutContext: PopOutContextService
+    private popOutContext: PopOutContextService,
+    private elementRef: ElementRef
   ) {}
+
+  /**
+   * Target for PrimeNG overlays (`[appendTo]`). Resolves to the body of the
+   * document this component actually lives in — the main document normally,
+   * or the pop-out window's document when popped out. Using a static
+   * `appendTo="body"` would always attach to the MAIN window, so overlays
+   * opened from a pop-out would render in the wrong window (behind it).
+   */
+  get overlayAppendTo(): HTMLElement {
+    return this.elementRef.nativeElement?.ownerDocument?.body ?? document.body;
+  }
 
   ngOnInit(): void {
     // Initialize filter field options from domain config

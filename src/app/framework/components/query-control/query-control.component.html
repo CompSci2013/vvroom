@@ -14,7 +14,7 @@
       [showClear]="false"
       optionLabel="label"
       optionValue="value"
-      appendTo="body"
+      [appendTo]="overlayAppendTo"
       styleClass="filter-field-dropdown"
       [attr.data-testid]="environment.includeTestIds ? 'filter-field-dropdown' : null">
     </p-dropdown>
