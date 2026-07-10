@@ -3,11 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PrimengModule } from '../primeng.module';
 
-import * as PlotlyJS from 'plotly.js-dist-min';
-import { PlotlyModule } from '@halolabs/ngx-plotly-wrapper';
-
-PlotlyModule.plotlyjs = PlotlyJS;
-
 // Components
 import { AiChatComponent } from './components/ai-chat/ai-chat.component';
 import { BasePickerComponent } from './components/base-picker/base-picker.component';
@@ -18,6 +13,7 @@ import { QueryControlComponent } from './components/query-control/query-control.
 import { QueryPanelComponent } from './components/query-panel/query-panel.component';
 import { BaseChartComponent } from './components/base-chart/base-chart.component';
 import { StatisticsPanel2Component } from './components/statistics-panel-2/statistics-panel-2.component';
+import { PlotlyComponent } from './components/plotly/plotly.component';
 
 /**
  * Framework Module
@@ -46,13 +42,13 @@ import { StatisticsPanel2Component } from './components/statistics-panel-2/stati
     QueryControlComponent,
     QueryPanelComponent,
     BaseChartComponent,
-    StatisticsPanel2Component
+    StatisticsPanel2Component,
+    PlotlyComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    PrimengModule,
-    PlotlyModule
+    PrimengModule
   ],
   exports: [
     AiChatComponent,

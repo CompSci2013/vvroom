@@ -2,7 +2,7 @@
  * Base Chart Component
  *
  * Generic Plotly.js chart container with data source pattern.
- * Uses ngx-plotly-wrapper for Plotly lifecycle management.
+ * Uses the in-place <plotly-plot> component for Plotly lifecycle management.
  * Domain-agnostic — renders charts based on ChartDataSource transformations.
  *
  * Framework Component
