@@ -172,6 +172,9 @@ export class PopOutManagerService implements OnDestroy {
     // screenshot font-wait; a data: URI has no network step and settles at once.
     void this.embedUsedFontsIntoPopout(popoutWindow);
 
+    // Keep the pop-out's theme in sync if the user switches themes while it's open.
+    const themeObserver = this.observeParentTheme(popoutWindow);
+
     // Forward drag-continuation events from popout document to parent document.
     // Libraries like Plotly bind mousemove/mouseup to the parent's `document` during
     // drag operations. When the DOM lives in the popout window, those events fire on
@@ -241,6 +244,7 @@ export class PopOutManagerService implements OnDestroy {
       outlet,
       componentRef,
       styleObserver,
+      themeObserver,
       eventForwardingController,
       styleResyncTimers
     });
@@ -413,6 +417,48 @@ export class PopOutManagerService implements OnDestroy {
 
     doc.body.style.margin = '0';
     doc.body.style.overflow = 'hidden';
+
+    // Match the pop-out to the app's current theme. Theming is driven by a
+    // data-theme attribute on the parent <html> (see app.component.setTheme);
+    // the theme rules themselves are copied via copyStylesToPopout, but the
+    // selector state is not — so without this the pop-out falls back to the
+    // :root default theme regardless of what the user picked.
+    this.syncPopoutTheme(popoutWindow);
+  }
+
+  /**
+   * Copy the parent document's theme state (root data-theme attribute) onto
+   * the pop-out's <html>, so theme-scoped CSS (html[data-theme="…"]) applies.
+   */
+  private syncPopoutTheme(popoutWindow: Window): void {
+    if (popoutWindow.closed) {
+      return;
+    }
+    const theme = document.documentElement.getAttribute('data-theme');
+    if (theme !== null) {
+      popoutWindow.document.documentElement.setAttribute('data-theme', theme);
+    } else {
+      popoutWindow.document.documentElement.removeAttribute('data-theme');
+    }
+  }
+
+  /**
+   * Observe the parent <html> data-theme attribute and mirror changes into the
+   * pop-out, so switching themes while a pop-out is open updates it live.
+   */
+  private observeParentTheme(popoutWindow: Window): MutationObserver {
+    const observer = new MutationObserver(() => {
+      if (popoutWindow.closed) {
+        observer.disconnect();
+        return;
+      }
+      this.syncPopoutTheme(popoutWindow);
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+    return observer;
   }
 
   /**
@@ -879,6 +925,11 @@ export class PopOutManagerService implements OnDestroy {
       ref.styleObserver.disconnect();
     }
 
+    // Stop watching for theme changes
+    if (ref.themeObserver) {
+      ref.themeObserver.disconnect();
+    }
+
     // Stop forwarding drag events
     if (ref.eventForwardingController) {
       ref.eventForwardingController.abort();
@@ -905,6 +956,9 @@ export class PopOutManagerService implements OnDestroy {
       ref.styleResyncTimers?.forEach(t => clearTimeout(t));
       if (ref.styleObserver) {
         ref.styleObserver.disconnect();
+      }
+      if (ref.themeObserver) {
+        ref.themeObserver.disconnect();
       }
       if (ref.eventForwardingController) {
         ref.eventForwardingController.abort();
