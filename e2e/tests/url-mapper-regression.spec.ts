@@ -12,7 +12,7 @@
  * IMPORTANT: Do NOT modify these tests during refactoring. They define the contract.
  */
 
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures';
 import { navigateToDiscover } from './screenshot-helper';
 
 test.describe('URL Mapper Regression Tests', () => {
