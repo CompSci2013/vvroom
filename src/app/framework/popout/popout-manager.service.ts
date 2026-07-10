@@ -167,6 +167,11 @@ export class PopOutManagerService implements OnDestroy {
       }, delay)
     );
 
+    // Embed in-use fonts (e.g. PrimeIcons) as data: URIs so icon glyphs render
+    // in the pop-out. A network-url @font-face in about:blank hangs the render/
+    // screenshot font-wait; a data: URI has no network step and settles at once.
+    void this.embedUsedFontsIntoPopout(popoutWindow);
+
     // Forward drag-continuation events from popout document to parent document.
     // Libraries like Plotly bind mousemove/mouseup to the parent's `document` during
     // drag operations. When the DOM lives in the popout window, those events fire on
@@ -464,16 +469,16 @@ export class PopOutManagerService implements OnDestroy {
         if (rules && rules.length > 0) {
           const style = targetDoc.createElement('style');
           style.setAttribute('data-popout-inlined-from', node.href);
-          // Skip @font-face rules: their url()s do not resolve against the
-          // pop-out's about:blank base, so the pending font loads never settle
-          // (document.fonts.ready hangs). Icon fonts fall back to system glyphs
-          // in the pop-out — a pre-existing limitation — but all layout/theme
-          // rules are preserved so overlays render and position correctly.
+          // Drop @font-face rules here: a network-url @font-face declared in the
+          // pop-out's about:blank document makes Playwright's screenshot path
+          // (document.fonts.ready) hang, and the fonts are handled separately by
+          // embedUsedFontsIntoPopout() as data: URIs (no network, settles
+          // instantly). Non-@font-face url()s (background images) are absolutized
+          // against the sheet href so they still resolve from about:blank.
           const FONT_FACE_RULE = 5; // CSSRule.FONT_FACE_RULE
-          style.textContent = Array.from(rules)
-            .filter(r => r.type !== FONT_FACE_RULE)
-            .map(r => r.cssText)
-            .join('\n');
+          const kept = Array.from(rules).filter(r => r.type !== FONT_FACE_RULE);
+          const cssText = kept.map(r => r.cssText).join('\n');
+          style.textContent = this.absolutizeCssUrls(cssText, node.href);
           return style;
         }
       } catch {
@@ -506,6 +511,181 @@ export class PopOutManagerService implements OnDestroy {
       }
     }
     return targetDoc.importNode(node, true);
+  }
+
+  /**
+   * Rewrite relative url() references in a CSS text block to absolute URLs,
+   * resolved against a base href (the source stylesheet's URL).
+   *
+   * When a stylesheet's rules are inlined into a pop-out's about:blank document,
+   * relative url()s (fonts, images) would resolve against `about:blank` and fail.
+   * Absolutizing them against the original sheet URL keeps assets (e.g. the
+   * PrimeIcons font) loading correctly in the pop-out.
+   *
+   * Leaves already-absolute (http:, https:, //), data:, and in-document (#…)
+   * references untouched.
+   */
+  /** Normalize a CSS font-family token for comparison (strip quotes, lower-case). */
+  private normalizeFontFamily(family: string): string {
+    return family.trim().replace(/^['"]|['"]$/g, '').toLowerCase();
+  }
+
+  /**
+   * Font families the app is actually using in the parent document
+   * (status 'loaded' or 'loading'). Used to drop @font-face rules for
+   * bundled-but-unused fonts when inlining styles into a pop-out.
+   */
+  private getUsedFontFamilies(): Set<string> {
+    const used = new Set<string>();
+    try {
+      (document as Document & { fonts: FontFaceSet }).fonts.forEach(f => {
+        if (f.status === 'loaded' || f.status === 'loading') {
+          used.add(this.normalizeFontFamily(f.family));
+        }
+      });
+    } catch {
+      // FontFaceSet unavailable — caller treats empty set as "keep all".
+    }
+    return used;
+  }
+
+  /** Extract the normalized font-family from a CSSFontFaceRule, or null. */
+  private fontFaceFamily(rule: CSSRule): string | null {
+    const family = (rule as CSSFontFaceRule).style?.getPropertyValue('font-family');
+    return family ? this.normalizeFontFamily(family) : null;
+  }
+
+  /**
+   * Fetch the @font-face rules for fonts the app actually uses, rewrite their
+   * url()s to base64 data: URIs, and inject them into the pop-out as a <style>.
+   *
+   * Fetching happens in the PARENT window (same-origin, usually cache-hit since
+   * the font is already loaded), and the resulting data: URIs carry no network
+   * dependency — so icon glyphs render in the about:blank pop-out and the font
+   * loads settle instantly (no screenshot/render font-wait hang).
+   */
+  private async embedUsedFontsIntoPopout(popoutWindow: Window): Promise<void> {
+    const usedFamilies = this.getUsedFontFamilies();
+    if (usedFamilies.size === 0) {
+      return;
+    }
+
+    const FONT_FACE_RULE = 5; // CSSRule.FONT_FACE_RULE
+    const faces: { cssText: string; baseHref: string }[] = [];
+    for (const sheet of Array.from(document.styleSheets)) {
+      let rules: CSSRuleList;
+      try {
+        rules = sheet.cssRules;
+      } catch {
+        continue; // cross-origin sheet
+      }
+      const baseHref = sheet.href || document.baseURI;
+      for (const rule of Array.from(rules)) {
+        if (rule.type !== FONT_FACE_RULE) {
+          continue;
+        }
+        const family = this.fontFaceFamily(rule);
+        if (family && usedFamilies.has(family)) {
+          faces.push({ cssText: rule.cssText, baseHref });
+        }
+      }
+    }
+    if (faces.length === 0) {
+      return;
+    }
+
+    const embedded = await Promise.all(
+      faces.map(f => this.inlineFontUrlsAsDataUris(f.cssText, f.baseHref))
+    );
+    const css = embedded.filter(Boolean).join('\n');
+    if (popoutWindow.closed || !css) {
+      return;
+    }
+    const style = popoutWindow.document.createElement('style');
+    style.setAttribute('data-popout-embedded-fonts', 'true');
+    style.textContent = css;
+    popoutWindow.document.head.appendChild(style);
+  }
+
+  /** Replace url()s in a @font-face cssText with base64 data: URIs (fetched). */
+  private async inlineFontUrlsAsDataUris(cssText: string, baseHref: string): Promise<string> {
+    const urlRe = /url\(\s*(['"]?)([^'")]+)\1\s*\)/g;
+    const urls = new Set<string>();
+    let match: RegExpExecArray | null;
+    while ((match = urlRe.exec(cssText)) !== null) {
+      const raw = match[2].trim();
+      if (!/^(data:|#)/i.test(raw)) {
+        urls.add(raw);
+      }
+    }
+
+    const dataUris = new Map<string, string>();
+    await Promise.all(
+      Array.from(urls).map(async raw => {
+        try {
+          const abs = new URL(raw, baseHref).href;
+          const resp = await fetch(abs);
+          if (!resp.ok) {
+            return;
+          }
+          const buf = await resp.arrayBuffer();
+          dataUris.set(raw, `data:${this.fontMimeType(abs)};base64,${this.arrayBufferToBase64(buf)}`);
+        } catch {
+          // leave this url() as-is (absolutized) on failure
+        }
+      })
+    );
+
+    return cssText.replace(urlRe, (whole, _q, raw) => {
+      const key = (raw as string).trim();
+      const dataUri = dataUris.get(key);
+      if (dataUri) {
+        return `url("${dataUri}")`;
+      }
+      if (/^(data:|#)/i.test(key)) {
+        return whole;
+      }
+      try {
+        return `url("${new URL(key, baseHref).href}")`;
+      } catch {
+        return whole;
+      }
+    });
+  }
+
+  private fontMimeType(url: string): string {
+    if (/\.woff2(\?|$)/i.test(url)) return 'font/woff2';
+    if (/\.woff(\?|$)/i.test(url)) return 'font/woff';
+    if (/\.otf(\?|$)/i.test(url)) return 'font/otf';
+    if (/\.eot(\?|$)/i.test(url)) return 'application/vnd.ms-fontobject';
+    return 'font/ttf';
+  }
+
+  private arrayBufferToBase64(buffer: ArrayBuffer): string {
+    const bytes = new Uint8Array(buffer);
+    let binary = '';
+    const chunk = 0x8000;
+    for (let i = 0; i < bytes.length; i += chunk) {
+      binary += String.fromCharCode.apply(null, Array.from(bytes.subarray(i, i + chunk)));
+    }
+    return btoa(binary);
+  }
+
+  private absolutizeCssUrls(cssText: string, baseHref: string): string {
+    return cssText.replace(
+      /url\(\s*(['"]?)([^'")]+)\1\s*\)/g,
+      (match, quote, rawUrl) => {
+        const url = rawUrl.trim();
+        if (/^(https?:|data:|blob:|\/\/|#)/i.test(url)) {
+          return match;
+        }
+        try {
+          return `url("${new URL(url, baseHref).href}")`;
+        } catch {
+          return match;
+        }
+      }
+    );
   }
 
   /**
