@@ -147,6 +147,15 @@ export class ResultsTableComponent<TFilters = any, TData = any, TStatistics = an
     private elementRef: ElementRef
   ) {}
 
+  /**
+   * Target for PrimeNG overlays (`[appendTo]`). Resolves to the body of the
+   * document this component lives in — the pop-out window's document when
+   * popped out — so overlays don't render in the main window behind the pop-out.
+   */
+  get overlayAppendTo(): HTMLElement {
+    return this.elementRef.nativeElement?.ownerDocument?.body ?? document.body;
+  }
+
   // ============================================================================
   // Lifecycle
   // ============================================================================

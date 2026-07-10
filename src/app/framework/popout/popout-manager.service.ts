@@ -145,11 +145,27 @@ export class PopOutManagerService implements OnDestroy {
     const portal = new ComponentPortal(componentType);
     const componentRef = outlet.attach(portal);
 
-    // NOW copy styles (including the component styles Angular just created)
-    this.copyStylesToPopout(popoutWindow);
+    // NOW copy styles (including the component styles Angular just created).
+    // A single snapshot is not enough: Angular/PrimeNG inject some stylesheets
+    // AFTER portal attachment and outside the MutationObserver's childList window
+    // (e.g. the p-dropdown layout sheet), so the popout can miss them and render
+    // overlays unstyled. We track which parent nodes we've already copied (by
+    // identity) and run several deferred catch-up passes to close that race.
+    const copiedSources = new WeakSet<Node>();
+    this.copyStylesToPopout(popoutWindow, copiedSources);
 
     // Watch for late style injections (Plotly, lazy-loaded components, etc.)
-    const styleObserver = this.observeParentStyles(popoutWindow);
+    const styleObserver = this.observeParentStyles(popoutWindow, copiedSources);
+
+    // Deferred catch-up passes: re-scan the parent <head> for any not-yet-copied
+    // stylesheet the initial snapshot and the observer missed.
+    const styleResyncTimers = [120, 350, 800, 1600].map(delay =>
+      window.setTimeout(() => {
+        if (!popoutWindow.closed) {
+          this.copyStylesToPopout(popoutWindow, copiedSources);
+        }
+      }, delay)
+    );
 
     // Forward drag-continuation events from popout document to parent document.
     // Libraries like Plotly bind mousemove/mouseup to the parent's `document` during
@@ -220,7 +236,8 @@ export class PopOutManagerService implements OnDestroy {
       outlet,
       componentRef,
       styleObserver,
-      eventForwardingController
+      eventForwardingController,
+      styleResyncTimers
     });
 
     return true;
@@ -404,9 +421,24 @@ export class PopOutManagerService implements OnDestroy {
    * 3. <style> with CSSOM-only rules — serialized from sheet.cssRules
    *    (Plotly creates empty <style> elements and uses insertRule() to add CSS)
    */
-  private copyStylesToPopout(popoutWindow: Window): void {
+  private copyStylesToPopout(popoutWindow: Window, copiedSources: WeakSet<Node>): void {
     const doc = popoutWindow.document;
     document.head.querySelectorAll('link[rel="stylesheet"], style').forEach(node => {
+      // Skip nodes already copied in a prior pass (or by the observer).
+      if (copiedSources.has(node)) {
+        return;
+      }
+      // Defer empty CSSOM-only <style> nodes (e.g. Plotly) until their rules
+      // exist — leave them for the observer or a later pass so cloneStyleNode
+      // can serialize real content rather than copying an empty element.
+      if (
+        node instanceof HTMLStyleElement &&
+        !node.textContent?.trim() &&
+        !(node.sheet && node.sheet.cssRules.length > 0)
+      ) {
+        return;
+      }
+      copiedSources.add(node);
       doc.head.appendChild(this.cloneStyleNode(node, doc));
     });
   }
@@ -419,6 +451,42 @@ export class PopOutManagerService implements OnDestroy {
    * textContent and inject rules programmatically — a naive clone loses them.
    */
   private cloneStyleNode(node: Node, targetDoc: Document): Node {
+    // <link rel="stylesheet" href="styles.css"> carries the global styles
+    // (PrimeNG theme + component CSS, e.g. the .p-dropdown layout rules). A
+    // pop-out's about:blank document will NOT reliably load a <link> subresource
+    // — even with an absolute href it stays unparsed — so the pop-out (and any
+    // overlay appended into it) renders unthemed. The parent sheet is same-origin
+    // and already parsed, so INLINE its rules into a <style>. Fall back to an
+    // absolute-href <link> only if the rules are unreadable (cross-origin CDN).
+    if (node instanceof HTMLLinkElement && node.rel === 'stylesheet') {
+      try {
+        const rules = node.sheet?.cssRules;
+        if (rules && rules.length > 0) {
+          const style = targetDoc.createElement('style');
+          style.setAttribute('data-popout-inlined-from', node.href);
+          // Skip @font-face rules: their url()s do not resolve against the
+          // pop-out's about:blank base, so the pending font loads never settle
+          // (document.fonts.ready hangs). Icon fonts fall back to system glyphs
+          // in the pop-out — a pre-existing limitation — but all layout/theme
+          // rules are preserved so overlays render and position correctly.
+          const FONT_FACE_RULE = 5; // CSSRule.FONT_FACE_RULE
+          style.textContent = Array.from(rules)
+            .filter(r => r.type !== FONT_FACE_RULE)
+            .map(r => r.cssText)
+            .join('\n');
+          return style;
+        }
+      } catch {
+        // CORS-restricted — fall through to an absolute-href link
+      }
+      const link = targetDoc.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = node.href;
+      if (node.media) {
+        link.media = node.media;
+      }
+      return link;
+    }
     if (node instanceof HTMLStyleElement && node.sheet) {
       try {
         const rules = node.sheet.cssRules;
@@ -449,7 +517,7 @@ export class PopOutManagerService implements OnDestroy {
    * empty textContent, waits briefly for insertRule() calls to populate it,
    * then serializes the rules into the popout's copy.
    */
-  private observeParentStyles(popoutWindow: Window): MutationObserver {
+  private observeParentStyles(popoutWindow: Window, copiedSources: WeakSet<Node>): MutationObserver {
     const observer = new MutationObserver((mutations) => {
       if (popoutWindow.closed) {
         observer.disconnect();
@@ -458,6 +526,11 @@ export class PopOutManagerService implements OnDestroy {
       for (const mutation of mutations) {
         for (const node of Array.from(mutation.addedNodes)) {
           if (node instanceof HTMLStyleElement || (node instanceof HTMLLinkElement && node.rel === 'stylesheet')) {
+            // Skip nodes a catch-up pass already copied.
+            if (copiedSources.has(node)) {
+              continue;
+            }
+            copiedSources.add(node);
             if (node instanceof HTMLStyleElement && !node.textContent?.trim()) {
               // Likely a CSSOM-only element (e.g., Plotly) — defer to let insertRule() populate it
               setTimeout(() => {
@@ -618,6 +691,9 @@ export class PopOutManagerService implements OnDestroy {
 
     clearInterval(ref.checkInterval);
 
+    // Cancel any pending style catch-up passes
+    ref.styleResyncTimers?.forEach(t => clearTimeout(t));
+
     // Stop watching for new styles
     if (ref.styleObserver) {
       ref.styleObserver.disconnect();
@@ -646,6 +722,7 @@ export class PopOutManagerService implements OnDestroy {
 
     this.popoutWindows.forEach((ref) => {
       clearInterval(ref.checkInterval);
+      ref.styleResyncTimers?.forEach(t => clearTimeout(t));
       if (ref.styleObserver) {
         ref.styleObserver.disconnect();
       }
