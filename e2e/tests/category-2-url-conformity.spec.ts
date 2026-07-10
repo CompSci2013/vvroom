@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures';
 import {
   PANEL_IDS,
   setPanelVisibility,
@@ -189,7 +189,7 @@ test.describe('Category 2: URL-First Conformity Tests', () => {
     test('U2.2.2 - Set year range 2000-2010 → URL contains yearMin/yearMax', async ({ page }) => {
       await navigateToDiscover(page);
 
-      // Expand Query Panel to interact with year inputs
+      // Expand Query Panel to interact with the year range control
       await setPanelVisibility(
         page,
         [PANEL_IDS.QUERY_PANEL],
@@ -198,22 +198,45 @@ test.describe('Category 2: URL-First Conformity Tests', () => {
 
       await page.waitForTimeout(300);
 
-      // Set year range inputs (PrimeNG p-inputNumber uses id attribute)
-      const yearMinInput = page.locator('#yearMin input');
-      const yearMaxInput = page.locator('#yearMax input');
+      // The Year filter is a PrimeNG range slider (p-slider [range]) — it writes the URL
+      // on slide-end (drag), not via number inputs. Drag both handles inward toward
+      // 2000/2010. Pixel rounding means the landed values are ±1, so we assert the
+      // range→URL contract (both params present, in-bounds, ordered) rather than exact values.
+      const field = page.locator('#panel-query-panel .range-slider-field').first();
+      const slider = field.locator('p-slider');
+      const box = await slider.boundingBox();
+      if (!box) throw new Error('year range slider not found');
+      const handles = field.locator('.p-slider-handle');
+      const vMin = Number(await handles.nth(0).getAttribute('aria-valuemin'));
+      const vMax = Number(await handles.nth(0).getAttribute('aria-valuemax'));
+      const midY = box.y + box.height / 2;
+      const xFor = (v: number) => box.x + ((v - vMin) / (vMax - vMin)) * box.width;
 
-      await yearMinInput.fill('2000');
-      await yearMinInput.blur();
-      await page.waitForTimeout(300);
-      await yearMaxInput.fill('2010');
-      await yearMaxInput.blur();
-      // Wait for URL to update with yearMax parameter
-      await page.waitForURL(/yearMax=2010/, { timeout: 5000 });
+      const dragHandleTo = async (index: number, value: number) => {
+        const hb = await handles.nth(index).boundingBox();
+        if (!hb) throw new Error(`year slider handle ${index} not found`);
+        await page.mouse.move(hb.x + hb.width / 2, hb.y + hb.height / 2);
+        await page.mouse.down();
+        await page.mouse.move(xFor(value), midY, { steps: 10 });
+        await page.mouse.up();
+        await page.waitForTimeout(400);
+      };
+      await dragHandleTo(0, 2000); // start year
+      await dragHandleTo(1, 2010); // end year
+
+      await page.waitForURL(/yearMin=\d+/, { timeout: 5000 });
+      await page.waitForURL(/yearMax=\d+/, { timeout: 5000 });
 
       await takeScreenshot(page, 'U2.2.2', 'state-year-range');
 
-      expect(page.url()).toContain('yearMin=2000');
-      expect(page.url()).toContain('yearMax=2010');
+      const params = new URL(page.url()).searchParams;
+      const yearMin = Number(params.get('yearMin'));
+      const yearMax = Number(params.get('yearMax'));
+      expect(params.has('yearMin')).toBe(true);
+      expect(params.has('yearMax')).toBe(true);
+      expect(yearMin).toBeGreaterThan(vMin);   // left handle moved inward
+      expect(yearMax).toBeLessThan(vMax);       // right handle moved inward
+      expect(yearMin).toBeLessThan(yearMax);    // valid ordered range
     });
 
     test('U2.2.3 - Select SUV body class → URL contains bodyClass=SUV', async ({ page }) => {

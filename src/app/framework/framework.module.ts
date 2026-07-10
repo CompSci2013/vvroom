@@ -13,6 +13,7 @@ import { QueryControlComponent } from './components/query-control/query-control.
 import { QueryPanelComponent } from './components/query-panel/query-panel.component';
 import { BaseChartComponent } from './components/base-chart/base-chart.component';
 import { StatisticsPanel2Component } from './components/statistics-panel-2/statistics-panel-2.component';
+import { PlotlyComponent } from './components/plotly/plotly.component';
 
 /**
  * Framework Module
@@ -41,7 +42,8 @@ import { StatisticsPanel2Component } from './components/statistics-panel-2/stati
     QueryControlComponent,
     QueryPanelComponent,
     BaseChartComponent,
-    StatisticsPanel2Component
+    StatisticsPanel2Component,
+    PlotlyComponent
   ],
   imports: [
     CommonModule,
