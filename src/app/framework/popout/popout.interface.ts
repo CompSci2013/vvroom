@@ -49,6 +49,8 @@ export interface PopOutWindowRef {
   outlet: DomPortalOutlet;
   componentRef: ComponentRef<any>;
   styleObserver: MutationObserver | null;
+  /** Observes the parent <html> data-theme so the pop-out tracks theme changes. */
+  themeObserver: MutationObserver | null;
   eventForwardingController: AbortController | null;
   /** Deferred style catch-up timers (see PopOutManagerService style sync). */
   styleResyncTimers: number[];
